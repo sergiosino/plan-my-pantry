@@ -5,27 +5,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import AddButton from '../../components/AddButton'
 import GroceryItem from './GroceryItem'
-
-const GROCERY_ITEM = { checked: false, text: '' }
-const GROCERY_ITEM_HEIGHT = 44
-const GROCERY_LIST = [{ id: 1, text: 'hola', checked: true }]
-const STORAGE_KEY_GROCERY_LIST = 'grocery-list'
+import { ASYNC_STORAGE_KEYS, GROCERY_ITEM_HEIGHT } from '../../constants/constants'
 
 export default function GroceryListView () {
-  const [groceryItems, setGroceryItems] = useState(GROCERY_LIST)
+  const [groceryItems, setGroceryItems] = useState([])
 
   const itemIndexToFocus = useRef(null)
   const refFlatList = useRef(null)
 
   const updateGroceryList = async (newGroceryList) => {
-    console.log('updateGroceryList', newGroceryList)
     const jsonValue = JSON.stringify(newGroceryList)
-    AsyncStorage.setItem(STORAGE_KEY_GROCERY_LIST, jsonValue)
+    AsyncStorage.setItem(ASYNC_STORAGE_KEYS.GROCERY_LIST, jsonValue)
     setGroceryItems(newGroceryList)
   }
 
   const handleAddItem = () => {
-    const newGroceryItem = { id: uuid.v4(), ...GROCERY_ITEM }
+    const newGroceryItem = { id: uuid.v4(), checked: false, text: '' }
     const groceryItemsCopy = [...groceryItems]
     groceryItemsCopy.push(newGroceryItem)
     itemIndexToFocus.current = groceryItemsCopy.length - 1
@@ -38,16 +33,19 @@ export default function GroceryListView () {
   }
 
   const onItemChange = (id, checked, text) => {
-    const groceryItemsCopy = groceryItems.map(groceryItem =>
-      groceryItem.id === id ? { id, checked, text } : groceryItem)
-    const jsonValue = JSON.stringify(groceryItemsCopy)
-    AsyncStorage.setItem(STORAGE_KEY_GROCERY_LIST, jsonValue)
+    const itemIndex = groceryItems.findIndex(groceryItem => groceryItem.id === id)
+    const item = groceryItems[itemIndex]
+
+    if (item.checked !== checked || item.text !== text) {
+      const groceryItemsCopy = [...groceryItems]
+      groceryItemsCopy[itemIndex] = { id, checked, text }
+      updateGroceryList(groceryItemsCopy)
+    }
   }
 
   const getStorageGroceryList = async () => {
-    let storageGroceryList = await AsyncStorage.getItem(STORAGE_KEY_GROCERY_LIST)
+    let storageGroceryList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.GROCERY_LIST)
     storageGroceryList = storageGroceryList != null ? JSON.parse(storageGroceryList) : null
-    console.log(storageGroceryList)
     if (storageGroceryList) { setGroceryItems(storageGroceryList) }
   }
 
@@ -55,9 +53,11 @@ export default function GroceryListView () {
     getStorageGroceryList()
   }, [])
 
+  // When a new item is added it scrolls to its location
   useEffect(() => {
     const isLastItemAdded = itemIndexToFocus.current === groceryItems.length - 1
     if (isLastItemAdded) {
+      console.log('isLastItemAdded!')
       refFlatList.current.scrollToIndex({
         index: groceryItems.length - 1,
         animated: true

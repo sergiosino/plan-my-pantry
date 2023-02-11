@@ -1,15 +1,15 @@
+import { useState } from 'react'
 import Checkbox from 'expo-checkbox'
 import { StyleSheet, Text, TextInput, TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { useState } from 'react'
+
+import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
 
 const CHECKED_COLOR = 'gray'
-const GROCERY_ITEM_HEIGHT = 44
 
 export default function GroceryItem (props) {
   const { defaultChecked, defaultText, handleDeleteItem, isItemToFocus, onItemChange } = props
 
-  const [isChecked, setIsChecked] = useState(defaultChecked)
   const [text, setText] = useState(defaultText)
   const [showDeleteIcon, setShowDeleteIcon] = useState(false)
 
@@ -18,14 +18,12 @@ export default function GroceryItem (props) {
   }
 
   const handleTextFocusEnd = () => {
-    console.log('hola')
     setShowDeleteIcon(false)
-    onItemChange(isChecked, text)
+    onItemChange(defaultChecked, text)
   }
 
-  const handleCheckboxChange = (value) => {
-    onItemChange(value)
-    setIsChecked(value, text)
+  const handleCheckboxChange = (checked) => {
+    onItemChange(checked, text)
   }
 
   return (
@@ -33,12 +31,12 @@ export default function GroceryItem (props) {
       style={styles.container}
     >
       <Checkbox
-        value={isChecked}
+        value={defaultChecked}
         onValueChange={handleCheckboxChange}
-        color={isChecked ? CHECKED_COLOR : undefined}
+        color={defaultChecked ? CHECKED_COLOR : undefined}
         style={styles.checkbox}
       />
-      {isChecked
+      {defaultChecked
         ? (
           <Text style={styles.text}>
             {text}
@@ -54,7 +52,7 @@ export default function GroceryItem (props) {
             onEndEditing={handleTextFocusEnd}
           />
           )}
-      {showDeleteIcon && !isChecked && (
+      {showDeleteIcon && !defaultChecked && (
         <TouchableNativeFeedback
           onPress={handleDeleteItem}
           background={TouchableNativeFeedback.Ripple(CHECKED_COLOR, true)}
