@@ -1,30 +1,23 @@
-import { useState } from 'react'
 import Checkbox from 'expo-checkbox'
 import { StyleSheet, Text, TextInput, TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
+import { useGroceryItem } from '../../hooks/useGroceryItem'
 
 const CHECKED_COLOR = 'gray'
 
 export default function GroceryItem (props) {
   const { defaultChecked, defaultText, handleDeleteItem, isItemToFocus, onItemChange } = props
 
-  const [text, setText] = useState(defaultText)
-  const [showDeleteIcon, setShowDeleteIcon] = useState(false)
-
-  const handleTextFocus = () => {
-    setShowDeleteIcon(true)
-  }
-
-  const handleTextFocusEnd = () => {
-    setShowDeleteIcon(false)
-    onItemChange(defaultChecked, text)
-  }
-
-  const handleCheckboxChange = (checked) => {
-    onItemChange(checked, text)
-  }
+  const {
+    text,
+    setText,
+    showDeleteIcon,
+    handleTextFocus,
+    handleTextFocusEnd,
+    handleCheckboxChange
+  } = useGroceryItem({ defaultChecked, defaultText, onItemChange })
 
   return (
     <View
