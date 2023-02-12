@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import RecipesView from '../views/RecipesView'
-import WeekMenuView from '../views/WeekMenuView'
-import GroceryListView from '../views/GroceryListView/GroceryListView'
+import RecipesView from 'views/RecipesView'
+import WeekMenuView from 'views/WeekMenuView'
+import GroceryListView from 'views/GroceryListViews/GroceryListView'
 
 const Tab = createBottomTabNavigator()
 const tabOptions = [

@@ -1,9 +1,10 @@
 import * as React from 'react'
-import BottomAppBar from './components/BottomTabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import Constants from 'expo-constants'
 import { View } from 'react-native'
+
+import BottomAppBar from './components/BottomTabs'
 
 export default function App () {
   return (

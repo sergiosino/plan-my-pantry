@@ -2,8 +2,8 @@ import Checkbox from 'expo-checkbox'
 import { StyleSheet, Text, TextInput, TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
-import { useGroceryItem } from '../../hooks/useGroceryItem'
+import { GROCERY_ITEM_HEIGHT } from 'constants/constants'
+import { useGroceryItem } from 'hooks/useGroceryItem'
 
 const CHECKED_COLOR = 'gray'
 
