@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import uuid from 'react-native-uuid'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { ASYNC_STORAGE_KEYS } from 'constants/constants'
+import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 
 export function useGroceryItems ({ itemIndexToFocus }) {
   const [groceryList, setGroceryItems] = useState([])

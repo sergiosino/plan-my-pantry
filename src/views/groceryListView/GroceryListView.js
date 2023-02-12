@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 
-import AddButton from 'components/AddButton'
+import AddButton from '../../components/AddButton'
 import GroceryItem from './GroceryItem'
-import { GROCERY_ITEM_HEIGHT } from 'constants/constants'
-import { useGroceryItems } from 'hooks/useGroceryList'
+import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
+import { useGroceryItems } from '../../hooks/useGroceryList'
 
 export default function GroceryListView () {
   const itemIndexToFocus = useRef(null)

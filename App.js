@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar'
 import Constants from 'expo-constants'
 import { View } from 'react-native'
 
-import BottomAppBar from './components/BottomTabs'
+import BottomAppBar from './src/components/BottomTabs'
 
 export default function App () {
   return (
