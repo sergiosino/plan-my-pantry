@@ -5,14 +5,16 @@ export default function AddButton (props) {
   const { handleAddItem } = props
 
   return (
-    <TouchableNativeFeedback
-      onPress={handleAddItem}
-      background={TouchableNativeFeedback.Ripple('gray', false, 30)}
-    >
-      <View style={styles.iconContainer}>
-        <Ionicons name='add' size={30} />
-      </View>
-    </TouchableNativeFeedback>
+    <View style={styles.iconContainer}>
+      <TouchableNativeFeedback
+        onPress={handleAddItem}
+        background={TouchableNativeFeedback.Ripple('gray', true, 30)}
+      >
+        <View>
+          <Ionicons name='add' size={30} />
+        </View>
+      </TouchableNativeFeedback>
+    </View>
   )
 }
 

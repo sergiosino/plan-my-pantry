@@ -21,6 +21,22 @@ export function useGroceryItems ({ itemIndexToFocus }) {
     updateGroceryList(groceryItemsCopy)
   }
 
+  const handleDeleteChecked = () => {
+    const groceryItemsCopy = groceryList.filter(groceryItem => !groceryItem.checked)
+    updateGroceryList(groceryItemsCopy)
+  }
+
+  const handleUnCheckAll = () => {
+    itemIndexToFocus.current = null
+    const groceryItemsUnChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: false } })
+    updateGroceryList(groceryItemsUnChecked)
+  }
+
+  const handleCheckAll = () => {
+    const groceryItemsChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: true } })
+    updateGroceryList(groceryItemsChecked)
+  }
+
   const handleDeleteItem = (id) => {
     const groceryItemsCopy = groceryList.filter(groceryItem => groceryItem.id !== id)
     updateGroceryList(groceryItemsCopy)
@@ -51,6 +67,9 @@ export function useGroceryItems ({ itemIndexToFocus }) {
     groceryList,
     handleAddItem,
     handleDeleteItem,
+    handleDeleteChecked,
+    handleCheckAll,
+    handleUnCheckAll,
     onItemChange
   }
 }

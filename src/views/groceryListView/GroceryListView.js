@@ -5,6 +5,7 @@ import AddButton from '../../components/AddButton'
 import GroceryItem from './GroceryItem'
 import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
 import { useGroceryItems } from '../../hooks/useGroceryList'
+import GroceryListHeader from './GroceryListHeader'
 
 export default function GroceryListView () {
   const itemIndexToFocus = useRef(null)
@@ -13,6 +14,9 @@ export default function GroceryListView () {
     groceryList,
     handleAddItem,
     handleDeleteItem,
+    handleDeleteChecked,
+    handleCheckAll,
+    handleUnCheckAll,
     onItemChange
   } = useGroceryItems({ itemIndexToFocus })
 
@@ -29,6 +33,7 @@ export default function GroceryListView () {
 
   return (
     <View style={styles.container}>
+      <GroceryListHeader handleDeleteChecked={handleDeleteChecked} handleCheckAll={handleCheckAll} handleUnCheckAll={handleUnCheckAll} />
       <FlatList
         ref={refFlatList}
         contentContainerStyle={styles.scrollViewContent}
@@ -60,6 +65,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   scrollViewContent: {
-    padding: 20
+    paddingHorizontal: 20
   }
 })
