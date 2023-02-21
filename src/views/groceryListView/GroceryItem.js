@@ -40,6 +40,7 @@ export default function GroceryItem (props) {
             autoFocus={isItemToFocus}
             style={styles.textInput}
             value={text}
+            maxLength={40}
             onChangeText={setText}
             onFocus={handleTextFocus}
             onEndEditing={handleTextFocusEnd}
