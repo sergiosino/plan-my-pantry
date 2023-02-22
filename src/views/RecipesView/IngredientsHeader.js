@@ -2,7 +2,7 @@ import { Alert, StyleSheet, TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default function IngredientsHeader (props) {
-  const { handleDeleteChecked, enableDeleteAll } = props
+  const { handleDeleteChecked, enableDeleteAll, handleUnselectAll } = props
 
   const confirmationAlert = (title, message, onOK) => {
     Alert.alert(title, message, [
@@ -17,9 +17,21 @@ export default function IngredientsHeader (props) {
 
   const touchableColor = enableDeleteAll ? 'gray' : 'transparent'
   const deleteIconColor = enableDeleteAll ? 'black' : 'gray'
+  const headerContentJustify = enableDeleteAll ? 'space-between' : 'flex-end'
 
   return (
-    <View style={styles.headerContainer}>
+    <View style={{ ...styles.headerContainer, justifyContent: headerContentJustify }}>
+      {enableDeleteAll &&
+        <View style={styles.headerItem}>
+          <TouchableNativeFeedback
+            onPress={handleUnselectAll}
+            background={TouchableNativeFeedback.Ripple(touchableColor, true, 20)}
+          >
+            <View>
+              <Ionicons color={deleteIconColor} name='close' size={20} />
+            </View>
+          </TouchableNativeFeedback>
+        </View>}
       <View style={styles.headerItem}>
         <TouchableNativeFeedback
           onPress={alertDeleteChecked}
@@ -38,7 +50,6 @@ const gap = 20
 
 const styles = StyleSheet.create({
   headerContainer: {
-    justifyContent: 'flex-end',
     alignItems: 'center',
     flexDirection: 'row',
     padding: gap,

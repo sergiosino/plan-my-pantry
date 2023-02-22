@@ -52,6 +52,10 @@ export default function IngredientsList () {
     }
   }
 
+  const handleUnselectAllIngredients = () => {
+    setSelectedList([])
+  }
+
   const handleIngredientChange = (id, text) => {
     const ingredientIndex = ingredientsList.findIndex(ingredient => ingredient.id === id)
     const ingredient = ingredientsList[ingredientIndex]
@@ -96,7 +100,11 @@ export default function IngredientsList () {
 
   return (
     <View style={{ flex: 1 }}>
-      <IngredientsHeader handleDeleteChecked={handleDeleteSelectedIngredients} enableDeleteAll={!isSelectedListEmpty} />
+      <IngredientsHeader
+        handleDeleteChecked={handleDeleteSelectedIngredients}
+        enableDeleteAll={!isSelectedListEmpty}
+        handleUnselectAll={handleUnselectAllIngredients}
+      />
       <FlatList
         ref={refFlatList}
         contentContainerStyle={{ marginLeft: 10, marginRight: 10 }}
