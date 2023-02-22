@@ -15,7 +15,7 @@ export default function IngredientsHeader (props) {
   }
 
   return (
-    <View style={{ ...styles.headerContainer, justifyContent: 'space-between' }}>
+    <View style={styles.headerContainer}>
       {enableDeleteAll &&
         <>
           <View style={styles.headerItem}>
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     alignItems: 'center',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: gap,
     margin: -(gap / 2),
     height: 82

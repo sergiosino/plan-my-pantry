@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { FlatList, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 
 import AddButton from '../../components/AddButton'
 import { INGREDIENT_HEIGHT } from '../../constants/constants'
@@ -36,7 +36,7 @@ export default function IngredientsList () {
   const isSelectedListEmpty = selectedList.length === 0
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <IngredientsHeader
         onDeleteSelected={handleDeleteSelectedIngredients}
         enableDeleteAll={!isSelectedListEmpty}
@@ -44,7 +44,7 @@ export default function IngredientsList () {
       />
       <FlatList
         ref={refFlatList}
-        contentContainerStyle={{ marginLeft: 10, marginRight: 10 }}
+        contentContainerStyle={styles.flatListContent}
         removeClippedSubviews={false}
         keyboardShouldPersistTaps='handled'
         getItemLayout={(_, index) => ({ length: INGREDIENT_HEIGHT, offset: INGREDIENT_HEIGHT * index, index })}
@@ -72,3 +72,12 @@ export default function IngredientsList () {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  flatListContent: {
+    marginHorizontal: 10
+  }
+})

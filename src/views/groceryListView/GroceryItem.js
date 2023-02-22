@@ -53,7 +53,7 @@ export default function GroceryItem (props) {
           onPress={handleDelete}
           background={TouchableNativeFeedback.Ripple('gray', true)}
         >
-          <View style={styles.iconContainer}>
+          <View style={styles.closeIconContainer}>
             <Ionicons name='close' size={25} />
           </View>
         </TouchableNativeFeedback>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1
   },
-  iconContainer: {
+  closeIconContainer: {
     height: 25,
     width: 25
   }

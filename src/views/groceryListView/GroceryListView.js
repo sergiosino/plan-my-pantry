@@ -40,7 +40,7 @@ export default function GroceryListView () {
       />
       <FlatList
         ref={refFlatList}
-        contentContainerStyle={styles.scrollViewContent}
+        contentContainerStyle={styles.flatListContent}
         removeClippedSubviews={false}
         keyboardShouldPersistTaps='handled'
         getItemLayout={(_, index) => ({ length: GROCERY_ITEM_HEIGHT, offset: GROCERY_ITEM_HEIGHT * index, index })}
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  scrollViewContent: {
+  flatListContent: {
     paddingHorizontal: 20
   }
 })
