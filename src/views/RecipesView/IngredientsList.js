@@ -4,7 +4,7 @@ import { FlatList, View } from 'react-native'
 import uuid from 'react-native-uuid'
 
 import AddButton from '../../components/AddButton'
-import { ASYNC_STORAGE_KEYS } from '../../constants/constants'
+import { ASYNC_STORAGE_KEYS, INGREDIENT_HEIGHT } from '../../constants/constants'
 import IngredientItem from './IngredientItem'
 import IngredientsHeader from './IngredientsHeader'
 import { confirmationAlert } from '../../utils/confirmationAlert'
@@ -86,6 +86,17 @@ export default function IngredientsList () {
     if (storageIngredientsList) { setIngredientsList(storageIngredientsList) }
   }
 
+  // When a new item is added it scrolls to its location
+  useEffect(() => {
+    const isLastItemAdded = itemIndexToFocus.current === ingredientsList.length - 1
+    if (isLastItemAdded) {
+      refFlatList.current.scrollToIndex({
+        index: ingredientsList.length - 1,
+        animated: true
+      })
+    }
+  }, [ingredientsList])
+
   useEffect(() => {
     getStorageIngredientsList()
   }, [])
@@ -104,15 +115,18 @@ export default function IngredientsList () {
         contentContainerStyle={{ marginLeft: 10, marginRight: 10 }}
         removeClippedSubviews={false}
         keyboardShouldPersistTaps='handled'
+        getItemLayout={(_, index) => ({ length: INGREDIENT_HEIGHT, offset: INGREDIENT_HEIGHT * index, index })}
         data={ingredientsList}
-        renderItem={({ item: ingredient }) => {
+        renderItem={({ item: ingredient, index }) => {
           const { id, text } = ingredient
           const isSelected = !!selectedList.find(x => x === id)
+          const isItemToFocus = itemIndexToFocus.current === index
           return (
             <IngredientItem
               id={id}
               handleSelect={handleSelectIngredient}
               handleUnselect={handleUnselectIngredient}
+              isItemToFocus={isItemToFocus}
               isSelected={isSelected}
               selectOnPress={!isSelectedListEmpty}
               defaultText={text}
@@ -122,8 +136,9 @@ export default function IngredientsList () {
           )
         }}
       />
-      <AddButton handleAddItem={handleAddIngredient} />
-
+      <AddButton
+        handleAddItem={handleAddIngredient}
+      />
     </View>
   )
 }

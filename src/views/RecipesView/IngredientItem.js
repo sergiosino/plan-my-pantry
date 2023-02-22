@@ -3,6 +3,8 @@ import { Pressable, TextInput, TouchableNativeFeedback, View } from 'react-nativ
 import Ionicons from '@expo/vector-icons/Ionicons'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
+import { INGREDIENT_HEIGHT } from '../../constants/constants'
+
 export default function IngredientItem (props) {
   const {
     id,
@@ -12,7 +14,8 @@ export default function IngredientItem (props) {
     selectOnPress,
     defaultText,
     handleChange,
-    handleDelete
+    handleDelete,
+    isItemToFocus
   } = props
   const [text, setText] = useState(defaultText)
 
@@ -39,7 +42,7 @@ export default function IngredientItem (props) {
   }
 
   return (
-    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingRight: 5, margin: 1, borderRadius: 4, backgroundColor: isSelected ? 'lightgray' : 'transparent' }}>
+    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', height: INGREDIENT_HEIGHT, paddingRight: 5, margin: 1, borderRadius: 4, backgroundColor: isSelected ? 'lightgray' : 'transparent' }}>
       <Pressable
         onPress={handleOnPress}
         onLongPress={handleOnLongPress}
@@ -49,6 +52,7 @@ export default function IngredientItem (props) {
       </Pressable>
       <View style={{ flex: 1 }}>
         <TextInput
+          autoFocus={isItemToFocus}
           value={text}
           onChangeText={setText}
           maxLength={45}
