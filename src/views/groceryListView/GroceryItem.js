@@ -5,10 +5,15 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
 import { useGroceryItem } from '../../hooks/useGroceryItem'
 
-const CHECKED_COLOR = 'gray'
-
 export default function GroceryItem (props) {
-  const { defaultChecked, defaultText, handleDeleteItem, isItemToFocus, onItemChange } = props
+  const {
+    id,
+    defaultChecked,
+    defaultText,
+    onDeleteItem,
+    isItemToFocus,
+    onItemChange
+  } = props
 
   const {
     text,
@@ -16,8 +21,9 @@ export default function GroceryItem (props) {
     showDeleteIcon,
     handleTextFocus,
     handleTextFocusEnd,
-    handleCheckboxChange
-  } = useGroceryItem({ defaultChecked, defaultText, onItemChange })
+    handleCheckboxChange,
+    handleDelete
+  } = useGroceryItem({ id, defaultChecked, defaultText, onItemChange, onDeleteItem })
 
   return (
     <View
@@ -26,7 +32,7 @@ export default function GroceryItem (props) {
       <Checkbox
         value={defaultChecked}
         onValueChange={handleCheckboxChange}
-        color={defaultChecked ? CHECKED_COLOR : undefined}
+        color={defaultChecked ? 'gray' : undefined}
         style={styles.checkbox}
       />
       {defaultChecked
@@ -48,8 +54,8 @@ export default function GroceryItem (props) {
           )}
       {showDeleteIcon && !defaultChecked && (
         <TouchableNativeFeedback
-          onPress={handleDeleteItem}
-          background={TouchableNativeFeedback.Ripple(CHECKED_COLOR, true)}
+          onPress={handleDelete}
+          background={TouchableNativeFeedback.Ripple('gray', true)}
         >
           <View style={styles.iconContainer}>
             <Ionicons name='close' size={25} />

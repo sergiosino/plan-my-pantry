@@ -8,37 +8,43 @@ import { INGREDIENT_HEIGHT } from '../../constants/constants'
 export default function IngredientItem (props) {
   const {
     id,
-    handleSelect,
-    handleUnselect,
+    onSelect,
+    onUnselect,
     isSelected,
     selectOnPress,
     defaultText,
-    handleChange,
-    handleDelete,
+    onChange,
+    onDelete,
     isItemToFocus
   } = props
   const [text, setText] = useState(defaultText)
+  const [showDeleteIcon, setShowDeleteIcon] = useState(false)
 
   const handleOnPress = () => {
     if (isSelected) {
-      handleUnselect(id)
+      onUnselect(id)
     } else if (selectOnPress) {
-      handleSelect(id)
+      onSelect(id)
     }
   }
 
   const handleOnLongPress = () => {
     if (!isSelected) {
-      handleSelect(id)
+      onSelect(id)
     }
   }
 
+  const handleTextFocus = () => {
+    setShowDeleteIcon(true)
+  }
+
   const handleTextFocusEnd = () => {
-    handleChange(id, text)
+    setShowDeleteIcon(false)
+    onChange(id, text)
   }
 
   const handleDeletePress = () => {
-    handleDelete(id)
+    onDelete(id)
   }
 
   return (
@@ -56,18 +62,20 @@ export default function IngredientItem (props) {
           value={text}
           onChangeText={setText}
           maxLength={45}
+          onFocus={handleTextFocus}
           onEndEditing={handleTextFocusEnd}
         />
       </View>
       <View />
-      <TouchableNativeFeedback
-        onPress={handleDeletePress}
-        background={TouchableNativeFeedback.Ripple('gray', true)}
-      >
-        <View style={{ height: 25, width: 25 }}>
-          <Ionicons name='close' size={25} />
-        </View>
-      </TouchableNativeFeedback>
+      {showDeleteIcon &&
+        <TouchableNativeFeedback
+          onPress={handleDeletePress}
+          background={TouchableNativeFeedback.Ripple('gray', true)}
+        >
+          <View style={{ height: 25, width: 25 }}>
+            <Ionicons name='close' size={25} />
+          </View>
+        </TouchableNativeFeedback>}
     </View>
   )
 }

@@ -7,7 +7,6 @@ import AddButton from '../../components/AddButton'
 import { ASYNC_STORAGE_KEYS, INGREDIENT_HEIGHT } from '../../constants/constants'
 import IngredientItem from './IngredientItem'
 import IngredientsHeader from './IngredientsHeader'
-import { confirmationAlert } from '../../utils/confirmationAlert'
 
 export default function IngredientsList () {
   const [selectedList, setSelectedList] = useState([])
@@ -67,13 +66,6 @@ export default function IngredientsList () {
     handleUnselectIngredient(id)
   }
 
-  const confirmationDeleteItem = (id) => {
-    confirmationAlert(
-      'Delete',
-      'Delete ingredient?',
-      () => handleDeleteIngredient(id))
-  }
-
   const handleDeleteSelectedIngredients = () => {
     const newIngredientsList = ingredientsList.filter(ingredient => !selectedList.includes(ingredient.id))
     updateIngredientsList(newIngredientsList)
@@ -106,9 +98,9 @@ export default function IngredientsList () {
   return (
     <View style={{ flex: 1 }}>
       <IngredientsHeader
-        handleDeleteChecked={handleDeleteSelectedIngredients}
+        onDeleteSelected={handleDeleteSelectedIngredients}
         enableDeleteAll={!isSelectedListEmpty}
-        handleUnselectAll={handleUnselectAllIngredients}
+        onUnselectAll={handleUnselectAllIngredients}
       />
       <FlatList
         ref={refFlatList}
@@ -124,21 +116,19 @@ export default function IngredientsList () {
           return (
             <IngredientItem
               id={id}
-              handleSelect={handleSelectIngredient}
-              handleUnselect={handleUnselectIngredient}
+              onSelect={handleSelectIngredient}
+              onUnselect={handleUnselectIngredient}
               isItemToFocus={isItemToFocus}
               isSelected={isSelected}
               selectOnPress={!isSelectedListEmpty}
               defaultText={text}
-              handleChange={handleIngredientChange}
-              handleDelete={confirmationDeleteItem}
+              onChange={handleIngredientChange}
+              onDelete={handleDeleteIngredient}
             />
           )
         }}
       />
-      <AddButton
-        handleAddItem={handleAddIngredient}
-      />
+      <AddButton onAddItem={handleAddIngredient} />
     </View>
   )
 }

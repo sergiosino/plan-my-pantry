@@ -4,39 +4,41 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { confirmationAlert } from '../../utils/confirmationAlert'
 
 export default function IngredientsHeader (props) {
-  const { handleDeleteChecked, enableDeleteAll, handleUnselectAll } = props
+  const {
+    onDeleteSelected,
+    enableDeleteAll,
+    onUnselectAll
+  } = props
 
   const alertDeleteChecked = () => {
-    if (enableDeleteAll) { confirmationAlert('Delete', 'Delete selected ingredients?', handleDeleteChecked) }
+    if (enableDeleteAll) { confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected) }
   }
 
-  const touchableColor = enableDeleteAll ? 'gray' : 'transparent'
-  const deleteIconColor = enableDeleteAll ? 'black' : 'gray'
-  const headerContentJustify = enableDeleteAll ? 'space-between' : 'flex-end'
-
   return (
-    <View style={{ ...styles.headerContainer, justifyContent: headerContentJustify }}>
+    <View style={{ ...styles.headerContainer, justifyContent: 'space-between' }}>
       {enableDeleteAll &&
-        <View style={styles.headerItem}>
-          <TouchableNativeFeedback
-            onPress={handleUnselectAll}
-            background={TouchableNativeFeedback.Ripple(touchableColor, true, 20)}
-          >
-            <View>
-              <Ionicons color={deleteIconColor} name='close' size={20} />
-            </View>
-          </TouchableNativeFeedback>
-        </View>}
-      <View style={styles.headerItem}>
-        <TouchableNativeFeedback
-          onPress={alertDeleteChecked}
-          background={TouchableNativeFeedback.Ripple(touchableColor, true, 20)}
-        >
-          <View>
-            <Ionicons color={deleteIconColor} name='md-trash-outline' size={20} />
+        <>
+          <View style={styles.headerItem}>
+            <TouchableNativeFeedback
+              onPress={onUnselectAll}
+              background={TouchableNativeFeedback.Ripple('gray', true, 20)}
+            >
+              <View>
+                <Ionicons name='close' size={20} />
+              </View>
+            </TouchableNativeFeedback>
           </View>
-        </TouchableNativeFeedback>
-      </View>
+          <View style={styles.headerItem}>
+            <TouchableNativeFeedback
+              onPress={alertDeleteChecked}
+              background={TouchableNativeFeedback.Ripple('gray', true, 20)}
+            >
+              <View>
+                <Ionicons name='md-trash-outline' size={20} />
+              </View>
+            </TouchableNativeFeedback>
+          </View>
+        </>}
     </View>
   )
 }
@@ -48,7 +50,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     padding: gap,
-    margin: -(gap / 2)
+    margin: -(gap / 2),
+    height: 82
   },
   headerItem: {
     margin: (gap / 2)

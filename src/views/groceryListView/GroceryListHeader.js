@@ -4,18 +4,22 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { confirmationAlert } from '../../utils/confirmationAlert'
 
 export default function GroceryListHeader (props) {
-  const { handleDeleteChecked, handleCheckAll, handleUnCheckAll } = props
+  const {
+    onDeleteChecked,
+    onCheckAll,
+    onUnCheckAll
+  } = props
 
   const alertDeleteChecked = () => {
-    confirmationAlert('Delete', 'Delete all checked items?', handleDeleteChecked)
+    confirmationAlert('Delete', 'Delete all checked items?', onDeleteChecked)
   }
 
   const alertCheckAll = () => {
-    confirmationAlert('Check', 'Check all items?', handleCheckAll)
+    confirmationAlert('Check', 'Check all items?', onCheckAll)
   }
 
   const alertUncheckAll = () => {
-    confirmationAlert('Uncheck', 'Uncheck all items?', handleUnCheckAll)
+    confirmationAlert('Uncheck', 'Uncheck all items?', onUnCheckAll)
   }
 
   return (

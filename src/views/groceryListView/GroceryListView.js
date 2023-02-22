@@ -17,7 +17,7 @@ export default function GroceryListView () {
     handleDeleteChecked,
     handleCheckAll,
     handleUnCheckAll,
-    onItemChange
+    handleItemChange
   } = useGroceryItems({ itemIndexToFocus })
 
   // When a new item is added it scrolls to its location
@@ -33,7 +33,11 @@ export default function GroceryListView () {
 
   return (
     <View style={styles.container}>
-      <GroceryListHeader handleDeleteChecked={handleDeleteChecked} handleCheckAll={handleCheckAll} handleUnCheckAll={handleUnCheckAll} />
+      <GroceryListHeader
+        onDeleteChecked={handleDeleteChecked}
+        onCheckAll={handleCheckAll}
+        onUnCheckAll={handleUnCheckAll}
+      />
       <FlatList
         ref={refFlatList}
         contentContainerStyle={styles.scrollViewContent}
@@ -46,16 +50,17 @@ export default function GroceryListView () {
           const isItemToFocus = itemIndexToFocus.current === index
           return (
             <GroceryItem
+              id={id}
               defaultChecked={checked}
               defaultText={text}
               isItemToFocus={isItemToFocus}
-              handleDeleteItem={() => handleDeleteItem(id)}
-              onItemChange={(checked, text) => onItemChange(id, checked, text)}
+              onDeleteItem={handleDeleteItem}
+              onItemChange={handleItemChange}
             />
           )
         }}
       />
-      <AddButton handleAddItem={handleAddItem} />
+      <AddButton onAddItem={handleAddItem} />
     </View>
   )
 }

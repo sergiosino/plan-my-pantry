@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function useGroceryItem ({ defaultText, defaultChecked, onItemChange }) {
+export function useGroceryItem ({ id, defaultText, defaultChecked, onItemChange, onDeleteItem }) {
   const [text, setText] = useState(defaultText)
   const [showDeleteIcon, setShowDeleteIcon] = useState(false)
 
@@ -10,11 +10,15 @@ export function useGroceryItem ({ defaultText, defaultChecked, onItemChange }) {
 
   const handleTextFocusEnd = () => {
     setShowDeleteIcon(false)
-    onItemChange(defaultChecked, text)
+    onItemChange(id, defaultChecked, text)
   }
 
   const handleCheckboxChange = (checked) => {
-    onItemChange(checked, text)
+    onItemChange(id, checked, text)
+  }
+
+  const handleDelete = () => {
+    onDeleteItem(id)
   }
 
   return {
@@ -23,6 +27,7 @@ export function useGroceryItem ({ defaultText, defaultChecked, onItemChange }) {
     showDeleteIcon,
     handleTextFocus,
     handleTextFocusEnd,
-    handleCheckboxChange
+    handleCheckboxChange,
+    handleDelete
   }
 }

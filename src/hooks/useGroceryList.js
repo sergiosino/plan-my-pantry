@@ -42,7 +42,7 @@ export function useGroceryItems ({ itemIndexToFocus }) {
     updateGroceryList(groceryItemsCopy)
   }
 
-  const onItemChange = (id, checked, text) => {
+  const handleItemChange = (id, checked, text) => {
     const itemIndex = groceryList.findIndex(groceryItem => groceryItem.id === id)
     const item = groceryList[itemIndex]
 
@@ -70,6 +70,6 @@ export function useGroceryItems ({ itemIndexToFocus }) {
     handleDeleteChecked,
     handleCheckAll,
     handleUnCheckAll,
-    onItemChange
+    handleItemChange
   }
 }
