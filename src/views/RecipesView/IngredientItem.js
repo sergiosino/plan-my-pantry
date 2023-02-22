@@ -50,7 +50,7 @@ export default function IngredientItem (props) {
       <View style={{ flex: 1 }}>
         <TextInput
           value={text}
-          onChange={setText}
+          onChangeText={setText}
           maxLength={45}
           onEndEditing={handleTextFocusEnd}
         />

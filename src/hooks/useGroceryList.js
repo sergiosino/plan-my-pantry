@@ -7,7 +7,7 @@ import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 export function useGroceryItems ({ itemIndexToFocus }) {
   const [groceryList, setGroceryItems] = useState([])
 
-  const updateGroceryList = async (newGroceryList) => {
+  const updateGroceryList = (newGroceryList) => {
     const jsonValue = JSON.stringify(newGroceryList)
     AsyncStorage.setItem(ASYNC_STORAGE_KEYS.GROCERY_LIST, jsonValue)
     setGroceryItems(newGroceryList)

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Alert, FlatList, View } from 'react-native'
 import uuid from 'react-native-uuid'
 
@@ -8,20 +8,9 @@ import { ASYNC_STORAGE_KEYS } from '../../constants/constants'
 import IngredientItem from './IngredientItem'
 import IngredientsHeader from './IngredientsHeader'
 
-const INGREDIENTS_MOCK = [
-  {
-    id: uuid.v4(),
-    text: 'Ingrediente 1Ingrediente 1Ingrediente 1 asdas asd'
-  },
-  {
-    id: uuid.v4(),
-    text: 'Ingrediente 2'
-  }
-]
-
 export default function IngredientsList () {
   const [selectedList, setSelectedList] = useState([])
-  const [ingredientsList, setIngredientsList] = useState(INGREDIENTS_MOCK)
+  const [ingredientsList, setIngredientsList] = useState([])
 
   const itemIndexToFocus = useRef(null)
   const refFlatList = useRef(null)
@@ -54,11 +43,11 @@ export default function IngredientsList () {
   }
 
   const handleUnselectIngredient = (id) => {
-    const ingredientIndex = ingredientsList.findIndex(ingredient => ingredient.id === id)
+    const ingredientIndex = selectedList.findIndex(ingredientId => ingredientId === id)
 
     if (ingredientIndex >= 0) {
-      let newSelectedList = [...selectedList]
-      newSelectedList = newSelectedList.splice(ingredientIndex, 1)
+      const newSelectedList = [...selectedList]
+      newSelectedList.splice(ingredientIndex, 1)
       setSelectedList(newSelectedList)
     }
   }
@@ -88,11 +77,22 @@ export default function IngredientsList () {
   }
 
   const handleDeleteSelectedIngredients = () => {
-
+    const newIngredientsList = ingredientsList.filter(ingredient => !selectedList.includes(ingredient.id))
+    updateIngredientsList(newIngredientsList)
+    setSelectedList([])
   }
 
+  const getStorageIngredientsList = async () => {
+    let storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
+    storageIngredientsList = storageIngredientsList != null ? JSON.parse(storageIngredientsList) : null
+    if (storageIngredientsList) { setIngredientsList(storageIngredientsList) }
+  }
+
+  useEffect(() => {
+    getStorageIngredientsList()
+  }, [])
+
   const isSelectedListEmpty = selectedList.length === 0
-  console.log(isSelectedListEmpty)
 
   return (
     <View style={{ flex: 1 }}>
