@@ -39,11 +39,11 @@ export default function IngredientItem (props) {
   }
 
   return (
-    <View style={{ flex: 1, flexDirection: 'row', marginVertical: 5, alignItems: 'center' }}>
+    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingRight: 5, margin: 1, borderRadius: 4, backgroundColor: isSelected ? 'lightgray' : 'transparent' }}>
       <Pressable
         onPress={handleOnPress}
         onLongPress={handleOnLongPress}
-        style={{ backgroundColor: isSelected ? 'red' : 'transparent' }}
+        style={{ paddingVertical: 5, paddingLeft: 5 }}
       >
         <MaterialCommunityIcons name='drag' size={25} />
       </Pressable>
@@ -55,6 +55,7 @@ export default function IngredientItem (props) {
           onEndEditing={handleTextFocusEnd}
         />
       </View>
+      <View />
       <TouchableNativeFeedback
         onPress={handleDeletePress}
         background={TouchableNativeFeedback.Ripple('gray', true)}
