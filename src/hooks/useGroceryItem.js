@@ -1,6 +1,14 @@
 import { useState } from 'react'
 
-export function useGroceryItem ({ id, defaultText, defaultChecked, onItemChange, onDeleteItem }) {
+export function useGroceryItem (props) {
+  const {
+    id,
+    defaultText,
+    defaultChecked,
+    onItemChange,
+    onDeleteItem
+  } = props
+
   const [text, setText] = useState(defaultText)
   const [showDeleteIcon, setShowDeleteIcon] = useState(false)
 

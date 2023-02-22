@@ -7,12 +7,8 @@ import { useGroceryItem } from '../../hooks/useGroceryItem'
 
 export default function GroceryItem (props) {
   const {
-    id,
     defaultChecked,
-    defaultText,
-    onDeleteItem,
-    isItemToFocus,
-    onItemChange
+    isItemToFocus
   } = props
 
   const {
@@ -23,7 +19,7 @@ export default function GroceryItem (props) {
     handleTextFocusEnd,
     handleCheckboxChange,
     handleDelete
-  } = useGroceryItem({ id, defaultChecked, defaultText, onItemChange, onDeleteItem })
+  } = useGroceryItem(props)
 
   return (
     <View

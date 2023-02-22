@@ -1,51 +1,26 @@
-import { useState } from 'react'
 import { Pressable, TextInput, TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
 import { INGREDIENT_HEIGHT } from '../../constants/constants'
+import { useIngredientItem } from '../../hooks/useIngredientItem'
 
 export default function IngredientItem (props) {
   const {
-    id,
-    onSelect,
-    onUnselect,
     isSelected,
-    selectOnPress,
-    defaultText,
-    onChange,
-    onDelete,
     isItemToFocus
   } = props
-  const [text, setText] = useState(defaultText)
-  const [showDeleteIcon, setShowDeleteIcon] = useState(false)
 
-  const handleOnPress = () => {
-    if (isSelected) {
-      onUnselect(id)
-    } else if (selectOnPress) {
-      onSelect(id)
-    }
-  }
-
-  const handleOnLongPress = () => {
-    if (!isSelected) {
-      onSelect(id)
-    }
-  }
-
-  const handleTextFocus = () => {
-    setShowDeleteIcon(true)
-  }
-
-  const handleTextFocusEnd = () => {
-    setShowDeleteIcon(false)
-    onChange(id, text)
-  }
-
-  const handleDeletePress = () => {
-    onDelete(id)
-  }
+  const {
+    text,
+    setText,
+    showDeleteIcon,
+    handleOnPress,
+    handleOnLongPress,
+    handleTextFocus,
+    handleTextFocusEnd,
+    handleDeletePress
+  } = useIngredientItem(props)
 
   return (
     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', height: INGREDIENT_HEIGHT, paddingRight: 5, margin: 1, borderRadius: 4, backgroundColor: isSelected ? 'lightgray' : 'transparent' }}>
