@@ -1,15 +1,10 @@
-import { Alert, StyleSheet, TouchableNativeFeedback, View } from 'react-native'
+import { StyleSheet, TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
+
+import { confirmationAlert } from '../../utils/confirmationAlert'
 
 export default function IngredientsHeader (props) {
   const { handleDeleteChecked, enableDeleteAll, handleUnselectAll } = props
-
-  const confirmationAlert = (title, message, onOK) => {
-    Alert.alert(title, message, [
-      { text: 'Cancel' },
-      { text: 'OK', onPress: onOK }
-    ])
-  }
 
   const alertDeleteChecked = () => {
     if (enableDeleteAll) { confirmationAlert('Delete', 'Delete selected ingredients?', handleDeleteChecked) }

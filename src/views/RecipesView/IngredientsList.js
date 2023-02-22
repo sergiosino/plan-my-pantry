@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useEffect, useRef, useState } from 'react'
-import { Alert, FlatList, View } from 'react-native'
+import { FlatList, View } from 'react-native'
 import uuid from 'react-native-uuid'
 
 import AddButton from '../../components/AddButton'
 import { ASYNC_STORAGE_KEYS } from '../../constants/constants'
 import IngredientItem from './IngredientItem'
 import IngredientsHeader from './IngredientsHeader'
+import { confirmationAlert } from '../../utils/confirmationAlert'
 
 export default function IngredientsList () {
   const [selectedList, setSelectedList] = useState([])
@@ -14,13 +15,6 @@ export default function IngredientsList () {
 
   const itemIndexToFocus = useRef(null)
   const refFlatList = useRef(null)
-
-  const confirmationAlert = (title, message, onOK) => {
-    Alert.alert(title, message, [
-      { text: 'Cancel' },
-      { text: 'OK', onPress: onOK }
-    ])
-  }
 
   const updateIngredientsList = async (newIngredientsList) => {
     const jsonValue = JSON.stringify(newIngredientsList)
