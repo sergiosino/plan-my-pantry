@@ -64,21 +64,12 @@ const gap = 20
 const styles = StyleSheet.create({
   headerContainer: {
     justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     flexDirection: 'row',
-    padding: 20,
+    padding: gap,
     margin: -(gap / 2)
   },
   headerItem: {
     margin: (gap / 2)
-  },
-  tooltip: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 })
