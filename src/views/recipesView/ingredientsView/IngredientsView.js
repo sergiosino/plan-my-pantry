@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 
-import AddButton from '../../components/AddButton'
-import { INGREDIENT_HEIGHT } from '../../constants/constants'
+import AddButton from '../../../components/AddButton'
+import { INGREDIENT_HEIGHT } from '../../../constants/constants'
 import IngredientItem from './IngredientItem'
 import IngredientsHeader from './IngredientsHeader'
-import { useIngredientsList } from '../../hooks/useIngredientsList'
+import { useIngredientsList } from '../../../hooks/useIngredientsList'
 
 export default function IngredientsList () {
   const itemIndexToFocus = useRef(null)

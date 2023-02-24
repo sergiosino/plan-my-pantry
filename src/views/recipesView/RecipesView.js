@@ -1,4 +1,4 @@
-import IngredientsList from './ingredientsView/ingredientsView'
+import IngredientsList from './ingredientsView/IngredientsView'
 
 export default function RecipesView () {
   return (

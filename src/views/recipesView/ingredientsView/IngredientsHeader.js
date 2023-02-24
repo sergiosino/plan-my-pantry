@@ -1,7 +1,7 @@
 import { StyleSheet, TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import { confirmationAlert } from '../../utils/confirmationAlert'
+import { confirmationAlert } from '../../../utils/confirmationAlert'
 
 export default function IngredientsHeader (props) {
   const {

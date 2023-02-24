@@ -2,8 +2,8 @@ import { Pressable, StyleSheet, TextInput, TouchableNativeFeedback, View } from 
 import Ionicons from '@expo/vector-icons/Ionicons'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
-import { INGREDIENT_HEIGHT } from '../../constants/constants'
-import { useIngredientItem } from '../../hooks/useIngredientItem'
+import { INGREDIENT_HEIGHT } from '../../../constants/constants'
+import { useIngredientItem } from '../../../hooks/useIngredientItem'
 
 export default function IngredientItem (props) {
   const {
