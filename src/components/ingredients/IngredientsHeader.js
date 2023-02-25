@@ -2,7 +2,7 @@ import { StyleSheet, TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 import { confirmationAlert } from '../../utils/confirmationAlert'
-import { FoodHeader } from '../food/FoodHeader'
+import FoodHeader from '../food/FoodHeader'
 import { headerStyles } from '../../styles/headerStyles'
 
 function Header (props) {

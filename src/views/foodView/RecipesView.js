@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native'
 
-import { FoodHeader } from '../../components/food/FoodHeader'
+import FoodHeader from '../../components/food/FoodHeader'
 
 export default function RecipesView () {
   return (
