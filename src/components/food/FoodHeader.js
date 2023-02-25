@@ -1,22 +1,23 @@
-import { useNavigationState } from '@react-navigation/native'
+import { useNavigation, useNavigationState } from '@react-navigation/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 import { headerStyles } from '../../styles/headerStyles'
 import { ROUTE_NAME_RECIPES, ROUTE_NAME_INGREDIENTS } from '../../constants/routes'
 
 function HeaderItem (props) {
-  const { navigation, routeName } = props
+  const { routeName } = props
 
-  const actualScreenName = useNavigationState((state) => state.routes[state.index].name)
+  const navigation = useNavigation()
+  const actualRouteName = useNavigationState((state) => state.routes[state.index].name)
 
   const getPressableStyles = (pressed, screenName) => {
-    if (actualScreenName === screenName) { return styles.textButtonSelected }
+    if (actualRouteName === screenName) { return styles.textButtonSelected }
     if (pressed) { return styles.textButtonPress }
     return styles.textButtonDefault
   }
 
   const getTextStyles = (pressed, screenName) => {
-    if (actualScreenName === screenName || pressed) { return styles.textPressOrSelected }
+    if (actualRouteName === screenName || pressed) { return styles.textPressOrSelected }
     return styles.textDefault
   }
 
@@ -40,12 +41,10 @@ function HeaderItem (props) {
 }
 
 export function FoodHeader (props) {
-  const { navigation } = props
-
   return (
     <View style={[headerStyles.headerContainer, styles.localHeader]}>
-      <HeaderItem navigation={navigation} routeName={ROUTE_NAME_RECIPES} />
-      <HeaderItem navigation={navigation} routeName={ROUTE_NAME_INGREDIENTS} />
+      <HeaderItem routeName={ROUTE_NAME_RECIPES} />
+      <HeaderItem routeName={ROUTE_NAME_INGREDIENTS} />
     </View>
   )
 }

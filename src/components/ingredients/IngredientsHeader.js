@@ -38,8 +38,7 @@ export default function IngredientsHeader (props) {
   const {
     onDeleteSelected,
     enableDeleteAll,
-    onUnselectAll,
-    navigation
+    onUnselectAll
   } = props
 
   const alertDeleteChecked = () => {
@@ -50,7 +49,7 @@ export default function IngredientsHeader (props) {
     <View>
       {enableDeleteAll
         ? <Header onUnselectAll={onUnselectAll} alertDeleteChecked={alertDeleteChecked} />
-        : <FoodHeader navigation={navigation} />}
+        : <FoodHeader />}
     </View>
   )
 }

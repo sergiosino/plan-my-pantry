@@ -7,7 +7,7 @@ import IngredientsHeader from '../../components/ingredients/IngredientsHeader'
 import { INGREDIENT_HEIGHT } from '../../constants/constants'
 import { useIngredientsList } from '../../hooks/useIngredientsList'
 
-export default function IngredientsView ({ navigation }) {
+export default function IngredientsView () {
   const itemIndexToFocus = useRef(null)
   const refFlatList = useRef(null)
   const {
@@ -38,7 +38,6 @@ export default function IngredientsView ({ navigation }) {
   return (
     <View style={styles.container}>
       <IngredientsHeader
-        navigation={navigation}
         onDeleteSelected={handleDeleteSelectedIngredients}
         enableDeleteAll={!isSelectedListEmpty}
         onUnselectAll={handleUnselectAllIngredients}
