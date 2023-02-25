@@ -2,15 +2,20 @@ import { TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default function IconButton (props) {
-  const { onPress, iconName } = props
+  const {
+    onPress,
+    iconName,
+    size = 20,
+    style
+  } = props
 
   return (
     <TouchableNativeFeedback
       onPress={onPress}
-      background={TouchableNativeFeedback.Ripple('gray', true, 20)}
+      background={TouchableNativeFeedback.Ripple('gray', true, size)}
     >
-      <View>
-        <Ionicons name={iconName} size={20} />
+      <View style={{ ...style }}>
+        <Ionicons name={iconName} size={size} />
       </View>
     </TouchableNativeFeedback>
   )

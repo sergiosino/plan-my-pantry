@@ -1,19 +1,19 @@
-import { StyleSheet, TouchableNativeFeedback, View } from 'react-native'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { StyleSheet, View } from 'react-native'
+import IconButton from './IconButton'
+
+const BUTTON_SIZE = 60
 
 export default function AddButton (props) {
   const { onAddItem } = props
 
   return (
     <View style={styles.iconContainer}>
-      <TouchableNativeFeedback
+      <IconButton
         onPress={onAddItem}
-        background={TouchableNativeFeedback.Ripple('gray', true, 30)}
-      >
-        <View style={styles.icon}>
-          <Ionicons name='add' size={30} />
-        </View>
-      </TouchableNativeFeedback>
+        iconName='add'
+        size={BUTTON_SIZE / 2}
+        style={styles.icon}
+      />
     </View>
   )
 }
@@ -25,11 +25,11 @@ const styles = StyleSheet.create({
     right: 10
   },
   icon: {
-    width: 60,
-    height: 60,
+    width: BUTTON_SIZE,
+    height: BUTTON_SIZE,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'lightgray',
-    borderRadius: 30
+    borderRadius: (BUTTON_SIZE / 2)
   }
 })

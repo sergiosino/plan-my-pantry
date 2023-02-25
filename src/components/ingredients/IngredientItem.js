@@ -1,9 +1,9 @@
-import { Pressable, StyleSheet, TextInput, TouchableNativeFeedback, View } from 'react-native'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { Pressable, StyleSheet, TextInput, View } from 'react-native'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
 import { INGREDIENT_HEIGHT } from '../../constants/constants'
 import { useIngredientItem } from '../../hooks/useIngredientItem'
+import IconButton from '../IconButton'
 
 export default function IngredientItem (props) {
   const {
@@ -43,15 +43,7 @@ export default function IngredientItem (props) {
         />
       </View>
       <View />
-      {showDeleteIcon &&
-        <TouchableNativeFeedback
-          onPress={handleDeletePress}
-          background={TouchableNativeFeedback.Ripple('gray', true)}
-        >
-          <View style={styles.closeInconContainer}>
-            <Ionicons name='close' size={25} />
-          </View>
-        </TouchableNativeFeedback>}
+      {showDeleteIcon && <IconButton onPress={handleDeletePress} iconName='close' />}
     </View>
   )
 }

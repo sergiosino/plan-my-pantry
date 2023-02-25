@@ -1,9 +1,9 @@
 import Checkbox from 'expo-checkbox'
-import { StyleSheet, Text, TextInput, TouchableNativeFeedback, View } from 'react-native'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
 
 import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
 import { useGroceryItem } from '../../hooks/useGroceryItem'
+import IconButton from '../IconButton'
 
 export default function GroceryItem (props) {
   const {
@@ -48,16 +48,7 @@ export default function GroceryItem (props) {
             onEndEditing={handleTextFocusEnd}
           />
           )}
-      {showDeleteIcon && !defaultChecked && (
-        <TouchableNativeFeedback
-          onPress={handleDelete}
-          background={TouchableNativeFeedback.Ripple('gray', true)}
-        >
-          <View style={styles.closeIconContainer}>
-            <Ionicons name='close' size={25} />
-          </View>
-        </TouchableNativeFeedback>
-      )}
+      {showDeleteIcon && !defaultChecked && <IconButton onPress={handleDelete} iconName='close' />}
     </View>
   )
 }
