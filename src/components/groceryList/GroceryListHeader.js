@@ -1,8 +1,8 @@
-import { StyleSheet, TouchableNativeFeedback, View } from 'react-native'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { StyleSheet, View } from 'react-native'
 
 import { confirmationAlert } from '../../utils/confirmationAlert'
 import { headerStyles } from '../../styles/headerStyles'
+import IconButton from '../IconButton'
 
 export default function GroceryListHeader (props) {
   const {
@@ -11,49 +11,28 @@ export default function GroceryListHeader (props) {
     onUnCheckAll
   } = props
 
-  const alertDeleteChecked = () => {
+  const handleDeleteChecked = () => {
     confirmationAlert('Delete', 'Delete all checked items?', onDeleteChecked)
   }
 
-  const alertCheckAll = () => {
+  const handleCheckAll = () => {
     confirmationAlert('Check', 'Check all items?', onCheckAll)
   }
 
-  const alertUncheckAll = () => {
+  const handleUncheckAll = () => {
     confirmationAlert('Uncheck', 'Uncheck all items?', onUnCheckAll)
   }
 
   return (
     <View style={[headerStyles.headerContainer, styles.localHeaderContainer]}>
       <View style={headerStyles.headerItem}>
-        <TouchableNativeFeedback
-          onPress={alertCheckAll}
-          background={TouchableNativeFeedback.Ripple('gray', true, 20)}
-        >
-          <View>
-            <Ionicons name='checkbox' size={20} />
-          </View>
-        </TouchableNativeFeedback>
+        <IconButton onPress={handleCheckAll} iconName='checkbox' />
       </View>
       <View style={headerStyles.headerItem}>
-        <TouchableNativeFeedback
-          onPress={alertUncheckAll}
-          background={TouchableNativeFeedback.Ripple('gray', true, 20)}
-        >
-          <View>
-            <Ionicons name='checkbox-outline' size={20} />
-          </View>
-        </TouchableNativeFeedback>
+        <IconButton onPress={handleUncheckAll} iconName='checkbox-outline' />
       </View>
       <View style={headerStyles.headerItem}>
-        <TouchableNativeFeedback
-          onPress={alertDeleteChecked}
-          background={TouchableNativeFeedback.Ripple('gray', true, 20)}
-        >
-          <View>
-            <Ionicons name='md-trash-outline' size={20} />
-          </View>
-        </TouchableNativeFeedback>
+        <IconButton onPress={handleDeleteChecked} iconName='md-trash-outline' />
       </View>
     </View>
   )
