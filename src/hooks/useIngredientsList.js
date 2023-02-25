@@ -66,14 +66,24 @@ export function useIngredientsList (props) {
     setSelectedList([])
   }
 
-  const getStorageIngredientsList = async () => {
-    let storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
-    storageIngredientsList = storageIngredientsList != null ? JSON.parse(storageIngredientsList) : null
-    if (storageIngredientsList) { setIngredientsList(storageIngredientsList) }
-  }
-
   useEffect(() => {
+    const getStorageIngredientsList = async () => {
+      let storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
+      storageIngredientsList = storageIngredientsList != null ? JSON.parse(storageIngredientsList) : null
+      if (storageIngredientsList) { setIngredientsList(storageIngredientsList) }
+    }
     getStorageIngredientsList()
+  }, [])
+
+  // Sort the ingredients list alphabetically before component closes
+  useEffect(() => {
+    const sortAlphabeticallyIngredientsList = async () => {
+      const storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
+      const newIngredientsList = [...JSON.parse(storageIngredientsList)]
+      newIngredientsList.sort((a, b) => a.text.localeCompare(b.text))
+      updateIngredientsList(newIngredientsList)
+    }
+    return () => sortAlphabeticallyIngredientsList()
   }, [])
 
   return {
