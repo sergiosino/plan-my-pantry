@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 
-export function useGroceryItems ({ itemIndexToFocus }) {
+export function useGroceryItems ({ itemIdToFocus }) {
   const [groceryList, setGroceryItems] = useState([])
 
   const updateGroceryList = (newGroceryList) => {
@@ -15,9 +15,9 @@ export function useGroceryItems ({ itemIndexToFocus }) {
 
   const handleAddItem = () => {
     const newGroceryItem = { id: uuid.v4(), checked: false, text: '' }
-    const groceryItemsCopy = [...groceryList]
-    groceryItemsCopy.push(newGroceryItem)
-    itemIndexToFocus.current = groceryItemsCopy.length - 1
+    const groceryItemsCopy = [newGroceryItem, ...groceryList]
+    // groceryItemsCopy.push(newGroceryItem)
+    itemIdToFocus.current = newGroceryItem.id
     updateGroceryList(groceryItemsCopy)
   }
 
@@ -27,7 +27,7 @@ export function useGroceryItems ({ itemIndexToFocus }) {
   }
 
   const handleUnCheckAll = () => {
-    itemIndexToFocus.current = null
+    itemIdToFocus.current = null
     const groceryItemsUnChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: false } })
     updateGroceryList(groceryItemsUnChecked)
   }

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 
 import AddButton from '../../components/AddButton'
@@ -8,8 +8,7 @@ import { INGREDIENT_HEIGHT } from '../../constants/constants'
 import { useIngredientsList } from '../../hooks/useIngredientsList'
 
 export default function IngredientsView () {
-  const itemIndexToFocus = useRef(null)
-  const refFlatList = useRef(null)
+  const itemIdToFocus = useRef(null)
   const {
     ingredientsList,
     selectedList,
@@ -20,18 +19,7 @@ export default function IngredientsView () {
     handleIngredientChange,
     handleDeleteIngredient,
     handleDeleteSelectedIngredients
-  } = useIngredientsList({ itemIndexToFocus })
-
-  // When a new item is added it scrolls to its location
-  useEffect(() => {
-    const isLastItemAdded = itemIndexToFocus.current === ingredientsList.length - 1
-    if (isLastItemAdded) {
-      refFlatList.current.scrollToIndex({
-        index: ingredientsList.length - 1,
-        animated: true
-      })
-    }
-  }, [ingredientsList])
+  } = useIngredientsList({ itemIdToFocus })
 
   const isSelectedListEmpty = selectedList.length === 0
 
@@ -43,17 +31,16 @@ export default function IngredientsView () {
         onUnselectAll={handleUnselectAllIngredients}
       />
       <FlatList
-        ref={refFlatList}
         contentContainerStyle={styles.flatListContent}
         removeClippedSubviews={false}
         keyboardShouldPersistTaps='handled'
         getItemLayout={(_, index) => ({ length: INGREDIENT_HEIGHT, offset: INGREDIENT_HEIGHT * index, index })}
         initialNumToRender={25}
         data={ingredientsList}
-        renderItem={({ item: ingredient, index }) => {
+        renderItem={({ item: ingredient }) => {
           const { id, text } = ingredient
           const isSelected = !!selectedList.find(x => x === id)
-          const isItemToFocus = itemIndexToFocus.current === index
+          const isItemToFocus = itemIdToFocus.current === id
           return (
             <IngredientItem
               id={id}

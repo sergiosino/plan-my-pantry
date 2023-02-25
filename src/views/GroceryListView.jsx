@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 
 import AddButton from '../components/AddButton'
@@ -8,7 +8,7 @@ import { GROCERY_ITEM_HEIGHT } from '../constants/constants'
 import { useGroceryItems } from '../hooks/useGroceryList'
 
 export default function GroceryListView () {
-  const itemIndexToFocus = useRef(null)
+  const itemIdToFocus = useRef(null)
   const refFlatList = useRef(null)
   const {
     groceryList,
@@ -18,18 +18,7 @@ export default function GroceryListView () {
     handleCheckAll,
     handleUnCheckAll,
     handleItemChange
-  } = useGroceryItems({ itemIndexToFocus })
-
-  // When a new item is added it scrolls to its location
-  useEffect(() => {
-    const isLastItemAdded = itemIndexToFocus.current === groceryList.length - 1
-    if (isLastItemAdded) {
-      refFlatList.current.scrollToIndex({
-        index: groceryList.length - 1,
-        animated: true
-      })
-    }
-  }, [groceryList])
+  } = useGroceryItems({ itemIdToFocus })
 
   return (
     <View style={styles.container}>
@@ -46,9 +35,9 @@ export default function GroceryListView () {
         getItemLayout={(_, index) => ({ length: GROCERY_ITEM_HEIGHT, offset: GROCERY_ITEM_HEIGHT * index, index })}
         initialNumToRender={20}
         data={groceryList}
-        renderItem={({ item, index }) => {
+        renderItem={({ item }) => {
           const { id, checked, text } = item
-          const isItemToFocus = itemIndexToFocus.current === index
+          const isItemToFocus = itemIdToFocus.current === id
           return (
             <GroceryItem
               id={id}

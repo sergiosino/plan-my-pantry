@@ -4,7 +4,7 @@ import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 import uuid from 'react-native-uuid'
 
 export function useIngredientsList (props) {
-  const { itemIndexToFocus } = props
+  const { itemIdToFocus } = props
 
   const [selectedList, setSelectedList] = useState([])
   const [ingredientsList, setIngredientsList] = useState([])
@@ -17,9 +17,8 @@ export function useIngredientsList (props) {
 
   const handleAddIngredient = () => {
     const newIngredient = { id: uuid.v4(), text: '' }
-    const newIngredientsList = [...ingredientsList]
-    newIngredientsList.push(newIngredient)
-    itemIndexToFocus.current = newIngredientsList.length - 1
+    const newIngredientsList = [newIngredient, ...ingredientsList]
+    itemIdToFocus.current = newIngredient.id
     updateIngredientsList(newIngredientsList)
   }
 
