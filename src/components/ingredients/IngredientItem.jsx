@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: INGREDIENT_HEIGHT,
     paddingRight: 5,
-    margin: 1,
+    marginVertical: 2,
     borderRadius: 4
   },
   dragIconContainer: {

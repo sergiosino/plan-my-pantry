@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     height: BUTTON_SIZE,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'lightgray',
+    backgroundColor: 'darkgray',
     borderRadius: (BUTTON_SIZE / 2)
   }
 })

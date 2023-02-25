@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   flatListContent: {
-    paddingHorizontal: 20
+    marginHorizontal: 20,
+    paddingBottom: 70
   }
 })
