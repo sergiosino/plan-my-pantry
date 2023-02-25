@@ -53,13 +53,12 @@ export function useGroceryItems ({ itemIndexToFocus }) {
     }
   }
 
-  const getStorageGroceryList = async () => {
-    let storageGroceryList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.GROCERY_LIST)
-    storageGroceryList = storageGroceryList != null ? JSON.parse(storageGroceryList) : null
-    if (storageGroceryList) { setGroceryItems(storageGroceryList) }
-  }
-
   useEffect(() => {
+    const getStorageGroceryList = async () => {
+      let storageGroceryList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.GROCERY_LIST)
+      storageGroceryList = storageGroceryList != null ? JSON.parse(storageGroceryList) : null
+      if (storageGroceryList) { setGroceryItems(storageGroceryList) }
+    }
     getStorageGroceryList()
   }, [])
 

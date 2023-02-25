@@ -44,6 +44,7 @@ export default function GroceryListView () {
         removeClippedSubviews={false}
         keyboardShouldPersistTaps='handled'
         getItemLayout={(_, index) => ({ length: GROCERY_ITEM_HEIGHT, offset: GROCERY_ITEM_HEIGHT * index, index })}
+        initialNumToRender={20}
         data={groceryList}
         renderItem={({ item, index }) => {
           const { id, checked, text } = item

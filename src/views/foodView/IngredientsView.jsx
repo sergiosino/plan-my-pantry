@@ -48,6 +48,7 @@ export default function IngredientsView () {
         removeClippedSubviews={false}
         keyboardShouldPersistTaps='handled'
         getItemLayout={(_, index) => ({ length: INGREDIENT_HEIGHT, offset: INGREDIENT_HEIGHT * index, index })}
+        initialNumToRender={25}
         data={ingredientsList}
         renderItem={({ item: ingredient, index }) => {
           const { id, text } = ingredient
