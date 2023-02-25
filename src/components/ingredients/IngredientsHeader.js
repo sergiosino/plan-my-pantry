@@ -9,7 +9,7 @@ function Header (props) {
   const { onUnselectAll, alertDeleteChecked } = props
 
   return (
-    <View style={[headerStyles.headerContainer, styles.localHeader]}>
+    <View style={[headerStyles.headerContainer, styles.localHeaderContainer]}>
       <View style={headerStyles.headerItem}>
         <TouchableNativeFeedback
           onPress={onUnselectAll}
@@ -55,7 +55,7 @@ export default function IngredientsHeader (props) {
 }
 
 const styles = StyleSheet.create({
-  localHeader: {
+  localHeaderContainer: {
     justifyContent: 'space-between'
   }
 })

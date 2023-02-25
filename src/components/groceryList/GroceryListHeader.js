@@ -2,6 +2,7 @@ import { StyleSheet, TouchableNativeFeedback, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 import { confirmationAlert } from '../../utils/confirmationAlert'
+import { headerStyles } from '../../styles/headerStyles'
 
 export default function GroceryListHeader (props) {
   const {
@@ -23,8 +24,8 @@ export default function GroceryListHeader (props) {
   }
 
   return (
-    <View style={styles.headerContainer}>
-      <View style={styles.headerItem}>
+    <View style={[headerStyles.headerContainer, styles.localHeaderContainer]}>
+      <View style={headerStyles.headerItem}>
         <TouchableNativeFeedback
           onPress={alertCheckAll}
           background={TouchableNativeFeedback.Ripple('gray', true, 20)}
@@ -34,7 +35,7 @@ export default function GroceryListHeader (props) {
           </View>
         </TouchableNativeFeedback>
       </View>
-      <View style={styles.headerItem}>
+      <View style={headerStyles.headerItem}>
         <TouchableNativeFeedback
           onPress={alertUncheckAll}
           background={TouchableNativeFeedback.Ripple('gray', true, 20)}
@@ -44,7 +45,7 @@ export default function GroceryListHeader (props) {
           </View>
         </TouchableNativeFeedback>
       </View>
-      <View style={styles.headerItem}>
+      <View style={headerStyles.headerItem}>
         <TouchableNativeFeedback
           onPress={alertDeleteChecked}
           background={TouchableNativeFeedback.Ripple('gray', true, 20)}
@@ -58,17 +59,8 @@ export default function GroceryListHeader (props) {
   )
 }
 
-const gap = 20
-
 const styles = StyleSheet.create({
-  headerContainer: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    flexDirection: 'row',
-    padding: gap,
-    margin: -(gap / 2)
-  },
-  headerItem: {
-    margin: (gap / 2)
+  localHeaderContainer: {
+    justifyContent: 'flex-end'
   }
 })
