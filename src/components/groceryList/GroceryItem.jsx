@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     height: GROCERY_ITEM_HEIGHT
   },
   checkbox: {
-    marginRight: 16
+    marginRight: 15
   },
   text: {
     flex: 1,
@@ -68,9 +68,5 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1
-  },
-  closeIconContainer: {
-    height: 25,
-    width: 25
   }
 })
