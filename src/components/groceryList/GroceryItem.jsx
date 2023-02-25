@@ -1,8 +1,8 @@
-import Checkbox from 'expo-checkbox'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 
 import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
 import { useGroceryItem } from '../../hooks/useGroceryItem'
+import Checkbox from '../Checkbox'
 import IconButton from '../IconButton'
 
 export default function GroceryItem (props) {
@@ -22,13 +22,10 @@ export default function GroceryItem (props) {
   } = useGroceryItem(props)
 
   return (
-    <View
-      style={styles.container}
-    >
+    <View style={styles.container}>
       <Checkbox
-        value={defaultChecked}
-        onValueChange={handleCheckboxChange}
-        color={defaultChecked ? 'gray' : undefined}
+        checked={defaultChecked}
+        onChange={handleCheckboxChange}
         style={styles.checkbox}
       />
       {defaultChecked
@@ -61,8 +58,7 @@ const styles = StyleSheet.create({
     height: GROCERY_ITEM_HEIGHT
   },
   checkbox: {
-    marginRight: 16,
-    color: 'red'
+    marginRight: 16
   },
   text: {
     flex: 1,
