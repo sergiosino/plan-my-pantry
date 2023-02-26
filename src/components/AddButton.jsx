@@ -13,6 +13,7 @@ export default function AddButton (props) {
         iconName='add'
         size={BUTTON_SIZE / 2}
         style={styles.icon}
+        rippleRadius={(BUTTON_SIZE / 2)}
       />
     </View>
   )
