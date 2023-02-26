@@ -14,15 +14,17 @@ export default function FoodHeaderItem (props) {
     navigation.navigate(routeName)
   }
 
-  const pressableStyles = actualRouteName === routeName
-    ? styles.textButtonSelected
+  const isActualRoute = actualRouteName === routeName
+
+  const pressableStyles = isActualRoute
+    ? styles.buttonSelected
     : styles.textButtonDefault
 
-  const textStyles = actualRouteName === routeName
-    ? styles.textPressOrSelected
+  const textStyles = isActualRoute
+    ? styles.textSelected
     : styles.textDefault
 
-  const icon = actualRouteName === routeName
+  const icon = isActualRoute
     ? <Ionicons name={iconName} size={20} style={styles.icon} />
     : null
 
@@ -43,13 +45,13 @@ const styles = StyleSheet.create({
   textButtonDefault: {
     backgroundColor: 'transparent'
   },
-  textButtonSelected: {
+  buttonSelected: {
     backgroundColor: 'gray'
   },
   textDefault: {
     color: 'black'
   },
-  textPressOrSelected: {
+  textSelected: {
     color: 'white'
   },
   icon: {
