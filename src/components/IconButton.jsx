@@ -12,7 +12,7 @@ export default function IconButton (props) {
   } = props
 
   return (
-    <View style={{ ...style }}>
+    <View style={style}>
       <BorderlessButton onPress={onPress} rippleRadius={rippleRadius}>
         <Ionicons name={iconName} size={size} />
       </BorderlessButton>

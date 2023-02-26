@@ -2,13 +2,17 @@ import { useNavigation, useNavigationState } from '@react-navigation/native'
 import { StyleSheet, Text } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import { RectButton } from 'react-native-gesture-handler'
+import Button from '../Button'
 
 export default function FoodHeaderItem (props) {
   const { routeName, iconName } = props
 
   const navigation = useNavigation()
   const actualRouteName = useNavigationState((state) => state.routes[state.index].name)
+
+  const handlePress = () => {
+    navigation.navigate(routeName)
+  }
 
   const pressableStyles = actualRouteName === routeName
     ? styles.textButtonSelected
@@ -23,15 +27,15 @@ export default function FoodHeaderItem (props) {
     : null
 
   return (
-    <RectButton
-      style={[styles.textButton, pressableStyles]}
-      onPress={() => navigation.navigate(routeName)}
+    <Button
+      style={pressableStyles}
+      onPress={handlePress}
     >
       {icon}
       <Text style={textStyles}>
         {routeName}
       </Text>
-    </RectButton>
+    </Button>
   )
 }
 
@@ -39,26 +43,14 @@ const styles = StyleSheet.create({
   textButtonDefault: {
     backgroundColor: 'transparent'
   },
-  textButtonPress: {
-    backgroundColor: 'darkgray'
-  },
   textButtonSelected: {
     backgroundColor: 'gray'
-  },
-  textButton: {
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    borderRadius: 4,
-    flexDirection: 'row'
   },
   textDefault: {
     color: 'black'
   },
   textPressOrSelected: {
     color: 'white'
-  },
-  content: {
-    flexDirection: 'row'
   },
   icon: {
     marginRight: 5,
