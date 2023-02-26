@@ -20,7 +20,11 @@ export default function FoodHeader () {
     <View style={[headerStyles.headerContainer]}>
       {FOOD_HEADER_ITEMS.map(item => {
         const { routeName, iconName } = item
-        return <FoodHeaderItem key={routeName} routeName={routeName} iconName={iconName} />
+        return (
+          <View key={routeName} style={headerStyles.headerItem}>
+            <FoodHeaderItem routeName={routeName} iconName={iconName} />
+          </View>
+        )
       })}
     </View>
   )

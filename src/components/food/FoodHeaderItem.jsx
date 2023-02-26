@@ -1,8 +1,8 @@
 import { useNavigation, useNavigationState } from '@react-navigation/native'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import { headerStyles } from '../../styles/headerStyles'
+import { RectButton } from 'react-native-gesture-handler'
 
 export default function FoodHeaderItem (props) {
   const { routeName, iconName } = props
@@ -10,40 +10,28 @@ export default function FoodHeaderItem (props) {
   const navigation = useNavigation()
   const actualRouteName = useNavigationState((state) => state.routes[state.index].name)
 
-  const getPressableStyles = (pressed) => {
-    if (actualRouteName === routeName) { return styles.textButtonSelected }
-    if (pressed) { return styles.textButtonPress }
-    return styles.textButtonDefault
-  }
+  const pressableStyles = actualRouteName === routeName
+    ? styles.textButtonSelected
+    : styles.textButtonDefault
 
-  const getTextStyles = (pressed) => {
-    if (actualRouteName === routeName || pressed) { return styles.textPressOrSelected }
-    return styles.textDefault
-  }
+  const textStyles = actualRouteName === routeName
+    ? styles.textPressOrSelected
+    : styles.textDefault
 
-  const getIcon = () => {
-    if (actualRouteName === routeName) { return <Ionicons name={iconName} size={20} style={styles.icon} /> }
-  }
+  const icon = actualRouteName === routeName
+    ? <Ionicons name={iconName} size={20} style={styles.icon} />
+    : null
 
   return (
-    <View style={headerStyles.headerItem}>
-      <Pressable
-        style={({ pressed }) => [
-          getPressableStyles(pressed),
-          styles.textButton
-        ]}
-        onPress={() => navigation.navigate(routeName)}
-      >
-        {({ pressed }) => (
-          <View style={styles.content}>
-            {getIcon()}
-            <Text style={getTextStyles(pressed)}>
-              {routeName}
-            </Text>
-          </View>
-        )}
-      </Pressable>
-    </View>
+    <RectButton
+      style={[styles.textButton, pressableStyles]}
+      onPress={() => navigation.navigate(routeName)}
+    >
+      {icon}
+      <Text style={textStyles}>
+        {routeName}
+      </Text>
+    </RectButton>
   )
 }
 
@@ -60,7 +48,8 @@ const styles = StyleSheet.create({
   textButton: {
     paddingVertical: 6,
     paddingHorizontal: 10,
-    borderRadius: 4
+    borderRadius: 4,
+    flexDirection: 'row'
   },
   textDefault: {
     color: 'black'
