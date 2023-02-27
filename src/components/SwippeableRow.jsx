@@ -2,6 +2,18 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { RectButton, Swipeable } from 'react-native-gesture-handler'
 
+function RenderAction (props) {
+  const { onPress, text } = props
+
+  return (
+    <View style={{ width: 80 }}>
+      <RectButton style={styles.leftAction} onPress={onPress}>
+        <Text style={styles.actionText}>{text}</Text>
+      </RectButton>
+    </View>
+  )
+}
+
 export default function SwipeableRow (props) {
   const {
     children,
@@ -9,33 +21,13 @@ export default function SwipeableRow (props) {
     onRightActionPress
   } = props
 
-  const renderLeftActions = () => {
-    return (
-      <View style={{ width: 80 }}>
-        <RectButton style={styles.leftAction} onPress={onLeftActionPress}>
-          <Text style={styles.actionText}>Delete</Text>
-        </RectButton>
-      </View>
-    )
-  }
-
-  const renderRightAction = () => {
-    return (
-      <View style={{ width: 80 }}>
-        <RectButton style={styles.rightAction} onPress={onRightActionPress}>
-          <Text style={styles.actionText}>Edit</Text>
-        </RectButton>
-      </View>
-    )
-  }
-
   return (
     <Swipeable
       friction={3}
       leftThreshold={40}
       rightThreshold={40}
-      renderLeftActions={renderLeftActions}
-      renderRightActions={renderRightAction}
+      renderLeftActions={() => <RenderAction onPress={onLeftActionPress} text='Delete' />}
+      renderRightActions={() => <RenderAction onPress={onRightActionPress} text='Edit' />}
     >
       {children}
     </Swipeable>
