@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import { headerStyles } from '../../styles/headerStyles'
 import { ROUTE_NAME_RECIPES, ROUTE_NAME_INGREDIENTS } from '../../constants/routes'
@@ -17,7 +17,7 @@ const FOOD_HEADER_ITEMS = [
 
 export default function FoodHeader () {
   return (
-    <View style={[headerStyles.headerContainer]}>
+    <View style={[headerStyles.headerContainer, styles.localHeaderContainer]}>
       {FOOD_HEADER_ITEMS.map(item => {
         const { routeName, iconName } = item
         return (
@@ -29,3 +29,9 @@ export default function FoodHeader () {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  localHeaderContainer: {
+    backgroundColor: '#f2f2f2'
+  }
+})

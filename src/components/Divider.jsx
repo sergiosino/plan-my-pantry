@@ -9,8 +9,7 @@ export default function Divider (props) {
 
 const styles = StyleSheet.create({
   divider: {
-    borderBottomColor: 'gray',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    margin: 8
+    backgroundColor: 'lightgray',
+    height: StyleSheet.hairlineWidth
   }
 })
