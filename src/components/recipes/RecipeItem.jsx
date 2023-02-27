@@ -1,6 +1,4 @@
 import { StyleSheet, Text, View } from 'react-native'
-import Divider from '../Divider'
-import IconButton from '../IconButton'
 
 export default function RecipeItem (props) {
   const { title, ingredients } = props
@@ -12,12 +10,7 @@ export default function RecipeItem (props) {
             {title}
           </Text>
         </View>
-        <View style={styles.buttonsContainer}>
-          <IconButton style={styles.leftIcon} iconName='create-outline' />
-          <IconButton iconName='trash' />
-        </View>
       </View>
-      <Divider />
       <View>
         <Text style={styles.textIngredients}>
           {ingredients}
@@ -29,11 +22,8 @@ export default function RecipeItem (props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'lightgray',
-    borderRadius: 4,
-    padding: 10,
-    marginBottom: 10
+    backgroundColor: 'white',
+    padding: 10
   },
   firstColumn: {
     flexDirection: 'row',
@@ -46,14 +36,6 @@ const styles = StyleSheet.create({
   textTitle: {
     fontWeight: 'bold',
     fontSize: 16
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 3
-  },
-  leftIcon: {
-    marginRight: 15
   },
   textIngredients: {
     fontSize: 13

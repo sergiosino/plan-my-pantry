@@ -3,6 +3,8 @@ import { FlatList, StyleSheet, View } from 'react-native'
 import FoodHeader from '../../components/food/FoodHeader'
 import AddButton from '../../components/AddButton'
 import RecipeItem from '../../components/recipes/RecipeItem'
+import SwipeableRow from '../../components/SwippeableRow'
+import Divider from '../../components/Divider'
 
 const RECIPES_MOCK = [
   { id: 1, title: 'Receta 1', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' },
@@ -16,6 +18,14 @@ const RECIPES_MOCK = [
 ]
 
 export default function RecipesView () {
+  const handleSwipeableRightClick = () => {
+    console.log('right click')
+  }
+
+  const handleSwipeableLeftClick = () => {
+    console.log('left click')
+  }
+
   return (
     <View style={styles.container}>
       <FoodHeader />
@@ -23,13 +33,19 @@ export default function RecipesView () {
         contentContainerStyle={styles.flatListContent}
         initialNumToRender={15}
         data={RECIPES_MOCK}
+        ItemSeparatorComponent={<Divider />}
         renderItem={({ item: recipe }) => {
           const { title, ingredients } = recipe
           return (
-            <RecipeItem
-              title={title}
-              ingredients={ingredients}
-            />
+            <SwipeableRow
+              onLeftActionPress={handleSwipeableLeftClick}
+              onRightActionPress={handleSwipeableRightClick}
+            >
+              <RecipeItem
+                title={title}
+                ingredients={ingredients}
+              />
+            </SwipeableRow>
           )
         }}
       />
@@ -43,7 +59,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   flatListContent: {
-    marginHorizontal: 10,
     paddingBottom: 70
   }
 })
