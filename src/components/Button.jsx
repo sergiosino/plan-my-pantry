@@ -20,9 +20,11 @@ export default function Button (props) {
 
 const styles = StyleSheet.create({
   textButton: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
     paddingVertical: 6,
     paddingHorizontal: 10,
-    borderRadius: 4,
-    flexDirection: 'row'
+    borderRadius: 4
   }
 })

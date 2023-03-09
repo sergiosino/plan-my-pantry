@@ -2,12 +2,12 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { RectButton, Swipeable } from 'react-native-gesture-handler'
 
-function RenderAction (props) {
-  const { onPress, text } = props
+function RenderSmallAction (props) {
+  const { onPress, text, style } = props
 
   return (
     <View style={{ width: 80 }}>
-      <RectButton style={styles.leftAction} onPress={onPress}>
+      <RectButton style={style} onPress={onPress}>
         <Text style={styles.actionText}>{text}</Text>
       </RectButton>
     </View>
@@ -23,11 +23,11 @@ export default function SwipeableRow (props) {
 
   return (
     <Swipeable
-      friction={3}
+      friction={2}
       leftThreshold={40}
       rightThreshold={40}
-      renderLeftActions={() => <RenderAction onPress={onLeftActionPress} text='Delete' />}
-      renderRightActions={() => <RenderAction onPress={onRightActionPress} text='Edit' />}
+      renderLeftActions={() => <RenderSmallAction onPress={onLeftActionPress} text='Delete' style={styles.leftAction} />}
+      renderRightActions={() => <RenderSmallAction onPress={onRightActionPress} text='Edit' style={styles.rightAction} />}
     >
       {children}
     </Swipeable>
