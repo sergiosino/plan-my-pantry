@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import { FlatList, Modal, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 
 import FoodHeader from '../../components/food/FoodHeader'
 import AddButton from '../../components/AddButton'
 import RecipeItem from '../../components/recipes/RecipeItem'
-import SwipeableRow from '../../components/SwippeableRow'
+import SwipeableRow from '../../components/swipeableRow/SwippeableRow'
 import Divider from '../../components/Divider'
-import Button from '../../components/Button'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
+import { ROUTE_NAME_RECIPES_MODAL } from '../../constants/routes'
 
 const RECIPES_MOCK = [
   { id: 1, title: 'Receta 1', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' },
@@ -21,7 +20,7 @@ const RECIPES_MOCK = [
 ]
 
 export default function RecipesView () {
-  const [isModalVisible, setIsModalVisible] = useState(false)
+  const navigation = useNavigation()
 
   const handleSwipeableRightClick = () => {
     console.log('right click')
@@ -32,7 +31,7 @@ export default function RecipesView () {
   }
 
   const handleAddRecipe = () => {
-    setIsModalVisible(!isModalVisible)
+    navigation.navigate(ROUTE_NAME_RECIPES_MODAL)
   }
 
   return (
@@ -58,31 +57,6 @@ export default function RecipesView () {
           )
         }}
       />
-      <Modal
-        animationType='fade'
-        transparent
-        visible={isModalVisible}
-        onRequestClose={handleAddRecipe}
-      >
-        <GestureHandlerRootView style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={{ backgroundColor: 'white', borderTopRightRadius: 20, borderTopLeftRadius: 20, marginHorizontal: -15, marginBottom: -15 }}>
-              <Text style={styles.modalText}>RECIPE NAME HERE</Text>
-              <Text style={styles.modalText}>INGREDIENTS HERE</Text>
-              <Text style={styles.modalText}>SOME NOTES ABOUT THE RECIPE HERE</Text>
-              <View style={{ flexDirection: 'row', marginHorizontal: 30, marginBottom: 30 }}>
-                <Button style={styles.buttonClose} onPress={handleAddRecipe}>
-                  <Text style={styles.textStyle}>Cancel</Text>
-                </Button>
-                <Button style={styles.buttonClose} onPress={handleAddRecipe}>
-                  <Text style={styles.textStyle}>Save</Text>
-                </Button>
-              </View>
-            </View>
-          </View>
-        </GestureHandlerRootView>
-      </Modal>
-
       <AddButton onAddItem={handleAddRecipe} />
     </View>
   )
@@ -94,33 +68,5 @@ const styles = StyleSheet.create({
   },
   flatListContent: {
     paddingBottom: 70
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.5)'
-  },
-  modalView: {
-    borderRadius: 20,
-    padding: 15,
-    elevation: 5
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  buttonClose: {
-    margin: 15,
-    backgroundColor: '#2196F3'
-  },
-  textStyle: {
-    color: 'black',
-    fontWeight: 'bold',
-    textAlign: 'center'
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center'
   }
 })

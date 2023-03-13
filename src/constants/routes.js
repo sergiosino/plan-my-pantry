@@ -1,4 +1,6 @@
+export const ROUTE_NAME_TABS = 'Tabs'
 export const ROUTE_NAME_RECIPES = 'Recipes'
+export const ROUTE_NAME_RECIPES_MODAL = 'Recipes modal'
 export const ROUTE_NAME_INGREDIENTS = 'Ingredients'
 export const ROUTE_NAME_FOODS = 'Foods'
 export const ROUTE_NAME_WEEK_MENU = 'Week menu'

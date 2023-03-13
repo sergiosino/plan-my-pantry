@@ -3,14 +3,15 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 
 import WeekMenuView from '../views/WeekMenuView'
 import GroceryListView from '../views/GroceryListView'
-import FoodView from '../views/foodView/FoodView'
 import { ROUTE_NAME_FOODS, ROUTE_NAME_WEEK_MENU, ROUTE_NAME_GROCERY_LIST } from '../constants/routes'
+import FoodRoutes from './food/FoodRoutes'
 
 const Tab = createBottomTabNavigator()
-const tabOptions = [
+
+const TAB_ROUTES = [
   {
     name: ROUTE_NAME_FOODS,
-    component: FoodView,
+    component: FoodRoutes,
     iconName: 'pizza-outline',
     focusedIconName: 'pizza'
   },
@@ -28,9 +29,9 @@ const tabOptions = [
   }
 ]
 
-export default function BottomTabs () {
+export default function AppTabs (props) {
   const getTabIcon = ({ focused, color, size, route }) => {
-    const { iconName, focusedIconName } = tabOptions.find(tabOption => tabOption.name === route.name)
+    const { iconName, focusedIconName } = TAB_ROUTES.find(tabRoute => tabRoute.name === route.name)
     const icon = focused ? focusedIconName : iconName
     return <Ionicons name={icon} size={size} color={color} />
   }
@@ -42,9 +43,10 @@ export default function BottomTabs () {
         headerShown: false
       })}
     >
-      {tabOptions.map(tabOption => (
-        <Tab.Screen key={tabOption.name} name={tabOption.name} component={tabOption.component} />
-      ))}
+      {TAB_ROUTES.map(tabRoute => {
+        const { name, component } = tabRoute
+        return <Tab.Screen key={name} name={name} component={component} />
+      })}
     </Tab.Navigator>
   )
 }
