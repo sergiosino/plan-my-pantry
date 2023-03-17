@@ -1,28 +1,40 @@
 import { StyleSheet, Text, View } from 'react-native'
+import { RectButton } from 'react-native-gesture-handler'
 
 export default function RecipeItem (props) {
-  const { title, ingredients } = props
+  const { id, title, ingredients, onPress } = props
+
+  const handleRecipeItemPress = () => {
+    onPress(id)
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.firstColumn}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.textTitle}>
-            {title}
-          </Text>
+      <RectButton onPress={handleRecipeItemPress} underlayColor='red'>
+        <View style={styles.innerContainer}>
+          <View style={styles.firstColumn}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.textTitle}>
+                {title}
+              </Text>
+            </View>
+          </View>
+          <View>
+            <Text style={styles.textIngredients}>
+              {ingredients}
+            </Text>
+          </View>
         </View>
-      </View>
-      <View>
-        <Text style={styles.textIngredients}>
-          {ingredients}
-        </Text>
-      </View>
+      </RectButton>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: 'white'
+  },
+  innerContainer: {
     padding: 10
   },
   firstColumn: {

@@ -22,12 +22,12 @@ const RECIPES_MOCK = [
 export default function RecipesView () {
   const navigation = useNavigation()
 
-  const handleSwipeableRightClick = () => {
-    console.log('right click')
+  const handleEditRecipe = (id) => {
+    console.log('right click', id)
   }
 
-  const handleSwipeableLeftClick = () => {
-    console.log('left click')
+  const handleDeleteItem = (id) => {
+    console.log('left click', id)
   }
 
   const handleAddRecipe = () => {
@@ -43,15 +43,14 @@ export default function RecipesView () {
         data={RECIPES_MOCK}
         ItemSeparatorComponent={<Divider />}
         renderItem={({ item: recipe }) => {
-          const { title, ingredients } = recipe
+          const { id, title, ingredients } = recipe
           return (
-            <SwipeableRow
-              onLeftActionPress={handleSwipeableLeftClick}
-              onRightActionPress={handleSwipeableRightClick}
-            >
+            <SwipeableRow onLeftActionPress={() => handleDeleteItem(id)}>
               <RecipeItem
+                id={id}
                 title={title}
                 ingredients={ingredients}
+                onPress={handleEditRecipe}
               />
             </SwipeableRow>
           )

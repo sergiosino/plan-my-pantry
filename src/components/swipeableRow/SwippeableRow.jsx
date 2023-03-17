@@ -33,8 +33,8 @@ export default function SwipeableRow (props) {
       friction={2}
       leftThreshold={40}
       rightThreshold={40}
-      renderLeftActions={() => <SwipeableSmallAction onPress={handleLefActionClick} text='Delete' style={styles.leftAction} />}
-      renderRightActions={() => <SwipeableSmallAction onPress={handleRightActionClick} text='Edit' style={styles.rightAction} />}
+      renderLeftActions={() => onLeftActionPress && <SwipeableSmallAction onPress={handleLefActionClick} text='Delete' style={styles.leftAction} />}
+      renderRightActions={() => onRightActionPress && <SwipeableSmallAction onPress={handleRightActionClick} text='Edit' style={styles.rightAction} />}
     >
       {children}
     </Swipeable>
