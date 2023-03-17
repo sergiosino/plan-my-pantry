@@ -12,15 +12,18 @@ const Stack = createNativeStackNavigator()
 const FOOD_ROUTES = [
   {
     name: ROUTE_NAME_RECIPES,
-    component: RecipesView
+    component: RecipesView,
+    animation: 'none'
   },
   {
     name: ROUTE_NAME_INGREDIENTS,
-    component: IngredientsView
+    component: IngredientsView,
+    animation: 'none'
   },
   {
     name: ROUTE_NAME_RECIPES_MODAL,
-    component: RecipesModal
+    component: RecipesModal,
+    animation: 'slide_from_bottom'
   }
 ]
 
@@ -35,15 +38,10 @@ export default function FoodRoutes ({ route, navigation }) {
   }, [route, navigation])
 
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        animation: 'none'
-      }}
-    >
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       {FOOD_ROUTES.map((foodRoute) => {
-        const { name, component } = foodRoute
-        return <Stack.Screen key={name} name={name} component={component} />
+        const { name, component, animation } = foodRoute
+        return <Stack.Screen key={name} name={name} component={component} options={{ animation }} />
       })}
     </Stack.Navigator>
   )

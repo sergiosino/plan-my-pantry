@@ -29,7 +29,7 @@ const TAB_ROUTES = [
   }
 ]
 
-export default function AppTabs (props) {
+export default function AppTabs () {
   const getTabIcon = ({ focused, color, size, route }) => {
     const { iconName, focusedIconName } = TAB_ROUTES.find(tabRoute => tabRoute.name === route.name)
     const icon = focused ? focusedIconName : iconName
