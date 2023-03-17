@@ -1,25 +1,20 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 import uuid from 'react-native-uuid'
+import { IngredientsContext } from '../contexts/IngredientsContext'
 
 export function useIngredientsList (props) {
   const { itemIdToFocus } = props
 
+  const { ingredients, setIngredients } = useContext(IngredientsContext)
   const [selectedList, setSelectedList] = useState([])
-  const [ingredientsList, setIngredientsList] = useState([])
-
-  const updateIngredientsList = async (newIngredientsList) => {
-    const jsonValue = JSON.stringify(newIngredientsList)
-    AsyncStorage.setItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST, jsonValue)
-    setIngredientsList(newIngredientsList)
-  }
 
   const handleAddIngredient = () => {
     const newIngredient = { id: uuid.v4(), text: '' }
-    const newIngredientsList = [newIngredient, ...ingredientsList]
+    const newIngredientsList = [newIngredient, ...ingredients]
     itemIdToFocus.current = newIngredient.id
-    updateIngredientsList(newIngredientsList)
+    setIngredients(newIngredientsList)
   }
 
   const handleSelectIngredient = (id) => {
@@ -43,25 +38,25 @@ export function useIngredientsList (props) {
   }
 
   const handleIngredientChange = (id, text) => {
-    const ingredientIndex = ingredientsList.findIndex(ingredient => ingredient.id === id)
-    const ingredient = ingredientsList[ingredientIndex]
+    const ingredientIndex = ingredients.findIndex(ingredient => ingredient.id === id)
+    const ingredient = ingredients[ingredientIndex]
 
     if (ingredient.text !== text) {
-      const newIngredientsList = [...ingredientsList]
+      const newIngredientsList = [...ingredients]
       newIngredientsList[ingredientIndex] = { id, text }
-      updateIngredientsList(newIngredientsList)
+      setIngredients(newIngredientsList)
     }
   }
 
   const handleDeleteIngredient = (id) => {
-    const newIngredientsList = ingredientsList.filter(ingredient => ingredient.id !== id)
-    updateIngredientsList(newIngredientsList)
+    const newIngredientsList = ingredients.filter(ingredient => ingredient.id !== id)
+    setIngredients(newIngredientsList)
     handleUnselectIngredient(id)
   }
 
   const handleDeleteSelectedIngredients = () => {
-    const newIngredientsList = ingredientsList.filter(ingredient => !selectedList.includes(ingredient.id))
-    updateIngredientsList(newIngredientsList)
+    const newIngredientsList = ingredients.filter(ingredient => !selectedList.includes(ingredient.id))
+    setIngredients(newIngredientsList)
     setSelectedList([])
   }
 
@@ -69,7 +64,7 @@ export function useIngredientsList (props) {
     const getStorageIngredientsList = async () => {
       let storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
       storageIngredientsList = storageIngredientsList != null ? JSON.parse(storageIngredientsList) : null
-      if (storageIngredientsList) { setIngredientsList(storageIngredientsList) }
+      if (storageIngredientsList) { setIngredients(storageIngredientsList) }
     }
     getStorageIngredientsList()
   }, [])
@@ -80,13 +75,13 @@ export function useIngredientsList (props) {
       const storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
       const newIngredientsList = [...JSON.parse(storageIngredientsList)]
       newIngredientsList.sort((a, b) => a.text.localeCompare(b.text))
-      updateIngredientsList(newIngredientsList)
+      setIngredients(newIngredientsList)
     }
     return () => sortAlphabeticallyIngredientsList()
   }, [])
 
   return {
-    ingredientsList,
+    ingredients,
     selectedList,
     handleAddIngredient,
     handleSelectIngredient,
