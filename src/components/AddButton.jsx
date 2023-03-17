@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
   iconContainer: {
     position: 'absolute',
     bottom: 10,
-    right: 10
+    right: 10,
+    zIndex: 999
   },
   icon: {
     width: BUTTON_SIZE,
