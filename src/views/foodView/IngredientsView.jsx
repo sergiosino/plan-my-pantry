@@ -10,7 +10,7 @@ import { useIngredientsList } from '../../hooks/useIngredientsList'
 export default function IngredientsView () {
   const itemIdToFocus = useRef(null)
   const {
-    ingredientsList,
+    ingredients,
     selectedList,
     handleAddIngredient,
     handleSelectIngredient,
@@ -36,7 +36,7 @@ export default function IngredientsView () {
         keyboardShouldPersistTaps='handled'
         getItemLayout={(_, index) => ({ length: INGREDIENT_HEIGHT, offset: INGREDIENT_HEIGHT * index, index })}
         initialNumToRender={25}
-        data={ingredientsList}
+        data={ingredients}
         renderItem={({ item: ingredient }) => {
           const { id, text } = ingredient
           const isSelected = !!selectedList.find(x => x === id)
