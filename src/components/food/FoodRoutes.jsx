@@ -6,7 +6,6 @@ import { ROUTE_NAME_INGREDIENTS, ROUTE_NAME_RECIPES, ROUTE_NAME_RECIPES_MODAL } 
 import IngredientsView from '../../views/foodView/IngredientsView'
 import RecipesView from '../../views/foodView/RecipesView'
 import RecipesModal from '../recipes/RecipesModal'
-import { IngredientsContextProvider } from '../../contexts/IngredientsContext'
 
 const Stack = createNativeStackNavigator()
 
@@ -39,13 +38,11 @@ export default function FoodRoutes ({ route, navigation }) {
   }, [route, navigation])
 
   return (
-    <IngredientsContextProvider>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {FOOD_ROUTES.map((foodRoute) => {
-          const { name, component, animation } = foodRoute
-          return <Stack.Screen key={name} name={name} component={component} options={{ animation }} />
-        })}
-      </Stack.Navigator>
-    </IngredientsContextProvider>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {FOOD_ROUTES.map((foodRoute) => {
+        const { name, component, animation } = foodRoute
+        return <Stack.Screen key={name} name={name} component={component} options={{ animation }} />
+      })}
+    </Stack.Navigator>
   )
 }
