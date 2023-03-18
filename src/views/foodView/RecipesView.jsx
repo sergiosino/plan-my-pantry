@@ -1,36 +1,26 @@
 import { FlatList, StyleSheet, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import FoodHeader from '../../components/food/FoodHeader'
 import AddButton from '../../components/AddButton'
 import RecipeItem from '../../components/recipes/RecipeItem'
 import SwipeableRow from '../../components/swipeableRow/SwippeableRow'
 import Divider from '../../components/Divider'
-import { useNavigation } from '@react-navigation/native'
 import { ROUTE_NAME_RECIPES_MODAL } from '../../constants/routes'
-
-const RECIPES_MOCK = [
-  { id: 1, title: 'Receta 1', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' },
-  { id: 2, title: 'Receta 2', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' },
-  { id: 3, title: 'Receta 3', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' },
-  { id: 4, title: 'Receta 4', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' },
-  { id: 5, title: 'Receta 5', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' },
-  { id: 6, title: 'Receta 6', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' },
-  { id: 7, title: 'Receta 7', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' },
-  { id: 8, title: 'Receta 8', ingredients: 'ingrediente 1, ingrediente 2, ingrediente 3' }
-]
+import { useRecipes } from '../../hooks/useRecipes'
 
 export default function RecipesView () {
+  const { recipes } = useRecipes()
   const navigation = useNavigation()
+  const {
+    handleDeleteItem
+  } = useRecipes()
 
-  const handleEditRecipe = (id) => {
-    console.log('click', id)
+  const handlePressRecipe = (recipe) => {
+    navigation.navigate(ROUTE_NAME_RECIPES_MODAL, { recipe })
   }
 
-  const handleDeleteItem = (id) => {
-    console.log('left action click', id)
-  }
-
-  const handleAddRecipe = () => {
+  const handleAddPress = () => {
     navigation.navigate(ROUTE_NAME_RECIPES_MODAL)
   }
 
@@ -40,23 +30,24 @@ export default function RecipesView () {
       <FlatList
         contentContainerStyle={styles.flatListContent}
         initialNumToRender={15}
-        data={RECIPES_MOCK}
+        data={recipes}
         ItemSeparatorComponent={<Divider />}
         renderItem={({ item: recipe }) => {
-          const { id, title, ingredients } = recipe
+          const { id, name, ingredients, ingredientsName } = recipe
           return (
             <SwipeableRow onLeftActionPress={() => handleDeleteItem(id)}>
               <RecipeItem
                 id={id}
-                title={title}
+                name={name}
                 ingredients={ingredients}
-                onPress={handleEditRecipe}
+                ingredientsName={ingredientsName}
+                onPress={handlePressRecipe}
               />
             </SwipeableRow>
           )
         }}
       />
-      <AddButton onAddItem={handleAddRecipe} />
+      <AddButton onAddItem={handleAddPress} />
     </View>
   )
 }
