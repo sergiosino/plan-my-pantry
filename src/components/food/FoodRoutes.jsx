@@ -23,7 +23,7 @@ const FOOD_ROUTES = [
   {
     name: ROUTE_NAME_RECIPES_MODAL,
     component: RecipeModal,
-    animation: 'slide_from_bottom'
+    animation: 'default'
   }
 ]
 

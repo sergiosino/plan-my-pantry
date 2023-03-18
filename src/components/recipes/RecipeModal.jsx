@@ -7,7 +7,6 @@ import { useRecipes } from '../../hooks/useRecipes'
 import Button from '../Button'
 import MultipleSelect from '../MultipleSelect'
 
-// NOTE get params form redirection -> https://reactnavigation.org/docs/params/
 export default function RecipesModal () {
   const route = useRoute()
   const navigation = useNavigation()
