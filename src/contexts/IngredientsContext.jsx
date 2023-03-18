@@ -8,30 +8,30 @@ export const IngredientsContext = createContext({})
 export function IngredientsContextProvider ({ children }) {
   const [ingredients, setIngredients] = useState([])
 
-  const updateIngredientsList = (newIngredientsList) => {
-    const jsonValue = JSON.stringify(newIngredientsList)
+  const updateIngredients = (newIngredients) => {
+    const jsonValue = JSON.stringify(newIngredients)
     AsyncStorage.setItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST, jsonValue)
-    setIngredients(newIngredientsList)
+    setIngredients(newIngredients)
   }
 
   const sortIngredientsAlphabetically = async () => {
-    const storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
-    const newIngredientsList = [...JSON.parse(storageIngredientsList)]
-    newIngredientsList.sort((a, b) => a.text.localeCompare(b.text))
-    setIngredients(newIngredientsList)
+    const storageIngredients = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
+    const newIngredients = [...JSON.parse(storageIngredients)]
+    newIngredients.sort((a, b) => a.text.toLowerCase().localeCompare(b.text.toLowerCase()))
+    updateIngredients(newIngredients)
   }
 
   useEffect(() => {
-    const getStorageIngredientsList = async () => {
-      let storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
-      storageIngredientsList = storageIngredientsList != null ? JSON.parse(storageIngredientsList) : null
-      if (storageIngredientsList) { setIngredients(storageIngredientsList) }
+    const getStorageIngredients = async () => {
+      let storageIngredients = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
+      storageIngredients = storageIngredients != null ? JSON.parse(storageIngredients) : null
+      if (storageIngredients) { setIngredients(storageIngredients) }
     }
-    getStorageIngredientsList()
+    getStorageIngredients()
   }, [])
 
   return (
-    <IngredientsContext.Provider value={{ ingredients, setIngredients: updateIngredientsList, sortIngredientsAlphabetically }}>
+    <IngredientsContext.Provider value={{ ingredients, setIngredients: updateIngredients, sortIngredientsAlphabetically }}>
       {children}
     </IngredientsContext.Provider>
   )

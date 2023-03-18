@@ -2,10 +2,10 @@ import { useRef } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 
 import AddButton from '../../components/AddButton'
-import IngredientItem from '../../components/ingredients/IngredientItem'
+import Ingredient from '../../components/ingredients/Ingredient'
 import IngredientsHeader from '../../components/ingredients/IngredientsHeader'
 import { INGREDIENT_HEIGHT } from '../../constants/constants'
-import { useIngredientsList } from '../../hooks/useIngredientsList'
+import { useIngredients } from '../../hooks/useIngredients'
 
 export default function IngredientsView () {
   const itemIdToFocus = useRef(null)
@@ -19,7 +19,7 @@ export default function IngredientsView () {
     handleIngredientChange,
     handleDeleteIngredient,
     handleDeleteSelectedIngredients
-  } = useIngredientsList({ itemIdToFocus })
+  } = useIngredients({ itemIdToFocus })
 
   const isSelectedListEmpty = selectedList.length === 0
 
@@ -42,7 +42,7 @@ export default function IngredientsView () {
           const isSelected = !!selectedList.find(x => x === id)
           const isItemToFocus = itemIdToFocus.current === id
           return (
-            <IngredientItem
+            <Ingredient
               id={id}
               onSelect={handleSelectIngredient}
               onUnselect={handleUnselectIngredient}

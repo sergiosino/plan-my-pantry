@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { ROUTE_NAME_INGREDIENTS, ROUTE_NAME_RECIPES, ROUTE_NAME_RECIPES_MODAL } from '../../constants/routes'
 import IngredientsView from '../../views/foodView/IngredientsView'
 import RecipesView from '../../views/foodView/RecipesView'
-import RecipesModal from '../recipes/RecipesModal'
+import RecipeModal from '../recipes/RecipeModal'
 
 const Stack = createNativeStackNavigator()
 
@@ -22,7 +22,7 @@ const FOOD_ROUTES = [
   },
   {
     name: ROUTE_NAME_RECIPES_MODAL,
-    component: RecipesModal,
+    component: RecipeModal,
     animation: 'slide_from_bottom'
   }
 ]

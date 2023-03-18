@@ -2,10 +2,10 @@ import { Pressable, StyleSheet, TextInput, View } from 'react-native'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
 import { INGREDIENT_HEIGHT } from '../../constants/constants'
-import { useIngredientItem } from '../../hooks/useIngredientItem'
+import { useIngredient } from '../../hooks/useIngredient'
 import IconButton from '../IconButton'
 
-export default function IngredientItem (props) {
+export default function Ingredient (props) {
   const {
     isSelected,
     isItemToFocus
@@ -20,7 +20,7 @@ export default function IngredientItem (props) {
     handleTextFocus,
     handleTextFocusEnd,
     handleDeletePress
-  } = useIngredientItem(props)
+  } = useIngredient(props)
 
   return (
     <View style={{ ...styles.container, backgroundColor: isSelected ? 'lightgray' : 'transparent' }}>

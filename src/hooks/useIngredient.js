@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function useIngredientItem (props) {
+export function useIngredient (props) {
   const {
     id,
     defaultText,

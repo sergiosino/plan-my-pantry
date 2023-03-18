@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import uuid from 'react-native-uuid'
 import { IngredientsContext } from '../contexts/IngredientsContext'
 
-export function useIngredientsList (props) {
+export function useIngredients (props) {
   const { itemIdToFocus } = props
 
   const { ingredients, setIngredients, sortIngredientsAlphabetically } = useContext(IngredientsContext)
@@ -10,9 +10,9 @@ export function useIngredientsList (props) {
 
   const handleAddIngredient = () => {
     const newIngredient = { id: uuid.v4(), text: '' }
-    const newIngredientsList = [newIngredient, ...ingredients]
+    const newIngredients = [newIngredient, ...ingredients]
     itemIdToFocus.current = newIngredient.id
-    setIngredients(newIngredientsList)
+    setIngredients(newIngredients)
   }
 
   const handleSelectIngredient = (id) => {
@@ -40,21 +40,21 @@ export function useIngredientsList (props) {
     const ingredient = ingredients[ingredientIndex]
 
     if (ingredient.text !== text) {
-      const newIngredientsList = [...ingredients]
-      newIngredientsList[ingredientIndex] = { id, text }
-      setIngredients(newIngredientsList)
+      const newIngredients = [...ingredients]
+      newIngredients[ingredientIndex] = { id, text }
+      setIngredients(newIngredients)
     }
   }
 
   const handleDeleteIngredient = (id) => {
-    const newIngredientsList = ingredients.filter(ingredient => ingredient.id !== id)
-    setIngredients(newIngredientsList)
+    const newIngredients = ingredients.filter(ingredient => ingredient.id !== id)
+    setIngredients(newIngredients)
     handleUnselectIngredient(id)
   }
 
   const handleDeleteSelectedIngredients = () => {
-    const newIngredientsList = ingredients.filter(ingredient => !selectedList.includes(ingredient.id))
-    setIngredients(newIngredientsList)
+    const newIngredients = ingredients.filter(ingredient => !selectedList.includes(ingredient.id))
+    setIngredients(newIngredients)
     setSelectedList([])
   }
 

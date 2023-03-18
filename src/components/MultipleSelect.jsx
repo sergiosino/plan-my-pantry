@@ -19,9 +19,7 @@ export default function MultipleSelect (props) {
       placeholder='Select'
       searchPlaceholder='Search...'
       value={selected}
-      onChange={item => {
-        onSelect(item)
-      }}
+      onChange={onSelect}
     />
   )
 }
