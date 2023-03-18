@@ -8,9 +8,16 @@ export const IngredientsContext = createContext({})
 export function IngredientsContextProvider ({ children }) {
   const [ingredients, setIngredients] = useState([])
 
-  const updateIngredientsList = async (newIngredientsList) => {
+  const updateIngredientsList = (newIngredientsList) => {
     const jsonValue = JSON.stringify(newIngredientsList)
     AsyncStorage.setItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST, jsonValue)
+    setIngredients(newIngredientsList)
+  }
+
+  const sortIngredientsAlphabetically = async () => {
+    const storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
+    const newIngredientsList = [...JSON.parse(storageIngredientsList)]
+    newIngredientsList.sort((a, b) => a.text.localeCompare(b.text))
     setIngredients(newIngredientsList)
   }
 
@@ -24,7 +31,7 @@ export function IngredientsContextProvider ({ children }) {
   }, [])
 
   return (
-    <IngredientsContext.Provider value={{ ingredients, setIngredients: updateIngredientsList }}>
+    <IngredientsContext.Provider value={{ ingredients, setIngredients: updateIngredientsList, sortIngredientsAlphabetically }}>
       {children}
     </IngredientsContext.Provider>
   )

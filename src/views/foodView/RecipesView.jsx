@@ -23,11 +23,11 @@ export default function RecipesView () {
   const navigation = useNavigation()
 
   const handleEditRecipe = (id) => {
-    console.log('right click', id)
+    console.log('click', id)
   }
 
   const handleDeleteItem = (id) => {
-    console.log('left click', id)
+    console.log('left action click', id)
   }
 
   const handleAddRecipe = () => {

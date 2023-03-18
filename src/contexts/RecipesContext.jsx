@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createContext, useEffect, useState } from 'react'
+
 import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 
 export const RecipesContext = createContext({})
@@ -7,7 +8,8 @@ export const RecipesContext = createContext({})
 export function RecipesContextProvider ({ children }) {
   const { recipes, setRecipes } = useState([])
 
-  const updateRecipesList = async (newRecipesList) => {
+  const addRecipe = (newRecipe) => {
+    const newRecipesList = [...recipes, newRecipe]
     const jsonValue = JSON.stringify(newRecipesList)
     AsyncStorage.setItem(ASYNC_STORAGE_KEYS.RECIPES_LIST, jsonValue)
     setRecipes(newRecipesList)
@@ -23,7 +25,7 @@ export function RecipesContextProvider ({ children }) {
   }, [])
 
   return (
-    <RecipesContext.Provider value={{ recipes, setRecipes: updateRecipesList }}>
+    <RecipesContext.Provider value={{ recipes, addRecipe }}>
       {children}
     </RecipesContext.Provider>
   )

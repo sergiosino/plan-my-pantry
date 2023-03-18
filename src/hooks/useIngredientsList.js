@@ -1,13 +1,11 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useContext, useEffect, useState } from 'react'
-import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 import uuid from 'react-native-uuid'
 import { IngredientsContext } from '../contexts/IngredientsContext'
 
 export function useIngredientsList (props) {
   const { itemIdToFocus } = props
 
-  const { ingredients, setIngredients } = useContext(IngredientsContext)
+  const { ingredients, setIngredients, sortIngredientsAlphabetically } = useContext(IngredientsContext)
   const [selectedList, setSelectedList] = useState([])
 
   const handleAddIngredient = () => {
@@ -60,24 +58,9 @@ export function useIngredientsList (props) {
     setSelectedList([])
   }
 
-  useEffect(() => {
-    const getStorageIngredientsList = async () => {
-      let storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
-      storageIngredientsList = storageIngredientsList != null ? JSON.parse(storageIngredientsList) : null
-      if (storageIngredientsList) { setIngredients(storageIngredientsList) }
-    }
-    getStorageIngredientsList()
-  }, [])
-
   // Sort the ingredients list alphabetically before component closes
   useEffect(() => {
-    const sortAlphabeticallyIngredientsList = async () => {
-      const storageIngredientsList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
-      const newIngredientsList = [...JSON.parse(storageIngredientsList)]
-      newIngredientsList.sort((a, b) => a.text.localeCompare(b.text))
-      setIngredients(newIngredientsList)
-    }
-    return () => sortAlphabeticallyIngredientsList()
+    return () => sortIngredientsAlphabetically()
   }, [])
 
   return {
