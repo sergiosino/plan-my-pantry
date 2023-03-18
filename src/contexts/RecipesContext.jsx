@@ -6,26 +6,25 @@ import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 export const RecipesContext = createContext({})
 
 export function RecipesContextProvider ({ children }) {
-  const { recipes, setRecipes } = useState([])
+  const [recipes, setRecipes] = useState([])
 
-  const addRecipe = (newRecipe) => {
-    const newRecipesList = [...recipes, newRecipe]
-    const jsonValue = JSON.stringify(newRecipesList)
+  const updateRecipes = (newRecipes) => {
+    const jsonValue = JSON.stringify(newRecipes)
     AsyncStorage.setItem(ASYNC_STORAGE_KEYS.RECIPES_LIST, jsonValue)
-    setRecipes(newRecipesList)
+    setRecipes(newRecipes)
   }
 
   useEffect(() => {
-    const getStorageRecipesList = async () => {
-      let storageRecipesList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.RECIPES_LIST)
-      storageRecipesList = storageRecipesList != null ? JSON.parse(storageRecipesList) : null
-      if (storageRecipesList) { setRecipes(storageRecipesList) }
+    const getStorageRecipes = async () => {
+      let storageRecipes = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.RECIPES_LIST)
+      storageRecipes = storageRecipes != null ? JSON.parse(storageRecipes) : null
+      if (storageRecipes) { setRecipes(storageRecipes) }
     }
-    getStorageRecipesList()
+    getStorageRecipes()
   }, [])
 
   return (
-    <RecipesContext.Provider value={{ recipes, addRecipe }}>
+    <RecipesContext.Provider value={{ recipes, setRecipes: updateRecipes }}>
       {children}
     </RecipesContext.Provider>
   )
