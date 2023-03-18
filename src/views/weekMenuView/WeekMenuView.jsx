@@ -2,8 +2,8 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
 
-import Divider from '../components/Divider'
-import { WEEK_DAYS } from '../constants/constants'
+import Divider from '../../components/Divider'
+import { WEEK_DAYS } from '../../constants/constants'
 
 function DayMeal ({ meal, recipe }) {
   return (

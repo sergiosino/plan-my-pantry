@@ -4,10 +4,10 @@ import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 
 import { IngredientsContext } from '../../contexts/IngredientsContext'
 import { useRecipes } from '../../hooks/useRecipes'
-import Button from '../Button'
-import MultipleSelect from '../MultipleSelect'
+import Button from '../../components/Button'
+import MultipleSelect from '../../components/MultipleSelect'
 
-export default function RecipesModal () {
+export default function RecipeModal () {
   const route = useRoute()
   const navigation = useNavigation()
   const { handleSaveRecipe } = useRecipes()

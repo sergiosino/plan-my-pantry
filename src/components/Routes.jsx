@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import WeekMenuView from '../views/WeekMenuView'
+import WeekMenuView from '../views/weekMenuView/WeekMenuView'
 import GroceryListView from '../views/GroceryListView'
 import { ROUTE_NAME_FOODS, ROUTE_NAME_WEEK_MENU, ROUTE_NAME_GROCERY_LIST } from '../constants/routes'
 import FoodRoutes from './food/FoodRoutes'
