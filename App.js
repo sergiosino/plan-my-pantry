@@ -4,22 +4,25 @@ import { StatusBar } from 'expo-status-bar'
 import Constants from 'expo-constants'
 import { View } from 'react-native'
 
-import BottomAppBar from './src/components/Routes'
+import TabsRoutes from './src/routes/BottomTabsRoutes'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { IngredientsContextProvider } from './src/contexts/IngredientsContext'
 import { RecipesContextProvider } from './src/contexts/RecipesContext'
+import { WeekMenuContextProvider } from './src/contexts/WeekMenuContext'
 
 export default function App () {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <IngredientsContextProvider>
         <RecipesContextProvider>
-          <View style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
-            <NavigationContainer>
-              <StatusBar />
-              <BottomAppBar />
-            </NavigationContainer>
-          </View>
+          <WeekMenuContextProvider>
+            <View style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
+              <NavigationContainer>
+                <StatusBar />
+                <TabsRoutes />
+              </NavigationContainer>
+            </View>
+          </WeekMenuContextProvider>
         </RecipesContextProvider>
       </IngredientsContextProvider>
     </GestureHandlerRootView>
