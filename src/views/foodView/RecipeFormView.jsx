@@ -1,11 +1,12 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useContext, useEffect, useState } from 'react'
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import { IngredientsContext } from '../../contexts/IngredientsContext'
 import { useRecipes } from '../../hooks/useRecipes'
 import Button from '../../components/Button'
 import MultipleSelect from '../../components/MultipleSelect'
+import TextInputSyled from '../../components/TextInputSyled'
 
 export default function RecipeModal () {
   const route = useRoute()
@@ -40,11 +41,7 @@ export default function RecipeModal () {
       <ScrollView>
         <View style={{ marginBottom: 20 }}>
           <Text style={styles.modalText}>Recipe name</Text>
-          <TextInput
-            style={styles.textInput}
-            value={name}
-            onChangeText={setName}
-          />
+          <TextInputSyled value={name} onChangeText={setName} />
           <Text style={styles.modalText}>Ingredients</Text>
           <MultipleSelect data={ingredients} selected={selectedIngredients} onSelect={setSelectedIngredients} />
         </View>
@@ -69,13 +66,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     justifyContent: 'space-between'
-  },
-  textInput: {
-    height: 40,
-    borderWidth: 0.5,
-    padding: 10,
-    borderRadius: 4,
-    borderColor: 'gray'
   },
   buttonsContainer: {
     marginBottom: 10,
