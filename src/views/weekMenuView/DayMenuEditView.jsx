@@ -23,13 +23,11 @@ export default function DayMenuEditView () {
   const handlePressLunch = () => {
     if (isLunchSelected) { return }
     setIsLunchSelected(true)
-    console.log('handlePressLunch')
   }
 
   const handlePressDinner = () => {
     if (!isLunchSelected) { return }
     setIsLunchSelected(false)
-    console.log('handlePressDinner')
   }
 
   const handlePressRecipe = (recipe) => {
@@ -81,16 +79,14 @@ export default function DayMenuEditView () {
           const { id, name, ingredients, ingredientsName } = recipe
           const isRecipeSelected = recipeSelected === id
           return (
-            <View style={!isRecipeSelected && { backgroundColor: 'red' }}>
-              <RecipeItem
-                id={id}
-                name={name}
-                ingredients={ingredients}
-                ingredientsName={ingredientsName}
-                onPress={handlePressRecipe}
-                isSelected={isRecipeSelected}
-              />
-            </View>
+            <RecipeItem
+              id={id}
+              name={name}
+              ingredients={ingredients}
+              ingredientsName={ingredientsName}
+              onPress={handlePressRecipe}
+              isSelected={isRecipeSelected}
+            />
           )
         }}
       />
