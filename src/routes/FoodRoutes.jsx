@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { ROUTE_NAME_INGREDIENTS, ROUTE_NAME_RECIPES, ROUTE_NAME_RECIPES_MODAL } from '../constants/routes'
+import { ROUTE_NAME_INGREDIENTS, ROUTE_NAME_RECIPES, ROUTE_NAME_RECIPES_EDIT_MODAL } from '../constants/routes'
 import IngredientsView from '../views/foodView/IngredientsView'
 import RecipesView from '../views/foodView/RecipesView'
 import RecipeFormView from '../views/foodView/RecipeFormView'
@@ -21,7 +21,7 @@ const FOOD_ROUTES = [
     animation: 'none'
   },
   {
-    name: ROUTE_NAME_RECIPES_MODAL,
+    name: ROUTE_NAME_RECIPES_EDIT_MODAL,
     component: RecipeFormView,
     animation: 'default'
   }

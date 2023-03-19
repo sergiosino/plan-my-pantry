@@ -5,15 +5,15 @@ import { ScrollView } from 'react-native-gesture-handler'
 
 import Divider from '../../components/Divider'
 import DayMenu from '../../components/weekMenu/DayMenu'
-import { ROUTE_NAME_DAY_MENU_MODAL } from '../../constants/routes'
+import { ROUTE_NAME_DAY_MENU_EDIT_MODAL } from '../../constants/routes'
 import { useWeekMenu } from '../../hooks/useWeekMenu'
 
 export default function WeekMenuView () {
   const navigation = useNavigation()
   const { weekMenu } = useWeekMenu()
 
-  const handleDayMenuPress = (dayMenu) => {
-    navigation.navigate(ROUTE_NAME_DAY_MENU_MODAL, { dayMenu })
+  const handleDayMenuPress = (dayId) => {
+    navigation.navigate(ROUTE_NAME_DAY_MENU_EDIT_MODAL, { dayId })
   }
 
   return (

@@ -6,7 +6,7 @@ import AddButton from '../../components/AddButton'
 import RecipeItem from '../../components/recipes/RecipeItem'
 import SwipeableRow from '../../components/swipeableRow/SwippeableRow'
 import Divider from '../../components/Divider'
-import { ROUTE_NAME_RECIPES_MODAL } from '../../constants/routes'
+import { ROUTE_NAME_RECIPES_EDIT_MODAL } from '../../constants/routes'
 import { useRecipes } from '../../hooks/useRecipes'
 
 export default function RecipesView () {
@@ -17,11 +17,11 @@ export default function RecipesView () {
   } = useRecipes()
 
   const handlePressRecipe = (recipe) => {
-    navigation.navigate(ROUTE_NAME_RECIPES_MODAL, { recipe })
+    navigation.navigate(ROUTE_NAME_RECIPES_EDIT_MODAL, { recipe })
   }
 
   const handleAddPress = () => {
-    navigation.navigate(ROUTE_NAME_RECIPES_MODAL)
+    navigation.navigate(ROUTE_NAME_RECIPES_EDIT_MODAL)
   }
 
   return (

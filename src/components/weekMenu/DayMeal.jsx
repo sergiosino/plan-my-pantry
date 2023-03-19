@@ -7,8 +7,12 @@ function MealRecipeText ({ meal, recipe, isSelected }) {
 
   return (
     <>
-      <Text style={mealTextStyle}>{meal}</Text>
-      <Text style={recipeTextStyle}>{recipe}</Text>
+      <Text style={mealTextStyle}>
+        {meal}
+      </Text>
+      <Text style={recipeTextStyle}>
+        {recipe}
+      </Text>
     </>
   )
 }
@@ -17,8 +21,6 @@ export default function DayMeal (props) {
   const { meal, recipe, onPress, isSelected } = props
 
   const isPressable = !!onPress
-  console.log(isPressable)
-
   const containerStyle = [styles.container, isSelected && styles.containerSelected]
 
   return isPressable
