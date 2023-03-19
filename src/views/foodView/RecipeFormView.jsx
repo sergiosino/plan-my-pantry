@@ -5,7 +5,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { IngredientsContext } from '../../contexts/IngredientsContext'
 import { useRecipes } from '../../hooks/useRecipes'
 import Button from '../../components/Button'
-import MultipleSelect from '../../components/MultipleSelect'
+import MultipleSelectStyled from '../../components/MultipleSelectStyled'
 import TextInputSyled from '../../components/TextInputSyled'
 
 export default function RecipeModal () {
@@ -25,10 +25,6 @@ export default function RecipeModal () {
     navigation.goBack()
   }
 
-  const handleClose = () => {
-    navigation.goBack()
-  }
-
   useEffect(() => {
     if (recipe) {
       setName(recipe.name)
@@ -43,22 +39,17 @@ export default function RecipeModal () {
           <Text style={styles.modalText}>Recipe name</Text>
           <TextInputSyled value={name} onChangeText={setName} />
           <Text style={styles.modalText}>Ingredients</Text>
-          <MultipleSelect data={ingredients} selected={selectedIngredients} onSelect={setSelectedIngredients} />
+          <MultipleSelectStyled data={ingredients} selected={selectedIngredients} onSelect={setSelectedIngredients} />
         </View>
       </ScrollView>
       <View style={styles.buttonsContainer}>
-        <Button style={styles.buttonClose} onPress={handleClose}>
-          <Text style={styles.textStyle}>Cancel</Text>
-        </Button>
-        <Button style={styles.buttonClose} onPress={handleSave}>
+        <Button style={styles.button} onPress={handleSave}>
           <Text style={styles.textStyle}>Save</Text>
         </Button>
       </View>
     </View>
   )
 }
-
-const gap = 20
 
 const styles = StyleSheet.create({
   container: {
@@ -68,12 +59,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   buttonsContainer: {
-    marginBottom: 10,
-    margin: -(gap / 2),
     flexDirection: 'row'
   },
-  buttonClose: {
-    margin: (gap / 2),
+  button: {
     backgroundColor: 'gray'
   },
   textStyle: {
