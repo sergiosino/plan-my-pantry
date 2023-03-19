@@ -1,23 +1,23 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import WeekMenuView from '../views/weekMenuView/WeekMenuView'
+import { ROUTE_NAME_FOODS_ROUTES, ROUTE_NAME_GROCERY_LIST, ROUTE_NAME_WEEK_MENU_ROUTES } from '../constants/routes'
 import GroceryListView from '../views/GroceryListView'
-import { ROUTE_NAME_FOODS, ROUTE_NAME_WEEK_MENU, ROUTE_NAME_GROCERY_LIST } from '../constants/routes'
-import FoodRoutes from './food/FoodRoutes'
+import FoodRoutes from './FoodRoutes'
+import WeekMenuRoutes from './WeekMenuRoutes'
 
 const Tab = createBottomTabNavigator()
 
 const TAB_ROUTES = [
   {
-    name: ROUTE_NAME_FOODS,
+    name: ROUTE_NAME_FOODS_ROUTES,
     component: FoodRoutes,
     iconName: 'pizza-outline',
     focusedIconName: 'pizza'
   },
   {
-    name: ROUTE_NAME_WEEK_MENU,
-    component: WeekMenuView,
+    name: ROUTE_NAME_WEEK_MENU_ROUTES,
+    component: WeekMenuRoutes,
     iconName: 'restaurant-outline',
     focusedIconName: 'restaurant'
   },
@@ -29,7 +29,7 @@ const TAB_ROUTES = [
   }
 ]
 
-export default function AppTabs () {
+export default function BottomTabsRoutes () {
   const getTabIcon = ({ focused, color, size, route }) => {
     const { iconName, focusedIconName } = TAB_ROUTES.find(tabRoute => tabRoute.name === route.name)
     const icon = focused ? focusedIconName : iconName
