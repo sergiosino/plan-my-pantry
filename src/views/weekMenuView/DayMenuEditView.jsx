@@ -8,6 +8,7 @@ import TextInputSyled from '../../components/TextInputSyled'
 import { useRecipes } from '../../hooks/useRecipes'
 import RecipeItem from '../../components/recipes/RecipeItem'
 import Divider from '../../components/Divider'
+import DayIngredientsForGroceryList from '../../components/weekMenu/DayIngredientsForGroceryList'
 
 export default function DayMenuEditView () {
   const route = useRoute()
@@ -55,7 +56,7 @@ export default function DayMenuEditView () {
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
-      <View style={{ marginHorizontal: 10, marginBottom: 10 }}>
+      <View style={{ marginHorizontal: 10 }}>
         <DayMenu
           onPressLunch={handlePressLunch}
           onPressDinner={handlePressDinner}
@@ -69,27 +70,33 @@ export default function DayMenuEditView () {
           placeholder='Search...'
         />
       </View>
-      <FlatList
-        contentContainerStyle={styles.flatListContent}
-        initialNumToRender={15}
-        data={recipes}
-        ItemSeparatorComponent={<Divider />}
-        extraData={recipeSelected}
-        renderItem={({ item: recipe }) => {
-          const { id, name, ingredients, ingredientsName } = recipe
-          const isRecipeSelected = recipeSelected === id
-          return (
-            <RecipeItem
-              id={id}
-              name={name}
-              ingredients={ingredients}
-              ingredientsName={ingredientsName}
-              onPress={handlePressRecipe}
-              isSelected={isRecipeSelected}
-            />
-          )
-        }}
-      />
+      <View style={{ flex: 1, marginTop: 10 }}>
+        <FlatList
+          contentContainerStyle={styles.flatListContent}
+          initialNumToRender={15}
+          data={recipes}
+          ItemSeparatorComponent={<Divider />}
+          extraData={recipeSelected}
+          renderItem={({ item: recipe }) => {
+            const { id, name, ingredients, ingredientsName } = recipe
+            const isRecipeSelected = recipeSelected === id
+            return (
+              <RecipeItem
+                id={id}
+                name={name}
+                ingredients={ingredients}
+                ingredientsName={ingredientsName}
+                onPress={handlePressRecipe}
+                isSelected={isRecipeSelected}
+              />
+            )
+          }}
+        />
+      </View>
+      <Divider />
+      <View style={{ flex: 0.7, marginHorizontal: 10, marginTop: 10 }}>
+        <DayIngredientsForGroceryList />
+      </View>
     </View>
   )
 }
