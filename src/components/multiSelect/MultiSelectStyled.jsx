@@ -22,7 +22,6 @@ export default function MultiSelectStyled (props) {
       renderSelectedItem={(item, unSelect) => (
         <DeselectableItem item={item} onPress={unSelect} />
       )}
-
     />
   )
 }
