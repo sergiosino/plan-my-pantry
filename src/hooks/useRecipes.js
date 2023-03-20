@@ -6,15 +6,19 @@ import { RecipesContext } from '../contexts/RecipesContext'
 
 export function useRecipes () {
   const { recipes, setRecipes } = useContext(RecipesContext)
-  const { ingredients } = useContext(IngredientsContext)
+  const { ingredients: allIngredients } = useContext(IngredientsContext)
 
   const getIngredientsName = (recipeWithoutIngredientsName) => {
     const { ingredients: recipeIngredients } = recipeWithoutIngredientsName
-    const ingredientsName = ingredients.filter(ingredient => recipeIngredients?.includes(ingredient.id))?.map(ingredient => ingredient.text)
+
+    const recipeIngredientsId = recipeIngredients.map(recipeIngredient => recipeIngredient.id ?? recipeIngredient)
+    const ingredientsWithName = allIngredients
+      .filter(ingredient => recipeIngredientsId?.includes(ingredient.id))
+      ?.map(ingredient => ({ id: ingredient.id, text: ingredient.text }))
 
     return {
       ...recipeWithoutIngredientsName,
-      ingredientsName
+      ingredients: ingredientsWithName
     }
   }
 

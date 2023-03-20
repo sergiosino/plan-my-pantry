@@ -33,14 +33,13 @@ export default function RecipesView () {
         data={recipes}
         ItemSeparatorComponent={<Divider />}
         renderItem={({ item: recipe }) => {
-          const { id, name, ingredients, ingredientsName } = recipe
+          const { id, name, ingredients } = recipe
           return (
             <SwipeableRow onLeftActionPress={() => handleDeleteItem(id)}>
               <RecipeItem
                 id={id}
                 name={name}
                 ingredients={ingredients}
-                ingredientsName={ingredientsName}
                 onPress={handlePressRecipe}
               />
             </SwipeableRow>
