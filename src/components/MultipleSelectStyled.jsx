@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { MultiSelect } from 'react-native-element-dropdown'
+import DeselectableItem from './multiSelect/DeselectableItem'
 
 export default function MultipleSelectStyled (props) {
   const { data, selected, onSelect } = props
@@ -8,9 +9,7 @@ export default function MultipleSelectStyled (props) {
     <MultiSelect
       style={styles.dropdown}
       placeholderStyle={styles.placeholderStyle}
-      selectedTextStyle={styles.selectedTextStyle}
       inputSearchStyle={styles.inputSearchStyle}
-      selectedStyle={styles.selectedStyle}
       itemTextStyle={styles.itemTextStyle}
       search
       data={data}
@@ -20,6 +19,10 @@ export default function MultipleSelectStyled (props) {
       searchPlaceholder='Search...'
       value={selected}
       onChange={onSelect}
+      renderSelectedItem={(item, unSelect) => (
+        <DeselectableItem item={item} onPress={unSelect} />
+      )}
+
     />
   )
 }
@@ -36,18 +39,10 @@ const styles = StyleSheet.create({
   placeholderStyle: {
     fontSize: 14
   },
-  selectedTextStyle: {
-    fontSize: 14
-  },
   inputSearchStyle: {
     height: 40
   },
   itemTextStyle: {
     fontSize: 14
-  },
-  selectedStyle: {
-    borderRadius: 4,
-    paddingVertical: 5,
-    paddingHorizontal: 15
   }
 })
