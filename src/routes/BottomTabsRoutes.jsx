@@ -39,8 +39,7 @@ export default function BottomTabsRoutes () {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: (props) => getTabIcon({ ...props, route }),
-        headerShown: false
+        tabBarIcon: (props) => getTabIcon({ ...props, route })
       })}
     >
       {TAB_ROUTES.map(tabRoute => {
