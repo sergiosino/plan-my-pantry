@@ -5,7 +5,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { IngredientsContext } from '../../contexts/IngredientsContext'
 import { useRecipes } from '../../hooks/useRecipes'
 import Button from '../../components/Button'
-import MultipleSelectStyled from '../../components/MultipleSelectStyled'
+import MultiSelectStyled from '../../components/multiSelect/MultiSelectStyled'
 import TextInputSyled from '../../components/TextInputSyled'
 
 export default function RecipeModal () {
@@ -39,7 +39,7 @@ export default function RecipeModal () {
           <Text style={styles.modalText}>Recipe name</Text>
           <TextInputSyled value={name} onChangeText={setName} />
           <Text style={styles.modalText}>Ingredients</Text>
-          <MultipleSelectStyled data={ingredients} selected={selectedIngredients} onSelect={setSelectedIngredients} />
+          <MultiSelectStyled data={ingredients} selected={selectedIngredients} onSelect={setSelectedIngredients} />
         </View>
       </ScrollView>
       <View style={styles.buttonsContainer}>

@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native'
 import { MultiSelect } from 'react-native-element-dropdown'
-import DeselectableItem from './multiSelect/DeselectableItem'
+import DeselectableItem from './DeselectableItem'
 
-export default function MultipleSelectStyled (props) {
+export default function MultiSelectStyled (props) {
   const { data, selected, onSelect } = props
 
   return (
