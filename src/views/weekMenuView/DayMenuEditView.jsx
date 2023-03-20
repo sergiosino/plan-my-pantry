@@ -83,8 +83,8 @@ export default function DayMenuEditView () {
         />
       </View>
       <View style={styles.recipesListContainer}>
+        <Divider />
         <FlatList
-          contentContainerStyle={styles.flatListContent}
           initialNumToRender={15}
           data={recipes}
           ItemSeparatorComponent={<Divider />}
@@ -118,9 +118,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white'
   },
-  flatListContent: {
-    paddingBottom: 70
-  },
   dayMenuContainer: {
     marginHorizontal: 10
   },
@@ -129,7 +126,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   ingredientsListContainer: {
-    flex: 0.7,
+    flex: 0.5,
     marginHorizontal: 10,
     marginTop: 10
   }

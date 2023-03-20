@@ -27,7 +27,7 @@ export default function DayIngredientsForGroceryList (props) {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.titleText}>Long press on selected recipe to add the ingredients:</Text>
+        <Text style={styles.titleText}>Long press on recipe to add the ingredients:</Text>
       </View>
       <ScrollView>
         <View style={styles.ingredientsContainer}>
