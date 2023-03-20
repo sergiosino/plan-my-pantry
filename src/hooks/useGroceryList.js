@@ -3,8 +3,11 @@ import uuid from 'react-native-uuid'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { ASYNC_STORAGE_KEYS } from '../constants/constants'
+import { useIsFocused } from '@react-navigation/native'
 
+// TODO: Delete itemIdToFocus, it has no sense
 export function useGroceryItems ({ itemIdToFocus }) {
+  const isFocused = useIsFocused()
   const [groceryList, setGroceryItems] = useState([])
 
   const updateGroceryList = (newGroceryList) => {
@@ -13,10 +16,17 @@ export function useGroceryItems ({ itemIdToFocus }) {
     setGroceryItems(newGroceryList)
   }
 
+  const handleAddItems = (newItems) => {
+    const actualItems = groceryList.map(groceryItem => groceryItem.text)
+    const uniqueNewItems = newItems.filter(newItem => !actualItems.includes(newItem))
+    const newGroceryItems = uniqueNewItems.map(newItem => ({ id: uuid.v4(), checked: false, text: newItem }))
+    const newGroceryList = [...groceryList, ...newGroceryItems]
+    updateGroceryList(newGroceryList)
+  }
+
   const handleAddItem = () => {
     const newGroceryItem = { id: uuid.v4(), checked: false, text: '' }
     const groceryItemsCopy = [newGroceryItem, ...groceryList]
-    // groceryItemsCopy.push(newGroceryItem)
     itemIdToFocus.current = newGroceryItem.id
     updateGroceryList(groceryItemsCopy)
   }
@@ -60,11 +70,12 @@ export function useGroceryItems ({ itemIdToFocus }) {
       if (storageGroceryList) { setGroceryItems(storageGroceryList) }
     }
     getStorageGroceryList()
-  }, [])
+  }, [isFocused])
 
   return {
     groceryList,
     handleAddItem,
+    handleAddItems,
     handleDeleteItem,
     handleDeleteChecked,
     handleCheckAll,
