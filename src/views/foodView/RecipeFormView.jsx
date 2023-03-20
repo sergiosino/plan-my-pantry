@@ -28,7 +28,7 @@ export default function RecipeModal () {
   useEffect(() => {
     if (recipe) {
       setName(recipe.name)
-      setSelectedIngredients(recipe.ingredients)
+      setSelectedIngredients(recipe.ingredients.map(ingredient => ingredient.id))
     }
   }, [])
 
