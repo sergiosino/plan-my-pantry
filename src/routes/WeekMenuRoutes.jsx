@@ -17,7 +17,7 @@ const WEEK_MENU_ROUTES = [
   {
     name: ROUTE_NAME_DAY_MENU_EDIT_MODAL,
     component: DayMenuEditView,
-    animation: 'default'
+    animation: 'slide_from_right'
   }
 ]
 

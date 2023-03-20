@@ -23,7 +23,7 @@ const FOOD_ROUTES = [
   {
     name: ROUTE_NAME_RECIPES_EDIT_MODAL,
     component: RecipeFormView,
-    animation: 'default'
+    animation: 'slide_from_right'
   }
 ]
 
