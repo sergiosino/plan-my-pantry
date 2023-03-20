@@ -1,40 +1,45 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
 
 import Button from '../Button'
 import DeselectableItem from '../multiSelect/DeselectableItem'
+import { useGroceryItems } from '../../hooks/useGroceryList'
 
-export default function DayIngredientsForGroceryList () {
+export default function DayIngredientsForGroceryList (props) {
+  const { dayMenuIngredients, setDayMenuIngredients } = props
+
+  const navigation = useNavigation()
+  const { handleAddItems } = useGroceryItems({ itemIdToFocus: null })
+
   const handleAddGroceryList = () => {
-    console.log('handleAddGroceryList')
+    const ingredientsText = dayMenuIngredients.map(dayMenuIngredient => dayMenuIngredient.text)
+    handleAddItems(ingredientsText)
+    navigation.goBack()
   }
 
-  const handleErasableItemPressed = () => {
-    console.log('handleErasableItemPressed')
+  const handleRemoveIngredient = (ingredient) => {
+    const dayMenuIngredientsCopy = [...dayMenuIngredients]
+    const dayMenuIngredientsUpdated = dayMenuIngredientsCopy.filter(dayMenuIngredient => dayMenuIngredient.id !== ingredient.id)
+    setDayMenuIngredients(dayMenuIngredientsUpdated)
   }
 
   return (
-    <View style={{ flex: 1, marginBottom: 10 }}>
+    <View style={styles.container}>
       <View>
-        <Text style={{ fontWeight: 'bold' }}>Ingredients for the grocery list:</Text>
+        <Text style={styles.titleText}>Long press on selected recipe to add the ingredients:</Text>
       </View>
       <ScrollView>
-        <View style={{ flex: 1, marginTop: 5, flexWrap: 'wrap', flexDirection: 'row' }}>
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 1' }} onPress={handleErasableItemPressed} />
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 2' }} onPress={handleErasableItemPressed} />
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 3' }} onPress={handleErasableItemPressed} />
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 4' }} onPress={handleErasableItemPressed} />
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 5' }} onPress={handleErasableItemPressed} />
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 6' }} onPress={handleErasableItemPressed} />
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 7' }} onPress={handleErasableItemPressed} />
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 8' }} onPress={handleErasableItemPressed} />
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 9' }} onPress={handleErasableItemPressed} />
-          <DeselectableItem item={{ id: 1, text: 'Ingrediente 10' }} onPress={handleErasableItemPressed} />
+        <View style={styles.ingredientsContainer}>
+          {dayMenuIngredients.map(dayMenuIngredient => {
+            const { id, text } = dayMenuIngredient
+            return <DeselectableItem key={id} item={{ id, text }} onPress={handleRemoveIngredient} />
+          })}
         </View>
       </ScrollView>
-      <View style={{ flexDirection: 'row' }}>
-        <Button style={{ backgroundColor: 'gray' }} onPress={handleAddGroceryList}>
-          <Text style={{ color: 'white' }}>Add</Text>
+      <View style={styles.buttonContainer}>
+        <Button style={styles.button} onPress={handleAddGroceryList}>
+          <Text style={styles.buttonText}>Add to grocery list</Text>
         </Button>
       </View>
     </View>
@@ -42,4 +47,26 @@ export default function DayIngredientsForGroceryList () {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginBottom: 10
+  },
+  titleText: {
+    fontWeight: 'bold'
+  },
+  ingredientsContainer: {
+    flex: 1,
+    marginTop: 5,
+    flexWrap: 'wrap',
+    flexDirection: 'row'
+  },
+  buttonContainer: {
+    flexDirection: 'row'
+  },
+  button: {
+    backgroundColor: 'gray'
+  },
+  buttonText: {
+    color: 'white'
+  }
 })

@@ -20,6 +20,7 @@ export default function DayMenuEditView () {
   const [recipeSelected, setRecipeSelected] = useState(null)
   const [dayMenu, setDayMenu] = useState(getDayMenu(dayId))
   const [searchText, setSearchText] = useState('')
+  const [dayMenuIngredients, setDayMenuIngredients] = useState([])
 
   const handlePressLunch = () => {
     if (isLunchSelected) { return }
@@ -48,6 +49,17 @@ export default function DayMenuEditView () {
     setRecipeSelected(id)
   }
 
+  const handleLongPressRecipe = (pressedRecipe) => {
+    const { ingredients } = pressedRecipe
+    const allIngredients = [...dayMenuIngredients, ...ingredients]
+    const allIngredientsId = allIngredients.map(ingredient => ingredient.id)
+    const uniqueIngredientsId = [...new Set(allIngredientsId)]
+    const uniqueIngredients = uniqueIngredientsId.map(uniqueIngredientId => (
+      allIngredients.find(ingredient => ingredient.id === uniqueIngredientId)
+    ))
+    setDayMenuIngredients(uniqueIngredients)
+  }
+
   useEffect(() => {
     isLunchSelected
       ? setRecipeSelected(dayMenu.lunch?.id)
@@ -55,8 +67,8 @@ export default function DayMenuEditView () {
   }, [isLunchSelected])
 
   return (
-    <View style={{ flex: 1, backgroundColor: 'white' }}>
-      <View style={{ marginHorizontal: 10 }}>
+    <View style={styles.container}>
+      <View style={styles.dayMenuContainer}>
         <DayMenu
           onPressLunch={handlePressLunch}
           onPressDinner={handlePressDinner}
@@ -70,7 +82,7 @@ export default function DayMenuEditView () {
           placeholder='Search...'
         />
       </View>
-      <View style={{ flex: 1, marginTop: 10 }}>
+      <View style={styles.recipesListContainer}>
         <FlatList
           contentContainerStyle={styles.flatListContent}
           initialNumToRender={15}
@@ -78,15 +90,15 @@ export default function DayMenuEditView () {
           ItemSeparatorComponent={<Divider />}
           extraData={recipeSelected}
           renderItem={({ item: recipe }) => {
-            const { id, name, ingredients, ingredientsName } = recipe
+            const { id, name, ingredients } = recipe
             const isRecipeSelected = recipeSelected === id
             return (
               <RecipeItem
                 id={id}
                 name={name}
                 ingredients={ingredients}
-                ingredientsName={ingredientsName}
                 onPress={handlePressRecipe}
+                onLongPress={isRecipeSelected && handleLongPressRecipe}
                 isSelected={isRecipeSelected}
               />
             )
@@ -94,8 +106,8 @@ export default function DayMenuEditView () {
         />
       </View>
       <Divider />
-      <View style={{ flex: 0.7, marginHorizontal: 10, marginTop: 10 }}>
-        <DayIngredientsForGroceryList />
+      <View style={styles.ingredientsListContainer}>
+        <DayIngredientsForGroceryList dayMenuIngredients={dayMenuIngredients} setDayMenuIngredients={setDayMenuIngredients} />
       </View>
     </View>
   )
@@ -103,9 +115,22 @@ export default function DayMenuEditView () {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'white'
   },
   flatListContent: {
     paddingBottom: 70
+  },
+  dayMenuContainer: {
+    marginHorizontal: 10
+  },
+  recipesListContainer: {
+    flex: 1,
+    marginTop: 10
+  },
+  ingredientsListContainer: {
+    flex: 0.7,
+    marginHorizontal: 10,
+    marginTop: 10
   }
 })

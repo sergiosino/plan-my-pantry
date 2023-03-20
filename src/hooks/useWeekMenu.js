@@ -20,7 +20,6 @@ export function useWeekMenu () {
   }
 
   const updateRecipeLunch = (dayId, recipe) => {
-    console.log(dayId, recipe)
     updateRecipe('lunch', dayId, recipe)
   }
 
