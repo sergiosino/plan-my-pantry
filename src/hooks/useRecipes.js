@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import uuid from 'react-native-uuid'
 import { IngredientsContext } from '../contexts/IngredientsContext'
 
@@ -6,20 +6,24 @@ import { RecipesContext } from '../contexts/RecipesContext'
 
 export function useRecipes () {
   const { recipes, setRecipes } = useContext(RecipesContext)
-  const { ingredients: allIngredients } = useContext(IngredientsContext)
+  const { ingredients } = useContext(IngredientsContext)
+  const [recipesWithIngredientsName, setRecipesWithIngredientsName] = useState([])
 
-  const getIngredientsName = (recipeWithoutIngredientsName) => {
-    const { ingredients: recipeIngredients } = recipeWithoutIngredientsName
+  const getRecipesWithIngredientsName = () => {
+    if (recipes.length === 0 && ingredients.length === 0) { return }
 
-    const recipeIngredientsId = recipeIngredients.map(recipeIngredient => recipeIngredient.id ?? recipeIngredient)
-    const ingredientsWithName = allIngredients
-      .filter(ingredient => recipeIngredientsId?.includes(ingredient.id))
-      ?.map(ingredient => ({ id: ingredient.id, text: ingredient.text }))
+    const recipesWithIngredientsName = recipes.map(recipe => {
+      const ingredientsWithName = recipe.ingredients.map(recipeIngredient => {
+        const ingredientWithName = ingredients.find(ingredient => ingredient.id === recipeIngredient)
+        return ingredientWithName ?? { id: recipeIngredient, text: 'Error' }
+      })
+      return {
+        ...recipe,
+        ingredients: ingredientsWithName
+      }
+    })
 
-    return {
-      ...recipeWithoutIngredientsName,
-      ingredients: ingredientsWithName
-    }
+    setRecipesWithIngredientsName(recipesWithIngredientsName)
   }
 
   const sortRecipes = (newRecipes) => {
@@ -35,8 +39,6 @@ export function useRecipes () {
 
   const handleAddRecipe = (recipe) => {
     recipe.id = uuid.v4()
-    recipe = getIngredientsName(recipe)
-
     const newRecipes = [...recipes, recipe]
     const newRecipesSorted = sortRecipes(newRecipes)
     setRecipes(newRecipesSorted)
@@ -47,19 +49,24 @@ export function useRecipes () {
 
     // TODO: Check if the recipe has any change in handleEditRecipe
     const newRecipes = [...recipes]
-    recipeEdited = getIngredientsName(recipeEdited)
     newRecipes[recipeIndex] = recipeEdited
     const newRecipesSorted = sortRecipes(newRecipes)
     setRecipes(newRecipesSorted)
   }
 
   const handleDeleteRecipe = (id) => {
+    console.log(id, recipes)
     const newRecipes = recipes.filter(recipe => recipe.id !== id)
+    console.log(newRecipes)
     setRecipes(newRecipes)
   }
 
+  useEffect(() => {
+    getRecipesWithIngredientsName()
+  }, [recipes, ingredients])
+
   return {
-    recipes,
+    recipes: recipesWithIngredientsName,
     handleSaveRecipe,
     handleDeleteRecipe
   }
