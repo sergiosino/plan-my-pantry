@@ -9,11 +9,8 @@ import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
 import { useRecipes } from '../../hooks/useRecipes'
 
 export default function Recipes () {
-  const { recipes } = useRecipes()
+  const { recipes, handleDeleteRecipe } = useRecipes()
   const navigation = useNavigation()
-  const {
-    handleDeleteItem
-  } = useRecipes()
 
   const handlePressRecipe = (recipe) => {
     navigation.navigate(ROUTE_NAME_RECIPES_EDIT, { recipe })
@@ -33,7 +30,7 @@ export default function Recipes () {
         renderItem={({ item: recipe }) => {
           const { id, name, ingredients } = recipe
           return (
-            <SwipeableRow onLeftActionPress={() => handleDeleteItem(id)}>
+            <SwipeableRow onLeftActionPress={() => handleDeleteRecipe(id)}>
               <RecipeItem
                 id={id}
                 name={name}

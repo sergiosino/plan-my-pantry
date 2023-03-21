@@ -45,7 +45,6 @@ export function useRecipes () {
   const handleEditRecipe = (recipeEdited) => {
     const recipeIndex = recipes.findIndex(recipe => recipe.id === recipeEdited.id)
 
-    // const recipe = recipes[recipeIndex]
     // TODO: Check if the recipe has any change
     const newRecipes = [...recipes]
     recipeEdited = getIngredientsName(recipeEdited)
@@ -54,7 +53,7 @@ export function useRecipes () {
     setRecipes(newRecipesSorted)
   }
 
-  const handleDeleteItem = (id) => {
+  const handleDeleteRecipe = (id) => {
     const newRecipes = recipes.filter(recipe => recipe.id !== id)
     setRecipes(newRecipes)
   }
@@ -62,6 +61,6 @@ export function useRecipes () {
   return {
     recipes,
     handleSaveRecipe,
-    handleDeleteItem
+    handleDeleteRecipe
   }
 }

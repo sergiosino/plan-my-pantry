@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { IngredientsContext } from '../contexts/IngredientsContext'
 
-export function useIngredients (props) {
+export function useIngredients () {
   const { ingredients, setIngredients, sortIngredientsAlphabetically } = useContext(IngredientsContext)
   const [selectedIngredientsList, setSelectedIngredientsList] = useState([])
 
