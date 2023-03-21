@@ -52,3 +52,16 @@ export const WEEK_MENU_MOCKUP = [
     dinner: null
   }
 ]
+
+export const FOOD_HEADER_RECIPES = 'Recipes'
+export const FOOD_HEADER_INGREDIENTS = 'Ingredients'
+export const FOOD_HEADER_BUTTONS = [
+  {
+    name: FOOD_HEADER_RECIPES,
+    iconName: 'book-outline'
+  },
+  {
+    name: FOOD_HEADER_INGREDIENTS,
+    iconName: 'basket-outline'
+  }
+]

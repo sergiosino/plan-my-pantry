@@ -1,40 +1,66 @@
 import { StyleSheet, View } from 'react-native'
 
+import { confirmationAlert } from '../../utils/confirmationAlert'
+import FoodButtonsHeader from './FoodButtonsHeader'
 import { headerStyles } from '../../styles/headerStyles'
-import FoodHeaderItem from './FoodHeaderItem'
+import IconButton from '../IconButton'
+import { FOOD_HEADER_RECIPES } from '../../constants/constants'
 
-// TODO: Make the name constants, they are used in other components
-const FOOD_HEADER_ITEMS = [
-  {
-    name: 'Recipes',
-    iconName: 'book-outline'
-  },
-  {
-    name: 'Ingredients',
-    iconName: 'basket-outline'
-  }
-]
-
-export default function FoodHeader (props) {
-  const { actualView, setActualView } = props
+function FoodSelectedHeader (props) {
+  const { onUnselectAll, alertDeleteChecked } = props
 
   return (
     <View style={[headerStyles.headerContainer, styles.localHeaderContainer]}>
-      {FOOD_HEADER_ITEMS.map(item => {
-        const { name, iconName } = item
-        const isActualView = actualView === name
-        return (
-          <View key={name} style={headerStyles.headerItem}>
-            <FoodHeaderItem name={name} iconName={iconName} isActualView={isActualView} setActualView={setActualView} />
-          </View>
-        )
-      })}
+      <View style={headerStyles.headerItem}>
+        <IconButton onPress={onUnselectAll} iconName='close' />
+      </View>
+      <View style={headerStyles.headerItem}>
+        <IconButton onPress={alertDeleteChecked} iconName='md-trash-outline' />
+      </View>
+    </View>
+  )
+}
+
+export default function FoodHeader (props) {
+  const {
+    actualView,
+    setActualView,
+    enableDeleteAll,
+    onDeleteSelectedIngredient,
+    onUnselectAllIngredients
+  } = props
+
+  const onDeleteSelected = () => {
+    actualView === FOOD_HEADER_RECIPES
+      ? onDeleteSelectedIngredient()
+      : onDeleteSelectedIngredient()
+  }
+
+  const onUnselectAll = () => {
+    actualView === FOOD_HEADER_RECIPES
+      ? onUnselectAllIngredients()
+      : onUnselectAllIngredients()
+  }
+
+  const alertDeleteChecked = () => {
+    if (enableDeleteAll) {
+      actualView === FOOD_HEADER_RECIPES
+        ? confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected)
+        : confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected)
+    }
+  }
+
+  return (
+    <View>
+      {enableDeleteAll
+        ? <FoodSelectedHeader onUnselectAll={onUnselectAll} alertDeleteChecked={alertDeleteChecked} />
+        : <FoodButtonsHeader actualView={actualView} setActualView={setActualView} />}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   localHeaderContainer: {
-    backgroundColor: '#f2f2f2'
+    justifyContent: 'space-between'
   }
 })

@@ -4,25 +4,28 @@ import { useState } from 'react'
 import Recipes from '../../components/recipes/Recipes'
 import Ingredients from '../../components/ingredients/Ingredients'
 import { useIngredients } from '../../hooks/useIngredients'
-import IngredientsHeader from '../../components/ingredients/IngredientsHeader'
+import FoodHeader from '../../components/food/FoodHeader'
+import { FOOD_HEADER_RECIPES } from '../../constants/constants'
 
 export default function FoodView () {
-  const [actualView, setActualView] = useState('Recipes')
+  const [actualView, setActualView] = useState(FOOD_HEADER_RECIPES)
   const ingredientsFunctionality = useIngredients()
   const { handleUnselectAllIngredients, handleDeleteSelectedIngredients, selectedIngredientsList } = ingredientsFunctionality
 
-  const isSelectedListEmpty = selectedIngredientsList.length === 0
+  const isSelectedListEmpty = actualView === FOOD_HEADER_RECIPES
+    ? selectedIngredientsList.length === 0
+    : true
 
   return (
     <View style={styles.container}>
-      <IngredientsHeader
-        onDeleteSelected={handleDeleteSelectedIngredients}
-        enableDeleteAll={!isSelectedListEmpty}
-        onUnselectAll={handleUnselectAllIngredients}
+      <FoodHeader
         actualView={actualView}
         setActualView={setActualView}
+        enableDeleteAll={!isSelectedListEmpty}
+        onDeleteSelectedIngredient={handleDeleteSelectedIngredients}
+        onUnselectAllIngredients={handleUnselectAllIngredients}
       />
-      {actualView === 'Recipes'
+      {actualView === FOOD_HEADER_RECIPES
         ? <Recipes />
         : <Ingredients ingredientsFunctionality={ingredientsFunctionality} isSelectedListEmpty={isSelectedListEmpty} />}
     </View>
