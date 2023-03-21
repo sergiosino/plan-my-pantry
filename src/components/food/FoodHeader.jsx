@@ -5,6 +5,7 @@ import FoodButtonsHeader from './FoodButtonsHeader'
 import { headerStyles } from '../../styles/headerStyles'
 import IconButton from '../IconButton'
 import { FOOD_HEADER_RECIPES } from '../../constants/constants'
+import { useIngredients } from '../../hooks/useIngredients'
 
 function FoodSelectedHeader (props) {
   const { onUnselectAll, alertDeleteChecked } = props
@@ -24,35 +25,37 @@ function FoodSelectedHeader (props) {
 export default function FoodHeader (props) {
   const {
     actualView,
-    setActualView,
-    enableDeleteAll,
-    onDeleteSelectedIngredient,
-    onUnselectAllIngredients
+    setActualView
   } = props
 
+  const { selectedIngredientsList, handleDeleteSelectedIngredients, handleUnselectAllIngredients } = useIngredients()
+
+  const isRecipesView = actualView === FOOD_HEADER_RECIPES
+  const isSelectedListEmpty = isRecipesView
+    ? true
+    : selectedIngredientsList.length === 0
+
   const onDeleteSelected = () => {
-    actualView === FOOD_HEADER_RECIPES
-      ? onDeleteSelectedIngredient()
-      : onDeleteSelectedIngredient()
+    isRecipesView
+      ? handleDeleteSelectedIngredients()
+      : handleDeleteSelectedIngredients()
   }
 
   const onUnselectAll = () => {
-    actualView === FOOD_HEADER_RECIPES
-      ? onUnselectAllIngredients()
-      : onUnselectAllIngredients()
+    isRecipesView
+      ? handleUnselectAllIngredients()
+      : handleUnselectAllIngredients()
   }
 
   const alertDeleteChecked = () => {
-    if (enableDeleteAll) {
-      actualView === FOOD_HEADER_RECIPES
-        ? confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected)
-        : confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected)
-    }
+    isRecipesView
+      ? confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected)
+      : confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected)
   }
 
   return (
     <View>
-      {enableDeleteAll
+      {!isSelectedListEmpty
         ? <FoodSelectedHeader onUnselectAll={onUnselectAll} alertDeleteChecked={alertDeleteChecked} />
         : <FoodButtonsHeader actualView={actualView} setActualView={setActualView} />}
     </View>

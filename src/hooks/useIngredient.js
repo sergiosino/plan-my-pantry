@@ -1,31 +1,36 @@
 import { useState } from 'react'
+import { useIngredients } from './useIngredients'
 
 export function useIngredient (props) {
   const {
     id,
     defaultText,
-    isSelected,
-    onUnselect,
-    selectOnPress,
-    onSelect,
-    onChange,
-    onDelete
+    selectOnPress
   } = props
 
+  const {
+    selectedIngredientsList,
+    handleUnselectIngredient,
+    handleSelectIngredient,
+    handleDeleteIngredient,
+    handleIngredientChange
+  } = useIngredients()
   const [text, setText] = useState(defaultText)
   const [showDeleteIcon, setShowDeleteIcon] = useState(false)
 
+  const isSelected = !!selectedIngredientsList.find(x => x === id)
+
   const handleOnPress = () => {
     if (isSelected) {
-      onUnselect(id)
+      handleUnselectIngredient(id)
     } else if (selectOnPress) {
-      onSelect(id)
+      handleSelectIngredient(id)
     }
   }
 
   const handleOnLongPress = () => {
     if (!isSelected) {
-      onSelect(id)
+      handleSelectIngredient(id)
     }
   }
 
@@ -35,11 +40,11 @@ export function useIngredient (props) {
 
   const handleTextFocusEnd = () => {
     setShowDeleteIcon(false)
-    onChange(id, text)
+    handleIngredientChange(id, text)
   }
 
   const handleDeletePress = () => {
-    onDelete(id)
+    handleDeleteIngredient(id)
   }
 
   return {
@@ -50,6 +55,7 @@ export function useIngredient (props) {
     handleOnLongPress,
     handleTextFocus,
     handleTextFocusEnd,
-    handleDeletePress
+    handleDeletePress,
+    isSelected
   }
 }

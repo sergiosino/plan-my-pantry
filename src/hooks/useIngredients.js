@@ -1,14 +1,16 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
+import uuid from 'react-native-uuid'
+
 import { IngredientsContext } from '../contexts/IngredientsContext'
 
 export function useIngredients () {
-  const { ingredients, setIngredients, sortIngredientsAlphabetically } = useContext(IngredientsContext)
-  const [selectedIngredientsList, setSelectedIngredientsList] = useState([])
-
-  const handleAddIngredient = (newIngredient) => {
-    const newIngredients = [newIngredient, ...ingredients]
-    setIngredients(newIngredients)
-  }
+  const {
+    ingredients,
+    setIngredients,
+    sortIngredientsAlphabetically,
+    selectedIngredientsList,
+    setSelectedIngredientsList
+  } = useContext(IngredientsContext)
 
   const handleSelectIngredient = (id) => {
     const newSelectedList = [...selectedIngredientsList]
@@ -24,6 +26,15 @@ export function useIngredients () {
       newSelectedList.splice(ingredientIndex, 1)
       setSelectedIngredientsList(newSelectedList)
     }
+  }
+
+  const handleAddIngredient = () => {
+    const newIngredientId = uuid.v4()
+    const newIngredient = { id: newIngredientId, text: '' }
+    const newIngredients = [newIngredient, ...ingredients]
+    setIngredients(newIngredients)
+
+    return newIngredientId
   }
 
   const handleUnselectAllIngredients = () => {
@@ -53,20 +64,16 @@ export function useIngredients () {
     setSelectedIngredientsList([])
   }
 
-  // Sort the ingredients list alphabetically before component closes
-  useEffect(() => {
-    return () => sortIngredientsAlphabetically()
-  }, [])
-
   return {
     ingredients,
     selectedIngredientsList,
     handleAddIngredient,
-    handleSelectIngredient,
-    handleUnselectIngredient,
     handleUnselectAllIngredients,
     handleIngredientChange,
     handleDeleteIngredient,
-    handleDeleteSelectedIngredients
+    handleDeleteSelectedIngredients,
+    handleUnselectIngredient,
+    handleSelectIngredient,
+    sortIngredientsAlphabetically
   }
 }

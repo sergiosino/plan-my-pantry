@@ -1,29 +1,31 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-import uuid from 'react-native-uuid'
 
 import AddButton from '../AddButton'
 import Ingredient from './Ingredient'
 import { INGREDIENT_HEIGHT } from '../../constants/constants'
+import { useIngredients } from '../../hooks/useIngredients'
 
-export default function Ingredients (props) {
-  const { ingredientsFunctionality, isSelectedListEmpty } = props
+export default function Ingredients () {
   const {
     ingredients,
     selectedIngredientsList,
     handleAddIngredient,
-    handleSelectIngredient,
-    handleUnselectIngredient,
-    handleIngredientChange,
-    handleDeleteIngredient
-  } = ingredientsFunctionality
+    sortIngredientsAlphabetically
+  } = useIngredients()
   const itemIdToFocus = useRef(null)
 
+  const isSelectedListEmpty = selectedIngredientsList.length === 0
+
   const handleAddItem = () => {
-    const newIngredient = { id: uuid.v4(), text: '' }
-    handleAddIngredient(newIngredient)
-    itemIdToFocus.current = newIngredient.id
+    const newIngredientId = handleAddIngredient()
+    itemIdToFocus.current = newIngredientId
   }
+
+  // Call to sort the ingredients list alphabetically before component closes
+  useEffect(() => {
+    return () => sortIngredientsAlphabetically()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -36,19 +38,13 @@ export default function Ingredients (props) {
         data={ingredients}
         renderItem={({ item: ingredient }) => {
           const { id, text } = ingredient
-          const isSelected = !!selectedIngredientsList.find(x => x === id)
           const isItemToFocus = itemIdToFocus.current === id
           return (
             <Ingredient
               id={id}
-              onSelect={handleSelectIngredient}
-              onUnselect={handleUnselectIngredient}
               isItemToFocus={isItemToFocus}
-              isSelected={isSelected}
               selectOnPress={!isSelectedListEmpty}
               defaultText={text}
-              onChange={handleIngredientChange}
-              onDelete={handleDeleteIngredient}
             />
           )
         }}

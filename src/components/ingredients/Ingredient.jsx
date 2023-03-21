@@ -7,8 +7,10 @@ import IconButton from '../IconButton'
 
 export default function Ingredient (props) {
   const {
-    isSelected,
-    isItemToFocus
+    id,
+    isItemToFocus,
+    defaultText,
+    selectOnPress
   } = props
 
   const {
@@ -19,8 +21,9 @@ export default function Ingredient (props) {
     handleOnLongPress,
     handleTextFocus,
     handleTextFocusEnd,
-    handleDeletePress
-  } = useIngredient(props)
+    handleDeletePress,
+    isSelected
+  } = useIngredient({ id, defaultText, selectOnPress })
 
   return (
     <View style={{ ...styles.container, backgroundColor: isSelected ? 'lightgray' : 'transparent' }}>
