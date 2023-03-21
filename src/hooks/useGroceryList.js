@@ -5,8 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 import { useIsFocused } from '@react-navigation/native'
 
-// TODO: Delete itemIdToFocus, it has no sense
-export function useGroceryItems ({ itemIdToFocus }) {
+// TODO: Create a context so that adding the ingredients of a recipe, updates the grocery list throughout the application
+export function useGroceryItems () {
   const isFocused = useIsFocused()
   const [groceryList, setGroceryItems] = useState([])
 
@@ -25,10 +25,12 @@ export function useGroceryItems ({ itemIdToFocus }) {
   }
 
   const handleAddItem = () => {
-    const newGroceryItem = { id: uuid.v4(), checked: false, text: '' }
+    const newGroceryItemId = uuid.v4()
+    const newGroceryItem = { id: newGroceryItemId, checked: false, text: '' }
     const groceryItemsCopy = [newGroceryItem, ...groceryList]
-    itemIdToFocus.current = newGroceryItem.id
     updateGroceryList(groceryItemsCopy)
+
+    return newGroceryItemId
   }
 
   const handleDeleteChecked = () => {
@@ -37,7 +39,6 @@ export function useGroceryItems ({ itemIdToFocus }) {
   }
 
   const handleUnCheckAll = () => {
-    itemIdToFocus.current = null
     const groceryItemsUnChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: false } })
     updateGroceryList(groceryItemsUnChecked)
   }
@@ -64,12 +65,14 @@ export function useGroceryItems ({ itemIdToFocus }) {
   }
 
   useEffect(() => {
-    const getStorageGroceryList = async () => {
-      let storageGroceryList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.GROCERY_LIST)
-      storageGroceryList = storageGroceryList != null ? JSON.parse(storageGroceryList) : null
-      if (storageGroceryList) { setGroceryItems(storageGroceryList) }
+    if (isFocused) {
+      const getStorageGroceryList = async () => {
+        let storageGroceryList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.GROCERY_LIST)
+        storageGroceryList = storageGroceryList != null ? JSON.parse(storageGroceryList) : null
+        if (storageGroceryList) { setGroceryItems(storageGroceryList) }
+      }
+      getStorageGroceryList()
     }
-    getStorageGroceryList()
   }, [isFocused])
 
   return {

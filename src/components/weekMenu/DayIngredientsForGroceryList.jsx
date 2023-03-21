@@ -10,7 +10,7 @@ export default function DayIngredientsForGroceryList (props) {
   const { dayMenuIngredients, setDayMenuIngredients } = props
 
   const navigation = useNavigation()
-  const { handleAddItems } = useGroceryItems({ itemIdToFocus: null })
+  const { handleAddItems } = useGroceryItems()
 
   const handleAddGroceryList = () => {
     const ingredientsText = dayMenuIngredients.map(dayMenuIngredient => dayMenuIngredient.text)

@@ -18,14 +18,24 @@ export default function GroceryListView () {
     handleCheckAll,
     handleUnCheckAll,
     handleItemChange
-  } = useGroceryItems({ itemIdToFocus })
+  } = useGroceryItems()
+
+  const handleAdd = () => {
+    const newGroceryItemId = handleAddItem()
+    itemIdToFocus.current = newGroceryItemId
+  }
+
+  const handleUnCheckAllItems = () => {
+    handleUnCheckAll()
+    itemIdToFocus.current = null
+  }
 
   return (
     <View style={styles.container}>
       <GroceryListHeader
         onDeleteChecked={handleDeleteChecked}
         onCheckAll={handleCheckAll}
-        onUnCheckAll={handleUnCheckAll}
+        onUnCheckAll={handleUnCheckAllItems}
       />
       <FlatList
         ref={refFlatList}
@@ -50,7 +60,7 @@ export default function GroceryListView () {
           )
         }}
       />
-      <AddButton onAddItem={handleAddItem} />
+      <AddButton onAddItem={handleAdd} />
     </View>
   )
 }
