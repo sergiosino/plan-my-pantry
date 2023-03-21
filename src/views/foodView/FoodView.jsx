@@ -13,8 +13,8 @@ export default function FoodView () {
   const { handleUnselectAllIngredients, handleDeleteSelectedIngredients, selectedIngredientsList } = ingredientsFunctionality
 
   const isSelectedListEmpty = actualView === FOOD_HEADER_RECIPES
-    ? selectedIngredientsList.length === 0
-    : true
+    ? true
+    : selectedIngredientsList.length === 0
 
   return (
     <View style={styles.container}>
