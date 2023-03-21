@@ -8,6 +8,7 @@ import Divider from '../Divider'
 import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
 import { useRecipes } from '../../hooks/useRecipes'
 
+// TODO: Allow selecting multiple recipes and deleting them at once
 export default function Recipes () {
   const { recipes, handleDeleteRecipe } = useRecipes()
   const navigation = useNavigation()
