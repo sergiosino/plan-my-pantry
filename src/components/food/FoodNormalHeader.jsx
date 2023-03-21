@@ -4,7 +4,7 @@ import { headerStyles } from '../../styles/headerStyles'
 import FoodHeaderButton from './FoodHeaderButton'
 import { FOOD_HEADER_BUTTONS } from '../../constants/constants'
 
-export default function FoodButtonsHeader (props) {
+export default function FoodNormalHeader (props) {
   const { actualView, setActualView } = props
 
   return (
