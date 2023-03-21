@@ -1,82 +1,61 @@
-import { useState, useEffect } from 'react'
+import { useContext } from 'react'
 import uuid from 'react-native-uuid'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { ASYNC_STORAGE_KEYS } from '../constants/constants'
-import { useIsFocused } from '@react-navigation/native'
+import { GroceryListContext } from '../contexts/GroceryListContext'
 
-// TODO: Create a context so that adding the ingredients of a recipe, updates the grocery list throughout the application
 export function useGroceryItems () {
-  const isFocused = useIsFocused()
-  const [groceryList, setGroceryItems] = useState([])
-
-  const updateGroceryList = (newGroceryList) => {
-    const jsonValue = JSON.stringify(newGroceryList)
-    AsyncStorage.setItem(ASYNC_STORAGE_KEYS.GROCERY_LIST, jsonValue)
-    setGroceryItems(newGroceryList)
-  }
+  const { groceryListItems, setGroceryItems } = useContext(GroceryListContext)
 
   const handleAddItems = (newItems) => {
-    const actualItems = groceryList.map(groceryItem => groceryItem.text)
+    const actualItems = groceryListItems.map(groceryItem => groceryItem.text)
     const uniqueNewItems = newItems.filter(newItem => !actualItems.includes(newItem))
     const newGroceryItems = uniqueNewItems.map(newItem => ({ id: uuid.v4(), checked: false, text: newItem }))
-    const newGroceryList = [...groceryList, ...newGroceryItems]
-    updateGroceryList(newGroceryList)
+    const newGroceryList = [...groceryListItems, ...newGroceryItems]
+    setGroceryItems(newGroceryList)
   }
 
   const handleAddItem = () => {
     const newGroceryItemId = uuid.v4()
     const newGroceryItem = { id: newGroceryItemId, checked: false, text: '' }
-    const groceryItemsCopy = [newGroceryItem, ...groceryList]
-    updateGroceryList(groceryItemsCopy)
+    const groceryItemsCopy = [newGroceryItem, ...groceryListItems]
+    setGroceryItems(groceryItemsCopy)
 
     return newGroceryItemId
   }
 
   const handleDeleteChecked = () => {
-    const groceryItemsCopy = groceryList.filter(groceryItem => !groceryItem.checked)
-    updateGroceryList(groceryItemsCopy)
+    const groceryItemsCopy = groceryListItems.filter(groceryItem => !groceryItem.checked)
+    setGroceryItems(groceryItemsCopy)
   }
 
   const handleUnCheckAll = () => {
-    const groceryItemsUnChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: false } })
-    updateGroceryList(groceryItemsUnChecked)
+    const groceryItemsUnChecked = groceryListItems.map(groceryItem => { return { ...groceryItem, checked: false } })
+    setGroceryItems(groceryItemsUnChecked)
   }
 
   const handleCheckAll = () => {
-    const groceryItemsChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: true } })
-    updateGroceryList(groceryItemsChecked)
+    const groceryItemsChecked = groceryListItems.map(groceryItem => { return { ...groceryItem, checked: true } })
+    setGroceryItems(groceryItemsChecked)
   }
 
   const handleDeleteItem = (id) => {
-    const groceryItemsCopy = groceryList.filter(groceryItem => groceryItem.id !== id)
-    updateGroceryList(groceryItemsCopy)
+    const groceryItemsCopy = groceryListItems.filter(groceryItem => groceryItem.id !== id)
+    setGroceryItems(groceryItemsCopy)
   }
 
   const handleItemChange = (id, checked, text) => {
-    const itemIndex = groceryList.findIndex(groceryItem => groceryItem.id === id)
-    const item = groceryList[itemIndex]
+    const itemIndex = groceryListItems.findIndex(groceryItem => groceryItem.id === id)
+    const item = groceryListItems[itemIndex]
 
     if (item.checked !== checked || item.text !== text) {
-      const groceryItemsCopy = [...groceryList]
+      const groceryItemsCopy = [...groceryListItems]
       groceryItemsCopy[itemIndex] = { id, checked, text }
-      updateGroceryList(groceryItemsCopy)
+      setGroceryItems(groceryItemsCopy)
     }
   }
 
-  useEffect(() => {
-    if (isFocused) {
-      const getStorageGroceryList = async () => {
-        let storageGroceryList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.GROCERY_LIST)
-        storageGroceryList = storageGroceryList != null ? JSON.parse(storageGroceryList) : null
-        if (storageGroceryList) { setGroceryItems(storageGroceryList) }
-      }
-      getStorageGroceryList()
-    }
-  }, [isFocused])
-
   return {
-    groceryList,
+    groceryListItems,
     handleAddItem,
     handleAddItems,
     handleDeleteItem,

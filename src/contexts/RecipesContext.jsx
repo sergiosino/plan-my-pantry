@@ -25,7 +25,11 @@ export function RecipesContextProvider ({ children }) {
   }, [])
 
   return (
-    <RecipesContext.Provider value={{ recipes, setRecipes: updateRecipes }}>
+    <RecipesContext.Provider value={{
+      recipes,
+      setRecipes: updateRecipes
+    }}
+    >
       {children}
     </RecipesContext.Provider>
   )

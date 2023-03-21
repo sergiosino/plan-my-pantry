@@ -27,7 +27,11 @@ export function WeekMenuContextProvider ({ children }) {
   }, [])
 
   return (
-    <WeekMenuContext.Provider value={{ weekMenu, setWeekMenu: updateWeekMenu }}>
+    <WeekMenuContext.Provider value={{
+      weekMenu,
+      setWeekMenu: updateWeekMenu
+    }}
+    >
       {children}
     </WeekMenuContext.Provider>
   )

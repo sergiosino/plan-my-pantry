@@ -45,7 +45,7 @@ export function useRecipes () {
   const handleEditRecipe = (recipeEdited) => {
     const recipeIndex = recipes.findIndex(recipe => recipe.id === recipeEdited.id)
 
-    // TODO: Check if the recipe has any change
+    // TODO: Check if the recipe has any change in handleEditRecipe
     const newRecipes = [...recipes]
     recipeEdited = getIngredientsName(recipeEdited)
     newRecipes[recipeIndex] = recipeEdited

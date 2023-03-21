@@ -1,14 +1,17 @@
 import { useState } from 'react'
+import { useGroceryItems } from './useGroceryList'
 
 export function useGroceryItem (props) {
   const {
     id,
     defaultText,
-    defaultChecked,
-    onItemChange,
-    onDeleteItem
+    defaultChecked
   } = props
 
+  const {
+    handleItemChange,
+    handleDeleteItem
+  } = useGroceryItems()
   const [text, setText] = useState(defaultText)
   const [showDeleteIcon, setShowDeleteIcon] = useState(false)
 
@@ -18,15 +21,15 @@ export function useGroceryItem (props) {
 
   const handleTextFocusEnd = () => {
     setShowDeleteIcon(false)
-    onItemChange(id, defaultChecked, text)
+    handleItemChange(id, defaultChecked, text)
   }
 
   const handleCheckboxChange = (checked) => {
-    onItemChange(id, checked, text)
+    handleItemChange(id, checked, text)
   }
 
   const handleDelete = () => {
-    onDeleteItem(id)
+    handleDeleteItem(id)
   }
 
   return {

@@ -7,7 +7,9 @@ import IconButton from '../IconButton'
 
 export default function GroceryItem (props) {
   const {
+    id,
     defaultChecked,
+    defaultText,
     isItemToFocus
   } = props
 
@@ -19,7 +21,7 @@ export default function GroceryItem (props) {
     handleTextFocusEnd,
     handleCheckboxChange,
     handleDelete
-  } = useGroceryItem(props)
+  } = useGroceryItem({ id, defaultChecked, defaultText })
 
   return (
     <View style={styles.container}>
