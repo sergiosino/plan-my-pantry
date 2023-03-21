@@ -5,7 +5,7 @@ import FoodHeader from '../food/FoodHeader'
 import { headerStyles } from '../../styles/headerStyles'
 import IconButton from '../IconButton'
 
-function Header (props) {
+function FoodSelectedHeader (props) {
   const { onUnselectAll, alertDeleteChecked } = props
 
   return (
@@ -22,6 +22,8 @@ function Header (props) {
 
 export default function IngredientsHeader (props) {
   const {
+    actualView,
+    setActualView,
     onDeleteSelected,
     enableDeleteAll,
     onUnselectAll
@@ -34,8 +36,8 @@ export default function IngredientsHeader (props) {
   return (
     <View>
       {enableDeleteAll
-        ? <Header onUnselectAll={onUnselectAll} alertDeleteChecked={alertDeleteChecked} />
-        : <FoodHeader />}
+        ? <FoodSelectedHeader onUnselectAll={onUnselectAll} alertDeleteChecked={alertDeleteChecked} />
+        : <FoodHeader actualView={actualView} setActualView={setActualView} />}
     </View>
   )
 }

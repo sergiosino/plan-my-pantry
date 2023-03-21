@@ -5,6 +5,7 @@ import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 
 export const RecipesContext = createContext({})
 
+// TODO: Create some default data if empty storage
 export function RecipesContextProvider ({ children }) {
   const [recipes, setRecipes] = useState([])
 

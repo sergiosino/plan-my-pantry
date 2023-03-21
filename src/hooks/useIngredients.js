@@ -1,38 +1,33 @@
 import { useContext, useEffect, useState } from 'react'
-import uuid from 'react-native-uuid'
 import { IngredientsContext } from '../contexts/IngredientsContext'
 
 export function useIngredients (props) {
-  const { itemIdToFocus } = props
-
   const { ingredients, setIngredients, sortIngredientsAlphabetically } = useContext(IngredientsContext)
-  const [selectedList, setSelectedList] = useState([])
+  const [selectedIngredientsList, setSelectedIngredientsList] = useState([])
 
-  const handleAddIngredient = () => {
-    const newIngredient = { id: uuid.v4(), text: '' }
+  const handleAddIngredient = (newIngredient) => {
     const newIngredients = [newIngredient, ...ingredients]
-    itemIdToFocus.current = newIngredient.id
     setIngredients(newIngredients)
   }
 
   const handleSelectIngredient = (id) => {
-    const newSelectedList = [...selectedList]
+    const newSelectedList = [...selectedIngredientsList]
     newSelectedList.push(id)
-    setSelectedList(newSelectedList)
+    setSelectedIngredientsList(newSelectedList)
   }
 
   const handleUnselectIngredient = (id) => {
-    const ingredientIndex = selectedList.findIndex(ingredientId => ingredientId === id)
+    const ingredientIndex = selectedIngredientsList.findIndex(ingredientId => ingredientId === id)
 
     if (ingredientIndex >= 0) {
-      const newSelectedList = [...selectedList]
+      const newSelectedList = [...selectedIngredientsList]
       newSelectedList.splice(ingredientIndex, 1)
-      setSelectedList(newSelectedList)
+      setSelectedIngredientsList(newSelectedList)
     }
   }
 
   const handleUnselectAllIngredients = () => {
-    setSelectedList([])
+    setSelectedIngredientsList([])
   }
 
   const handleIngredientChange = (id, text) => {
@@ -53,9 +48,9 @@ export function useIngredients (props) {
   }
 
   const handleDeleteSelectedIngredients = () => {
-    const newIngredients = ingredients.filter(ingredient => !selectedList.includes(ingredient.id))
+    const newIngredients = ingredients.filter(ingredient => !selectedIngredientsList.includes(ingredient.id))
     setIngredients(newIngredients)
-    setSelectedList([])
+    setSelectedIngredientsList([])
   }
 
   // Sort the ingredients list alphabetically before component closes
@@ -65,7 +60,7 @@ export function useIngredients (props) {
 
   return {
     ingredients,
-    selectedList,
+    selectedIngredientsList,
     handleAddIngredient,
     handleSelectIngredient,
     handleUnselectIngredient,

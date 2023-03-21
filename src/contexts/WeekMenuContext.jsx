@@ -5,6 +5,7 @@ import { ASYNC_STORAGE_KEYS, WEEK_MENU_MOCKUP } from '../constants/constants'
 
 export const WeekMenuContext = createContext({})
 
+// TODO: Create some default data if empty storage
 export function WeekMenuContextProvider ({ children }) {
   const [weekMenu, setWeekMenu] = useState([])
 

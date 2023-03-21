@@ -1,15 +1,14 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import FoodHeader from '../../components/food/FoodHeader'
-import AddButton from '../../components/AddButton'
-import RecipeItem from '../../components/recipes/RecipeItem'
-import SwipeableRow from '../../components/swipeableRow/SwippeableRow'
-import Divider from '../../components/Divider'
-import { ROUTE_NAME_RECIPES_EDIT_MODAL } from '../../constants/routes'
+import AddButton from '../AddButton'
+import RecipeItem from './RecipeItem'
+import SwipeableRow from '../swipeableRow/SwippeableRow'
+import Divider from '../Divider'
+import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
 import { useRecipes } from '../../hooks/useRecipes'
 
-export default function RecipesView () {
+export default function Recipes () {
   const { recipes } = useRecipes()
   const navigation = useNavigation()
   const {
@@ -17,16 +16,15 @@ export default function RecipesView () {
   } = useRecipes()
 
   const handlePressRecipe = (recipe) => {
-    navigation.navigate(ROUTE_NAME_RECIPES_EDIT_MODAL, { recipe })
+    navigation.navigate(ROUTE_NAME_RECIPES_EDIT, { recipe })
   }
 
   const handleAddPress = () => {
-    navigation.navigate(ROUTE_NAME_RECIPES_EDIT_MODAL)
+    navigation.navigate(ROUTE_NAME_RECIPES_EDIT)
   }
 
   return (
     <View style={styles.container}>
-      <FoodHeader />
       <FlatList
         contentContainerStyle={styles.flatListContent}
         initialNumToRender={15}

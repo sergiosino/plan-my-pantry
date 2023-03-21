@@ -1,23 +1,23 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import { ROUTE_NAME_FOODS_ROUTES, ROUTE_NAME_GROCERY_LIST, ROUTE_NAME_WEEK_MENU_ROUTES } from '../constants/routes'
+import { ROUTE_NAME_FOODS_VIEW, ROUTE_NAME_GROCERY_LIST, ROUTE_NAME_WEEK_MENU } from '../constants/routes'
 import GroceryListView from '../views/GroceryListView'
-import FoodRoutes from './FoodRoutes'
-import WeekMenuRoutes from './WeekMenuRoutes'
+import WeekMenuView from '../views/weekMenuView/WeekMenuView'
+import FoodView from '../views/foodView/FoodView'
 
 const Tab = createBottomTabNavigator()
 
 const TAB_ROUTES = [
   {
-    name: ROUTE_NAME_FOODS_ROUTES,
-    component: FoodRoutes,
+    name: ROUTE_NAME_FOODS_VIEW,
+    component: FoodView,
     iconName: 'pizza-outline',
     focusedIconName: 'pizza'
   },
   {
-    name: ROUTE_NAME_WEEK_MENU_ROUTES,
-    component: WeekMenuRoutes,
+    name: ROUTE_NAME_WEEK_MENU,
+    component: WeekMenuView,
     iconName: 'restaurant-outline',
     focusedIconName: 'restaurant'
   },

@@ -1,30 +1,24 @@
-import { useNavigation, useNavigationState } from '@react-navigation/native'
 import { StyleSheet, Text } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 import Button from '../Button'
-import { useRef } from 'react'
 
 export default function FoodHeaderItem (props) {
-  const { routeName, iconName } = props
-
-  const navigation = useNavigation()
-  const actualRouteName = useNavigationState((state) => state.routes[state.index].name)
-  const isActualRoute = useRef(actualRouteName === routeName)
+  const { name, iconName, isActualView, setActualView } = props
 
   const handlePress = () => {
-    navigation.navigate(routeName)
+    setActualView(name)
   }
 
-  const pressableStyles = isActualRoute.current
+  const pressableStyles = isActualView
     ? styles.buttonSelected
     : styles.textButtonDefault
 
-  const textStyles = isActualRoute.current
+  const textStyles = isActualView
     ? styles.textSelected
     : styles.textDefault
 
-  const icon = isActualRoute.current
+  const icon = isActualView
     ? <Ionicons name={iconName} size={20} style={styles.icon} />
     : null
 
@@ -35,7 +29,7 @@ export default function FoodHeaderItem (props) {
     >
       {icon}
       <Text style={textStyles}>
-        {routeName}
+        {name}
       </Text>
     </Button>
   )

@@ -1,35 +1,32 @@
 import { useRef } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
+import uuid from 'react-native-uuid'
 
-import AddButton from '../../components/AddButton'
-import Ingredient from '../../components/ingredients/Ingredient'
-import IngredientsHeader from '../../components/ingredients/IngredientsHeader'
+import AddButton from '../AddButton'
+import Ingredient from './Ingredient'
 import { INGREDIENT_HEIGHT } from '../../constants/constants'
-import { useIngredients } from '../../hooks/useIngredients'
 
-export default function IngredientsView () {
-  const itemIdToFocus = useRef(null)
+export default function Ingredients (props) {
+  const { ingredientsFunctionality, isSelectedListEmpty } = props
   const {
     ingredients,
-    selectedList,
+    selectedIngredientsList,
     handleAddIngredient,
     handleSelectIngredient,
     handleUnselectIngredient,
-    handleUnselectAllIngredients,
     handleIngredientChange,
-    handleDeleteIngredient,
-    handleDeleteSelectedIngredients
-  } = useIngredients({ itemIdToFocus })
+    handleDeleteIngredient
+  } = ingredientsFunctionality
+  const itemIdToFocus = useRef(null)
 
-  const isSelectedListEmpty = selectedList.length === 0
+  const handleAddItem = () => {
+    const newIngredient = { id: uuid.v4(), text: '' }
+    handleAddIngredient(newIngredient)
+    itemIdToFocus.current = newIngredient.id
+  }
 
   return (
     <View style={styles.container}>
-      <IngredientsHeader
-        onDeleteSelected={handleDeleteSelectedIngredients}
-        enableDeleteAll={!isSelectedListEmpty}
-        onUnselectAll={handleUnselectAllIngredients}
-      />
       <FlatList
         contentContainerStyle={styles.flatListContent}
         removeClippedSubviews={false}
@@ -39,7 +36,7 @@ export default function IngredientsView () {
         data={ingredients}
         renderItem={({ item: ingredient }) => {
           const { id, text } = ingredient
-          const isSelected = !!selectedList.find(x => x === id)
+          const isSelected = !!selectedIngredientsList.find(x => x === id)
           const isItemToFocus = itemIdToFocus.current === id
           return (
             <Ingredient
@@ -56,7 +53,7 @@ export default function IngredientsView () {
           )
         }}
       />
-      <AddButton onAddItem={handleAddIngredient} />
+      <AddButton onAddItem={handleAddItem} />
     </View>
   )
 }

@@ -4,11 +4,11 @@ import { StatusBar } from 'expo-status-bar'
 import Constants from 'expo-constants'
 import { View } from 'react-native'
 
-import TabsRoutes from './src/routes/BottomTabsRoutes'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { IngredientsContextProvider } from './src/contexts/IngredientsContext'
 import { RecipesContextProvider } from './src/contexts/RecipesContext'
 import { WeekMenuContextProvider } from './src/contexts/WeekMenuContext'
+import Routes from './src/routes/Routes'
 
 export default function App () {
   return (
@@ -19,7 +19,7 @@ export default function App () {
             <View style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
               <NavigationContainer>
                 <StatusBar />
-                <TabsRoutes />
+                <Routes />
               </NavigationContainer>
             </View>
           </WeekMenuContextProvider>
