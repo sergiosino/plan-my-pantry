@@ -2,7 +2,7 @@ import { FlatList, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import AddButton from '../AddButton'
-import RecipeItem from './RecipeItem'
+import Recipe from './Recipe'
 import SwipeableRow from '../swipeableRow/SwippeableRow'
 import Divider from '../Divider'
 import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
@@ -31,7 +31,7 @@ export default function Recipes () {
           const { id, name, ingredients } = recipe
           return (
             <SwipeableRow onLeftActionPress={() => handleDeleteRecipe(id)}>
-              <RecipeItem
+              <Recipe
                 id={id}
                 name={name}
                 ingredients={ingredients}

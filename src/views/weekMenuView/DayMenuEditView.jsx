@@ -6,7 +6,7 @@ import { useWeekMenu } from '../../hooks/useWeekMenu'
 import DayMenu from '../../components/weekMenu/DayMenu'
 import TextInputSyled from '../../components/TextInputSyled'
 import { useRecipes } from '../../hooks/useRecipes'
-import RecipeItem from '../../components/recipes/RecipeItem'
+import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
 import DayIngredientsForGroceryList from '../../components/weekMenu/DayIngredientsForGroceryList'
 
@@ -93,7 +93,7 @@ export default function DayMenuEditView () {
             const { id, name, ingredients } = recipe
             const isRecipeSelected = recipeSelected === id
             return (
-              <RecipeItem
+              <Recipe
                 id={id}
                 name={name}
                 ingredients={ingredients}

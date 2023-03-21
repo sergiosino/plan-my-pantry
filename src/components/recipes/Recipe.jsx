@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
-export default function RecipeItem (props) {
+export default function Recipe (props) {
   const { id, name, ingredients, onPress, onLongPress, isSelected } = props
 
   const [ingredientsText, setIngredientsText] = useState([])

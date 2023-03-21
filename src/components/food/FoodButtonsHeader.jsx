@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native'
 
 import { headerStyles } from '../../styles/headerStyles'
-import FoodHeaderItem from './FoodHeaderItem'
+import FoodHeaderButton from './FoodHeaderButton'
 import { FOOD_HEADER_BUTTONS } from '../../constants/constants'
 
 export default function FoodButtonsHeader (props) {
@@ -14,7 +14,7 @@ export default function FoodButtonsHeader (props) {
         const isActualView = actualView === name
         return (
           <View key={name} style={headerStyles.headerItem}>
-            <FoodHeaderItem name={name} iconName={iconName} isActualView={isActualView} setActualView={setActualView} />
+            <FoodHeaderButton name={name} iconName={iconName} isActualView={isActualView} setActualView={setActualView} />
           </View>
         )
       })}

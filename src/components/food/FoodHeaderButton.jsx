@@ -3,7 +3,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 
 import Button from '../Button'
 
-export default function FoodHeaderItem (props) {
+export default function FoodHeaderButton (props) {
   const { name, iconName, isActualView, setActualView } = props
 
   const handlePress = () => {
