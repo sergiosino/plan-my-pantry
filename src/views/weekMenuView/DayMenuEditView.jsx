@@ -60,6 +60,21 @@ export default function DayMenuEditView () {
     setDayMenuIngredients(uniqueIngredients)
   }
 
+  const renderItem = (recipe, recipeSelectedId) => {
+    const { id, name, ingredients } = recipe
+    const isRecipeSelected = recipeSelectedId === id
+    return (
+      <Recipe
+        id={id}
+        name={name}
+        ingredients={ingredients}
+        onPress={handlePressRecipe}
+        onLongPress={isRecipeSelected && handleLongPressRecipe}
+        isSelected={isRecipeSelected}
+      />
+    )
+  }
+
   useEffect(() => {
     isLunchSelected
       ? setRecipeSelected(dayMenu.lunch?.id)
@@ -86,23 +101,11 @@ export default function DayMenuEditView () {
         <Divider />
         <FlatList
           initialNumToRender={15}
-          data={recipes}
+          maxToRenderPerBatch={40}
           ItemSeparatorComponent={<Divider />}
+          data={recipes}
           extraData={recipeSelected}
-          renderItem={({ item: recipe }) => {
-            const { id, name, ingredients } = recipe
-            const isRecipeSelected = recipeSelected === id
-            return (
-              <Recipe
-                id={id}
-                name={name}
-                ingredients={ingredients}
-                onPress={handlePressRecipe}
-                onLongPress={isRecipeSelected && handleLongPressRecipe}
-                isSelected={isRecipeSelected}
-              />
-            )
-          }}
+          renderItem={({ item }) => renderItem(item, recipeSelected)}
         />
       </View>
       <Divider />

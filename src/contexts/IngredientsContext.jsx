@@ -12,7 +12,7 @@ export function IngredientsContextProvider ({ children }) {
   const [selectedIngredientsList, setSelectedIngredientsList] = useState([])
   const hasToBeSorted = useRef(false)
 
-  const updateIngredients = async (newIngredients) => {
+  const updateIngredients = (newIngredients) => {
     // Sort only after adding new data
     if (hasToBeSorted.current) {
       newIngredients.sort((a, b) => a.text.toLowerCase().localeCompare(b.text.toLowerCase()))
@@ -28,10 +28,8 @@ export function IngredientsContextProvider ({ children }) {
   useEffect(() => {
     const getStorageIngredients = async () => {
       let storageIngredients = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.INGREDIENTS_LIST)
-      storageIngredients = storageIngredients != null ? JSON.parse(storageIngredients) : null
-      storageIngredients
-        ? setIngredients(storageIngredients)
-        : setIngredients(DEFAULT_DATA_INGREDIENTS)
+      storageIngredients = storageIngredients ? JSON.parse(storageIngredients) : DEFAULT_DATA_INGREDIENTS
+      setIngredients(storageIngredients)
     }
     getStorageIngredients()
   }, [])

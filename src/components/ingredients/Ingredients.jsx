@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { useCallback, useRef } from 'react'
+import { StyleSheet, View } from 'react-native'
+import { FlatList } from 'react-native-gesture-handler'
 
 import AddButton from '../AddButton'
 import Ingredient from './Ingredient'
@@ -10,8 +11,7 @@ export default function Ingredients () {
   const {
     ingredients,
     selectedIngredientsList,
-    handleAddIngredient,
-    sortIngredientsAlphabetically
+    handleAddIngredient
   } = useIngredients()
   const itemIdToFocus = useRef(null)
 
@@ -22,9 +22,20 @@ export default function Ingredients () {
     itemIdToFocus.current = newIngredientId
   }
 
-  // Call to sort the ingredients list alphabetically before component closes
-  useEffect(() => {
-    return () => sortIngredientsAlphabetically()
+  const getItemLayout = (_, index) => ({ length: INGREDIENT_HEIGHT, offset: INGREDIENT_HEIGHT * index, index })
+
+  const renderItem = useCallback((ingredient, idToFocus) => {
+    const { id, text } = ingredient
+    const isItemToFocus = idToFocus === id
+
+    return (
+      <Ingredient
+        id={id}
+        isItemToFocus={isItemToFocus}
+        selectOnPress={!isSelectedListEmpty}
+        defaultText={text}
+      />
+    )
   }, [])
 
   return (
@@ -32,22 +43,12 @@ export default function Ingredients () {
       <FlatList
         contentContainerStyle={styles.flatListContent}
         removeClippedSubviews={false}
-        keyboardShouldPersistTaps='handled'
-        getItemLayout={(_, index) => ({ length: INGREDIENT_HEIGHT, offset: INGREDIENT_HEIGHT * index, index })}
-        initialNumToRender={25}
+        getItemLayout={getItemLayout}
+        keyExtractor={(item) => item.id}
+        initialNumToRender={20}
+        maxToRenderPerBatch={40}
         data={ingredients}
-        renderItem={({ item: ingredient }) => {
-          const { id, text } = ingredient
-          const isItemToFocus = itemIdToFocus.current === id
-          return (
-            <Ingredient
-              id={id}
-              isItemToFocus={isItemToFocus}
-              selectOnPress={!isSelectedListEmpty}
-              defaultText={text}
-            />
-          )
-        }}
+        renderItem={({ item }) => renderItem(item, itemIdToFocus.current)}
       />
       <AddButton onAddItem={handleAddItem} />
     </View>

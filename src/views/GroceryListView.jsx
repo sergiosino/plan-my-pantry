@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 
 import AddButton from '../components/AddButton'
@@ -9,7 +9,6 @@ import { useGroceryItems } from '../hooks/useGroceryList'
 
 export default function GroceryListView () {
   const itemIdToFocus = useRef(null)
-  const refFlatList = useRef(null)
   const {
     groceryListItems,
     handleAddItem
@@ -20,31 +19,32 @@ export default function GroceryListView () {
     itemIdToFocus.current = newGroceryItemId
   }
 
+  const getItemLayout = (_, index) => ({ length: GROCERY_ITEM_HEIGHT, offset: GROCERY_ITEM_HEIGHT * index, index })
+
+  const renderItem = useCallback((item, idToFocus) => {
+    const { id, checked, text } = item
+    const isItemToFocus = idToFocus === id
+    return (
+      <GroceryItem
+        id={id}
+        defaultChecked={checked}
+        defaultText={text}
+        isItemToFocus={isItemToFocus}
+      />
+    )
+  }, [])
+
   return (
     <View style={styles.container}>
-      <GroceryListHeader
-        itemIdToFocus={itemIdToFocus}
-      />
+      <GroceryListHeader itemIdToFocus={itemIdToFocus} />
       <FlatList
-        ref={refFlatList}
         contentContainerStyle={styles.flatListContent}
         removeClippedSubviews={false}
-        keyboardShouldPersistTaps='handled'
-        getItemLayout={(_, index) => ({ length: GROCERY_ITEM_HEIGHT, offset: GROCERY_ITEM_HEIGHT * index, index })}
+        getItemLayout={getItemLayout}
         initialNumToRender={20}
+        maxToRenderPerBatch={40}
         data={groceryListItems}
-        renderItem={({ item }) => {
-          const { id, checked, text } = item
-          const isItemToFocus = itemIdToFocus.current === id
-          return (
-            <GroceryItem
-              id={id}
-              defaultChecked={checked}
-              defaultText={text}
-              isItemToFocus={isItemToFocus}
-            />
-          )
-        }}
+        renderItem={({ item }) => renderItem(item, itemIdToFocus.current)}
       />
       <AddButton onAddItem={handleAdd} />
     </View>

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Pressable, StyleSheet, TextInput, View } from 'react-native'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
@@ -5,7 +6,7 @@ import { INGREDIENT_HEIGHT } from '../../constants/constants'
 import { useIngredient } from '../../hooks/useIngredient'
 import IconButton from '../IconButton'
 
-export default function Ingredient (props) {
+export default memo(function Ingredient (props) {
   const {
     id,
     isItemToFocus,
@@ -49,7 +50,7 @@ export default function Ingredient (props) {
       {showDeleteIcon && <IconButton onPress={handleDeletePress} iconName='close' />}
     </View>
   )
-}
+})
 
 const styles = StyleSheet.create({
   container: {

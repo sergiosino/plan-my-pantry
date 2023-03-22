@@ -30,11 +30,11 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "owner": "sergioit96",
     "extra": {
       "eas": {
-        "projectId": "24acf115-6045-479a-8757-2c99e3408ab4"
+        "projectId": "ad3de43c-a22f-45b7-a88f-abe673e78cf2"
       }
-    },
-    "owner": "sergioit96"
+    }
   }
 }
