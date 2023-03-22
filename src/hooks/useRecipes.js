@@ -55,9 +55,7 @@ export function useRecipes () {
   }
 
   const handleDeleteRecipe = (id) => {
-    console.log(id, recipes)
     const newRecipes = recipes.filter(recipe => recipe.id !== id)
-    console.log(newRecipes)
     setRecipes(newRecipes)
   }
 

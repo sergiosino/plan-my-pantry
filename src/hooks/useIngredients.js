@@ -7,7 +7,6 @@ export function useIngredients () {
   const {
     ingredients,
     setIngredients,
-    sortIngredientsAlphabetically,
     selectedIngredientsList,
     setSelectedIngredientsList
   } = useContext(IngredientsContext)
@@ -73,7 +72,6 @@ export function useIngredients () {
     handleDeleteIngredient,
     handleDeleteSelectedIngredients,
     handleUnselectIngredient,
-    handleSelectIngredient,
-    sortIngredientsAlphabetically
+    handleSelectIngredient
   }
 }
