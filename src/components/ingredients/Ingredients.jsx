@@ -47,6 +47,7 @@ export default function Ingredients () {
         keyExtractor={(item) => item.id}
         initialNumToRender={20}
         maxToRenderPerBatch={40}
+        windowSize={11}
         data={ingredients}
         renderItem={({ item }) => renderItem(item, itemIdToFocus.current)}
       />
