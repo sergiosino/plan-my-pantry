@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
 import uuid from 'react-native-uuid'
-import { IngredientsContext } from '../contexts/IngredientsContext'
 
+import { IngredientsContext } from '../contexts/IngredientsContext'
 import { RecipesContext } from '../contexts/RecipesContext'
+import { areObjectsEqual } from '../utils/areObjectsEqual'
 
 export function useRecipes () {
   const { recipes, setRecipes } = useContext(RecipesContext)
@@ -10,8 +11,6 @@ export function useRecipes () {
   const [recipesWithIngredientsName, setRecipesWithIngredientsName] = useState([])
 
   const getRecipesWithIngredientsName = () => {
-    if (recipes.length === 0 && ingredients.length === 0) { return }
-
     const recipesWithIngredientsName = recipes.map(recipe => {
       const ingredientsWithName = recipe.ingredients.map(recipeIngredient => {
         const ingredientWithName = ingredients.find(ingredient => ingredient.id === recipeIngredient)
@@ -22,7 +21,6 @@ export function useRecipes () {
         ingredients: ingredientsWithName
       }
     })
-
     setRecipesWithIngredientsName(recipesWithIngredientsName)
   }
 
@@ -46,12 +44,13 @@ export function useRecipes () {
 
   const handleEditRecipe = (recipeEdited) => {
     const recipeIndex = recipes.findIndex(recipe => recipe.id === recipeEdited.id)
-
-    // TODO: Check if the recipe has any change in handleEditRecipe
-    const newRecipes = [...recipes]
-    newRecipes[recipeIndex] = recipeEdited
-    const newRecipesSorted = sortRecipes(newRecipes)
-    setRecipes(newRecipesSorted)
+    const areRecipesEqual = areObjectsEqual(recipeEdited, recipes[recipeIndex])
+    if (!areRecipesEqual) {
+      const newRecipes = [...recipes]
+      newRecipes[recipeIndex] = recipeEdited
+      const newRecipesSorted = sortRecipes(newRecipes)
+      setRecipes(newRecipesSorted)
+    }
   }
 
   const handleDeleteRecipe = (id) => {
