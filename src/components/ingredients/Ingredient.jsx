@@ -9,9 +9,9 @@ import IconButton from '../IconButton'
 export default memo(function Ingredient (props) {
   const {
     id,
-    isItemToFocus,
     defaultText,
-    selectOnPress
+    selectOnPress,
+    itemIdToFocus
   } = props
 
   const {
@@ -25,6 +25,13 @@ export default memo(function Ingredient (props) {
     handleDeletePress,
     isSelected
   } = useIngredient({ id, defaultText, selectOnPress })
+
+  const isItemToFocus = itemIdToFocus.current === id
+
+  const handleEndEditing = () => {
+    handleTextFocusEnd()
+    itemIdToFocus.current = null
+  }
 
   return (
     <View style={{ ...styles.container, backgroundColor: isSelected ? 'lightgray' : 'transparent' }}>
@@ -43,7 +50,7 @@ export default memo(function Ingredient (props) {
           onChangeText={setText}
           maxLength={45}
           onFocus={handleTextFocus}
-          onEndEditing={handleTextFocusEnd}
+          onEndEditing={handleEndEditing}
         />
       </View>
       <View />

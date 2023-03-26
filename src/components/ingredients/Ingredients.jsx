@@ -24,16 +24,15 @@ export default function Ingredients () {
 
   const getItemLayout = (_, index) => ({ length: INGREDIENT_HEIGHT, offset: INGREDIENT_HEIGHT * index, index })
 
-  const renderItem = useCallback((ingredient, idToFocus, isSelectedListEmpty) => {
+  const renderItem = useCallback((ingredient, itemIdToFocus, isSelectedListEmpty) => {
     const { id, text } = ingredient
-    const isItemToFocus = idToFocus === id
 
     return (
       <Ingredient
         id={id}
-        isItemToFocus={isItemToFocus}
         selectOnPress={!isSelectedListEmpty}
         defaultText={text}
+        itemIdToFocus={itemIdToFocus}
       />
     )
   }, [])
@@ -47,7 +46,7 @@ export default function Ingredients () {
         initialNumToRender={20}
         maxToRenderPerBatch={40}
         data={ingredients}
-        renderItem={({ item }) => renderItem(item, itemIdToFocus.current, isSelectedListEmpty)}
+        renderItem={({ item }) => renderItem(item, itemIdToFocus, isSelectedListEmpty)}
       />
       <AddButton onAddItem={handleAddItem} />
     </View>
