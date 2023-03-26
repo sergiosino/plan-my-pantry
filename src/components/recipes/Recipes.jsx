@@ -9,13 +9,28 @@ import Divider from '../Divider'
 import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
 import { useRecipes } from '../../hooks/useRecipes'
 
-// TODO: Allow selecting multiple recipes and deleting them at once
 export default function Recipes () {
-  const { recipes, handleDeleteRecipe } = useRecipes()
+  const {
+    recipes,
+    selectedRecipes,
+    handleDeleteRecipe,
+    handleSelectRecipe,
+    handleUnselectRecipe
+  } = useRecipes()
   const navigation = useNavigation()
 
-  const handlePressRecipe = (recipe) => {
-    navigation.navigate(ROUTE_NAME_RECIPES_EDIT, { recipe })
+  const isSelectedListEmpty = selectedRecipes.length === 0
+
+  const handlePressRecipe = (recipe, isSelected) => {
+    console.log(recipe, isSelected)
+    if (isSelectedListEmpty) { return navigation.navigate(ROUTE_NAME_RECIPES_EDIT, { recipe }) }
+    isSelected
+      ? handleUnselectRecipe(recipe.id)
+      : handleSelectRecipe(recipe.id)
+  }
+
+  const handleLongPressRecipe = (recipe, isSelected) => {
+    if (!isSelected) { handleSelectRecipe(recipe.id) }
   }
 
   const handleAddPress = () => {
@@ -24,17 +39,20 @@ export default function Recipes () {
 
   const renderItem = useCallback((recipe) => {
     const { id, name, ingredients } = recipe
+    const isSelected = !!selectedRecipes.find(x => x === recipe.id)
     return (
-      <SwipeableRow onLeftActionPress={() => handleDeleteRecipe(id)}>
+      <SwipeableRow onLeftActionPress={() => handleDeleteRecipe(id, isSelected)}>
         <Recipe
           id={id}
           name={name}
           ingredients={ingredients}
-          onPress={handlePressRecipe}
+          onPress={(recipe) => handlePressRecipe(recipe, isSelected)}
+          onLongPress={(recipe) => handleLongPressRecipe(recipe, isSelected)}
+          isSelected={isSelected}
         />
       </SwipeableRow>
     )
-  }, [])
+  }, [selectedRecipes])
 
   return (
     <View style={styles.container}>
@@ -44,6 +62,7 @@ export default function Recipes () {
         maxToRenderPerBatch={40}
         ItemSeparatorComponent={<Divider />}
         data={recipes}
+        extraData={selectedRecipes}
         renderItem={({ item }) => renderItem(item)}
       />
       <AddButton onAddItem={handleAddPress} />

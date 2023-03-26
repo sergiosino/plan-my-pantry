@@ -6,7 +6,7 @@ import { RecipesContext } from '../contexts/RecipesContext'
 import { areObjectsEqual } from '../utils/areObjectsEqual'
 
 export function useRecipes () {
-  const { recipes, setRecipes } = useContext(RecipesContext)
+  const { recipes, setRecipes, selectedRecipes, setSelectedRecipes } = useContext(RecipesContext)
   const { ingredients } = useContext(IngredientsContext)
   const [recipesWithIngredientsName, setRecipesWithIngredientsName] = useState([])
 
@@ -56,6 +56,33 @@ export function useRecipes () {
   const handleDeleteRecipe = (id) => {
     const newRecipes = recipes.filter(recipe => recipe.id !== id)
     setRecipes(newRecipes)
+    handleUnselectRecipe(id)
+  }
+
+  const handleSelectRecipe = (id) => {
+    const newSelectedList = [...selectedRecipes]
+    newSelectedList.push(id)
+    setSelectedRecipes(newSelectedList)
+  }
+
+  const handleUnselectRecipe = (id) => {
+    const recipeIndex = selectedRecipes.findIndex(recipeId => recipeId === id)
+
+    if (recipeIndex >= 0) {
+      const newSelectedList = [...selectedRecipes]
+      newSelectedList.splice(recipeIndex, 1)
+      setSelectedRecipes(newSelectedList)
+    }
+  }
+
+  const handleDeleteSelectedRecipes = () => {
+    const newReciepes = recipes.filter(recipe => !selectedRecipes.includes(recipe.id))
+    setRecipes(newReciepes)
+    setSelectedRecipes([])
+  }
+
+  const handleUnselectAllRecipes = () => {
+    setSelectedRecipes([])
   }
 
   useEffect(() => {
@@ -64,7 +91,12 @@ export function useRecipes () {
 
   return {
     recipes: recipesWithIngredientsName,
+    selectedRecipes,
     handleSaveRecipe,
-    handleDeleteRecipe
+    handleDeleteRecipe,
+    handleSelectRecipe,
+    handleUnselectRecipe,
+    handleDeleteSelectedRecipes,
+    handleUnselectAllRecipes
   }
 }

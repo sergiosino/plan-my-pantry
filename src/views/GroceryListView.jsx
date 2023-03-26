@@ -43,7 +43,6 @@ export default function GroceryListView () {
         getItemLayout={getItemLayout}
         initialNumToRender={20}
         maxToRenderPerBatch={40}
-        windowSize={11}
         data={groceryListItems}
         renderItem={({ item }) => renderItem(item, itemIdToFocus.current)}
       />

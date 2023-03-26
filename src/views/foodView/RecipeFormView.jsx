@@ -1,9 +1,9 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
-import { IngredientsContext } from '../../contexts/IngredientsContext'
 import { useRecipes } from '../../hooks/useRecipes'
+import { useIngredients } from '../../hooks/useIngredients'
 import Button from '../../components/Button'
 import MultiSelectStyled from '../../components/multiSelect/MultiSelectStyled'
 import TextInputSyled from '../../components/TextInputSyled'
@@ -11,10 +11,12 @@ import TextInputSyled from '../../components/TextInputSyled'
 export default function RecipeModal () {
   const route = useRoute()
   const navigation = useNavigation()
+
   const { handleSaveRecipe } = useRecipes()
+  const { ingredients } = useIngredients()
+
   const [selectedIngredients, setSelectedIngredients] = useState([])
   const [name, setName] = useState('')
-  const { ingredients } = useContext(IngredientsContext)
 
   const { recipe } = route.params ?? { recipe: null }
 

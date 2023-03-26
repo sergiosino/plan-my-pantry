@@ -24,7 +24,7 @@ export default function Ingredients () {
 
   const getItemLayout = (_, index) => ({ length: INGREDIENT_HEIGHT, offset: INGREDIENT_HEIGHT * index, index })
 
-  const renderItem = useCallback((ingredient, idToFocus) => {
+  const renderItem = useCallback((ingredient, idToFocus, isSelectedListEmpty) => {
     const { id, text } = ingredient
     const isItemToFocus = idToFocus === id
 
@@ -44,12 +44,10 @@ export default function Ingredients () {
         contentContainerStyle={styles.flatListContent}
         removeClippedSubviews={false}
         getItemLayout={getItemLayout}
-        keyExtractor={(item) => item.id}
         initialNumToRender={20}
         maxToRenderPerBatch={40}
-        windowSize={11}
         data={ingredients}
-        renderItem={({ item }) => renderItem(item, itemIdToFocus.current)}
+        renderItem={({ item }) => renderItem(item, itemIdToFocus.current, isSelectedListEmpty)}
       />
       <AddButton onAddItem={handleAddItem} />
     </View>

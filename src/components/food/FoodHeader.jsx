@@ -7,6 +7,7 @@ import { useIngredients } from '../../hooks/useIngredients'
 import FoodNormalHeader from './FoodNormalHeader'
 import FoodEditingHeader from './FoodEditingHeader'
 import FoodSelectedHeader from './FoodSelectedHeader'
+import { useRecipes } from '../../hooks/useRecipes'
 
 export default function FoodHeader (props) {
   const {
@@ -15,28 +16,29 @@ export default function FoodHeader (props) {
   } = props
 
   const { selectedIngredientsList, handleDeleteSelectedIngredients, handleUnselectAllIngredients } = useIngredients()
+  const { selectedRecipes, handleDeleteSelectedRecipes, handleUnselectAllRecipes } = useRecipes()
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false)
 
   const isRecipesView = actualView === FOOD_HEADER_RECIPES
   const isSelectedListEmpty = isRecipesView
-    ? true
+    ? selectedRecipes.length === 0
     : selectedIngredientsList.length === 0
 
   const onDeleteSelected = () => {
     isRecipesView
-      ? handleDeleteSelectedIngredients()
+      ? handleDeleteSelectedRecipes()
       : handleDeleteSelectedIngredients()
   }
 
   const onUnselectAll = () => {
     isRecipesView
-      ? handleUnselectAllIngredients()
+      ? handleUnselectAllRecipes()
       : handleUnselectAllIngredients()
   }
 
   const alertDeleteChecked = () => {
     isRecipesView
-      ? confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected)
+      ? confirmationAlert('Delete', 'Delete selected recipes?', onDeleteSelected)
       : confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected)
   }
 
