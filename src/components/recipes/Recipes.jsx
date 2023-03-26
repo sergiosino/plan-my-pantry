@@ -1,4 +1,3 @@
-import { useCallback } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
@@ -36,7 +35,7 @@ export default function Recipes () {
     navigation.navigate(ROUTE_NAME_RECIPES_EDIT)
   }
 
-  const renderItem = useCallback((recipe) => {
+  const renderItem = (recipe) => {
     const { id, name, ingredients } = recipe
     const isSelected = !!selectedRecipes.find(x => x === recipe.id)
     return (
@@ -51,7 +50,7 @@ export default function Recipes () {
         />
       </SwipeableRow>
     )
-  }, [selectedRecipes])
+  }
 
   return (
     <View style={styles.container}>

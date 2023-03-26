@@ -88,9 +88,9 @@ export function useIngredients () {
   }
 
   const handleDeleteSelectedIngredients = () => {
-    const recipesUsingIngredient = recipes.filter(recipe => recipe.ingredients.some(ingredient => selectedIngredientsList.includes(ingredient)))
-    if (recipesUsingIngredient.length > 0) {
-      const recipesNames = recipesUsingIngredient.map(recipe => recipe.name).join(', ')
+    const recipesUsingIngredients = recipes.filter(recipe => recipe.ingredients.some(ingredient => selectedIngredientsList.includes(ingredient)))
+    if (recipesUsingIngredients.length > 0) {
+      const recipesNames = recipesUsingIngredients.map(recipe => recipe.name).join(', ')
       confirmationAlert(
         CONFIRMATION_ALERT_INGREDIENTS_IN_USE_TITLE,
         CONFIRMATION_ALERT_INGREDIENTS_IN_USE_MESSAGE.replace('#1', recipesNames),
