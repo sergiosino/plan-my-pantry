@@ -40,6 +40,7 @@ export function useIngredients () {
     const newIngredientId = uuid.v4()
     const newIngredient = { id: newIngredientId, text: '' }
     const newIngredients = [newIngredient, ...ingredients]
+    console.log('handleIngredientChange')
     setIngredients(newIngredients)
 
     return newIngredientId
@@ -50,6 +51,7 @@ export function useIngredients () {
   }
 
   const handleIngredientChange = (id, text) => {
+    console.log('handleIngredientChange')
     const ingredientIndex = ingredients.findIndex(ingredient => ingredient.id === id)
     const ingredient = ingredients[ingredientIndex]
 
@@ -62,6 +64,7 @@ export function useIngredients () {
 
   const deleteIngredient = (id) => {
     const newIngredients = ingredients.filter(ingredient => ingredient.id !== id)
+    console.log('handleIngredientChange')
     setIngredients(newIngredients)
     handleUnselectIngredient(id)
   }
@@ -82,6 +85,7 @@ export function useIngredients () {
   }
 
   const deleteSelectedIngredients = () => {
+    console.log('deleteSelectedIngredients')
     const newIngredients = ingredients.filter(ingredient => !selectedIngredientsList.includes(ingredient.id))
     setIngredients(newIngredients)
     setSelectedIngredientsList([])
