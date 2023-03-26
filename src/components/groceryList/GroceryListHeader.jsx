@@ -4,6 +4,7 @@ import { confirmationAlert } from '../../utils/confirmationAlert'
 import { headerStyles } from '../../styles/headerStyles'
 import IconButton from '../IconButton'
 import { useGroceryItems } from '../../hooks/useGroceryList'
+import { CONFIRMATION_ALERT_CHECK_ALL_ITEMS_MESSAGE, CONFIRMATION_ALERT_CHECK_TITLE, CONFIRMATION_ALERT_DELETE_ALL_CHECKED_ITEMS_MESSAGE, CONFIRMATION_ALERT_DELETE_TITLE, CONFIRMATION_ALERT_UNCHECK_ALL_ITEMS_MESSAGE, CONFIRMATION_ALERT_UNCHECK_TITLE } from '../../constants/texts'
 
 export default function GroceryListHeader (props) {
   const { itemIdToFocus } = props
@@ -16,24 +17,24 @@ export default function GroceryListHeader (props) {
 
   const handlePressDeleteChecked = () => {
     confirmationAlert(
-      'Delete',
-      'Delete all checked items?',
+      CONFIRMATION_ALERT_DELETE_TITLE,
+      CONFIRMATION_ALERT_DELETE_ALL_CHECKED_ITEMS_MESSAGE,
       handleDeleteChecked
     )
   }
 
   const handlePressCheckAll = () => {
     confirmationAlert(
-      'Check',
-      'Check all items?',
+      CONFIRMATION_ALERT_CHECK_TITLE,
+      CONFIRMATION_ALERT_CHECK_ALL_ITEMS_MESSAGE,
       handleCheckAll
     )
   }
 
   const handlePressUncheckAll = () => {
     confirmationAlert(
-      'Uncheck',
-      'Uncheck all items?',
+      CONFIRMATION_ALERT_UNCHECK_TITLE,
+      CONFIRMATION_ALERT_UNCHECK_ALL_ITEMS_MESSAGE,
       () => {
         handleUnCheckAll()
         itemIdToFocus.current = null

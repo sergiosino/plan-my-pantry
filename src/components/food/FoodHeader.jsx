@@ -8,6 +8,7 @@ import FoodNormalHeader from './FoodNormalHeader'
 import FoodEditingHeader from './FoodEditingHeader'
 import FoodSelectedHeader from './FoodSelectedHeader'
 import { useRecipes } from '../../hooks/useRecipes'
+import { CONFIRMATION_ALERT_DELETE_INGREDIENTS_MESSAGE, CONFIRMATION_ALERT_DELETE_RECIPES_MESSAGE, CONFIRMATION_ALERT_DELETE_TITLE } from '../../constants/texts'
 
 export default function FoodHeader (props) {
   const {
@@ -38,8 +39,16 @@ export default function FoodHeader (props) {
 
   const alertDeleteChecked = () => {
     isRecipesView
-      ? confirmationAlert('Delete', 'Delete selected recipes?', onDeleteSelected)
-      : confirmationAlert('Delete', 'Delete selected ingredients?', onDeleteSelected)
+      ? confirmationAlert(
+        CONFIRMATION_ALERT_DELETE_TITLE,
+        CONFIRMATION_ALERT_DELETE_RECIPES_MESSAGE,
+        onDeleteSelected
+      )
+      : confirmationAlert(
+        CONFIRMATION_ALERT_DELETE_TITLE,
+        CONFIRMATION_ALERT_DELETE_INGREDIENTS_MESSAGE,
+        onDeleteSelected
+      )
   }
 
   useEffect(() => {
