@@ -14,7 +14,7 @@ export default function DayMenuEditView () {
   const route = useRoute()
   const { dayId } = route.params
   const { getDayMenu, updateRecipeLunch, updateRecipeDinner } = useWeekMenu()
-  const { recipes } = useRecipes()
+  const { recipesWithIngredientsName } = useRecipes()
 
   const [isLunchSelected, setIsLunchSelected] = useState(true)
   const [recipeSelected, setRecipeSelected] = useState(null)
@@ -103,7 +103,7 @@ export default function DayMenuEditView () {
           initialNumToRender={15}
           maxToRenderPerBatch={40}
           ItemSeparatorComponent={<Divider />}
-          data={recipes}
+          data={recipesWithIngredientsName}
           extraData={recipeSelected}
           renderItem={({ item }) => renderItem(item, recipeSelected)}
         />

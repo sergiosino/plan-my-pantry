@@ -2,6 +2,14 @@ import { useContext } from 'react'
 import uuid from 'react-native-uuid'
 
 import { IngredientsContext } from '../contexts/IngredientsContext'
+import { confirmationAlert } from '../utils/confirmationAlert'
+import { useRecipes } from './useRecipes'
+import {
+  CONFIRMATION_ALERT_INGREDIENTS_IN_USE_MESSAGE,
+  CONFIRMATION_ALERT_INGREDIENTS_IN_USE_TITLE,
+  CONFIRMATION_ALERT_INGREDIENT_IN_USE_MESSAGE,
+  CONFIRMATION_ALERT_INGREDIENT_IN_USE_TITLE
+} from '../constants/texts'
 
 export function useIngredients () {
   const {
@@ -10,6 +18,7 @@ export function useIngredients () {
     selectedIngredientsList,
     setSelectedIngredientsList
   } = useContext(IngredientsContext)
+  const { recipes, removeIngredientsFromAllRecipes } = useRecipes()
 
   const handleSelectIngredient = (id) => {
     const newSelectedList = [...selectedIngredientsList]
@@ -51,16 +60,45 @@ export function useIngredients () {
     }
   }
 
-  const handleDeleteIngredient = (id) => {
+  const deleteIngredient = (id) => {
     const newIngredients = ingredients.filter(ingredient => ingredient.id !== id)
     setIngredients(newIngredients)
     handleUnselectIngredient(id)
   }
 
-  const handleDeleteSelectedIngredients = () => {
+  const handleDeleteIngredient = (id) => {
+    const recipesUsingIngredient = recipes.filter(recipe => recipe.ingredients.includes(id))
+
+    if (recipesUsingIngredient.length > 0) {
+      const recipesNames = recipesUsingIngredient.map(recipe => recipe.name).join(', ')
+      confirmationAlert(
+        CONFIRMATION_ALERT_INGREDIENT_IN_USE_TITLE,
+        CONFIRMATION_ALERT_INGREDIENT_IN_USE_MESSAGE.replace('#1', recipesNames),
+        () => {
+          deleteIngredient(id)
+          removeIngredientsFromAllRecipes([id])
+        })
+    } else { deleteIngredient(id) }
+  }
+
+  const deleteSelectedIngredients = () => {
     const newIngredients = ingredients.filter(ingredient => !selectedIngredientsList.includes(ingredient.id))
     setIngredients(newIngredients)
     setSelectedIngredientsList([])
+  }
+
+  const handleDeleteSelectedIngredients = () => {
+    const recipesUsingIngredient = recipes.filter(recipe => recipe.ingredients.some(ingredient => selectedIngredientsList.includes(ingredient)))
+    if (recipesUsingIngredient.length > 0) {
+      const recipesNames = recipesUsingIngredient.map(recipe => recipe.name).join(', ')
+      confirmationAlert(
+        CONFIRMATION_ALERT_INGREDIENTS_IN_USE_TITLE,
+        CONFIRMATION_ALERT_INGREDIENTS_IN_USE_MESSAGE.replace('#1', recipesNames),
+        () => {
+          deleteSelectedIngredients()
+          removeIngredientsFromAllRecipes(selectedIngredientsList)
+        })
+    } else { deleteSelectedIngredients() }
   }
 
   return {

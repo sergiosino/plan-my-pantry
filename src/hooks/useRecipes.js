@@ -85,18 +85,31 @@ export function useRecipes () {
     setSelectedRecipes([])
   }
 
+  const removeIngredientsFromAllRecipes = (ingredientsId) => {
+    const newRecipes = recipes.map(recipe => {
+      const newIngredients = recipe.ingredients.filter(ingredient => !ingredientsId.includes(ingredient)) ?? []
+      return {
+        ...recipe,
+        ingredients: newIngredients
+      }
+    })
+    setRecipes(newRecipes)
+  }
+
   useEffect(() => {
     getRecipesWithIngredientsName()
   }, [recipes, ingredients])
 
   return {
-    recipes: recipesWithIngredientsName,
+    recipes,
+    recipesWithIngredientsName,
     selectedRecipes,
     handleSaveRecipe,
     handleDeleteRecipe,
     handleSelectRecipe,
     handleUnselectRecipe,
     handleDeleteSelectedRecipes,
-    handleUnselectAllRecipes
+    handleUnselectAllRecipes,
+    removeIngredientsFromAllRecipes
   }
 }

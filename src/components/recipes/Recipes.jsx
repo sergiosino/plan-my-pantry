@@ -11,7 +11,7 @@ import { useRecipes } from '../../hooks/useRecipes'
 
 export default function Recipes () {
   const {
-    recipes,
+    recipesWithIngredientsName,
     selectedRecipes,
     handleDeleteRecipe,
     handleSelectRecipe,
@@ -22,7 +22,6 @@ export default function Recipes () {
   const isSelectedListEmpty = selectedRecipes.length === 0
 
   const handlePressRecipe = (recipe, isSelected) => {
-    console.log(recipe, isSelected)
     if (isSelectedListEmpty) { return navigation.navigate(ROUTE_NAME_RECIPES_EDIT, { recipe }) }
     isSelected
       ? handleUnselectRecipe(recipe.id)
@@ -61,7 +60,7 @@ export default function Recipes () {
         initialNumToRender={15}
         maxToRenderPerBatch={40}
         ItemSeparatorComponent={<Divider />}
-        data={recipes}
+        data={recipesWithIngredientsName}
         extraData={selectedRecipes}
         renderItem={({ item }) => renderItem(item)}
       />
