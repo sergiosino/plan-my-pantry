@@ -6,7 +6,7 @@ import { useRecipes } from '../../hooks/useRecipes'
 import Button from '../../components/Button'
 import TextInputSyled from '../../components/TextInputSyled'
 
-export default function RecipeFormView () {
+export default function RecipeEditView () {
   const route = useRoute()
   const navigation = useNavigation()
 
