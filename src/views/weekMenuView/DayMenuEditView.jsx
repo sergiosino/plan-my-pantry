@@ -9,12 +9,13 @@ import { useRecipes } from '../../hooks/useRecipes'
 import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
 import DayIngredientsForGroceryList from '../../components/weekMenu/DayIngredientsForGroceryList'
+import { capitalizeString } from '../../utils/capitalizeString'
 
 export default function DayMenuEditView () {
   const route = useRoute()
   const { dayId } = route.params
   const { getDayMenu, updateRecipeLunch, updateRecipeDinner } = useWeekMenu()
-  const { recipesWithIngredientsName } = useRecipes()
+  const { recipes } = useRecipes()
 
   const [isLunchSelected, setIsLunchSelected] = useState(true)
   const [recipeSelected, setRecipeSelected] = useState(null)
@@ -51,12 +52,11 @@ export default function DayMenuEditView () {
 
   const handleLongPressRecipe = (pressedRecipe) => {
     const { ingredients } = pressedRecipe
-    const allIngredients = [...dayMenuIngredients, ...ingredients]
-    const allIngredientsId = allIngredients.map(ingredient => ingredient.id)
-    const uniqueIngredientsId = [...new Set(allIngredientsId)]
-    const uniqueIngredients = uniqueIngredientsId.map(uniqueIngredientId => (
-      allIngredients.find(ingredient => ingredient.id === uniqueIngredientId)
-    ))
+    let ingredientsArray = ingredients.split(',')
+    ingredientsArray = ingredientsArray.map(ingredient => capitalizeString(ingredient))
+
+    const allIngredients = [...dayMenuIngredients, ...ingredientsArray]
+    const uniqueIngredients = [...new Set(allIngredients)]
     setDayMenuIngredients(uniqueIngredients)
   }
 
@@ -103,7 +103,7 @@ export default function DayMenuEditView () {
           initialNumToRender={15}
           maxToRenderPerBatch={40}
           ItemSeparatorComponent={<Divider />}
-          data={recipesWithIngredientsName}
+          data={recipes}
           extraData={recipeSelected}
           renderItem={({ item }) => renderItem(item, recipeSelected)}
         />

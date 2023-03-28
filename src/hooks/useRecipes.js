@@ -1,31 +1,14 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import uuid from 'react-native-uuid'
 
-import { IngredientsContext } from '../contexts/IngredientsContext'
 import { RecipesContext } from '../contexts/RecipesContext'
 import { areObjectsEqual } from '../utils/areObjectsEqual'
 import { useWeekMenu } from './useWeekMenu'
 
 export function useRecipes () {
   const { recipes, setRecipes, selectedRecipes, setSelectedRecipes } = useContext(RecipesContext)
-  const { ingredients } = useContext(IngredientsContext)
 
   const { weekMenu, removeRecipesFromWeekMenu } = useWeekMenu()
-  const [recipesWithIngredientsName, setRecipesWithIngredientsName] = useState([])
-
-  const getRecipesWithIngredientsName = () => {
-    const recipesWithIngredientsName = recipes.map(recipe => {
-      const ingredientsWithName = recipe.ingredients.map(recipeIngredient => {
-        const ingredientWithName = ingredients.find(ingredient => ingredient.id === recipeIngredient)
-        return ingredientWithName ?? { id: recipeIngredient, text: 'Error' }
-      })
-      return {
-        ...recipe,
-        ingredients: ingredientsWithName
-      }
-    })
-    setRecipesWithIngredientsName(recipesWithIngredientsName)
-  }
 
   const sortRecipes = (newRecipes) => {
     newRecipes.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
@@ -106,31 +89,14 @@ export function useRecipes () {
     setSelectedRecipes([])
   }
 
-  const removeIngredientsFromAllRecipes = (ingredientsId) => {
-    const newRecipes = recipes.map(recipe => {
-      const newIngredients = recipe.ingredients.filter(ingredient => !ingredientsId.includes(ingredient)) ?? []
-      return {
-        ...recipe,
-        ingredients: newIngredients
-      }
-    })
-    setRecipes(newRecipes)
-  }
-
-  useEffect(() => {
-    getRecipesWithIngredientsName()
-  }, [recipes, ingredients])
-
   return {
     recipes,
-    recipesWithIngredientsName,
     selectedRecipes,
     handleSaveRecipe,
     handleDeleteRecipe,
     handleSelectRecipe,
     handleUnselectRecipe,
     handleDeleteSelectedRecipes,
-    handleUnselectAllRecipes,
-    removeIngredientsFromAllRecipes
+    handleUnselectAllRecipes
   }
 }

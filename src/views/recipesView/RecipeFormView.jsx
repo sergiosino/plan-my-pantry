@@ -3,25 +3,22 @@ import { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import { useRecipes } from '../../hooks/useRecipes'
-import { useIngredients } from '../../hooks/useIngredients'
 import Button from '../../components/Button'
-import MultiSelectStyled from '../../components/multiSelect/MultiSelectStyled'
 import TextInputSyled from '../../components/TextInputSyled'
 
-export default function RecipeModal () {
+export default function RecipeFormView () {
   const route = useRoute()
   const navigation = useNavigation()
 
   const { handleSaveRecipe } = useRecipes()
-  const { ingredients } = useIngredients()
 
-  const [selectedIngredients, setSelectedIngredients] = useState([])
   const [name, setName] = useState('')
+  const [ingredients, setIngredients] = useState('')
 
   const { recipe } = route.params ?? { recipe: null }
 
   const handleSave = () => {
-    const updatedRecipe = { id: -1, name, ingredients: selectedIngredients }
+    const updatedRecipe = { id: -1, name, ingredients }
     if (recipe) { updatedRecipe.id = recipe.id }
     handleSaveRecipe(updatedRecipe)
     navigation.goBack()
@@ -30,7 +27,7 @@ export default function RecipeModal () {
   useEffect(() => {
     if (recipe) {
       setName(recipe.name)
-      setSelectedIngredients(recipe.ingredients.map(ingredient => ingredient.id))
+      setIngredients(recipe.ingredients)
     }
   }, [])
 
@@ -41,7 +38,8 @@ export default function RecipeModal () {
           <Text style={styles.modalText}>Recipe name</Text>
           <TextInputSyled value={name} onChangeText={setName} />
           <Text style={styles.modalText}>Ingredients</Text>
-          <MultiSelectStyled data={ingredients} selected={selectedIngredients} onSelect={setSelectedIngredients} />
+          <TextInputSyled value={ingredients} onChangeText={setIngredients} />
+          <Text style={styles.infoText}>* Hey! Separate ingredients with commas if you want to add them to the grocery list easily</Text>
         </View>
       </ScrollView>
       <View style={styles.buttonsContainer}>
@@ -74,5 +72,9 @@ const styles = StyleSheet.create({
   modalText: {
     marginTop: 15,
     marginBottom: 5
+  },
+  infoText: {
+    fontSize: 10,
+    paddingHorizontal: 10
   }
 })

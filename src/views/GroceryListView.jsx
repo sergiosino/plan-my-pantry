@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useRef } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 
 import AddButton from '../components/AddButton'
@@ -21,7 +21,7 @@ export default function GroceryListView () {
 
   const getItemLayout = (_, index) => ({ length: GROCERY_ITEM_HEIGHT, offset: GROCERY_ITEM_HEIGHT * index, index })
 
-  const renderItem = useCallback((item, idToFocus) => {
+  const renderItem = (item, idToFocus) => {
     const { id, checked, text } = item
     const isItemToFocus = idToFocus === id
     return (
@@ -32,7 +32,7 @@ export default function GroceryListView () {
         isItemToFocus={isItemToFocus}
       />
     )
-  }, [])
+  }
 
   return (
     <View style={styles.container}>

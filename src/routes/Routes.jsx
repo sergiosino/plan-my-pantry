@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { ROUTE_NAME_DAY_MENU_EDIT, ROUTE_NAME_RECIPES_EDIT, ROUTE_NAME_TABS } from '../constants/routes'
 import BottomTabsRoutes from './BottomTabsRoutes'
-import RecipeFormView from '../views/foodView/RecipeFormView'
+import RecipeFormView from '../views/recipesView/RecipeFormView'
 import DayMenuEditView from '../views/weekMenuView/DayMenuEditView'
 
 const Stack = createNativeStackNavigator()

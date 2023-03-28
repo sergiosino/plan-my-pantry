@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 
 import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
@@ -6,7 +5,7 @@ import { useGroceryItem } from '../../hooks/useGroceryItem'
 import Checkbox from '../Checkbox'
 import IconButton from '../IconButton'
 
-export default memo(function GroceryItem (props) {
+export default function GroceryItem (props) {
   const {
     id,
     defaultChecked,
@@ -51,7 +50,7 @@ export default memo(function GroceryItem (props) {
       {showDeleteIcon && !defaultChecked && <IconButton onPress={handleDelete} iconName='close' />}
     </View>
   )
-})
+}
 
 const styles = StyleSheet.create({
   container: {

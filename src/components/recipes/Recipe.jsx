@@ -1,11 +1,8 @@
-import { memo, useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
-export default memo(function Recipe (props) {
+export default function Recipe (props) {
   const { id, name, ingredients, onPress, onLongPress, isSelected } = props
-
-  const [ingredientsText, setIngredientsText] = useState([])
 
   const containerStyle = isSelected ? styles.containerSelected : styles.container
 
@@ -16,11 +13,6 @@ export default memo(function Recipe (props) {
   const handleRecipeItemLongPress = () => {
     onLongPress && onLongPress({ id, name, ingredients })
   }
-
-  useEffect(() => {
-    const newIngredientsText = ingredients.map(ingredient => ingredient.text)
-    setIngredientsText(newIngredientsText)
-  }, [ingredients, setIngredientsText])
 
   return (
     <View style={containerStyle}>
@@ -35,14 +27,14 @@ export default memo(function Recipe (props) {
           </View>
           <View>
             <Text style={styles.textIngredients}>
-              {ingredientsText?.join(',  ')}
+              {ingredients}
             </Text>
           </View>
         </View>
       </RectButton>
     </View>
   )
-})
+}
 
 const styles = StyleSheet.create({
   container: {

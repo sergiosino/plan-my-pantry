@@ -1,16 +1,16 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import AddButton from '../AddButton'
-import Recipe from './Recipe'
-import SwipeableRow from '../swipeableRow/SwippeableRow'
-import Divider from '../Divider'
+import AddButton from '../../components/AddButton'
+import Recipe from '../../components/recipes/Recipe'
+import SwipeableRow from '../../components/swipeableRow/SwippeableRow'
+import Divider from '../../components/Divider'
 import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
 import { useRecipes } from '../../hooks/useRecipes'
 
-export default function Recipes () {
+export default function RecipesView () {
   const {
-    recipesWithIngredientsName,
+    recipes,
     selectedRecipes,
     handleDeleteRecipe,
     handleSelectRecipe,
@@ -59,7 +59,7 @@ export default function Recipes () {
         initialNumToRender={15}
         maxToRenderPerBatch={40}
         ItemSeparatorComponent={<Divider />}
-        data={recipesWithIngredientsName}
+        data={recipes}
         extraData={selectedRecipes}
         renderItem={({ item }) => renderItem(item)}
       />

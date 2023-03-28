@@ -1,5 +1,5 @@
 export const ROUTE_NAME_TABS = 'Tabs'
-export const ROUTE_NAME_FOODS_VIEW = 'Foods'
+export const ROUTE_NAME_RECIPES_VIEW = 'Recipes'
 export const ROUTE_NAME_RECIPES_EDIT = 'Recipe edit'
 export const ROUTE_NAME_WEEK_MENU = 'Week menu'
 export const ROUTE_NAME_DAY_MENU_EDIT = 'Day menu edit'

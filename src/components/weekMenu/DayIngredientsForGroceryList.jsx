@@ -3,38 +3,37 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
 import Button from '../Button'
-import DeselectableItem from '../multiSelect/DeselectableItem'
+import DeselectableItem from '../groceryList/DeselectableItem'
 import { useGroceryItems } from '../../hooks/useGroceryList'
 
 export default function DayIngredientsForGroceryList (props) {
   const { dayMenuIngredients, setDayMenuIngredients } = props
-
+  console.log(dayMenuIngredients)
   const navigation = useNavigation()
   const { handleAddItems } = useGroceryItems()
 
   const handleAddGroceryList = () => {
-    const ingredientsText = dayMenuIngredients.map(dayMenuIngredient => dayMenuIngredient.text)
+    const ingredientsText = dayMenuIngredients.map(dayMenuIngredient => dayMenuIngredient)
     handleAddItems(ingredientsText)
     navigation.goBack()
   }
 
   const handleRemoveIngredient = (ingredient) => {
     const dayMenuIngredientsCopy = [...dayMenuIngredients]
-    const dayMenuIngredientsUpdated = dayMenuIngredientsCopy.filter(dayMenuIngredient => dayMenuIngredient.id !== ingredient.id)
+    const dayMenuIngredientsUpdated = dayMenuIngredientsCopy.filter(dayMenuIngredient => dayMenuIngredient !== ingredient)
     setDayMenuIngredients(dayMenuIngredientsUpdated)
   }
 
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.titleText}>Long press on recipe to add the ingredients:</Text>
+        <Text style={styles.titleText}>Long press on recipe to add the ingredients</Text>
       </View>
       <ScrollView>
         <View style={styles.ingredientsContainer}>
-          {dayMenuIngredients.map(dayMenuIngredient => {
-            const { id, text } = dayMenuIngredient
-            return <DeselectableItem key={id} item={{ id, text }} onPress={handleRemoveIngredient} />
-          })}
+          {dayMenuIngredients.map((dayMenuIngredient, index) => (
+            <DeselectableItem key={`${dayMenuIngredient}${index}`} text={dayMenuIngredient} onPress={handleRemoveIngredient} />
+          ))}
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>

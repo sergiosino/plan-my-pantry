@@ -2,14 +2,14 @@ import { StyleSheet, Text, View } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
 export default function DeselectableItem (props) {
-  const { onPress, item } = props
+  const { onPress, text } = props
 
   return (
     <View style={styles.rowSelectedItem}>
-      <RectButton style={styles.rectButton} onPress={() => onPress && onPress(item)}>
+      <RectButton style={styles.rectButton} onPress={() => onPress && onPress(text)}>
         <View style={styles.selectedItem}>
           <Text style={styles.selectedTextLeftItem}>
-            {item?.text}
+            {text}
           </Text>
           <Text style={styles.selectedTextItem}>
             ⓧ
