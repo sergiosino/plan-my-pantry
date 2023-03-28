@@ -45,7 +45,7 @@ export default function RecipesView () {
           name={name}
           ingredients={ingredients}
           onPress={(recipe) => handlePressRecipe(recipe, isSelected)}
-          onLongPress={(recipe) => handleLongPressRecipe(recipe, isSelected)}
+          // onLongPress={(recipe) => handleLongPressRecipe(recipe, isSelected)}
           isSelected={isSelected}
         />
       </SwipeableRow>
