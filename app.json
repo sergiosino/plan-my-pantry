@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "grocery-list",
-    "slug": "grocery-list",
-    "version": "0.6.0",
+    "name": "PlanMyPantry",
+    "slug": "plan-my-pantry",
+    "version": "0.7.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
