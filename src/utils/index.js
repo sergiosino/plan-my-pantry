@@ -1,11 +1,11 @@
 import { areObjectsEqual } from './areObjectsEqual'
 import { capitalizeString } from './capitalizeString'
 import { confirmationAlert } from './confirmationAlert'
-import { isNullOrWhiteSpaced } from './isNullOrWhiteSpaced'
+import { isNullOrWhiteSpace } from './isNullOrWhiteSpace'
 
 export {
   areObjectsEqual,
   capitalizeString,
   confirmationAlert,
-  isNullOrWhiteSpaced
+  isNullOrWhiteSpace
 }
