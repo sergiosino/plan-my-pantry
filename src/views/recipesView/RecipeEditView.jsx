@@ -19,7 +19,7 @@ const ICON_SIZE = 25
 export default function RecipeEditView () {
   const route = useRoute()
   const navigation = useNavigation()
-  const { control, handleSubmit, watch, reset } = useForm({
+  const { control, handleSubmit, getValues, reset } = useForm({
     defaultValues: {
       [FIELD_NAME_RECIPE]: '',
       [FIELD_NAME_INGREDIENTS]: [FIELD_DEFAULT_INGREDIENT, FIELD_DEFAULT_INGREDIENT]
@@ -54,7 +54,7 @@ export default function RecipeEditView () {
   }
 
   const handleChange = (inputNumber) => {
-    const ingredients = watch(FIELD_NAME_INGREDIENTS)
+    const ingredients = getValues(FIELD_NAME_INGREDIENTS)
     const isLatIngredient = inputNumber === ingredients.length
     if (isLatIngredient) {
       append(FIELD_DEFAULT_INGREDIENT)
@@ -135,7 +135,8 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginTop: 15,
-    marginBottom: 5
+    marginBottom: 5,
+    fontSize: 16
   },
   ingredientsContainer: {
     flexDirection: 'row',
