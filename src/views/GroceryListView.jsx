@@ -4,15 +4,15 @@ import { View, StyleSheet } from 'react-native'
 import AddButton from '../components/AddButton'
 import GroceryListHeader from '../components/groceryList/GroceryListHeader'
 import GroceryItem from '../components/groceryList/GroceryItem'
-import { useGroceryItems } from '../hooks/useGroceryList'
+import { useGroceryList } from '../hooks/useGroceryList'
 import { ScrollView } from 'react-native-gesture-handler'
 
 export default function GroceryListView () {
-  const _itemIdToFocus = useRef(null)
   const {
     groceryListItems,
     handleAddItem
-  } = useGroceryItems()
+  } = useGroceryList()
+  const _itemIdToFocus = useRef(null)
 
   const handleAdd = () => {
     const newGroceryItemId = handleAddItem()

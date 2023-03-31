@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useGroceryItems } from './useGroceryList'
+import { useGroceryList } from './useGroceryList'
 
 export function useGroceryItem (props) {
   const {
@@ -11,7 +11,7 @@ export function useGroceryItem (props) {
   const {
     handleItemChange,
     handleDeleteItem
-  } = useGroceryItems()
+  } = useGroceryList()
   const [text, setText] = useState(defaultText)
   const [showDeleteIcon, setShowDeleteIcon] = useState(false)
 

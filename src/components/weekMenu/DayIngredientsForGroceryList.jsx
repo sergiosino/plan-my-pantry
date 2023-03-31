@@ -4,13 +4,13 @@ import { useNavigation } from '@react-navigation/native'
 
 import Button from '../Button'
 import DeselectableItem from '../groceryList/DeselectableItem'
-import { useGroceryItems } from '../../hooks/useGroceryList'
+import { useGroceryList } from '../../hooks/useGroceryList'
 
 export default function DayIngredientsForGroceryList (props) {
   const { dayMenuIngredients, setDayMenuIngredients } = props
 
   const navigation = useNavigation()
-  const { handleAddItems } = useGroceryItems()
+  const { handleAddItems } = useGroceryList()
 
   const handleAddGroceryList = () => {
     const ingredientsText = dayMenuIngredients.map(dayMenuIngredient => dayMenuIngredient)

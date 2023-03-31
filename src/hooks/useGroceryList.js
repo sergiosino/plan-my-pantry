@@ -3,7 +3,7 @@ import uuid from 'react-native-uuid'
 
 import { GroceryListContext } from '../contexts/GroceryListContext'
 
-export function useGroceryItems () {
+export function useGroceryList () {
   const { groceryListItems, setGroceryItems } = useContext(GroceryListContext)
 
   const handleAddItems = (newItems) => {
