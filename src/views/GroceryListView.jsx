@@ -9,7 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 
 export default function GroceryListView () {
   const {
-    groceryListItems,
+    groceryList,
     handleAddItem
   } = useGroceryList()
   const _itemIdToFocus = useRef(null)
@@ -37,7 +37,7 @@ export default function GroceryListView () {
     <View style={styles.container}>
       <GroceryListHeader itemIdToFocus={_itemIdToFocus} />
       <ScrollView style={styles.flatListContent}>
-        {groceryListItems.map(renderItem)}
+        {groceryList.map(renderItem)}
       </ScrollView>
       <AddButton onAddItem={handleAdd} />
     </View>
