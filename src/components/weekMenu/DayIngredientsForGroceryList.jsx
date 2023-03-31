@@ -8,7 +8,7 @@ import { useGroceryItems } from '../../hooks/useGroceryList'
 
 export default function DayIngredientsForGroceryList (props) {
   const { dayMenuIngredients, setDayMenuIngredients } = props
-  console.log(dayMenuIngredients)
+
   const navigation = useNavigation()
   const { handleAddItems } = useGroceryItems()
 

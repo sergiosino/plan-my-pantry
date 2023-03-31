@@ -27,9 +27,9 @@ export default function RecipesView () {
       : handleSelectRecipe(recipe.id)
   }
 
-  const handleLongPressRecipe = (recipe, isSelected) => {
-    if (!isSelected) { handleSelectRecipe(recipe.id) }
-  }
+  // const handleLongPressRecipe = (recipe, isSelected) => {
+  //   if (!isSelected) { handleSelectRecipe(recipe.id) }
+  // }
 
   const handleAddPress = () => {
     navigation.navigate(ROUTE_NAME_RECIPES_EDIT)

@@ -3,7 +3,7 @@ import { Text, View } from 'react-native'
 import Constants from 'expo-constants'
 
 import { RecipesContext } from '../contexts/RecipesContext'
-import TextInputStyled from '../components/TextInputSyled'
+import TextInputStyled from '../components/forms/TextInputSyled'
 
 export default function SettingsView () {
   const { recipes } = useContext(RecipesContext)
