@@ -4,12 +4,11 @@ import { useRoute } from '@react-navigation/native'
 
 import { useWeekMenu } from '../../hooks/useWeekMenu'
 import DayMenu from '../../components/weekMenu/DayMenu'
-import TextInputSyled from '../../components/TextInputSyled'
+import TextInputSyled from '../../components/forms/TextInputSyled'
 import { useRecipes } from '../../hooks/useRecipes'
 import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
 import DayIngredientsForGroceryList from '../../components/weekMenu/DayIngredientsForGroceryList'
-import { capitalizeString } from '../../utils/capitalizeString'
 
 export default function DayMenuEditView () {
   const route = useRoute()
@@ -52,10 +51,7 @@ export default function DayMenuEditView () {
 
   const handleLongPressRecipe = (pressedRecipe) => {
     const { ingredients } = pressedRecipe
-    let ingredientsArray = ingredients.split(',')
-    ingredientsArray = ingredientsArray.map(ingredient => capitalizeString(ingredient))
-
-    const allIngredients = [...dayMenuIngredients, ...ingredientsArray]
+    const allIngredients = [...dayMenuIngredients, ...ingredients]
     const uniqueIngredients = [...new Set(allIngredients)]
     setDayMenuIngredients(uniqueIngredients)
   }

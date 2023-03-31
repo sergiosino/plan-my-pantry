@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import uuid from 'react-native-uuid'
 
+import { NEW_ELEMENT_ID } from '../constants/constants'
 import { RecipesContext } from '../contexts/RecipesContext'
 import { areObjectsEqual } from '../utils/areObjectsEqual'
 import { useWeekMenu } from './useWeekMenu'
@@ -16,7 +17,7 @@ export function useRecipes () {
   }
 
   const handleSaveRecipe = (recipe) => {
-    recipe.id === -1
+    recipe.id === NEW_ELEMENT_ID
       ? handleAddRecipe(recipe)
       : handleEditRecipe(recipe)
   }

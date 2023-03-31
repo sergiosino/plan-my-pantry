@@ -5,6 +5,7 @@ export default function Recipe (props) {
   const { id, name, ingredients, onPress, onLongPress, isSelected } = props
 
   const containerStyle = isSelected ? styles.containerSelected : styles.container
+  const ingredientsString = ingredients.join(', ')
 
   const handleRecipeItemPress = () => {
     onPress && onPress({ id, name, ingredients })
@@ -27,7 +28,7 @@ export default function Recipe (props) {
           </View>
           <View>
             <Text style={styles.textIngredients}>
-              {ingredients}
+              {ingredientsString}
             </Text>
           </View>
         </View>
