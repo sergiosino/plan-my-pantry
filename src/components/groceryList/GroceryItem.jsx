@@ -1,6 +1,5 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 
-import { GROCERY_ITEM_HEIGHT } from '../../constants/constants'
 import { useGroceryItem } from '../../hooks/useGroceryItem'
 import Checkbox from '../Checkbox'
 import IconButton from '../IconButton'
@@ -56,8 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 8,
-    height: GROCERY_ITEM_HEIGHT
+    paddingVertical: 8
   },
   checkbox: {
     marginRight: 15
