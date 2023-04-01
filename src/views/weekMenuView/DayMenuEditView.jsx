@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-import { useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 import { useWeekMenu } from '../../hooks/useWeekMenu'
 import DayMenu from '../../components/weekMenu/DayMenu'
@@ -15,12 +15,15 @@ export default function DayMenuEditView () {
   const { dayId } = route.params
   const { getDayMenu, updateRecipeLunch, updateRecipeDinner } = useWeekMenu()
   const { recipes } = useRecipes()
+  const navigation = useNavigation()
 
   const [isLunchSelected, setIsLunchSelected] = useState(true)
   const [recipeSelected, setRecipeSelected] = useState(null)
-  const [dayMenu, setDayMenu] = useState(getDayMenu(dayId))
+  const [dayMenu, setDayMenu] = useState({})
   const [searchText, setSearchText] = useState('')
   const [dayMenuIngredients, setDayMenuIngredients] = useState([])
+
+  const { dayName, lunch, dinner } = dayMenu
 
   const handlePressLunch = () => {
     if (isLunchSelected) { return }
@@ -73,17 +76,30 @@ export default function DayMenuEditView () {
 
   useEffect(() => {
     isLunchSelected
-      ? setRecipeSelected(dayMenu.lunch?.id)
-      : setRecipeSelected(dayMenu.dinner?.id)
+      ? setRecipeSelected(lunch?.id)
+      : setRecipeSelected(dinner?.id)
   }, [isLunchSelected])
+
+  useEffect(() => {
+    if (dayName) {
+      navigation.setOptions({
+        title: dayName
+      })
+    }
+  }, [dayMenu])
+
+  useEffect(() => {
+    setDayMenu(getDayMenu(dayId))
+  }, [])
 
   return (
     <View style={styles.container}>
       <View style={styles.dayMenuContainer}>
         <DayMenu
+          lunch={lunch?.name}
+          dinner={dinner?.name}
           onPressLunch={handlePressLunch}
           onPressDinner={handlePressDinner}
-          dayMenu={dayMenu}
           isLunchSelected={isLunchSelected}
           isDinnerSelected={!isLunchSelected}
         />
@@ -116,7 +132,7 @@ const styles = StyleSheet.create({
   },
   dayMenuContainer: {
     marginHorizontal: 10,
-    height: 170
+    height: 135
   },
   ingredientsListContainer: {
     marginHorizontal: 10,

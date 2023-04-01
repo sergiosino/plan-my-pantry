@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import { RectButton, ScrollView } from 'react-native-gesture-handler'
 
 import Divider from '../../components/Divider'
 import DayMenu from '../../components/weekMenu/DayMenu'
@@ -19,10 +19,12 @@ export default function WeekMenuView () {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
       {weekMenu.map((dayMenu) => {
-        const { dayId } = dayMenu
+        const { dayId, dayName, lunch, dinner } = dayMenu
         return (
           <View key={dayId}>
-            <DayMenu dayMenu={dayMenu} onPressDayMenu={handleDayMenuPress} />
+            <RectButton onPress={() => handleDayMenuPress(dayId)}>
+              <DayMenu dayName={dayName} lunch={lunch?.name} dinner={dinner?.name} />
+            </RectButton>
             <Divider style={{ marginHorizontal: 20 }} />
           </View>
         )

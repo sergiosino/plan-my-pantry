@@ -12,7 +12,14 @@ export default function Routes () {
   const { colors } = useTheme()
 
   return (
-    <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: colors.background }, headerShadowVisible: false }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: colors.background
+        },
+        headerShadowVisible: false
+      }}
+    >
       <Stack.Screen name={ROUTE_NAME_TABS} component={BottomTabsRoutes} options={{ headerShown: false }} />
       <Stack.Screen name={ROUTE_NAME_RECIPES_EDIT} component={RecipeEditView} />
       <Stack.Screen name={ROUTE_NAME_DAY_MENU_EDIT} component={DayMenuEditView} />
