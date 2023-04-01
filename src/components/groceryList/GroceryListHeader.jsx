@@ -4,7 +4,14 @@ import { confirmationAlert } from '../../utils/confirmationAlert'
 import { headerStyles } from '../../styles/headerStyles'
 import IconButton from '../IconButton'
 import { useGroceryList } from '../../hooks/useGroceryList'
-import { CONFIRMATION_ALERT_CHECK_ALL_ITEMS_MESSAGE, CONFIRMATION_ALERT_CHECK_TITLE, CONFIRMATION_ALERT_DELETE_ALL_CHECKED_ITEMS_MESSAGE, CONFIRMATION_ALERT_DELETE_TITLE, CONFIRMATION_ALERT_UNCHECK_ALL_ITEMS_MESSAGE, CONFIRMATION_ALERT_UNCHECK_TITLE } from '../../constants/texts'
+import {
+  CONFIRMATION_ALERT_CHECK_ALL_ITEMS_MESSAGE,
+  CONFIRMATION_ALERT_CHECK_TITLE,
+  CONFIRMATION_ALERT_DELETE_ALL_CHECKED_ITEMS_MESSAGE,
+  CONFIRMATION_ALERT_DELETE_TITLE,
+  CONFIRMATION_ALERT_UNCHECK_ALL_ITEMS_MESSAGE,
+  CONFIRMATION_ALERT_UNCHECK_TITLE
+} from '../../constants/texts'
 
 export default function GroceryListHeader (props) {
   const { itemIdToFocus } = props
