@@ -1,7 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 
 import { confirmationAlert } from '../../utils/confirmationAlert'
-import { headerStyles } from '../../styles/headerStyles'
 import IconButton from '../IconButton'
 import { useGroceryList } from '../../hooks/useGroceryList'
 import {
@@ -12,6 +11,8 @@ import {
   CONFIRMATION_ALERT_UNCHECK_ALL_ITEMS_MESSAGE,
   CONFIRMATION_ALERT_UNCHECK_TITLE
 } from '../../constants/texts'
+
+const GAP = 25
 
 export default function GroceryListHeader (props) {
   const { itemIdToFocus } = props
@@ -49,14 +50,14 @@ export default function GroceryListHeader (props) {
   }
 
   return (
-    <View style={[headerStyles.headerContainer, styles.localHeaderContainer]}>
-      <View style={headerStyles.headerItem}>
+    <View style={styles.localHeaderContainer}>
+      <View style={styles.headerItem}>
         <IconButton onPress={handlePressCheckAll} iconName='checkbox' />
       </View>
-      <View style={headerStyles.headerItem}>
+      <View style={styles.headerItem}>
         <IconButton onPress={handlePressUncheckAll} iconName='checkbox-outline' />
       </View>
-      <View style={headerStyles.headerItem}>
+      <View style={styles.headerItem}>
         <IconButton onPress={handlePressDeleteChecked} iconName='md-trash-outline' />
       </View>
     </View>
@@ -65,6 +66,13 @@ export default function GroceryListHeader (props) {
 
 const styles = StyleSheet.create({
   localHeaderContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: GAP,
+    margin: -(GAP / 2),
     justifyContent: 'flex-end'
+  },
+  headerItem: {
+    margin: (GAP / 2)
   }
 })
