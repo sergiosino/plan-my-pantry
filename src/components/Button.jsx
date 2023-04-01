@@ -1,3 +1,4 @@
+import { useTheme } from '@react-navigation/native'
 import { StyleSheet } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
@@ -8,9 +9,12 @@ export default function Button (props) {
     onPress
   } = props
 
+  const { colors } = useTheme()
+  const buttonStyle = [styles.textButton, { backgroundColor: colors.primary }]
+
   return (
     <RectButton
-      style={[styles.textButton, style]}
+      style={[buttonStyle, style]}
       onPress={onPress}
     >
       {children}

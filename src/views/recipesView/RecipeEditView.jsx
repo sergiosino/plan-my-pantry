@@ -104,7 +104,7 @@ export default function RecipeEditView () {
         ))}
       </ScrollView>
       <View style={styles.buttonsContainer}>
-        <Button style={styles.button} onPress={handleSubmit(handleSave)}>
+        <Button onPress={handleSubmit(handleSave)}>
           <Text style={styles.textStyle}>Save</Text>
         </Button>
       </View>
@@ -114,9 +114,8 @@ export default function RecipeEditView () {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
-    backgroundColor: 'white',
     flex: 1,
+    padding: 15,
     justifyContent: 'space-between'
   },
   scrollContainer: {
@@ -124,9 +123,6 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: 'row'
-  },
-  button: {
-    backgroundColor: 'gray'
   },
   textStyle: {
     color: 'white',

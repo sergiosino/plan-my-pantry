@@ -93,17 +93,15 @@ export default function DayMenuEditView () {
           placeholder='Search...'
         />
       </View>
-      <View style={styles.recipesListContainer}>
-        <Divider />
-        <FlatList
-          initialNumToRender={15}
-          maxToRenderPerBatch={40}
-          ItemSeparatorComponent={<Divider />}
-          data={recipes}
-          extraData={recipeSelected}
-          renderItem={({ item }) => renderItem(item, recipeSelected)}
-        />
-      </View>
+      <Divider />
+      <FlatList
+        initialNumToRender={15}
+        maxToRenderPerBatch={40}
+        ItemSeparatorComponent={<Divider />}
+        data={recipes}
+        extraData={recipeSelected}
+        renderItem={({ item }) => renderItem(item, recipeSelected)}
+      />
       <Divider />
       <View style={styles.ingredientsListContainer}>
         <DayIngredientsForGroceryList dayMenuIngredients={dayMenuIngredients} setDayMenuIngredients={setDayMenuIngredients} />
@@ -114,19 +112,15 @@ export default function DayMenuEditView () {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'white'
+    flex: 1
   },
   dayMenuContainer: {
-    marginHorizontal: 10
-  },
-  recipesListContainer: {
-    flex: 1,
-    marginTop: 10
+    marginHorizontal: 10,
+    height: 170
   },
   ingredientsListContainer: {
-    flex: 0.5,
     marginHorizontal: 10,
-    marginTop: 10
+    marginTop: 10,
+    height: 175
   }
 })

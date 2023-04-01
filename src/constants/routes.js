@@ -1,7 +1,7 @@
 export const ROUTE_NAME_TABS = 'Tabs'
 export const ROUTE_NAME_RECIPES_VIEW = 'Recipes'
 export const ROUTE_NAME_RECIPES_EDIT = 'Recipe edit'
-export const ROUTE_NAME_WEEK_MENU = 'Week menu'
+export const ROUTE_NAME_WEEK_MENU = 'Weekly menu'
 export const ROUTE_NAME_DAY_MENU_EDIT = 'Day menu edit'
 export const ROUTE_NAME_GROCERY_LIST = 'Grocery list'
 export const ROUTE_NAME_SETTINGS = 'Settings'

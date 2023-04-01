@@ -26,9 +26,7 @@ export default function DayIngredientsForGroceryList (props) {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.titleText}>Long press on recipe to add the ingredients</Text>
-      </View>
+      <Text style={styles.titleText}>Long press on recipe to add the ingredients</Text>
       <ScrollView>
         <View style={styles.ingredientsContainer}>
           {dayMenuIngredients.map((dayMenuIngredient, index) => (
@@ -37,7 +35,7 @@ export default function DayIngredientsForGroceryList (props) {
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} onPress={handleAddGroceryList}>
+        <Button onPress={handleAddGroceryList}>
           <Text style={styles.buttonText}>Add to grocery list</Text>
         </Button>
       </View>
@@ -51,19 +49,17 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   titleText: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginBottom: 5
   },
   ingredientsContainer: {
-    flex: 1,
-    marginTop: 5,
+    marginBottom: 5,
     flexWrap: 'wrap',
     flexDirection: 'row'
   },
   buttonContainer: {
+    marginTop: 5,
     flexDirection: 'row'
-  },
-  button: {
-    backgroundColor: 'gray'
   },
   buttonText: {
     color: 'white'

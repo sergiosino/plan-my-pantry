@@ -1,3 +1,4 @@
+import { useTheme } from '@react-navigation/native'
 import { StyleSheet, Text, View } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
@@ -20,8 +21,10 @@ function MealRecipeText ({ meal, recipe, isSelected }) {
 export default function DayMeal (props) {
   const { meal, recipe, onPress, isSelected } = props
 
+  const { colors } = useTheme()
+
   const isPressable = !!onPress
-  const containerStyle = [styles.container, isSelected && styles.containerSelected]
+  const containerStyle = [styles.container, isSelected && { backgroundColor: colors.primary }]
 
   return isPressable
     ? (
@@ -41,10 +44,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 5,
-    borderRadius: 4
-  },
-  containerSelected: {
-    backgroundColor: 'gray',
     borderRadius: 4
   },
   mealText: {

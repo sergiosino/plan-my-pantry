@@ -20,8 +20,12 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     borderWidth: 0.5,
-    padding: 10,
+    paddingHorizontal: 10,
     borderRadius: 4,
-    borderColor: 'gray'
+    borderColor: 'gray',
+    backgroundColor: 'white',
+    maxHeight: 34,
+    height: 34,
+    minHeight: 34
   }
 })

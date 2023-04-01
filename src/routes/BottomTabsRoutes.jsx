@@ -6,6 +6,7 @@ import GroceryListView from '../views/GroceryListView'
 import WeekMenuView from '../views/weekMenuView/WeekMenuView'
 import RecipesView from '../views/recipesView/RecipesView'
 import SettingsView from '../views/SettingsView'
+import { useTheme } from '@react-navigation/native'
 
 const Tab = createBottomTabNavigator()
 
@@ -37,6 +38,8 @@ const TAB_ROUTES = [
 ]
 
 export default function BottomTabsRoutes () {
+  const { colors } = useTheme()
+
   const getTabIcon = ({ focused, color, size, route }) => {
     const { iconName, focusedIconName } = TAB_ROUTES.find(tabRoute => tabRoute.name === route.name)
     const icon = focused ? focusedIconName : iconName
@@ -46,7 +49,9 @@ export default function BottomTabsRoutes () {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: (props) => getTabIcon({ ...props, route })
+        tabBarIcon: (props) => getTabIcon({ ...props, route }),
+        headerStyle: { backgroundColor: colors.background },
+        headerShadowVisible: false
       })}
     >
       {TAB_ROUTES.map(tabRoute => {
