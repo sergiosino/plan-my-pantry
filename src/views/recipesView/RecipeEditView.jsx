@@ -32,6 +32,7 @@ export default function RecipeEditView () {
   const { handleSaveRecipe } = useRecipes()
 
   const _ingredientsInput = useRef([])
+  const _recipeNameInput = useRef({})
 
   const { recipe } = route.params ?? { recipe: null }
 
@@ -69,6 +70,8 @@ export default function RecipeEditView () {
         name: recipe.name,
         [FIELD_NAME_INGREDIENTS]: ingredientFields
       })
+    } else {
+      setTimeout(() => { _recipeNameInput.current.focus() }, 100)
     }
   }, [])
 
@@ -82,6 +85,7 @@ export default function RecipeEditView () {
           blurOnSubmit={false}
           returnKeyType='next'
           onSubmitEditing={() => focusInput()}
+          innerRef={_recipeNameInput}
         />
         <Text style={styles.modalText}>Ingredients</Text>
         {fields.map((field, index) => (
