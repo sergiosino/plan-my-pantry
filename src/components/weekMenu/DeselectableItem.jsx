@@ -25,7 +25,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginVertical: 5,
-    marginRight: 10
+    marginRight: 10,
+    backgroundColor: 'white',
+    borderRadius: 4
   },
   rectButton: {
     borderRadius: 4
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
     padding: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: 'gray',
     flexDirection: 'row'
   },
