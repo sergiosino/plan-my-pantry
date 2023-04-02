@@ -8,7 +8,7 @@ import { useWeekMenu } from './useWeekMenu'
 
 export function useRecipes (props) {
   const { search } = props ?? {}
-  const { recipes, setRecipes, selectedRecipes, setSelectedRecipes } = useContext(RecipesContext)
+  const { recipes, setRecipes } = useContext(RecipesContext)
 
   const { weekMenu, removeRecipesFromWeekMenu } = useWeekMenu()
 
@@ -41,26 +41,9 @@ export function useRecipes (props) {
     }
   }
 
-  const handleSelectRecipe = (id) => {
-    const newSelectedList = [...selectedRecipes]
-    newSelectedList.push(id)
-    setSelectedRecipes(newSelectedList)
-  }
-
-  const handleUnselectRecipe = (id) => {
-    const recipeIndex = selectedRecipes.findIndex(recipeId => recipeId === id)
-
-    if (recipeIndex >= 0) {
-      const newSelectedList = [...selectedRecipes]
-      newSelectedList.splice(recipeIndex, 1)
-      setSelectedRecipes(newSelectedList)
-    }
-  }
-
   const deleteRecipe = (id) => {
     const newRecipes = recipes.filter(recipe => recipe.id !== id)
     setRecipes(newRecipes)
-    handleUnselectRecipe(id)
   }
 
   const handleDeleteRecipe = (id) => {
@@ -70,25 +53,6 @@ export function useRecipes (props) {
       deleteRecipe(id)
       removeRecipesFromWeekMenu([id])
     } else { deleteRecipe(id) }
-  }
-
-  const deleteSelectedRecipes = () => {
-    const newReciepes = recipes.filter(recipe => !selectedRecipes.includes(recipe.id))
-    setRecipes(newReciepes)
-    setSelectedRecipes([])
-  }
-
-  const handleDeleteSelectedRecipes = () => {
-    const weekMenuUsingRecipe = weekMenu.filter(dayMenu => selectedRecipes.includes(dayMenu.lunch?.id) || selectedRecipes.includes(dayMenu.dinner?.id))
-
-    if (weekMenuUsingRecipe.length > 0) {
-      deleteSelectedRecipes()
-      removeRecipesFromWeekMenu(selectedRecipes)
-    } else { deleteSelectedRecipes() }
-  }
-
-  const handleUnselectAllRecipes = () => {
-    setSelectedRecipes([])
   }
 
   const getRecipes = () => {
@@ -102,12 +66,7 @@ export function useRecipes (props) {
 
   return {
     recipes: getRecipes(),
-    selectedRecipes,
     handleSaveRecipe,
-    handleDeleteRecipe,
-    handleSelectRecipe,
-    handleUnselectRecipe,
-    handleDeleteSelectedRecipes,
-    handleUnselectAllRecipes
+    handleDeleteRecipe
   }
 }

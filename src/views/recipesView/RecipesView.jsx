@@ -16,24 +16,12 @@ export default function RecipesView () {
   const { search, setSearch } = useSearch()
   const {
     recipes,
-    selectedRecipes,
-    handleDeleteRecipe,
-    handleSelectRecipe,
-    handleUnselectRecipe
+    handleDeleteRecipe
   } = useRecipes({ search })
   const navigation = useNavigation()
 
-  const isSelectedListEmpty = selectedRecipes.length === 0
-
-  const handlePressRecipe = (recipe, isSelected) => {
-    if (isSelectedListEmpty) { return navigation.navigate(ROUTE_NAME_RECIPES_EDIT, { recipe }) }
-    isSelected
-      ? handleUnselectRecipe(recipe.id)
-      : handleSelectRecipe(recipe.id)
-  }
-
-  const handleLongPressRecipe = (recipe, isSelected) => {
-    if (!isSelected) { handleSelectRecipe(recipe.id) }
+  const handlePressRecipe = (recipe) => {
+    navigation.navigate(ROUTE_NAME_RECIPES_EDIT, { recipe })
   }
 
   const handleAddPress = () => {
@@ -42,16 +30,13 @@ export default function RecipesView () {
 
   const renderItem = (recipe) => {
     const { id, name, ingredients } = recipe
-    const isSelected = !!selectedRecipes.find(x => x === recipe.id)
     return (
-      <SwipeableRow onLeftActionPress={() => handleDeleteRecipe(id, isSelected)}>
+      <SwipeableRow onLeftActionPress={() => handleDeleteRecipe(id)}>
         <Recipe
           id={id}
           name={name}
           ingredients={ingredients}
-          onPress={(recipe) => handlePressRecipe(recipe, isSelected)}
-          onLongPress={(recipe) => handleLongPressRecipe(recipe, isSelected)}
-          isSelected={isSelected}
+          onPress={(recipe) => handlePressRecipe(recipe)}
         />
       </SwipeableRow>
     )
@@ -80,7 +65,6 @@ export default function RecipesView () {
         maxToRenderPerBatch={40}
         ItemSeparatorComponent={<Divider />}
         data={recipes}
-        extraData={selectedRecipes}
         renderItem={({ item }) => renderItem(item)}
       />
       <AddButton onAddItem={handleAddPress} />

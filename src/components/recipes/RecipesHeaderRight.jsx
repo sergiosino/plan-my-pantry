@@ -7,6 +7,10 @@ const GAP = 25
 export default function RecipesHeaderRight (props) {
   const { isSearchActive, setIsSearchActive } = props
 
+  const iconName = isSearchActive
+    ? 'close'
+    : 'search'
+
   const handlePress = () => {
     setIsSearchActive(!isSearchActive)
   }
@@ -14,7 +18,7 @@ export default function RecipesHeaderRight (props) {
   return (
     <View style={styles.localHeaderContainer}>
       <View style={styles.headerItem}>
-        <IconButton onPress={handlePress} iconName={isSearchActive ? 'close' : 'search'} />
+        <IconButton onPress={handlePress} iconName={iconName} />
       </View>
     </View>
   )

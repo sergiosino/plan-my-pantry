@@ -8,7 +8,6 @@ export const RecipesContext = createContext({})
 // TODO: Create some default data if empty storage
 export function RecipesContextProvider ({ children }) {
   const [recipes, setRecipes] = useState([])
-  const [selectedRecipes, setSelectedRecipes] = useState([])
 
   const updateRecipes = (newRecipes) => {
     const jsonValue = JSON.stringify(newRecipes)
@@ -28,9 +27,7 @@ export function RecipesContextProvider ({ children }) {
   return (
     <RecipesContext.Provider value={{
       recipes,
-      setRecipes: updateRecipes,
-      selectedRecipes,
-      setSelectedRecipes
+      setRecipes: updateRecipes
     }}
     >
       {children}
