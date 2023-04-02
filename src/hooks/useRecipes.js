@@ -6,7 +6,8 @@ import { RecipesContext } from '../contexts/RecipesContext'
 import { areObjectsEqual } from '../utils/areObjectsEqual'
 import { useWeekMenu } from './useWeekMenu'
 
-export function useRecipes () {
+export function useRecipes (props) {
+  const { search } = props ?? {}
   const { recipes, setRecipes, selectedRecipes, setSelectedRecipes } = useContext(RecipesContext)
 
   const { weekMenu, removeRecipesFromWeekMenu } = useWeekMenu()
@@ -90,8 +91,17 @@ export function useRecipes () {
     setSelectedRecipes([])
   }
 
+  const getRecipes = () => {
+    if (!search) { return recipes }
+
+    const recipesFiltered = recipes.filter(recipe =>
+      recipe.name.toLowerCase().includes(search.toLowerCase())
+    )
+    return recipesFiltered
+  }
+
   return {
-    recipes,
+    recipes: getRecipes(),
     selectedRecipes,
     handleSaveRecipe,
     handleDeleteRecipe,
