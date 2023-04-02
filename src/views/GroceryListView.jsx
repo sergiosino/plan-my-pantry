@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
-import AddButton from '../components/AddButton'
+import AddButton from '../components/buttons/AddButton'
 import GroceryListHeader from '../components/groceryList/GroceryListHeader'
 import GroceryItem from '../components/groceryList/GroceryItem'
 import { useGroceryList } from '../hooks/useGroceryList'

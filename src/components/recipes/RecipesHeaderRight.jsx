@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 
-import IconButton from '../IconButton'
+import IconButton from '../buttons/IconButton'
 
 const GAP = 25
 

@@ -3,18 +3,17 @@ import { useEffect, useRef } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import { useRecipes } from '../../hooks/useRecipes'
-import Button from '../../components/Button'
+import Button from '../../components/buttons/Button'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { isNullOrWhiteSpace, capitalizeString } from '../../utils'
 import TextInputControlled from '../../components/forms/TextInputControlled'
-import IconButton from '../../components/IconButton'
 import { NEW_ELEMENT_ID } from '../../constants/constants'
+import RecipeInputEdit from '../../components/recipes/RecipeInputEdit'
 
 const FIELD_NAME_INGREDIENTS = 'ingredients'
 const FIELD_NAME_INGREDIENT = 'ingredient'
 const FIELD_NAME_RECIPE = 'name'
 const FIELD_DEFAULT_INGREDIENT = { [FIELD_NAME_INGREDIENT]: '' }
-const ICON_SIZE = 25
 
 export default function RecipeEditView () {
   const route = useRoute()
@@ -89,22 +88,18 @@ export default function RecipeEditView () {
         />
         <Text style={styles.modalText}>Ingredients</Text>
         {fields.map((field, index) => (
-          <View key={field.id} style={styles.ingredientsContainer}>
-            <TextInputControlled
-              style={styles.ingredientTextInput}
-              name={`${FIELD_NAME_INGREDIENTS}.${index}.${FIELD_NAME_INGREDIENT}`}
-              control={control}
-              blurOnSubmit={false}
-              returnKeyType='next'
-              onSubmitEditing={() => focusInput(index + 1)}
-              onChange={() => handleChange(index + 1)}
-              innerRef={(input) => { _ingredientsInput.current[index] = input }}
-              placeholder='+ Ingredient'
-            />
-            {fields.length - 1 !== index
-              ? <IconButton onPress={() => remove(index)} iconName='close' size={ICON_SIZE} />
-              : <View style={styles.iconView} />}
-          </View>
+          <RecipeInputEdit
+            key={field.id}
+            index={index}
+            fieldNameIngredients={FIELD_NAME_INGREDIENTS}
+            fieldNameIngredient={FIELD_NAME_INGREDIENT}
+            numberOfFields={fields.length}
+            remove={remove}
+            focusInput={focusInput}
+            handleChange={handleChange}
+            control={control}
+            _ingredientsInput={_ingredientsInput}
+          />
         ))}
       </ScrollView>
       <View style={styles.buttonsContainer}>
@@ -137,17 +132,5 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 5,
     fontSize: 16
-  },
-  ingredientsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 5
-  },
-  ingredientTextInput: {
-    flex: 1,
-    marginRight: 10
-  },
-  iconView: {
-    width: ICON_SIZE
   }
 })

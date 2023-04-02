@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
-import Button from '../Button'
+import Button from '../buttons/Button'
 import DeselectableItem from '../groceryList/DeselectableItem'
 import { useGroceryList } from '../../hooks/useGroceryList'
 

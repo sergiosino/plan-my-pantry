@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import AddButton from '../../components/AddButton'
-import { Recipe, RecipesHeaderRight } from '../../components/recipes'
+import AddButton from '../../components/buttons/AddButton'
+import { Recipe, RecipesHeaderRight, RecipesHeaderLeft } from '../../components/recipes'
 import SwipeableRow from '../../components/swipeableRow/SwippeableRow'
 import Divider from '../../components/Divider'
 import { ROUTE_NAME_RECIPES_EDIT, ROUTE_NAME_RECIPES_VIEW } from '../../constants/routes'
-import { useRecipes } from '../../hooks/useRecipes'
-import RecipesHeaderLeft from '../../components/recipes/RecipesHeaderLeft'
-import { useSearch } from '../../hooks/useSearch'
+import { useRecipes, useSearch } from '../../hooks'
 
 export default function RecipesView () {
   const [isSearchActive, setIsSearchActive] = useState(false)

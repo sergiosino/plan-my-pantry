@@ -6,7 +6,7 @@ import { View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import Routes from './src/routes/Routes'
-import AppContexts from './src/components/AppContexts'
+import AppContexts from './src/contexts/AppContexts'
 
 const MyTheme = {
   dark: false,

@@ -2,14 +2,11 @@ import { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 
-import { useWeekMenu } from '../../hooks/useWeekMenu'
-import DayMenu from '../../components/weekMenu/DayMenu'
+import { useWeekMenu, useRecipes, useSearch } from '../../hooks'
+import { DayMenu, DayIngredientsForGroceryList } from '../../components/weekMenu'
 import TextInputSyled from '../../components/forms/TextInputSyled'
-import { useRecipes } from '../../hooks/useRecipes'
 import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
-import DayIngredientsForGroceryList from '../../components/weekMenu/DayIngredientsForGroceryList'
-import { useSearch } from '../../hooks/useSearch'
 
 export default function DayMenuEditView () {
   const route = useRoute()
@@ -38,14 +35,16 @@ export default function DayMenuEditView () {
 
   const handlePressRecipe = (recipe) => {
     const { id, name } = recipe
-    const recipeInfo = { id, name }
+    const recipeInfo = id === recipeSelected
+      ? null
+      : { id, name }
     const updatedDayMenu = { ...dayMenu }
 
     if (isLunchSelected) {
       updateRecipeLunch(dayId, recipeInfo)
       updatedDayMenu.lunch = recipeInfo
     } else {
-      updateRecipeDinner(dayId, { id, name })
+      updateRecipeDinner(dayId, recipeInfo)
       updatedDayMenu.dinner = recipeInfo
     }
 
@@ -60,9 +59,9 @@ export default function DayMenuEditView () {
     setDayMenuIngredients(uniqueIngredients)
   }
 
-  const renderItem = (recipe, recipeSelectedId) => {
+  const renderItem = (recipe) => {
     const { id, name, ingredients } = recipe
-    const isRecipeSelected = recipeSelectedId === id
+    const isRecipeSelected = recipeSelected === id
     return (
       <Recipe
         id={id}
@@ -76,10 +75,10 @@ export default function DayMenuEditView () {
   }
 
   useEffect(() => {
-    isLunchSelected
+    (lunch || dinner) && isLunchSelected
       ? setRecipeSelected(lunch?.id)
       : setRecipeSelected(dinner?.id)
-  }, [isLunchSelected])
+  }, [isLunchSelected, dayMenu])
 
   useEffect(() => {
     if (dayName) {
@@ -116,7 +115,7 @@ export default function DayMenuEditView () {
         ItemSeparatorComponent={<Divider />}
         data={recipes}
         extraData={recipeSelected}
-        renderItem={({ item }) => renderItem(item, recipeSelected)}
+        renderItem={({ item }) => renderItem(item)}
       />
       <Divider />
       <View style={styles.ingredientsListContainer}>

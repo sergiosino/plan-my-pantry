@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 
 import { useGroceryItem } from '../../hooks/useGroceryItem'
-import Checkbox from '../Checkbox'
-import IconButton from '../IconButton'
+import Checkbox from '../forms/Checkbox'
+import IconButton from '../buttons/IconButton'
 
 export default function GroceryItem (props) {
   const {

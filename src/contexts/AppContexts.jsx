@@ -1,6 +1,6 @@
-import { RecipesContextProvider } from '../contexts/RecipesContext'
-import { WeekMenuContextProvider } from '../contexts/WeekMenuContext'
-import { GroceryListContextProvider } from '../contexts/GroceryListContext'
+import { RecipesContextProvider } from './RecipesContext'
+import { WeekMenuContextProvider } from './WeekMenuContext'
+import { GroceryListContextProvider } from './GroceryListContext'
 
 export default function AppContexts ({ children }) {
   return (
