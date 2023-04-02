@@ -9,18 +9,20 @@ import { useRecipes } from '../../hooks/useRecipes'
 import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
 import DayIngredientsForGroceryList from '../../components/weekMenu/DayIngredientsForGroceryList'
+import { useSearch } from '../../hooks/useSearch'
 
 export default function DayMenuEditView () {
   const route = useRoute()
   const { dayId } = route.params
+  const { search, setSearch } = useSearch()
   const { getDayMenu, updateRecipeLunch, updateRecipeDinner } = useWeekMenu()
-  const { recipes } = useRecipes()
+  const { recipes } = useRecipes({ search })
   const navigation = useNavigation()
 
   const [isLunchSelected, setIsLunchSelected] = useState(true)
   const [recipeSelected, setRecipeSelected] = useState(null)
   const [dayMenu, setDayMenu] = useState({})
-  const [searchText, setSearchText] = useState('')
+  // const [searchText, setSearchText] = useState('')
   const [dayMenuIngredients, setDayMenuIngredients] = useState([])
 
   const { dayName, lunch, dinner } = dayMenu
@@ -104,8 +106,7 @@ export default function DayMenuEditView () {
           isDinnerSelected={!isLunchSelected}
         />
         <TextInputSyled
-          value={searchText}
-          onChangeText={setSearchText}
+          onChangeText={setSearch}
           placeholder='Search...'
         />
       </View>
