@@ -1,21 +1,26 @@
+import { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import AddButton from '../../components/AddButton'
-import Recipe from '../../components/recipes/Recipe'
+import { Recipe, RecipesHeaderRight } from '../../components/recipes'
 import SwipeableRow from '../../components/swipeableRow/SwippeableRow'
 import Divider from '../../components/Divider'
-import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
+import { ROUTE_NAME_RECIPES_EDIT, ROUTE_NAME_RECIPES_VIEW } from '../../constants/routes'
 import { useRecipes } from '../../hooks/useRecipes'
+import RecipesHeaderLeft from '../../components/recipes/RecipesHeaderLeft'
+import { useSearch } from '../../hooks/useSearch'
 
 export default function RecipesView () {
+  const [isSearchActive, setIsSearchActive] = useState(false)
+  const { search, setSearch } = useSearch()
   const {
     recipes,
     selectedRecipes,
     handleDeleteRecipe,
     handleSelectRecipe,
     handleUnselectRecipe
-  } = useRecipes()
+  } = useRecipes({ search })
   const navigation = useNavigation()
 
   const isSelectedListEmpty = selectedRecipes.length === 0
@@ -27,9 +32,9 @@ export default function RecipesView () {
       : handleSelectRecipe(recipe.id)
   }
 
-  // const handleLongPressRecipe = (recipe, isSelected) => {
-  //   if (!isSelected) { handleSelectRecipe(recipe.id) }
-  // }
+  const handleLongPressRecipe = (recipe, isSelected) => {
+    if (!isSelected) { handleSelectRecipe(recipe.id) }
+  }
 
   const handleAddPress = () => {
     navigation.navigate(ROUTE_NAME_RECIPES_EDIT)
@@ -45,12 +50,27 @@ export default function RecipesView () {
           name={name}
           ingredients={ingredients}
           onPress={(recipe) => handlePressRecipe(recipe, isSelected)}
-          // onLongPress={(recipe) => handleLongPressRecipe(recipe, isSelected)}
+          onLongPress={(recipe) => handleLongPressRecipe(recipe, isSelected)}
           isSelected={isSelected}
         />
       </SwipeableRow>
     )
   }
+
+  useEffect(() => {
+    const newOptions = {}
+    newOptions.headerRight = () => (<RecipesHeaderRight isSearchActive={isSearchActive} setIsSearchActive={setIsSearchActive} />)
+    if (isSearchActive) {
+      newOptions.headerLeft = () => (<RecipesHeaderLeft setSearch={setSearch} />)
+      newOptions.headerTitle = ''
+    }
+    if (!isSearchActive) {
+      newOptions.headerLeft = null
+      newOptions.headerTitle = ROUTE_NAME_RECIPES_VIEW
+      setSearch('')
+    }
+    navigation.setOptions({ ...newOptions })
+  }, [isSearchActive, setIsSearchActive])
 
   return (
     <View style={styles.container}>

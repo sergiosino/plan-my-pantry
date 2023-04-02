@@ -38,8 +38,8 @@ export default function RecipeEditView () {
 
   const focusInput = (index) => {
     index
-      ? _ingredientsInput.current[index] && _ingredientsInput.current[index].focus()
-      : _ingredientsInput.current[0].focus()
+      ? _ingredientsInput.current[index] && _ingredientsInput.current[index]?.focus()
+      : _ingredientsInput.current[0]?.focus()
   }
 
   const handleSave = (fields) => {
@@ -71,7 +71,7 @@ export default function RecipeEditView () {
         [FIELD_NAME_INGREDIENTS]: ingredientFields
       })
     } else {
-      setTimeout(() => { _recipeNameInput.current.focus() }, 100)
+      setTimeout(() => { _recipeNameInput.current?.focus() }, 100)
     }
   }, [])
 
