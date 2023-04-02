@@ -18,7 +18,6 @@ export default function RecipesHeaderLeft (props) {
 const styles = StyleSheet.create({
   localHeaderContainer: {
     marginLeft: 16,
-    backgroundColor: 'red',
     width: (windowDimensions.width - 120),
     justifyContent: 'center'
   },

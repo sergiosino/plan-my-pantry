@@ -16,15 +16,12 @@ export default function SettingsView () {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, height: 500 }}>
-        <TextInputStyled
-          multiline
-          numberOfLines={15}
-        >
-          {textJson}
-        </TextInputStyled>
-      </View>
-      <View style={{ flex: 1, alignItems: 'flex-end' }}>
+      <TextInputStyled
+        value={textJson}
+        multiline
+        numberOfLines={10}
+      />
+      <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end' }}>
         <Text>Version: {Constants.manifest.version}</Text>
       </View>
     </View>

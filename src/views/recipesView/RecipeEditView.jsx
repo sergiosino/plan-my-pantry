@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   ingredientTextInput: {
+    flex: 1,
     marginRight: 10
   },
   iconView: {

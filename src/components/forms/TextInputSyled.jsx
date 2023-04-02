@@ -1,9 +1,13 @@
 import { StyleSheet, TextInput } from 'react-native'
 
 export default function TextInputSyled (props) {
-  const { value, onChangeText, style, innerRef, ...other } = props
+  const { value, onChangeText, multiline, style, innerRef, ...other } = props
 
-  const textInputStyle = style ? [styles.textInput, style] : styles.textInput
+  const textInputStyle = [
+    styles.textInput,
+    style && style,
+    multiline ? styles.textInputMultiline : styles.textInputOneLine
+  ]
 
   return (
     <TextInput
@@ -11,6 +15,7 @@ export default function TextInputSyled (props) {
       value={value}
       onChangeText={onChangeText}
       ref={innerRef}
+      multiline={multiline}
       {...other}
     />
   )
@@ -18,14 +23,17 @@ export default function TextInputSyled (props) {
 
 const styles = StyleSheet.create({
   textInput: {
-    flex: 1,
     borderWidth: 0.5,
     paddingHorizontal: 10,
     borderRadius: 4,
     borderColor: 'gray',
-    backgroundColor: 'white',
-    maxHeight: 34,
-    height: 34,
-    minHeight: 34
+    backgroundColor: 'white'
+  },
+  textInputOneLine: {
+    height: 34
+  },
+  textInputMultiline: {
+    paddingVertical: 5,
+    textAlignVertical: 'top'
   }
 })
