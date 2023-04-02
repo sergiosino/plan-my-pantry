@@ -40,8 +40,8 @@ export default function RecipeEditView () {
 
   const focusInput = (index) => {
     if (!index) { return _ingredientsInput.current[0]?.focus() }
-    if (index === fields.length - 1) { return _ingredientsInput.current[index]?.focus() }
-    _recieNotesInput.current.focus()
+    if (index === fields.length) { return _recieNotesInput.current.focus() }
+    _ingredientsInput.current[index]?.focus()
   }
 
   const handleSave = (fields) => {

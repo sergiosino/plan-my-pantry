@@ -2,9 +2,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
 export default function Recipe (props) {
-  const { recipe, onPress, onLongPress, isSelected } = props
+  const { recipe = {}, onPress, onLongPress, isSelected } = props
 
-  const { name, ingredients } = recipe
+  const { name, ingredients = [] } = recipe
   const containerStyle = isSelected ? styles.containerSelected : styles.container
   const ingredientsString = ingredients.join(', ')
 

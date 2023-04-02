@@ -6,7 +6,7 @@ export function useSearch () {
 
   const debouncedSearch = debounce(text => {
     setSearch(text)
-  }, 200)
+  }, 300)
 
   return {
     search,

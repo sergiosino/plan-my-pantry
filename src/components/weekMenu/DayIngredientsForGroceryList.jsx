@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
 import Button from '../buttons/Button'
-import DeselectableItem from '../groceryList/DeselectableItem'
+import DeselectableItem from './DeselectableItem'
 import { useGroceryList } from '../../hooks/useGroceryList'
 
 export default function DayIngredientsForGroceryList (props) {

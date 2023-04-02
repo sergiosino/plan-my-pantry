@@ -60,13 +60,11 @@ export default function DayMenuEditView () {
   }
 
   const renderItem = (recipe) => {
-    const { id, name, ingredients } = recipe
+    const { id } = recipe
     const isRecipeSelected = recipeSelected === id
     return (
       <Recipe
-        id={id}
-        name={name}
-        ingredients={ingredients}
+        recipe={recipe}
         onPress={handlePressRecipe}
         onLongPress={isRecipeSelected && handleLongPressRecipe}
         isSelected={isRecipeSelected}
