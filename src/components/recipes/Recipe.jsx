@@ -2,17 +2,18 @@ import { StyleSheet, Text, View } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
 
 export default function Recipe (props) {
-  const { id, name, ingredients, onPress, onLongPress, isSelected } = props
+  const { recipe, onPress, onLongPress, isSelected } = props
 
+  const { name, ingredients } = recipe
   const containerStyle = isSelected ? styles.containerSelected : styles.container
   const ingredientsString = ingredients.join(', ')
 
   const handleRecipeItemPress = () => {
-    onPress && onPress({ id, name, ingredients })
+    onPress && onPress(recipe)
   }
 
   const handleRecipeItemLongPress = () => {
-    onLongPress && onLongPress({ id, name, ingredients })
+    onLongPress && onLongPress(recipe)
   }
 
   return (

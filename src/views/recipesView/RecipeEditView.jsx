@@ -13,6 +13,7 @@ import RecipeInputEdit from '../../components/recipes/RecipeInputEdit'
 const FIELD_NAME_INGREDIENTS = 'ingredients'
 const FIELD_NAME_INGREDIENT = 'ingredient'
 const FIELD_NAME_RECIPE = 'name'
+const FIELD_NAME_NOTES = 'notes'
 const FIELD_DEFAULT_INGREDIENT = { [FIELD_NAME_INGREDIENT]: '' }
 
 export default function RecipeEditView () {
@@ -21,7 +22,8 @@ export default function RecipeEditView () {
   const { control, handleSubmit, getValues, reset } = useForm({
     defaultValues: {
       [FIELD_NAME_RECIPE]: '',
-      [FIELD_NAME_INGREDIENTS]: [FIELD_DEFAULT_INGREDIENT, FIELD_DEFAULT_INGREDIENT]
+      [FIELD_NAME_INGREDIENTS]: [FIELD_DEFAULT_INGREDIENT, FIELD_DEFAULT_INGREDIENT],
+      [FIELD_NAME_NOTES]: ''
     }
   })
   const { fields, append, remove } = useFieldArray({
@@ -30,15 +32,16 @@ export default function RecipeEditView () {
   })
   const { handleSaveRecipe } = useRecipes()
 
-  const _ingredientsInput = useRef([])
   const _recipeNameInput = useRef({})
+  const _ingredientsInput = useRef([])
+  const _recieNotesInput = useRef({})
 
   const { recipe } = route.params ?? { recipe: null }
 
   const focusInput = (index) => {
-    index
-      ? _ingredientsInput.current[index] && _ingredientsInput.current[index]?.focus()
-      : _ingredientsInput.current[0]?.focus()
+    if (!index) { return _ingredientsInput.current[0]?.focus() }
+    if (index === fields.length - 1) { return _ingredientsInput.current[index]?.focus() }
+    _recieNotesInput.current.focus()
   }
 
   const handleSave = (fields) => {
@@ -47,7 +50,8 @@ export default function RecipeEditView () {
     const updatedRecipe = {
       id: recipe ? recipe.id : NEW_ELEMENT_ID,
       name: fields[FIELD_NAME_RECIPE],
-      ingredients
+      ingredients,
+      notes: fields[FIELD_NAME_NOTES]
     }
     handleSaveRecipe(updatedRecipe)
     navigation.goBack()
@@ -66,8 +70,9 @@ export default function RecipeEditView () {
       const ingredientFields = recipe.ingredients.map(ingredient => ({ [FIELD_NAME_INGREDIENT]: ingredient }))
       ingredientFields.push(FIELD_DEFAULT_INGREDIENT)
       reset({
-        name: recipe.name,
-        [FIELD_NAME_INGREDIENTS]: ingredientFields
+        [FIELD_NAME_RECIPE]: recipe.name,
+        [FIELD_NAME_INGREDIENTS]: ingredientFields,
+        [FIELD_NAME_NOTES]: recipe.notes
       })
     } else {
       setTimeout(() => { _recipeNameInput.current?.focus() }, 100)
@@ -101,6 +106,14 @@ export default function RecipeEditView () {
             _ingredientsInput={_ingredientsInput}
           />
         ))}
+        <Text style={styles.modalText}>Notes</Text>
+        <TextInputControlled
+          name={FIELD_NAME_NOTES}
+          control={control}
+          multiline
+          numberOfLines={10}
+          innerRef={_recieNotesInput}
+        />
       </ScrollView>
       <View style={styles.buttonsContainer}>
         <Button onPress={handleSubmit(handleSave)}>

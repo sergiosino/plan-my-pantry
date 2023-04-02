@@ -27,13 +27,11 @@ export default function RecipesView () {
   }
 
   const renderItem = (recipe) => {
-    const { id, name, ingredients } = recipe
+    const { id } = recipe
     return (
       <SwipeableRow onLeftActionPress={() => handleDeleteRecipe(id)}>
         <Recipe
-          id={id}
-          name={name}
-          ingredients={ingredients}
+          recipe={recipe}
           onPress={(recipe) => handlePressRecipe(recipe)}
         />
       </SwipeableRow>
