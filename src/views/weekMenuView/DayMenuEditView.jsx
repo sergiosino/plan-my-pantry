@@ -22,7 +22,6 @@ export default function DayMenuEditView () {
   const [isLunchSelected, setIsLunchSelected] = useState(true)
   const [recipeSelected, setRecipeSelected] = useState(null)
   const [dayMenu, setDayMenu] = useState({})
-  // const [searchText, setSearchText] = useState('')
   const [dayMenuIngredients, setDayMenuIngredients] = useState([])
 
   const { dayName, lunch, dinner } = dayMenu
