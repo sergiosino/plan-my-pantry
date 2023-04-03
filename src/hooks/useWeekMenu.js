@@ -29,8 +29,12 @@ export function useWeekMenu () {
 
   const removeRecipesFromWeekMenu = (recipesId) => {
     const newWeekMenu = weekMenu.map(dayMenu => {
-      const newLunch = recipesId.includes(dayMenu.lunch?.id) ? null : dayMenu.lunch?.id
-      const newDinner = recipesId.includes(dayMenu.dinner?.id) ? null : dayMenu.dinner?.id
+      const newLunch = recipesId.includes(dayMenu.lunch?.id)
+        ? null
+        : dayMenu.lunch?.id
+      const newDinner = recipesId.includes(dayMenu.dinner?.id)
+        ? null
+        : dayMenu.dinner?.id
       return {
         ...dayMenu,
         lunch: newLunch,

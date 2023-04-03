@@ -18,7 +18,9 @@ export function WeekMenuContextProvider ({ children }) {
   useEffect(() => {
     const getStorageWeekMenu = async () => {
       let storageWeekMenu = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.WEEK_MENU)
-      storageWeekMenu = storageWeekMenu ? JSON.parse(storageWeekMenu) : WEEK_MENU_MOCKUP
+      storageWeekMenu = storageWeekMenu
+        ? JSON.parse(storageWeekMenu)
+        : WEEK_MENU_MOCKUP
       setWeekMenu(storageWeekMenu)
     }
     getStorageWeekMenu()

@@ -42,7 +42,9 @@ export default function BottomTabsRoutes () {
 
   const getTabIcon = ({ focused, color, size, route }) => {
     const { iconName, focusedIconName } = TAB_ROUTES.find(tabRoute => tabRoute.name === route.name)
-    const icon = focused ? focusedIconName : iconName
+    const icon = focused
+      ? focusedIconName
+      : iconName
     return <Ionicons name={icon} size={size} color={color} />
   }
 

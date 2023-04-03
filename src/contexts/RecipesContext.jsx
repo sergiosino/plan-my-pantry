@@ -18,7 +18,9 @@ export function RecipesContextProvider ({ children }) {
   useEffect(() => {
     const getStorageRecipes = async () => {
       let storageRecipes = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.RECIPES_LIST)
-      storageRecipes = storageRecipes != null ? JSON.parse(storageRecipes) : null
+      storageRecipes = storageRecipes != null
+        ? JSON.parse(storageRecipes)
+        : null
       if (storageRecipes) { setRecipes(storageRecipes) }
     }
     getStorageRecipes()

@@ -17,7 +17,9 @@ export function GroceryListContextProvider ({ children }) {
   useEffect(() => {
     const getStorageGroceryList = async () => {
       let storageGroceryList = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.GROCERY_LIST)
-      storageGroceryList = storageGroceryList != null ? JSON.parse(storageGroceryList) : null
+      storageGroceryList = storageGroceryList != null
+        ? JSON.parse(storageGroceryList)
+        : null
       if (storageGroceryList) { setGroceryList(storageGroceryList) }
     }
     getStorageGroceryList()
