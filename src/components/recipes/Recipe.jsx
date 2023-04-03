@@ -18,7 +18,7 @@ export default function Recipe (props) {
 
   return (
     <View style={containerStyle}>
-      <RectButton onPress={handleRecipeItemPress} onLongPress={handleRecipeItemLongPress} delayLongPress={100}>
+      <RectButton onPress={handleRecipeItemPress} onLongPress={handleRecipeItemLongPress}>
         <View style={styles.innerContainer}>
           <View style={styles.firstColumn}>
             <View style={styles.titleContainer}>
