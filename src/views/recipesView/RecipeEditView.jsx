@@ -127,14 +127,16 @@ export default function RecipeEditView () {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
     justifyContent: 'space-between'
   },
   scrollContainer: {
-    marginBottom: 20
+    paddingHorizontal: 15,
+    marginBottom: 10
   },
   buttonsContainer: {
-    flexDirection: 'row'
+    paddingHorizontal: 15,
+    flexDirection: 'row',
+    marginBottom: 10
   },
   textStyle: {
     color: 'white',
