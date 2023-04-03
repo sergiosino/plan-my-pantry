@@ -7,6 +7,7 @@ import { DayMenu, DayIngredientsForGroceryList } from '../../components/weekMenu
 import TextInputSyled from '../../components/forms/TextInputSyled'
 import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
+import DayMenuEditHeaderRight from '../../components/weekMenu/DayMenuEditHeaderRight'
 
 export default function DayMenuEditView () {
   const route = useRoute()
@@ -88,6 +89,9 @@ export default function DayMenuEditView () {
 
   useEffect(() => {
     setDayMenu(getDayMenu(dayId))
+    navigation.setOptions({
+      headerRight: () => (<DayMenuEditHeaderRight />)
+    })
   }, [])
 
   return (
