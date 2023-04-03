@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
-import { Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
 
 import { RecipesContext } from '../contexts/RecipesContext'
 import TextInputStyled from '../components/forms/TextInputSyled'
+import Divider from '../components/Divider'
 
 export default function SettingsView () {
   const { recipes } = useContext(RecipesContext)
@@ -16,6 +17,10 @@ export default function SettingsView () {
 
   return (
     <View style={{ flex: 1 }}>
+      <View style={styles.imageContainer}>
+        <Image source={require('../../assets/chick-settings.png')} style={{ height: 80, width: 80 }} />
+      </View>
+      <Divider style={styles.divider} />
       <TextInputStyled
         value={textJson}
         multiline
@@ -27,3 +32,12 @@ export default function SettingsView () {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  imageContainer: {
+    alignItems: 'center'
+  },
+  divider: {
+    marginVertical: 20
+  }
+})
