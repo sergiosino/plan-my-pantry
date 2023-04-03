@@ -7,7 +7,6 @@ export default function TextInputSyled (props) {
 
   const { colors } = useTheme()
   const [isFocused, setIsFocused] = useState(false)
-  console.log(value, isFocused)
 
   const textInputStyle = [
     styles.textInput,

@@ -1,11 +1,15 @@
 import { StyleSheet, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import IconButton from '../buttons/IconButton'
+import { ROUTE_NAME_RECIPES_HELP_VIEW } from '../../constants/routes'
 
 const GAP = 25
 
 export default function RecipesHeaderRight (props) {
   const { isSearchActive, setIsSearchActive } = props
+
+  const navigation = useNavigation()
 
   const iconName = isSearchActive
     ? 'close'
@@ -15,11 +19,20 @@ export default function RecipesHeaderRight (props) {
     setIsSearchActive(!isSearchActive)
   }
 
+  const handlePressHelp = () => {
+    navigation.navigate(ROUTE_NAME_RECIPES_HELP_VIEW)
+  }
+
   return (
     <View style={styles.localHeaderContainer}>
       <View style={styles.headerItem}>
         <IconButton onPress={handlePress} iconName={iconName} />
       </View>
+      {!isSearchActive && (
+        <View style={styles.headerItem}>
+          <IconButton onPress={handlePressHelp} iconName='help-outline' />
+        </View>
+      )}
     </View>
   )
 }
