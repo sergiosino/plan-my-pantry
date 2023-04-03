@@ -1,10 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useTheme } from '@react-navigation/native'
 
-import { ROUTE_NAME_DAY_MENU_EDIT, ROUTE_NAME_RECIPES_EDIT, ROUTE_NAME_TABS } from '../constants/routes'
+import { ROUTE_NAME_DAY_MENU_EDIT, ROUTE_NAME_DAY_MENU_EDIT_HELP, ROUTE_NAME_RECIPES_EDIT, ROUTE_NAME_RECIPES_HELP_VIEW, ROUTE_NAME_TABS } from '../constants/routes'
 import BottomTabsRoutes from './BottomTabsRoutes'
 import RecipeEditView from '../views/recipesView/RecipeEditView'
 import DayMenuEditView from '../views/weekMenuView/DayMenuEditView'
-import { useTheme } from '@react-navigation/native'
+import RecipesHelpView from '../views/recipesView/RecipesHelpView'
+import DayMenuEditHelpView from '../views/weekMenuView/DayMenuEditHelpView'
 
 const Stack = createNativeStackNavigator()
 
@@ -21,6 +23,14 @@ const STACK_ROUTES = [
   {
     name: ROUTE_NAME_DAY_MENU_EDIT,
     component: DayMenuEditView
+  },
+  {
+    name: ROUTE_NAME_RECIPES_HELP_VIEW,
+    component: RecipesHelpView
+  },
+  {
+    name: ROUTE_NAME_DAY_MENU_EDIT_HELP,
+    component: DayMenuEditHelpView
   }
 ]
 
