@@ -45,8 +45,10 @@ export default function GroceryListView () {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.flatListContent}>
-        {groceryList.map(renderItem)}
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.view}>
+          {groceryList.map(renderItem)}
+        </View>
       </ScrollView>
       <AddButton onAddItem={handleAdd} />
     </View>
@@ -57,8 +59,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  flatListContent: {
-    marginHorizontal: 20,
-    paddingBottom: 70
+  scrollView: {
+    paddingHorizontal: 20
+  },
+  view: {
+    marginBottom: 70
   }
 })
