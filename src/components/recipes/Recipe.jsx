@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { RectButton } from 'react-native-gesture-handler'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default function Recipe (props) {
   const { recipe = {}, onPress, onLongPress, isSelected } = props
 
   const { name, ingredients = [] } = recipe
-  const containerStyle = isSelected ? styles.containerSelected : styles.container
+  const containerStyle = isSelected
+    ? styles.containerSelected
+    : styles.container
   const ingredientsString = ingredients.join(', ')
 
   const handleRecipeItemPress = () => {
@@ -20,18 +23,17 @@ export default function Recipe (props) {
     <View style={containerStyle}>
       <RectButton onPress={handleRecipeItemPress} onLongPress={handleRecipeItemLongPress}>
         <View style={styles.innerContainer}>
-          <View style={styles.firstColumn}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.textTitle}>
-                {name}
-              </Text>
-            </View>
-          </View>
-          <View>
+          <View style={styles.recipeInfoContainer}>
+            <Text style={styles.textTitle}>
+              {name}
+            </Text>
             <Text style={styles.textIngredients}>
               {ingredientsString}
             </Text>
           </View>
+          {isSelected === undefined && (
+            <Ionicons name='chevron-forward' size={20} />
+          )}
         </View>
       </RectButton>
     </View>
@@ -46,27 +48,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray'
   },
   innerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     padding: 10
   },
-  firstColumn: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  titleContainer: {
-    flex: 1
+  recipeInfoContainer: {
+    flex: 1,
+    marginRight: 10
   },
   textTitle: {
     fontWeight: 'bold',
     fontSize: 16
   },
-  textTitleSelected: {
-    color: 'white'
-  },
   textIngredients: {
     fontSize: 13
-  },
-  textIngredientsSelected: {
-    color: 'white'
   }
 })
