@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   },
   textInputMultiline: {
     paddingVertical: 5,
-    textAlignVertical: 'top'
+    textAlignVertical: 'top',
+    maxHeight: 182 // Height of 10 lines
   }
 })
