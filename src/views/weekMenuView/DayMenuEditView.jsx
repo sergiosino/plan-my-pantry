@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   dayMenuContainer: {
     marginHorizontal: 10,
-    height: 135
+    height: 130
   },
   ingredientsListContainer: {
     marginHorizontal: 10,
