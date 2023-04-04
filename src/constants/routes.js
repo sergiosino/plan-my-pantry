@@ -1,3 +1,4 @@
+export const ROUTE_NAME_INITAL_HELP = 'Initial help'
 export const ROUTE_NAME_TABS = 'Tabs'
 export const ROUTE_NAME_RECIPES_VIEW = 'Recipes'
 export const ROUTE_NAME_RECIPES_HELP_VIEW = 'Recipes help'
