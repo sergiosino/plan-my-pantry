@@ -25,7 +25,7 @@ export default function GroceryItem (props) {
   return (
     <View style={styles.container}>
       <Checkbox
-        defaultChecked={defaultChecked}
+        checked={defaultChecked}
         onChange={handleCheckboxChange}
         style={styles.checkbox}
       />
