@@ -24,7 +24,6 @@ export default function Button (props) {
 
 const styles = StyleSheet.create({
   textButton: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     paddingVertical: 6,

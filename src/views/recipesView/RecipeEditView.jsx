@@ -135,7 +135,6 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     paddingHorizontal: 15,
-    flexDirection: 'row',
     marginBottom: 10
   },
   textStyle: {
