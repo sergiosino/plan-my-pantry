@@ -1,22 +1,27 @@
 import { useEffect, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 import TextInputStyled from '../components/forms/TextInputSyled'
 import Divider from '../components/Divider'
 import Checkbox from '../components/forms/Checkbox'
 import { useUserConfig } from '../hooks/useUserConfig'
 import { useRecipes } from '../hooks'
+import { USER_CONFIG_PARAMS } from '../constants/constants'
+import { RectButton } from 'react-native-gesture-handler'
 
 export default function SettingsView () {
   const [textJson, setTextJson] = useState('')
 
   const { recipes } = useRecipes()
-  const { showInitialPage, updateShowInitialHelp } = useUserConfig()
+  const { showWelcomePage, showHeaderHelpIcon, updateUserConfig } = useUserConfig()
 
-  const handleCheckboxChange = (checked) => {
-    updateShowInitialHelp(checked)
-  }
+  const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
+
+  const handleWelcomPageCheckChange = () => updateUserConfig(SHOW_WELCOME_PAGE, !showWelcomePage)
+
+  const handleHeaderHelpIconCheckChange = () => updateUserConfig(SHOW_HEADER_HELP_ICON, !showHeaderHelpIcon)
 
   useEffect(() => {
     setTextJson(JSON.stringify(recipes))
@@ -37,12 +42,21 @@ export default function SettingsView () {
         />
       </View>
       <Divider />
-      <View style={styles.settingContainer}>
-        <Text>Show welcome page</Text>
-        <Checkbox checked={showInitialPage} onChange={handleCheckboxChange} />
-      </View>
+      <RectButton onPress={handleWelcomPageCheckChange} style={styles.backgroundWhite}>
+        <View style={styles.settingContainer}>
+          <Text>Show welcome page</Text>
+          <Checkbox checked={showWelcomePage} />
+        </View>
+      </RectButton>
       <Divider />
-      <View style={styles.settingContainer}>
+      <RectButton onPress={handleHeaderHelpIconCheckChange} style={styles.backgroundWhite}>
+        <View style={styles.settingContainer}>
+          <Text>Show <Ionicons name='help-outline' size={20} /> icon in header pages</Text>
+          <Checkbox checked={showHeaderHelpIcon} />
+        </View>
+      </RectButton>
+      <Divider />
+      <View style={[styles.settingContainer, styles.backgroundWhite]}>
         <Text>App version</Text>
         <Text>{Constants.manifest.version}</Text>
       </View>
@@ -59,12 +73,14 @@ const styles = StyleSheet.create({
   divider: {
     marginVertical: 20
   },
+  backgroundWhite: {
+    backgroundColor: 'white'
+  },
   settingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
-    height: 50,
-    backgroundColor: 'white'
+    height: 55
   }
 })

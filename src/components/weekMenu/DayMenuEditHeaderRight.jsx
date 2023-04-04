@@ -3,17 +3,19 @@ import { useNavigation } from '@react-navigation/native'
 
 import IconButton from '../buttons/IconButton'
 import { ROUTE_NAME_DAY_MENU_EDIT_HELP } from '../../constants/routes'
+import { useUserConfig } from '../../hooks/useUserConfig'
 
 const GAP = 20
 
 export default function DayMenuEditHeaderRight () {
   const navigation = useNavigation()
+  const { showHeaderHelpIcon } = useUserConfig()
 
   const handlePressHelp = () => {
     navigation.navigate(ROUTE_NAME_DAY_MENU_EDIT_HELP)
   }
 
-  return (
+  return showHeaderHelpIcon && (
     <View style={styles.localHeaderContainer}>
       <View style={styles.headerItem}>
         <IconButton onPress={handlePressHelp} iconName='help-outline' />

@@ -7,27 +7,26 @@ import Checkbox from '../components/forms/Checkbox'
 import Button from '../components/buttons/Button'
 import { ROUTE_NAME_TABS } from '../constants/routes'
 import { useUserConfig } from '../hooks/useUserConfig'
+import { USER_CONFIG_PARAMS } from '../constants/constants'
 
 export default function InitialHelpView () {
   const [checked, setCheced] = useState(false)
 
   const { navigate } = useNavigation()
-  const { showInitialPage, updateShowInitialHelp } = useUserConfig()
+  const { showWelcomePage, updateUserConfig } = useUserConfig()
 
-  const handleCheckbox = (checked) => {
-    setCheced(checked)
-  }
+  const { SHOW_WELCOME_PAGE } = USER_CONFIG_PARAMS
 
   const handleContinue = () => {
-    checked && updateShowInitialHelp(false)
+    checked && updateUserConfig(SHOW_WELCOME_PAGE, false)
     navigate(ROUTE_NAME_TABS)
   }
 
   useEffect(() => {
-    if (!showInitialPage) { navigate(ROUTE_NAME_TABS) }
-  }, [showInitialPage])
+    if (!showWelcomePage) { navigate(ROUTE_NAME_TABS) }
+  }, [showWelcomePage])
 
-  return showInitialPage && (
+  return showWelcomePage && (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
         <Image source={require('../../assets/logo.png')} style={styles.image} />
@@ -39,7 +38,7 @@ export default function InitialHelpView () {
       </Text>
       <Text style={styles.text}>Happy grocery shopping!</Text>
       <View style={styles.checkboxContainer}>
-        <Checkbox style={styles.marginRight5} checked={checked} onChange={handleCheckbox} />
+        <Checkbox style={styles.marginRight5} checked={checked} onChange={setCheced} />
         <Text>Do not show this page again</Text>
       </View>
       <Button onPress={handleContinue}>

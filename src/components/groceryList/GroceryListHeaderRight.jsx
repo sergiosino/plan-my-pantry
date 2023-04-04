@@ -14,7 +14,7 @@ import {
 
 const GAP = 25
 
-export default function GroceryListHeader (props) {
+export default function GroceryListHeaderRight (props) {
   const { itemIdToFocus } = props
 
   const {
