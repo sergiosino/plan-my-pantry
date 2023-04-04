@@ -23,7 +23,7 @@ export default function DayMenu (props) {
 const styles = StyleSheet.create({
   dayMenuContainer: {
     backgroundColor: 'transparent',
-    marginVertical: 15
+    marginBottom: 15
   },
   dayMealsContainer: {
     flexDirection: 'row',

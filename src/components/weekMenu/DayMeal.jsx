@@ -11,9 +11,11 @@ function MealRecipeText ({ meal, recipe, isSelected }) {
       <Text style={mealTextStyle}>
         {meal}
       </Text>
-      <Text style={recipeTextStyle}>
-        {recipe}
-      </Text>
+      <View style={{ height: 41, justifyContent: 'center' }}>
+        <Text numberOfLines={2} style={recipeTextStyle}>
+          {recipe}
+        </Text>
+      </View>
     </>
   )
 }
@@ -50,8 +52,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   recipeText: {
-    marginTop: 5,
-    alignItems: 'center'
+    textAlign: 'center',
+    marginTop: 5
   },
   textSelected: {
     color: 'white'
