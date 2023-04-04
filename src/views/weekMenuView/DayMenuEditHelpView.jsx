@@ -1,8 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import Divider from '../../components/Divider'
-import { ScrollView } from 'react-native-gesture-handler'
-import { useNavigation } from '@react-navigation/native'
-import { useEffect } from 'react'
+import Tutorial from '../../components/Tutorial'
 
 const HELPS = [
   {
@@ -26,55 +22,5 @@ const HELPS = [
 ]
 
 export default function DayMenuEditHelpView () {
-  const navigation = useNavigation()
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerTitle: 'Help!'
-    })
-  }, [])
-
-  return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image source={require('../../../assets/chick-tutorial.png')} style={{ height: 80, width: 80 }} />
-      </View>
-      <Divider />
-      <ScrollView style={styles.scrollView}>
-        {HELPS.map((help) => {
-          const { id, text, image, style } = help
-          return (
-            <View key={id}>
-              <Text style={styles.text}>{text}</Text>
-              <View style={styles.imageContainer}>
-                <Image source={image} style={style} />
-              </View>
-              <Divider style={styles.divider} />
-            </View>
-          )
-        })}
-      </ScrollView>
-    </View>
-  )
+  return <Tutorial instructions={HELPS} />
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  scrollView: {
-    padding: 10,
-    paddingTop: 20
-  },
-  imageContainer: {
-    alignItems: 'center',
-    marginBottom: 20
-  },
-  text: {
-    marginBottom: 15,
-    fontSize: 16
-  },
-  divider: {
-    marginVertical: 20
-  }
-})
