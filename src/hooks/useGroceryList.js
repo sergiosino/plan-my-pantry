@@ -17,30 +17,30 @@ export function useGroceryList () {
   const handleAddItem = () => {
     const newGroceryItemId = uuid.v4()
     const newGroceryItem = { id: newGroceryItemId, checked: false, text: '' }
-    const groceryItemsCopy = [newGroceryItem, ...groceryList]
-    setGroceryList(groceryItemsCopy)
+    const groceryListCopy = [newGroceryItem, ...groceryList]
+    setGroceryList(groceryListCopy)
 
     return newGroceryItemId
   }
 
   const handleDeleteChecked = () => {
-    const groceryItemsCopy = groceryList.filter(groceryItem => !groceryItem.checked)
-    setGroceryList(groceryItemsCopy)
+    const groceryListCopy = groceryList.filter(groceryItem => !groceryItem.checked)
+    setGroceryList(groceryListCopy)
   }
 
   const handleUnCheckAll = () => {
-    const groceryItemsUnChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: false } })
-    setGroceryList(groceryItemsUnChecked)
+    const groceryListUnChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: false } })
+    setGroceryList(groceryListUnChecked)
   }
 
   const handleCheckAll = () => {
-    const groceryItemsChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: true } })
-    setGroceryList(groceryItemsChecked)
+    const groceryListChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: true } })
+    setGroceryList(groceryListChecked)
   }
 
   const handleDeleteItem = (id) => {
-    const groceryItemsCopy = groceryList.filter(groceryItem => groceryItem.id !== id)
-    setGroceryList(groceryItemsCopy)
+    const groceryListCopy = groceryList.filter(groceryItem => groceryItem.id !== id)
+    setGroceryList(groceryListCopy)
   }
 
   const handleItemChange = (id, checked, text) => {
@@ -48,9 +48,9 @@ export function useGroceryList () {
     const item = groceryList[itemIndex]
 
     if (item.checked !== checked || item.text !== text) {
-      const groceryItemsCopy = [...groceryList]
-      groceryItemsCopy[itemIndex] = { id, checked, text }
-      setGroceryList(groceryItemsCopy)
+      const groceryListCopy = [...groceryList]
+      groceryListCopy[itemIndex] = { id, checked, text }
+      setGroceryList(groceryListCopy)
     }
   }
 
