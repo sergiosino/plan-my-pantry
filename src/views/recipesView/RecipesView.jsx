@@ -32,7 +32,7 @@ export default function RecipesView () {
       <SwipeableRow onLeftActionPress={() => handleDeleteRecipe(id)}>
         <Recipe
           recipe={recipe}
-          onPress={(recipe) => handlePressRecipe(recipe)}
+          onPress={handlePressRecipe}
         />
       </SwipeableRow>
     )
