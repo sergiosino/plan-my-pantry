@@ -29,20 +29,20 @@ export function useRecipes () {
       : handleEditRecipe(recipe)
   }
 
-  const handleAddRecipe = (recipe) => {
-    const newRecipes = pushRecipe(recipe)
+  const handleAddRecipe = async (recipe) => {
+    const newRecipes = await pushRecipe(recipe)
     setRecipes(newRecipes)
   }
 
-  const handleEditRecipe = (recipe) => {
-    const newRecipes = putRecipe(recipe.id, recipe)
+  const handleEditRecipe = async (recipe) => {
+    const newRecipes = await putRecipe(recipe.id, recipe)
     setRecipes(newRecipes)
   }
 
-  const handleDeleteRecipe = (id) => {
+  const handleDeleteRecipe = async (id) => {
     const weekMenuUsingRecipe = weekMenu.filter(dayMenu => dayMenu.lunch?.id === id || dayMenu.dinner?.id === id)
     if (weekMenuUsingRecipe.length > 0) { removeRecipesFromWeekMenu([id]) }
-    const newRecipes = deleteRecipe(id)
+    const newRecipes = await deleteRecipe(id)
     setRecipes(newRecipes)
   }
 
