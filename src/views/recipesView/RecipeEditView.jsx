@@ -1,14 +1,13 @@
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useEffect, useRef } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-
-import { useRecipes } from '../../hooks/useRecipes'
-import Button from '../../components/buttons/Button'
 import { useFieldArray, useForm } from 'react-hook-form'
-import { isNullOrWhiteSpace, capitalizeString } from '../../utils'
+
+import Button from '../../components/buttons/Button'
 import TextInputControlled from '../../components/forms/TextInputControlled'
 import { NEW_ELEMENT_ID } from '../../constants/constants'
 import RecipeInputEdit from '../../components/recipes/RecipeInputEdit'
+import { useRecipes } from '../../hooks/useRecipes'
 
 const FIELD_NAME_INGREDIENTS = 'ingredients'
 const FIELD_NAME_INGREDIENT = 'ingredient'
@@ -45,8 +44,7 @@ export default function RecipeEditView () {
   }
 
   const handleSave = (fields) => {
-    const newIngredientsFields = fields[FIELD_NAME_INGREDIENTS].filter(field => !isNullOrWhiteSpace(field[FIELD_NAME_INGREDIENT]))
-    const ingredients = newIngredientsFields.map(field => capitalizeString(field[FIELD_NAME_INGREDIENT]))
+    const ingredients = fields[FIELD_NAME_INGREDIENTS].map(field => field[FIELD_NAME_INGREDIENT])
     const updatedRecipe = {
       id: recipe ? recipe.id : NEW_ELEMENT_ID,
       name: fields[FIELD_NAME_RECIPE],

@@ -1,71 +1,60 @@
 import { useContext } from 'react'
-import uuid from 'react-native-uuid'
 
+import { getRecipes, getRecipesFiltered, pushRecipe, putRecipe, deleteRecipe } from '../services/RecipesService'
 import { NEW_ELEMENT_ID } from '../constants/constants'
-import { RecipesContext } from '../contexts/RecipesContext'
-import { areObjectsEqual } from '../utils/areObjectsEqual'
 import { useWeekMenu } from './useWeekMenu'
+import debounce from 'just-debounce-it'
+import { RecipesContext } from '../contexts/RecipesContext'
+import { capitalizeString, isNullOrWhiteSpace } from '../utils'
 
-export function useRecipes (props) {
-  const { search } = props ?? {}
+export function useRecipes () {
   const { recipes, setRecipes } = useContext(RecipesContext)
 
   const { weekMenu, removeRecipesFromWeekMenu } = useWeekMenu()
 
-  const sortRecipes = (newRecipes) => {
-    newRecipes.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
-    return newRecipes
+  const handleGetRecipes = async () => {
+    const newRecipes = await getRecipes()
+    setRecipes(newRecipes)
   }
 
   const handleSaveRecipe = (recipe) => {
+    let ingredients = recipe.ingredients.filter(ingredient => !isNullOrWhiteSpace(ingredient))
+    ingredients = ingredients.map(ingredient => capitalizeString(ingredient))
+    recipe = {
+      ...recipe,
+      ingredients
+    }
     recipe.id === NEW_ELEMENT_ID
       ? handleAddRecipe(recipe)
       : handleEditRecipe(recipe)
   }
 
   const handleAddRecipe = (recipe) => {
-    recipe.id = uuid.v4()
-    const newRecipes = [...recipes, recipe]
-    const newRecipesSorted = sortRecipes(newRecipes)
-    setRecipes(newRecipesSorted)
+    const newRecipes = pushRecipe(recipe)
+    setRecipes(newRecipes)
   }
 
-  const handleEditRecipe = (recipeEdited) => {
-    const recipeIndex = recipes.findIndex(recipe => recipe.id === recipeEdited.id)
-    const areRecipesEqual = areObjectsEqual(recipeEdited, recipes[recipeIndex])
-    if (!areRecipesEqual) {
-      const newRecipes = [...recipes]
-      newRecipes[recipeIndex] = recipeEdited
-      const newRecipesSorted = sortRecipes(newRecipes)
-      setRecipes(newRecipesSorted)
-    }
-  }
-
-  const deleteRecipe = (id) => {
-    const newRecipes = recipes.filter(recipe => recipe.id !== id)
+  const handleEditRecipe = (recipe) => {
+    const newRecipes = putRecipe(recipe.id, recipe)
     setRecipes(newRecipes)
   }
 
   const handleDeleteRecipe = (id) => {
     const weekMenuUsingRecipe = weekMenu.filter(dayMenu => dayMenu.lunch?.id === id || dayMenu.dinner?.id === id)
-
-    if (weekMenuUsingRecipe.length > 0) {
-      deleteRecipe(id)
-      removeRecipesFromWeekMenu([id])
-    } else { deleteRecipe(id) }
+    if (weekMenuUsingRecipe.length > 0) { removeRecipesFromWeekMenu([id]) }
+    const newRecipes = deleteRecipe(id)
+    setRecipes(newRecipes)
   }
 
-  const getRecipes = () => {
-    if (!search) { return recipes }
-
-    const recipesFiltered = recipes.filter(recipe =>
-      recipe.name.toLowerCase().includes(search.toLowerCase())
-    )
-    return recipesFiltered
-  }
+  const handleSearchRecipes = debounce(async (search) => {
+    const newRecipes = await getRecipesFiltered(search)
+    setRecipes(newRecipes)
+  }, 300)
 
   return {
-    recipes: getRecipes(),
+    recipes,
+    handleGetRecipes,
+    handleSearchRecipes,
     handleSaveRecipe,
     handleDeleteRecipe
   }

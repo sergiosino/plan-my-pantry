@@ -4,21 +4,24 @@ import { useNavigation } from '@react-navigation/native'
 import IconButton from '../buttons/IconButton'
 import { ROUTE_NAME_RECIPES_HELP_VIEW } from '../../constants/routes'
 import { useUserConfig } from '../../hooks/useUserConfig'
+import { useRecipes } from '../../hooks'
 
 const GAP = 25
 
 export default function RecipesHeaderRight (props) {
-  const { isSearchActive, setIsSearchActive } = props
+  const { isSearchOpen, setIsSearchOpen } = props
 
   const navigation = useNavigation()
   const { showHeaderHelpIcon } = useUserConfig()
+  const { handleSearchRecipes } = useRecipes()
 
-  const iconName = isSearchActive
-    ? 'close'
-    : 'search'
+  const handleSarchOpen = () => {
+    setIsSearchOpen(!isSearchOpen)
+  }
 
-  const handlePress = () => {
-    setIsSearchActive(!isSearchActive)
+  const handleSearchClose = () => {
+    setIsSearchOpen(!isSearchOpen)
+    handleSearchRecipes('')
   }
 
   const handlePressHelp = () => {
@@ -28,9 +31,11 @@ export default function RecipesHeaderRight (props) {
   return (
     <View style={styles.localHeaderContainer}>
       <View style={styles.headerItem}>
-        <IconButton onPress={handlePress} iconName={iconName} />
+        {isSearchOpen
+          ? <IconButton onPress={handleSearchClose} iconName='close' />
+          : <IconButton onPress={handleSarchOpen} iconName='search' />}
       </View>
-      {!isSearchActive && showHeaderHelpIcon && (
+      {!isSearchOpen && showHeaderHelpIcon && (
         <View style={styles.headerItem}>
           <IconButton onPress={handlePressHelp} iconName='help-outline' />
         </View>

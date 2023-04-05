@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import AddButton from '../../components/buttons/AddButton'
-import { Recipe, RecipesHeaderRight, RecipesHeaderLeft } from '../../components/recipes'
+import { Recipe } from '../../components/recipes'
 import SwipeableRow from '../../components/swipeableRow/SwippeableRow'
 import Divider from '../../components/Divider'
-import { ROUTE_NAME_RECIPES_EDIT, ROUTE_NAME_RECIPES_VIEW } from '../../constants/routes'
-import { useRecipes, useSearch } from '../../hooks'
+import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
+import { useRecipes } from '../../hooks'
+import RecipesHeader from '../../components/recipes/RecipesHeader'
 
 export default function RecipesView () {
-  const [isSearchActive, setIsSearchActive] = useState(false)
-  const { search, setSearch } = useSearch()
   const {
     recipes,
+    handleGetRecipes,
     handleDeleteRecipe
-  } = useRecipes({ search })
+  } = useRecipes()
   const navigation = useNavigation()
 
   const handlePressRecipe = (recipe) => {
@@ -39,22 +39,12 @@ export default function RecipesView () {
   }
 
   useEffect(() => {
-    const newOptions = {}
-    newOptions.headerRight = () => (<RecipesHeaderRight isSearchActive={isSearchActive} setIsSearchActive={setIsSearchActive} />)
-    if (isSearchActive) {
-      newOptions.headerLeft = () => (<RecipesHeaderLeft setSearch={setSearch} />)
-      newOptions.headerTitle = ''
-    }
-    if (!isSearchActive) {
-      newOptions.headerLeft = null
-      newOptions.headerTitle = ROUTE_NAME_RECIPES_VIEW
-      setSearch('')
-    }
-    navigation.setOptions({ ...newOptions })
-  }, [isSearchActive, setIsSearchActive])
+    handleGetRecipes()
+  }, [])
 
   return (
     <View style={styles.container}>
+      <RecipesHeader />
       <FlatList
         contentContainerStyle={styles.flatListContent}
         initialNumToRender={15}
