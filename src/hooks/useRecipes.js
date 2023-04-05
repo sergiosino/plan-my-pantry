@@ -1,23 +1,21 @@
 import { useContext } from 'react'
 
-import { getRecipes, getRecipesFiltered, pushRecipe, putRecipe, deleteRecipe } from '../services/RecipesService'
+import { getRecipesFiltered, pushRecipe, putRecipe, deleteRecipe, getRecipes } from '../services/RecipesService'
 import { NEW_ELEMENT_ID } from '../constants/constants'
-import { useWeekMenu } from './useWeekMenu'
 import debounce from 'just-debounce-it'
 import { RecipesContext } from '../contexts/RecipesContext'
 import { capitalizeString, isNullOrWhiteSpace } from '../utils'
+import { deleteWeekMenuRecipe } from '../services/WeekMenusService'
 
 export function useRecipes () {
   const { recipes, setRecipes } = useContext(RecipesContext)
-
-  const { weekMenu, removeRecipesFromWeekMenu } = useWeekMenu()
 
   const handleGetRecipes = async () => {
     const newRecipes = await getRecipes()
     setRecipes(newRecipes)
   }
 
-  const handleSaveRecipe = (recipe) => {
+  const handleSaveRecipe = async (recipe) => {
     let ingredients = recipe.ingredients.filter(ingredient => !isNullOrWhiteSpace(ingredient))
     ingredients = ingredients.map(ingredient => capitalizeString(ingredient))
     recipe = {
@@ -25,8 +23,8 @@ export function useRecipes () {
       ingredients
     }
     recipe.id === NEW_ELEMENT_ID
-      ? handleAddRecipe(recipe)
-      : handleEditRecipe(recipe)
+      ? await handleAddRecipe(recipe)
+      : await handleEditRecipe(recipe)
   }
 
   const handleAddRecipe = async (recipe) => {
@@ -39,10 +37,9 @@ export function useRecipes () {
     setRecipes(newRecipes)
   }
 
-  const handleDeleteRecipe = async (id) => {
-    const weekMenuUsingRecipe = weekMenu.filter(dayMenu => dayMenu.lunch?.id === id || dayMenu.dinner?.id === id)
-    if (weekMenuUsingRecipe.length > 0) { removeRecipesFromWeekMenu([id]) }
-    const newRecipes = await deleteRecipe(id)
+  const handleDeleteRecipe = async (recipeId) => {
+    deleteWeekMenuRecipe(recipeId)
+    const newRecipes = await deleteRecipe(recipeId)
     setRecipes(newRecipes)
   }
 

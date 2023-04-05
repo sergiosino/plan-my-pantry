@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 import AddButton from '../../components/buttons/AddButton'
 import { Recipe } from '../../components/recipes'
@@ -9,6 +8,7 @@ import Divider from '../../components/Divider'
 import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
 import { useRecipes } from '../../hooks'
 import RecipesHeader from '../../components/recipes/RecipesHeader'
+import { useCallback } from 'react'
 
 export default function RecipesView () {
   const {
@@ -16,6 +16,7 @@ export default function RecipesView () {
     handleGetRecipes,
     handleDeleteRecipe
   } = useRecipes()
+  console.log('hey')
   const navigation = useNavigation()
 
   const handlePressRecipe = (recipe) => {
@@ -38,9 +39,11 @@ export default function RecipesView () {
     )
   }
 
-  useEffect(() => {
-    handleGetRecipes()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      handleGetRecipes()
+    }, [])
+  )
 
   return (
     <View style={styles.container}>

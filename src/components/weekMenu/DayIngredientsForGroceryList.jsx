@@ -4,17 +4,16 @@ import { useNavigation } from '@react-navigation/native'
 
 import Button from '../buttons/Button'
 import DeselectableItem from './DeselectableItem'
-import { useGroceryList } from '../../hooks/useGroceryList'
+import * as glService from '../../services/GroceryListService'
 
 export default function DayIngredientsForGroceryList (props) {
   const { dayMenuIngredients, setDayMenuIngredients } = props
 
   const navigation = useNavigation()
-  const { handleAddItems } = useGroceryList()
 
   const handleAddGroceryList = () => {
     const ingredientsText = dayMenuIngredients.map(dayMenuIngredient => dayMenuIngredient)
-    handleAddItems(ingredientsText)
+    glService.pushGroceryItems(ingredientsText)
     navigation.goBack()
   }
 

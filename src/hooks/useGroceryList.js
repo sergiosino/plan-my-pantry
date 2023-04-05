@@ -1,63 +1,63 @@
 import { useContext } from 'react'
-import uuid from 'react-native-uuid'
 
 import { GroceryListContext } from '../contexts/GroceryListContext'
+import * as glService from '../services/GroceryListService'
 
 export function useGroceryList () {
   const { groceryList, setGroceryList } = useContext(GroceryListContext)
 
-  const handleAddItems = (newItems) => {
-    const actualItems = groceryList.map(groceryItem => groceryItem.text)
-    const uniqueNewItems = newItems.filter(newItem => !actualItems.includes(newItem))
-    const newGroceryItems = uniqueNewItems.map(newItem => ({ id: uuid.v4(), checked: false, text: newItem }))
-    const newGroceryList = [...groceryList, ...newGroceryItems]
+  const getGroceryList = async () => {
+    const newGroceryList = await glService.getGroceryList()
     setGroceryList(newGroceryList)
   }
 
-  const handleAddItem = () => {
-    const newGroceryItemId = uuid.v4()
-    const newGroceryItem = { id: newGroceryItemId, checked: false, text: '' }
-    const groceryListCopy = [newGroceryItem, ...groceryList]
-    setGroceryList(groceryListCopy)
-
-    return newGroceryItemId
+  const handleAddEmptyItem = () => {
+    const newGroceryItem = { id: -1, checked: false, text: '' }
+    const newGroceryList = [newGroceryItem, ...groceryList]
+    setGroceryList(newGroceryList)
+    return newGroceryItem.id
   }
 
-  const handleDeleteChecked = () => {
-    const groceryListCopy = groceryList.filter(groceryItem => !groceryItem.checked)
-    setGroceryList(groceryListCopy)
+  const handleDeleteChecked = async () => {
+    const newGroceryList = await glService.deleteCheckedGroceryItems()
+    setGroceryList(newGroceryList)
   }
 
-  const handleUnCheckAll = () => {
-    const groceryListUnChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: false } })
-    setGroceryList(groceryListUnChecked)
+  const handleUnCheckAll = async () => {
+    const newGroceryList = await glService.uncheckAllGroceryItems()
+    setGroceryList(newGroceryList)
   }
 
-  const handleCheckAll = () => {
-    const groceryListChecked = groceryList.map(groceryItem => { return { ...groceryItem, checked: true } })
-    setGroceryList(groceryListChecked)
+  const handleCheckAll = async () => {
+    const newGroceryList = await glService.checkAllGroceryItems()
+    setGroceryList(newGroceryList)
   }
 
-  const handleDeleteItem = (id) => {
-    const groceryListCopy = groceryList.filter(groceryItem => groceryItem.id !== id)
-    setGroceryList(groceryListCopy)
+  const handleDeleteItem = async (id) => {
+    const newGroceryList = await glService.deleteGroceryItem(id)
+    setGroceryList(newGroceryList)
   }
 
-  const handleItemChange = (id, checked, text) => {
-    const itemIndex = groceryList.findIndex(groceryItem => groceryItem.id === id)
-    const item = groceryList[itemIndex]
+  const handleItemChange = (groceryItem) => {
+    groceryItem.id === -1
+      ? handleAddGroceryItem(groceryItem)
+      : handleUpdateGroceryItem(groceryItem)
+  }
 
-    if (item.checked !== checked || item.text !== text) {
-      const groceryListCopy = [...groceryList]
-      groceryListCopy[itemIndex] = { id, checked, text }
-      setGroceryList(groceryListCopy)
-    }
+  const handleAddGroceryItem = async (groceryItem) => {
+    const newGroceryList = await glService.pushGroceryItem(groceryItem)
+    setGroceryList(newGroceryList)
+  }
+
+  const handleUpdateGroceryItem = async (groceryItem) => {
+    const newGroceryList = await glService.putGroceryItem(groceryItem.id, groceryItem)
+    setGroceryList(newGroceryList)
   }
 
   return {
     groceryList,
-    handleAddItem,
-    handleAddItems,
+    getGroceryList,
+    handleAddEmptyItem,
     handleDeleteItem,
     handleDeleteChecked,
     handleCheckAll,

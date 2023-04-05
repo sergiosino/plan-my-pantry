@@ -43,7 +43,7 @@ export default function RecipeEditView () {
     _ingredientsInput.current[index]?.focus()
   }
 
-  const handleSave = (fields) => {
+  const handleSave = async (fields) => {
     const ingredients = fields[FIELD_NAME_INGREDIENTS].map(field => field[FIELD_NAME_INGREDIENT])
     const updatedRecipe = {
       id: recipe ? recipe.id : NEW_ELEMENT_ID,
@@ -51,7 +51,7 @@ export default function RecipeEditView () {
       ingredients,
       notes: fields[FIELD_NAME_NOTES]
     }
-    handleSaveRecipe(updatedRecipe)
+    await handleSaveRecipe(updatedRecipe)
     navigation.goBack()
   }
 

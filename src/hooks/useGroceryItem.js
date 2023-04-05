@@ -21,11 +21,13 @@ export function useGroceryItem (props) {
 
   const handleTextFocusEnd = () => {
     setShowDeleteIcon(false)
-    handleItemChange(id, defaultChecked, text)
+    const groceryItem = { id, defaultChecked, text }
+    handleItemChange(groceryItem)
   }
 
   const handleCheckboxChange = (checked) => {
-    handleItemChange(id, checked, text)
+    const groceryItem = { id, checked, text }
+    handleItemChange(groceryItem)
   }
 
   const handleDelete = () => {

@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 import AddButton from '../components/buttons/AddButton'
 import GroceryListHeaderRight from '../components/groceryList/GroceryListHeaderRight'
@@ -12,12 +12,13 @@ export default function GroceryListView () {
   const navigation = useNavigation()
   const {
     groceryList,
-    handleAddItem
+    getGroceryList,
+    handleAddEmptyItem
   } = useGroceryList()
   const _itemIdToFocus = useRef(null)
 
   const handleAdd = () => {
-    const newGroceryItemId = handleAddItem()
+    const newGroceryItemId = handleAddEmptyItem()
     _itemIdToFocus.current = newGroceryItemId
   }
 
@@ -42,6 +43,12 @@ export default function GroceryListView () {
       )
     })
   }, [])
+
+  useFocusEffect(
+    useCallback(() => {
+      getGroceryList()
+    }, [])
+  )
 
   return (
     <View style={styles.container}>

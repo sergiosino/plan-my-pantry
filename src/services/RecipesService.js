@@ -6,7 +6,7 @@ import { areObjectsEqual } from '../utils/areObjectsEqual'
 
 const { RECIPES_LIST } = ASYNC_STORAGE_KEYS
 
-const sortRecipes = (newRecipes) => {
+function sortRecipes (newRecipes) {
   newRecipes.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
   return newRecipes
 }
