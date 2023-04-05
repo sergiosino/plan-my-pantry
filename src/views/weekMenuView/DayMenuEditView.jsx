@@ -2,19 +2,18 @@ import { useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 
-import { useWeekMenu, useRecipes, useSearch } from '../../hooks'
+import { useWeekMenu, useRecipes } from '../../hooks'
 import { DayMenu, DayIngredientsForGroceryList } from '../../components/weekMenu'
-import TextInputSyled from '../../components/forms/TextInputSyled'
 import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
 import DayMenuEditHeaderRight from '../../components/weekMenu/DayMenuEditHeaderRight'
+import RecipesSearch from '../../components/weekMenu/RecipesSearch'
 
 export default function DayMenuEditView () {
   const route = useRoute()
   const { dayId } = route.params
-  const { search, setSearch } = useSearch()
   const { getDayMenu, updateRecipeLunch, updateRecipeDinner } = useWeekMenu()
-  const { recipes } = useRecipes({ search })
+  const { recipes } = useRecipes()
   const navigation = useNavigation()
 
   const [isLunchSelected, setIsLunchSelected] = useState(true)
@@ -105,10 +104,7 @@ export default function DayMenuEditView () {
           isLunchSelected={isLunchSelected}
           isDinnerSelected={!isLunchSelected}
         />
-        <TextInputSyled
-          onChangeText={setSearch}
-          placeholder='Search...'
-        />
+        <RecipesSearch />
       </View>
       <Divider />
       <FlatList
