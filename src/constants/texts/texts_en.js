@@ -56,3 +56,6 @@ export const HOW_TO_DELETE_RECIPE = '\u2023 To DELETE a recipe, press and drag t
 export const HOW_TO_CHANGE_LUNCH_DINNER = '\u2023 To CHANGE between lunch and dinner:'
 export const HOW_TO_SELECT_RECIPE = '\u2023 To SELECT a recipe for the current meal:'
 export const HOW_TO_ADD_INGREDIENTS_GROCERY_LIST = '\u2023 To ADD the ingredients of the meals to the grocery list:'
+
+export const OK = 'OK'
+export const CANCEL = 'CANCEL'

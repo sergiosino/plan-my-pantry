@@ -56,3 +56,6 @@ export const HOW_TO_DELETE_RECIPE = '\u2023 Para ELIMINAR una receta, presione y
 export const HOW_TO_CHANGE_LUNCH_DINNER = '\u2023 Para CAMBIAR entre comida y cena:'
 export const HOW_TO_SELECT_RECIPE = '\u2023 Para SELECCIONAR una receta para la comida actual:'
 export const HOW_TO_ADD_INGREDIENTS_GROCERY_LIST = '\u2023 Para AÑADIR los ingredientes de las comidas a la lista de la compra:'
+
+export const OK = 'OK'
+export const CANCEL = 'CANCELAR'
