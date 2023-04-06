@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Linking, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
 import { useFocusEffect } from '@react-navigation/native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
@@ -10,7 +10,7 @@ import Divider from '../components/Divider'
 
 import { useRecipes, useUserConfig } from '../hooks'
 
-import { USER_CONFIG_PARAMS } from '../constants/constants'
+import { PRIVACY_POLICY_URL, TERMS_CONDITIONS_URL, USER_CONFIG_PARAMS } from '../constants/constants'
 import {
   APP_VERSION,
   PRIVACY_POLICY,
@@ -30,6 +30,8 @@ export default function SettingsView () {
   const handleWelcomPageCheckChange = () => updateUserConfig(SHOW_WELCOME_PAGE, !showWelcomePage)
 
   const handleHeaderHelpIconCheckChange = () => updateUserConfig(SHOW_HEADER_HELP_ICON, !showHeaderHelpIcon)
+
+  const handleOpenUrl = (url) => Linking.openURL(url)
 
   useFocusEffect(
     useCallback(() => {
@@ -53,14 +55,14 @@ export default function SettingsView () {
           />
         </View>
         <Divider />
-        <RectButton onPress={handleWelcomPageCheckChange} style={styles.backgroundWhite}>
+        <RectButton style={styles.backgroundWhite} onPress={handleWelcomPageCheckChange}>
           <View style={styles.settingContainer}>
             <Text>{SHOW_WELCOME}</Text>
             <Checkbox checked={showWelcomePage} />
           </View>
         </RectButton>
         <Divider />
-        <RectButton onPress={handleHeaderHelpIconCheckChange} style={styles.backgroundWhite}>
+        <RectButton style={styles.backgroundWhite} onPress={handleHeaderHelpIconCheckChange}>
           <View style={styles.settingContainer}>
             <Text>
               {SHOW_HELP_ICON_1}
@@ -71,14 +73,14 @@ export default function SettingsView () {
           </View>
         </RectButton>
         <Divider />
-        <RectButton style={styles.backgroundWhite}>
+        <RectButton style={styles.backgroundWhite} onPress={() => handleOpenUrl(TERMS_CONDITIONS_URL)}>
           <View style={styles.settingContainer}>
             <Text>{TERMS_CONDITIONS}</Text>
             <Ionicons name='chevron-forward' size={20} />
           </View>
         </RectButton>
         <Divider />
-        <RectButton style={styles.backgroundWhite}>
+        <RectButton style={styles.backgroundWhite} onPress={() => handleOpenUrl(PRIVACY_POLICY_URL)}>
           <View style={styles.settingContainer}>
             <Text>{PRIVACY_POLICY}</Text>
             <Ionicons name='chevron-forward' size={20} />

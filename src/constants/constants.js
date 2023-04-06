@@ -23,3 +23,6 @@ export const USER_CONFIG_PARAMS = {
   SHOW_WELCOME_PAGE: 'showWelcomePage',
   SHOW_HEADER_HELP_ICON: 'showHeaderHelpIcon'
 }
+
+export const TERMS_CONDITIONS_URL = 'https://sites.google.com/view/planmypantry-terms-conditions/home'
+export const PRIVACY_POLICY_URL = 'https://sites.google.com/view/planmypantry-privacy-policy/home'
