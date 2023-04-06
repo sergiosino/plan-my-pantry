@@ -2,8 +2,10 @@ import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import IconButton from '../buttons/IconButton'
-import { ROUTE_NAME_RECIPES_HELP_VIEW } from '../../constants/routes'
+
 import { useUserConfig } from '../../hooks/useUserConfig'
+
+import { ROUTE_NAME_RECIPES_HELP_VIEW } from '../../constants/routes'
 
 const GAP = 25
 

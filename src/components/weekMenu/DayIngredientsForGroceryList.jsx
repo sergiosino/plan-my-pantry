@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 
 import Button from '../buttons/Button'
 import DeselectableItem from './DeselectableItem'
+
 import * as glService from '../../services/GroceryListService'
 
 export default function DayIngredientsForGroceryList (props) {

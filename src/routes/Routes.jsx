@@ -1,14 +1,24 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useTheme } from '@react-navigation/native'
 
-import { ROUTE_NAME_DAY_MENU_EDIT, ROUTE_NAME_DAY_MENU_EDIT_HELP, ROUTE_NAME_WELCOME_PAGE, ROUTE_NAME_RECIPES_EDIT, ROUTE_NAME_RECIPES_HELP_VIEW, ROUTE_NAME_TABS } from '../constants/routes'
 import BottomTabsRoutes from './BottomTabsRoutes'
+
 import RecipeEditView from '../views/recipesView/RecipeEditView'
 import DayMenuEditView from '../views/weekMenuView/DayMenuEditView'
 import RecipesHelpView from '../views/recipesView/RecipesHelpView'
 import DayMenuEditHelpView from '../views/weekMenuView/DayMenuEditHelpView'
 import InitialHelpView from '../views/InitialHelpView'
+
 import { useUserConfig } from '../hooks/useUserConfig'
+
+import {
+  ROUTE_NAME_DAY_MENU_EDIT,
+  ROUTE_NAME_DAY_MENU_EDIT_HELP,
+  ROUTE_NAME_WELCOME_PAGE,
+  ROUTE_NAME_RECIPES_EDIT,
+  ROUTE_NAME_RECIPES_HELP_VIEW,
+  ROUTE_NAME_TABS
+} from '../constants/routes'
 
 const Stack = createNativeStackNavigator()
 

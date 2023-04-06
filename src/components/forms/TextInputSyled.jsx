@@ -1,6 +1,6 @@
-import { useTheme } from '@react-navigation/native'
 import { useState } from 'react'
 import { StyleSheet, TextInput } from 'react-native'
+import { useTheme } from '@react-navigation/native'
 
 export default function TextInputSyled (props) {
   const { value, onChangeText, multiline, style, innerRef, onFocus, onEndEditing, ...other } = props

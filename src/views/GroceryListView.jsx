@@ -6,7 +6,8 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import AddButton from '../components/buttons/AddButton'
 import GroceryListHeaderRight from '../components/groceryList/GroceryListHeaderRight'
 import GroceryItem from '../components/groceryList/GroceryItem'
-import { useGroceryList } from '../hooks/useGroceryList'
+
+import { useGroceryList } from '../hooks'
 
 export default function GroceryListView () {
   const navigation = useNavigation()

@@ -2,8 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import uuid from 'react-native-uuid'
 
 import { ASYNC_STORAGE_KEYS } from '../constants/constants'
-import { areObjectsEqual } from '../utils/areObjectsEqual'
-import { capitalizeString, isNullOrWhiteSpace } from '../utils'
+
+import { capitalizeString, isNullOrWhiteSpace, areObjectsEqual } from '../utils'
 
 const { RECIPES_LIST } = ASYNC_STORAGE_KEYS
 

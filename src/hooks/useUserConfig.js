@@ -1,14 +1,17 @@
 import { useContext } from 'react'
+
 import { UserConfigContext } from '../contexts/UserConfigContext'
+
 import { USER_CONFIG_PARAMS } from '../constants/constants'
+
+const {
+  SHOW_HEADER_HELP_ICON,
+  SHOW_WELCOME_PAGE
+} = USER_CONFIG_PARAMS
 
 export function useUserConfig () {
   const { userConfig, setUserConfig } = useContext(UserConfigContext)
 
-  const {
-    SHOW_HEADER_HELP_ICON,
-    SHOW_WELCOME_PAGE
-  } = USER_CONFIG_PARAMS
   const {
     [SHOW_WELCOME_PAGE]: showWelcomePage,
     [SHOW_HEADER_HELP_ICON]: showHeaderHelpIcon

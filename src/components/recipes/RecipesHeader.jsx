@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import RecipesHeaderRight from './RecipesHeaderRight'
-import RecipesHeaderLeft from './RecipesHeaderLeft'
-import { ROUTE_NAME_RECIPES_VIEW } from '../../constants/routes'
 import { useNavigation } from '@react-navigation/native'
+
+import { RecipesHeaderRight, RecipesHeaderLeft } from './'
+
+import { ROUTE_NAME_RECIPES_VIEW } from '../../constants/routes'
 
 export default function RecipesHeader (props) {
   const { handleSearchRecipes } = props

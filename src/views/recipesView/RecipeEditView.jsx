@@ -1,13 +1,15 @@
-import { useNavigation, useRoute } from '@react-navigation/native'
 import { useEffect, useRef } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { useFieldArray, useForm } from 'react-hook-form'
 
 import Button from '../../components/buttons/Button'
 import TextInputControlled from '../../components/forms/TextInputControlled'
+import { RecipeInputEdit } from '../../components/recipes'
+
+import * as rService from '../../services/RecipesService'
+
 import { NEW_ELEMENT_ID } from '../../constants/constants'
-import RecipeInputEdit from '../../components/recipes/RecipeInputEdit'
-import { pushRecipe, putRecipe } from '../../services/RecipesService'
 
 const FIELD_NAME_ID = 'id'
 const FIELD_NAME_INGREDIENTS = 'ingredients'
@@ -53,8 +55,8 @@ export default function RecipeEditView () {
       notes: fields[FIELD_NAME_NOTES]
     }
     recipe
-      ? await putRecipe(updatedRecipe.id, updatedRecipe)
-      : await pushRecipe(updatedRecipe)
+      ? await rService.putRecipe(updatedRecipe.id, updatedRecipe)
+      : await rService.pushRecipe(updatedRecipe)
     navigation.goBack()
   }
 

@@ -1,23 +1,24 @@
 import { useEffect, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
+import { RectButton } from 'react-native-gesture-handler'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 import TextInputStyled from '../components/forms/TextInputSyled'
-import Divider from '../components/Divider'
 import Checkbox from '../components/forms/Checkbox'
-import { useUserConfig } from '../hooks/useUserConfig'
-import { useRecipes } from '../hooks'
+import Divider from '../components/Divider'
+
+import { useRecipes, useUserConfig } from '../hooks'
+
 import { USER_CONFIG_PARAMS } from '../constants/constants'
-import { RectButton } from 'react-native-gesture-handler'
+
+const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
 
 export default function SettingsView () {
   const [textJson, setTextJson] = useState('')
 
   const { recipes } = useRecipes()
   const { showWelcomePage, showHeaderHelpIcon, updateUserConfig } = useUserConfig()
-
-  const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
 
   const handleWelcomPageCheckChange = () => updateUserConfig(SHOW_WELCOME_PAGE, !showWelcomePage)
 

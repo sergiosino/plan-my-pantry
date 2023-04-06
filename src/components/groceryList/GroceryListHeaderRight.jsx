@@ -1,8 +1,11 @@
 import { StyleSheet, View } from 'react-native'
 
-import { confirmationAlert } from '../../utils/confirmationAlert'
 import IconButton from '../buttons/IconButton'
+
 import { useGroceryList } from '../../hooks/useGroceryList'
+
+import { confirmationAlert } from '../../utils/confirmationAlert'
+
 import {
   CONFIRMATION_ALERT_CHECK_ALL_ITEMS_MESSAGE,
   CONFIRMATION_ALERT_CHECK_TITLE,

@@ -1,7 +1,10 @@
 import { useContext } from 'react'
 
 import { GroceryListContext } from '../contexts/GroceryListContext'
+
 import * as glService from '../services/GroceryListService'
+
+import { NEW_ELEMENT_ID } from '../constants/constants'
 
 export function useGroceryList () {
   const { groceryList, setGroceryList } = useContext(GroceryListContext)
@@ -12,7 +15,7 @@ export function useGroceryList () {
   }
 
   const handleAddEmptyItem = () => {
-    const newGroceryItem = { id: -1, checked: false, text: '' }
+    const newGroceryItem = { id: NEW_ELEMENT_ID, checked: false, text: '' }
     const newGroceryList = [newGroceryItem, ...groceryList]
     setGroceryList(newGroceryList)
     return newGroceryItem.id
@@ -39,7 +42,7 @@ export function useGroceryList () {
   }
 
   const handleItemChange = (groceryItem) => {
-    groceryItem.id === -1
+    groceryItem.id === NEW_ELEMENT_ID
       ? handleAddGroceryItem(groceryItem)
       : handleUpdateGroceryItem(groceryItem)
   }

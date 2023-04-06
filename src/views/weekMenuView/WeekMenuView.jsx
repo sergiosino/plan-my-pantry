@@ -1,11 +1,13 @@
-import { useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
 
 import Divider from '../../components/Divider'
 import DayMenu from '../../components/weekMenu/DayMenu'
+
+import { useWeekMenu } from '../../hooks'
+
 import { ROUTE_NAME_DAY_MENU_EDIT } from '../../constants/routes'
-import { useWeekMenu } from '../../hooks/useWeekMenu'
 
 export default function WeekMenuView () {
   const navigation = useNavigation()

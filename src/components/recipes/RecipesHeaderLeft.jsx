@@ -1,7 +1,7 @@
+import { useState } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 
 import TextInputSyled from '../forms/TextInputSyled'
-import { useState } from 'react'
 
 const GAP = 25
 const windowDimensions = Dimensions.get('window')

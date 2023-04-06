@@ -5,8 +5,10 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 
 import Checkbox from '../components/forms/Checkbox'
 import Button from '../components/buttons/Button'
+
+import { useUserConfig } from '../hooks'
+
 import { ROUTE_NAME_TABS } from '../constants/routes'
-import { useUserConfig } from '../hooks/useUserConfig'
 import { USER_CONFIG_PARAMS } from '../constants/constants'
 
 export default function InitialHelpView () {

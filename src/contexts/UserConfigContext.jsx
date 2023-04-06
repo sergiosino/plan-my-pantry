@@ -1,6 +1,9 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createContext, useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 import { ASYNC_STORAGE_KEYS, USER_CONFIG_MOCKUP } from '../constants/constants'
+
+const { USER_CONFIG } = ASYNC_STORAGE_KEYS
 
 export const UserConfigContext = createContext({})
 
@@ -9,13 +12,13 @@ export function UserConfigContextProvider ({ children }) {
 
   const updateUserInfo = (newUserConfig) => {
     const jsonValue = JSON.stringify(newUserConfig)
-    AsyncStorage.setItem(ASYNC_STORAGE_KEYS.USER_CONFIG, jsonValue)
+    AsyncStorage.setItem(USER_CONFIG, jsonValue)
     setUserConfig(newUserConfig)
   }
 
   useEffect(() => {
     const getStorageUserConfig = async () => {
-      let storageUserConfig = await AsyncStorage.getItem(ASYNC_STORAGE_KEYS.USER_CONFIG)
+      let storageUserConfig = await AsyncStorage.getItem(USER_CONFIG)
       storageUserConfig = storageUserConfig
         ? JSON.parse(storageUserConfig)
         : USER_CONFIG_MOCKUP

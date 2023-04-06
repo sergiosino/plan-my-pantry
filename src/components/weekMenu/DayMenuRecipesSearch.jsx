@@ -1,9 +1,10 @@
+import { useState } from 'react'
 import { Keyboard, View } from 'react-native'
+
 import TextInputSyled from '../forms/TextInputSyled'
 import IconButton from '../buttons/IconButton'
-import { useState } from 'react'
 
-export default function RecipesSearch (props) {
+export default function DayMenuRecipesSearch (props) {
   const { handleSearchRecipes } = props
 
   const [search, setSearch] = useState('')

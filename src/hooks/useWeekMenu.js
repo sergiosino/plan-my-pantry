@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
+import { useFocusEffect } from '@react-navigation/native'
 
 import * as wmService from '../services/WeekMenusService'
-import { useFocusEffect } from '@react-navigation/native'
 
 export function useWeekMenu () {
   const [weekMenu, setWeekMenu] = useState([])

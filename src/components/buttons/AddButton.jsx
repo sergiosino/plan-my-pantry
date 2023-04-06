@@ -1,6 +1,7 @@
 import { StyleSheet, View } from 'react-native'
-import IconButton from './IconButton'
 import { useTheme } from '@react-navigation/native'
+
+import IconButton from './IconButton'
 
 const BUTTON_SIZE = 60
 

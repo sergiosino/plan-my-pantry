@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
 
-import { useRecipes } from '../../hooks'
-import { DayMenu, DayIngredientsForGroceryList } from '../../components/weekMenu'
+import { DayMenu, DayIngredientsForGroceryList, DayMenuEditHeaderRight, DayMenuRecipesSearch } from '../../components/weekMenu'
 import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
-import DayMenuEditHeaderRight from '../../components/weekMenu/DayMenuEditHeaderRight'
-import RecipesSearch from '../../components/weekMenu/RecipesSearch'
+
+import { useRecipes } from '../../hooks'
+
 import * as wmService from '../../services/WeekMenusService'
 
 export default function DayMenuEditView () {
@@ -102,7 +102,7 @@ export default function DayMenuEditView () {
           isLunchSelected={isLunchSelected}
           isDinnerSelected={!isLunchSelected}
         />
-        <RecipesSearch handleSearchRecipes={handleSearchRecipes} />
+        <DayMenuRecipesSearch handleSearchRecipes={handleSearchRecipes} />
       </View>
       <Divider />
       <FlatList

@@ -1,14 +1,15 @@
+import { useCallback } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 import AddButton from '../../components/buttons/AddButton'
-import { Recipe } from '../../components/recipes'
+import { Recipe, RecipesHeader } from '../../components/recipes'
 import SwipeableRow from '../../components/swipeableRow/SwippeableRow'
 import Divider from '../../components/Divider'
-import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
+
 import { useRecipes } from '../../hooks'
-import RecipesHeader from '../../components/recipes/RecipesHeader'
-import { useCallback } from 'react'
+
+import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
 
 export default function RecipesView () {
   const {
