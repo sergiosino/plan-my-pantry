@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   scrollView: {
-    paddingHorizontal: 20
+    paddingHorizontal: 15
   },
   view: {
     marginBottom: 70

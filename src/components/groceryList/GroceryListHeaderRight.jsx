@@ -15,8 +15,6 @@ import {
   UNCHECK
 } from '../../constants/texts/texts'
 
-const GAP = 25
-
 export default function GroceryListHeaderRight (props) {
   const { itemIdToFocus } = props
 
@@ -54,28 +52,23 @@ export default function GroceryListHeaderRight (props) {
 
   return (
     <View style={styles.localHeaderContainer}>
-      <View style={styles.headerItem}>
-        <IconButton onPress={handlePressCheckAll} iconName='checkbox' />
-      </View>
-      <View style={styles.headerItem}>
-        <IconButton onPress={handlePressUncheckAll} iconName='square-outline' />
-      </View>
-      <View style={styles.headerItem}>
-        <IconButton onPress={handlePressDeleteChecked} iconName='md-trash-outline' />
-      </View>
+      <IconButton style={styles.marginRight} onPress={handlePressCheckAll} iconName='checkbox' />
+      <IconButton style={styles.marginRight} onPress={handlePressUncheckAll} iconName='square-outline' />
+      <IconButton onPress={handlePressDeleteChecked} iconName='md-trash-outline' />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   localHeaderContainer: {
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: GAP,
-    margin: -(GAP / 2),
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    paddingHorizontal: 15
   },
-  headerItem: {
-    margin: (GAP / 2)
+  marginRight: {
+    marginRight: 20
   }
 })

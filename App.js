@@ -2,7 +2,7 @@ import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import Constants from 'expo-constants'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import Routes from './src/routes/Routes'
@@ -22,10 +22,10 @@ const MyTheme = {
 
 export default function App () {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={styles.gestureContainer}>
       <AppContexts>
         <StatusBar backgroundColor={MyTheme.colors.background} />
-        <View style={{ flex: 1, marginTop: Constants.statusBarHeight }}>
+        <View style={styles.appContainer}>
           <NavigationContainer theme={MyTheme}>
             <Routes />
           </NavigationContainer>
@@ -34,3 +34,13 @@ export default function App () {
     </GestureHandlerRootView>
   )
 }
+
+const styles = StyleSheet.create({
+  gestureContainer: {
+    flex: 1
+  },
+  appContainer: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight
+  }
+})

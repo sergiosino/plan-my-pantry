@@ -27,8 +27,8 @@ export default function AddButton (props) {
 const styles = StyleSheet.create({
   iconContainer: {
     position: 'absolute',
-    bottom: 10,
-    right: 10,
+    bottom: 15,
+    right: 15,
     zIndex: 999
   },
   icon: {

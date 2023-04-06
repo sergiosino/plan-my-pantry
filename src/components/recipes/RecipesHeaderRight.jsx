@@ -7,8 +7,6 @@ import { useUserConfig } from '../../hooks/useUserConfig'
 
 import { ROUTE_RECIPES_HELP_VIEW } from '../../constants/routes'
 
-const GAP = 30
-
 export default function RecipesHeaderRight (props) {
   const { handleSearchRecipes, isSearchOpen, setIsSearchOpen } = props
 
@@ -30,15 +28,11 @@ export default function RecipesHeaderRight (props) {
 
   return (
     <View style={styles.localHeaderContainer}>
-      <View style={styles.headerItem}>
-        {isSearchOpen
-          ? <IconButton onPress={handleSearchClose} iconName='close' />
-          : <IconButton onPress={handleSarchOpen} iconName='search' />}
-      </View>
+      {isSearchOpen
+        ? <IconButton onPress={handleSearchClose} iconName='close' />
+        : <IconButton style={styles.marginRight} onPress={handleSarchOpen} iconName='search' />}
       {!isSearchOpen && showHeaderHelpIcon && (
-        <View style={styles.headerItem}>
-          <IconButton onPress={handlePressHelp} iconName='help-outline' />
-        </View>
+        <IconButton onPress={handlePressHelp} iconName='help-outline' />
       )}
     </View>
   )
@@ -46,13 +40,14 @@ export default function RecipesHeaderRight (props) {
 
 const styles = StyleSheet.create({
   localHeaderContainer: {
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: GAP,
-    margin: -(GAP),
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    paddingHorizontal: 15
   },
-  headerItem: {
-    margin: (GAP / 2)
+  marginRight: {
+    marginRight: 20
   }
 })

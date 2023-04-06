@@ -8,7 +8,7 @@ export default function Tutorial (props) {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={require('../../assets/chick-tutorial.png')} style={{ height: 80, width: 80 }} />
+        <Image source={require('../../assets/chick-tutorial.png')} style={styles.chickImg} />
       </View>
       <Divider />
       <ScrollView style={styles.scrollView}>
@@ -36,8 +36,12 @@ const styles = StyleSheet.create({
     flex: 1
   },
   scrollView: {
-    padding: 10,
-    paddingTop: 20
+    paddingHorizontal: 15,
+    paddingVertical: 20
+  },
+  chickImg: {
+    height: 80,
+    width: 80
   },
   imageContainer: {
     alignItems: 'center',

@@ -40,13 +40,13 @@ export default function SettingsView () {
   )
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.conatiner}>
       <View style={styles.imageContainer}>
-        <Image source={require('../../assets/chick-settings.png')} style={{ height: 80, width: 80 }} />
+        <Image source={require('../../assets/chick-settings.png')} style={styles.chickImg} />
       </View>
       <Divider />
       <ScrollView>
-        <View style={{ padding: 10, backgroundColor: 'white' }}>
+        <View style={{ padding: 15, backgroundColor: 'white' }}>
           <Text style={{ marginBottom: 5 }}>{RECIPES_JSON}</Text>
           <TextInputStyled
             value={JSON.stringify(recipes)}
@@ -91,19 +91,23 @@ export default function SettingsView () {
           <Text>{APP_VERSION}</Text>
           <Text>{Constants.manifest.version}</Text>
         </View>
-        <Divider style={{ marginBottom: 50 }} />
+        <Divider style={styles.marginBottom50} />
       </ScrollView>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  conatiner: {
+    flex: 1
+  },
   imageContainer: {
     alignItems: 'center',
     marginBottom: 20
   },
-  divider: {
-    marginVertical: 20
+  chickImg: {
+    height: 80,
+    width: 80
   },
   backgroundWhite: {
     backgroundColor: 'white'
@@ -112,7 +116,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     height: 55
+  },
+  marginBottom50: {
+    marginBottom: 50
   }
 })

@@ -5,7 +5,7 @@ export default function SwipeableSmallAction (props) {
   const { onPress, text, style } = props
 
   return (
-    <View style={{ width: 80 }}>
+    <View style={styles.container}>
       <RectButton style={style} onPress={onPress}>
         <Text style={styles.actionText}>{text}</Text>
       </RectButton>
@@ -14,6 +14,9 @@ export default function SwipeableSmallAction (props) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: 80
+  },
   actionText: {
     padding: 10,
     fontSize: 16,

@@ -11,7 +11,7 @@ function MealRecipeText ({ meal, recipe, isSelected }) {
       <Text style={mealTextStyle}>
         {meal}
       </Text>
-      <View style={{ height: 41, justifyContent: 'center' }}>
+      <View style={styles.recipeNameContainer}>
         <Text numberOfLines={2} style={recipeTextStyle}>
           {recipe}
         </Text>
@@ -21,12 +21,12 @@ function MealRecipeText ({ meal, recipe, isSelected }) {
 }
 
 export default function DayMeal (props) {
-  const { meal, recipe, onPress, isSelected } = props
+  const { meal, recipe, onPress, isSelected, style } = props
 
   const { colors } = useTheme()
 
   const isPressable = !!onPress
-  const containerStyle = [styles.container, isSelected && { backgroundColor: colors.primary }]
+  const containerStyle = [styles.container, isSelected && { backgroundColor: colors.primary }, style]
 
   return isPressable
     ? (
@@ -52,10 +52,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   recipeText: {
-    textAlign: 'center',
-    marginTop: 5
+    textAlign: 'center'
   },
   textSelected: {
     color: 'white'
+  },
+  recipeNameContainer: {
+    height: 41,
+    justifyContent: 'center'
   }
 })

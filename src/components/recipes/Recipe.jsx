@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   innerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10
+    padding: 15
   },
   recipeInfoContainer: {
     flex: 1,

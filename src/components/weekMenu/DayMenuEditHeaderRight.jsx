@@ -7,8 +7,6 @@ import { useUserConfig } from '../../hooks/useUserConfig'
 
 import { ROUTE_DAY_MENU_EDIT_HELP } from '../../constants/routes'
 
-const GAP = 15
-
 export default function DayMenuEditHeaderRight () {
   const navigation = useNavigation()
   const { showHeaderHelpIcon } = useUserConfig()
@@ -26,10 +24,7 @@ export default function DayMenuEditHeaderRight () {
 
 const styles = StyleSheet.create({
   localHeaderContainer: {
-    alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: GAP,
-    margin: -(GAP),
     justifyContent: 'flex-end'
   }
 })

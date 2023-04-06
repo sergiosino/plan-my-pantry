@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
 
@@ -28,19 +28,29 @@ export default function WeekMenuView () {
   }, [])
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
+    <ScrollView style={styles.container}>
       {weekMenu.map((dayMenu) => {
         const { dayId, lunch, dinner } = dayMenu
         const dayName = WEEK_DAYS[dayId]
         return (
           <View key={dayId}>
-            <RectButton onPress={() => handleDayMenuPress(dayId)}>
+            <RectButton style={styles.dayContainer} onPress={() => handleDayMenuPress(dayId)}>
               <DayMenu dayName={dayName} lunch={lunch?.name} dinner={dinner?.name} />
             </RectButton>
-            <Divider style={{ marginHorizontal: 20 }} />
+            <Divider />
           </View>
         )
       })}
     </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white'
+  },
+  dayContainer: {
+    padding: 15
+  }
+})

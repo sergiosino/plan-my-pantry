@@ -129,11 +129,11 @@ const styles = StyleSheet.create({
     flex: 1
   },
   dayMenuContainer: {
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     height: 130
   },
   ingredientsListContainer: {
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     marginTop: 10,
     height: 175
   }

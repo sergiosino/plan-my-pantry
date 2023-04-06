@@ -5,8 +5,6 @@ import IconButton from '../buttons/IconButton'
 
 import * as rService from '../../services/RecipesService'
 
-const GAP = 15
-
 export default function RecipeEditHeaderRight (props) {
   const { recipeParam, handleSubmit } = props
 
@@ -36,10 +34,7 @@ export default function RecipeEditHeaderRight (props) {
 
 const styles = StyleSheet.create({
   localHeaderContainer: {
-    alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: GAP,
-    margin: -(GAP),
     justifyContent: 'flex-end'
   }
 })

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { useFieldArray, useForm } from 'react-hook-form'
 
@@ -70,62 +70,48 @@ export default function RecipeEditView () {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.scrollContainer}>
-        <Text style={styles.modalText}>{RECIPE_NAME}</Text>
-        <TextInputControlled
-          name='name'
+    <ScrollView style={styles.scrollContainer}>
+      <Text style={styles.modalText}>{RECIPE_NAME}</Text>
+      <TextInputControlled
+        name='name'
+        control={control}
+        blurOnSubmit={false}
+        returnKeyType='next'
+        onSubmitEditing={() => focusInput()}
+        innerRef={_recipeNameInput}
+      />
+      <Text style={styles.modalText}>{INGREDIENTS}</Text>
+      {fields.map((field, index) => (
+        <RecipeInputEdit
+          key={field.id}
+          index={index}
+          fieldNameIngredients='ingredients'
+          fieldNameIngredient='ingredient'
+          numberOfFields={fields.length}
+          remove={remove}
+          focusInput={focusInput}
+          handleChange={handleChange}
           control={control}
-          blurOnSubmit={false}
-          returnKeyType='next'
-          onSubmitEditing={() => focusInput()}
-          innerRef={_recipeNameInput}
+          _ingredientsInput={_ingredientsInput}
         />
-        <Text style={styles.modalText}>{INGREDIENTS}</Text>
-        {fields.map((field, index) => (
-          <RecipeInputEdit
-            key={field.id}
-            index={index}
-            fieldNameIngredients='ingredients'
-            fieldNameIngredient='ingredient'
-            numberOfFields={fields.length}
-            remove={remove}
-            focusInput={focusInput}
-            handleChange={handleChange}
-            control={control}
-            _ingredientsInput={_ingredientsInput}
-          />
-        ))}
-        <Text style={styles.modalText}>{NOTES}</Text>
-        <TextInputControlled
-          name='notes'
-          control={control}
-          multiline
-          numberOfLines={10}
-          innerRef={_recieNotesInput}
-        />
-      </ScrollView>
-    </View>
+      ))}
+      <Text style={styles.modalText}>{NOTES}</Text>
+      <TextInputControlled
+        name='notes'
+        control={control}
+        multiline
+        numberOfLines={10}
+        innerRef={_recieNotesInput}
+      />
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between'
-  },
   scrollContainer: {
+    flex: 1,
     paddingHorizontal: 15,
     marginBottom: 10
-  },
-  buttonsContainer: {
-    paddingHorizontal: 15,
-    marginBottom: 10
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center'
   },
   modalText: {
     marginTop: 15,
