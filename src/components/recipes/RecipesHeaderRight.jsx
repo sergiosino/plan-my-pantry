@@ -4,16 +4,14 @@ import { useNavigation } from '@react-navigation/native'
 import IconButton from '../buttons/IconButton'
 import { ROUTE_NAME_RECIPES_HELP_VIEW } from '../../constants/routes'
 import { useUserConfig } from '../../hooks/useUserConfig'
-import { useRecipes } from '../../hooks'
 
 const GAP = 25
 
 export default function RecipesHeaderRight (props) {
-  const { isSearchOpen, setIsSearchOpen } = props
+  const { handleSearchRecipes, isSearchOpen, setIsSearchOpen } = props
 
   const navigation = useNavigation()
   const { showHeaderHelpIcon } = useUserConfig()
-  const { handleSearchRecipes } = useRecipes()
 
   const handleSarchOpen = () => {
     setIsSearchOpen(!isSearchOpen)

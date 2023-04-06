@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-import { useNavigation, useRoute } from '@react-navigation/native'
+import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
 
 import { useWeekMenu, useRecipes } from '../../hooks'
 import { DayMenu, DayIngredientsForGroceryList } from '../../components/weekMenu'
@@ -13,7 +13,7 @@ export default function DayMenuEditView () {
   const route = useRoute()
   const { dayId } = route.params
   const { getDayMenu, updateRecipeLunch, updateRecipeDinner } = useWeekMenu()
-  const { recipes } = useRecipes()
+  const { recipes, handleGetRecipes, handleSearchRecipes } = useRecipes()
   const navigation = useNavigation()
 
   const [isLunchSelected, setIsLunchSelected] = useState(true)
@@ -93,6 +93,12 @@ export default function DayMenuEditView () {
     })
   }, [])
 
+  useFocusEffect(
+    useCallback(() => {
+      handleGetRecipes()
+    }, [])
+  )
+
   return (
     <View style={styles.container}>
       <View style={styles.dayMenuContainer}>
@@ -104,7 +110,7 @@ export default function DayMenuEditView () {
           isLunchSelected={isLunchSelected}
           isDinnerSelected={!isLunchSelected}
         />
-        <RecipesSearch />
+        <RecipesSearch handleSearchRecipes={handleSearchRecipes} />
       </View>
       <Divider />
       <FlatList

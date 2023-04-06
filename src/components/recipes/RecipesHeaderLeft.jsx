@@ -2,15 +2,14 @@ import { Dimensions, StyleSheet, View } from 'react-native'
 
 import TextInputSyled from '../forms/TextInputSyled'
 import { useState } from 'react'
-import { useRecipes } from '../../hooks'
 
 const GAP = 25
 const windowDimensions = Dimensions.get('window')
 
-export default function RecipesHeaderLeft () {
-  const [search, setSearch] = useState('')
+export default function RecipesHeaderLeft (props) {
+  const { handleSearchRecipes } = props
 
-  const { handleSearchRecipes } = useRecipes()
+  const [search, setSearch] = useState('')
 
   const handleSearch = (value) => {
     setSearch(value)

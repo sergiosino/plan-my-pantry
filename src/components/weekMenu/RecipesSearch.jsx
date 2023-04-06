@@ -2,12 +2,11 @@ import { Keyboard, View } from 'react-native'
 import TextInputSyled from '../forms/TextInputSyled'
 import IconButton from '../buttons/IconButton'
 import { useState } from 'react'
-import { useRecipes } from '../../hooks'
 
-export default function RecipesSearch () {
+export default function RecipesSearch (props) {
+  const { handleSearchRecipes } = props
+
   const [search, setSearch] = useState('')
-
-  const { handleSearchRecipes } = useRecipes()
 
   const handleSearch = (value) => {
     setSearch(value)

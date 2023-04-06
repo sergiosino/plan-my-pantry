@@ -7,7 +7,6 @@ import Divider from '../../components/Divider'
 import DayMenu from '../../components/weekMenu/DayMenu'
 import { ROUTE_NAME_DAY_MENU_EDIT } from '../../constants/routes'
 import { useWeekMenu } from '../../hooks/useWeekMenu'
-import { RecipesContextProvider } from '../../contexts/RecipesContext'
 
 export default function WeekMenuView () {
   const navigation = useNavigation()
@@ -24,20 +23,18 @@ export default function WeekMenuView () {
   )
 
   return (
-    <RecipesContextProvider>
-      <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
-        {weekMenu.map((dayMenu) => {
-          const { dayId, dayName, lunch, dinner } = dayMenu
-          return (
-            <View key={dayId}>
-              <RectButton onPress={() => handleDayMenuPress(dayId)}>
-                <DayMenu dayName={dayName} lunch={lunch?.name} dinner={dinner?.name} />
-              </RectButton>
-              <Divider style={{ marginHorizontal: 20 }} />
-            </View>
-          )
-        })}
-      </ScrollView>
-    </RecipesContextProvider>
+    <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
+      {weekMenu.map((dayMenu) => {
+        const { dayId, dayName, lunch, dinner } = dayMenu
+        return (
+          <View key={dayId}>
+            <RectButton onPress={() => handleDayMenuPress(dayId)}>
+              <DayMenu dayName={dayName} lunch={lunch?.name} dinner={dinner?.name} />
+            </RectButton>
+            <Divider style={{ marginHorizontal: 20 }} />
+          </View>
+        )
+      })}
+    </ScrollView>
   )
 }

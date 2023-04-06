@@ -3,6 +3,7 @@ import uuid from 'react-native-uuid'
 
 import { ASYNC_STORAGE_KEYS } from '../constants/constants'
 import { areObjectsEqual } from '../utils/areObjectsEqual'
+import { capitalizeString, isNullOrWhiteSpace } from '../utils'
 
 const { RECIPES_LIST } = ASYNC_STORAGE_KEYS
 
@@ -14,6 +15,15 @@ function sortRecipes (newRecipes) {
 function updateRecipes (newRecipes) {
   const jsonValue = JSON.stringify(newRecipes)
   AsyncStorage.setItem(RECIPES_LIST, jsonValue)
+}
+
+function cleanRecipeIngredients (recipe) {
+  let ingredients = recipe.ingredients.filter(ingredient => !isNullOrWhiteSpace(ingredient))
+  ingredients = ingredients.map(ingredient => capitalizeString(ingredient))
+  return {
+    ...recipe,
+    ingredients
+  }
 }
 
 export async function getRecipes () {
@@ -33,20 +43,22 @@ export async function getRecipesFiltered (filter) {
 
 export async function pushRecipe (recipe) {
   recipe.id = uuid.v4()
+  const cleanedRecipe = cleanRecipeIngredients(recipe)
   const recipes = await getRecipes()
-  const newRecipes = [...recipes, recipe]
+  const newRecipes = [...recipes, cleanedRecipe]
   const newRecipesSorted = sortRecipes(newRecipes)
   updateRecipes(newRecipesSorted)
   return newRecipesSorted
 }
 
 export async function putRecipe (id, recipe) {
+  const cleanedRecipe = cleanRecipeIngredients(recipe)
   const recipes = await getRecipes()
   const recipeIndex = recipes.findIndex(recipe => recipe.id === id)
-  const areRecipesEqual = areObjectsEqual(recipe, recipes[recipeIndex])
+  const areRecipesEqual = areObjectsEqual(cleanedRecipe, recipes[recipeIndex])
   if (!areRecipesEqual) {
     const newRecipes = [...recipes]
-    newRecipes[recipeIndex] = recipe
+    newRecipes[recipeIndex] = cleanedRecipe
     const newRecipesSorted = sortRecipes(newRecipes)
     updateRecipes(newRecipesSorted)
     return newRecipesSorted

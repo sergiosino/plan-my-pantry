@@ -14,6 +14,7 @@ export default function RecipesView () {
   const {
     recipes,
     handleGetRecipes,
+    handleSearchRecipes,
     handleDeleteRecipe
   } = useRecipes()
   console.log('hey')
@@ -47,7 +48,7 @@ export default function RecipesView () {
 
   return (
     <View style={styles.container}>
-      <RecipesHeader />
+      <RecipesHeader handleSearchRecipes={handleSearchRecipes} />
       <FlatList
         contentContainerStyle={styles.flatListContent}
         initialNumToRender={15}

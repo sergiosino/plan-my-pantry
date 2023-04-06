@@ -7,8 +7,9 @@ import Button from '../../components/buttons/Button'
 import TextInputControlled from '../../components/forms/TextInputControlled'
 import { NEW_ELEMENT_ID } from '../../constants/constants'
 import RecipeInputEdit from '../../components/recipes/RecipeInputEdit'
-import { useRecipes } from '../../hooks/useRecipes'
+import { pushRecipe, putRecipe } from '../../services/RecipesService'
 
+const FIELD_NAME_ID = 'id'
 const FIELD_NAME_INGREDIENTS = 'ingredients'
 const FIELD_NAME_INGREDIENT = 'ingredient'
 const FIELD_NAME_RECIPE = 'name'
@@ -20,6 +21,7 @@ export default function RecipeEditView () {
   const navigation = useNavigation()
   const { control, handleSubmit, getValues, reset } = useForm({
     defaultValues: {
+      [FIELD_NAME_ID]: NEW_ELEMENT_ID,
       [FIELD_NAME_RECIPE]: '',
       [FIELD_NAME_INGREDIENTS]: [FIELD_DEFAULT_INGREDIENT, FIELD_DEFAULT_INGREDIENT],
       [FIELD_NAME_NOTES]: ''
@@ -29,7 +31,6 @@ export default function RecipeEditView () {
     control,
     name: FIELD_NAME_INGREDIENTS
   })
-  const { handleSaveRecipe } = useRecipes()
 
   const _recipeNameInput = useRef({})
   const _ingredientsInput = useRef([])
@@ -46,12 +47,14 @@ export default function RecipeEditView () {
   const handleSave = async (fields) => {
     const ingredients = fields[FIELD_NAME_INGREDIENTS].map(field => field[FIELD_NAME_INGREDIENT])
     const updatedRecipe = {
-      id: recipe ? recipe.id : NEW_ELEMENT_ID,
+      id: fields[FIELD_NAME_ID],
       name: fields[FIELD_NAME_RECIPE],
       ingredients,
       notes: fields[FIELD_NAME_NOTES]
     }
-    await handleSaveRecipe(updatedRecipe)
+    recipe
+      ? await putRecipe(updatedRecipe.id, updatedRecipe)
+      : await pushRecipe(updatedRecipe)
     navigation.goBack()
   }
 
@@ -68,6 +71,7 @@ export default function RecipeEditView () {
       const ingredientFields = recipe.ingredients.map(ingredient => ({ [FIELD_NAME_INGREDIENT]: ingredient }))
       ingredientFields.push(FIELD_DEFAULT_INGREDIENT)
       reset({
+        [FIELD_NAME_ID]: recipe.id,
         [FIELD_NAME_RECIPE]: recipe.name,
         [FIELD_NAME_INGREDIENTS]: ingredientFields,
         [FIELD_NAME_NOTES]: recipe.notes
