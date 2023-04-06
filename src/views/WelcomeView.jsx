@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { RectButton } from 'react-native-gesture-handler'
 
 import Checkbox from '../components/forms/Checkbox'
 import Button from '../components/buttons/Button'
@@ -20,7 +21,7 @@ import {
 } from '../constants/texts/texts'
 
 export default function WelcomeView () {
-  const [checked, setCheced] = useState(false)
+  const [checked, setChecked] = useState(false)
 
   const { navigate } = useNavigation()
   const { showWelcomePage, updateUserConfig } = useUserConfig()
@@ -48,9 +49,13 @@ export default function WelcomeView () {
         {HELP_ICON_EXPLANATION_2}
       </Text>
       <Text style={styles.text}>{HAPPY_GROCERY}</Text>
-      <View style={styles.checkboxContainer}>
-        <Checkbox style={styles.marginRight5} checked={checked} onChange={setCheced} />
-        <Text>{NOT_SHOW_AGAIN}</Text>
+      <View style={styles.checkboxButtonContainer}>
+        <RectButton onPress={() => setChecked(!checked)} rippleColor='transparent'>
+          <View style={styles.checkboxContainer}>
+            <Checkbox style={styles.marginRight5} checked={checked} />
+            <Text>{NOT_SHOW_AGAIN}</Text>
+          </View>
+        </RectButton>
       </View>
       <Button onPress={handleContinue}>
         <Text>{CONTINUE}</Text>
@@ -86,12 +91,14 @@ const styles = StyleSheet.create({
     fontSize: 17,
     textAlign: 'center'
   },
+  checkboxButtonContainer: {
+    marginTop: 40,
+    marginBottom: 20
+  },
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 40,
-    marginBottom: 20
+    justifyContent: 'center'
   },
   marginRight5: {
     marginRight: 5
