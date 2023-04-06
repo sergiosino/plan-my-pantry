@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { STORAGE_KEYS, USER_CONFIG_MOCKUP } from '../constants/constants'
+import { STORAGE_KEYS } from '../constants/constants'
+import { USER_CONFIG_MOCKUP } from '../constants/mockups'
 
 const { USER_CONFIG } = STORAGE_KEYS
 

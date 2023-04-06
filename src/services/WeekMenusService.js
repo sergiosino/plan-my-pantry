@@ -1,6 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { STORAGE_KEYS, WEEK_MENU_MOCKUP } from '../constants/constants'
+import * as rService from './RecipesService'
+
+import { STORAGE_KEYS } from '../constants/constants'
+import { WEEK_MENU_MOCKUP } from '../constants/mockups'
 
 const { WEEK_MENU } = STORAGE_KEYS
 
@@ -10,10 +13,21 @@ function updateWeekMenus (newWeekMenus) {
 }
 
 export async function getWeekMenus () {
-  const storageWeekMenu = await AsyncStorage.getItem(WEEK_MENU)
-  return storageWeekMenu
-    ? JSON.parse(storageWeekMenu)
+  const storageWeekMenus = await AsyncStorage.getItem(WEEK_MENU)
+  const recipes = await rService.getRecipes()
+  const weekMenus = storageWeekMenus
+    ? JSON.parse(storageWeekMenus)
     : WEEK_MENU_MOCKUP
+  const weekMenuWithRecipesName = weekMenus.map(dayMenu => {
+    const lunch = recipes.find(recipe => recipe.id === dayMenu.lunch?.id)
+    const dinner = recipes.find(recipe => recipe.id === dayMenu.dinner?.id)
+    return {
+      ...dayMenu,
+      lunch,
+      dinner
+    }
+  })
+  return weekMenuWithRecipesName
 }
 
 export async function putDayMenu (dayId, mealName, recipe) {

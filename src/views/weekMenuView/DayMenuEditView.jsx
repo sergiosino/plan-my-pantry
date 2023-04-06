@@ -34,11 +34,11 @@ export default function DayMenuEditView () {
   }
 
   const handlePressRecipe = (recipe) => {
-    const { id, name } = recipe
+    const { id } = recipe
     const { dayId } = dayMenu
     const recipeInfo = id === recipeSelected
       ? null
-      : { id, name }
+      : recipe
     const updatedDayMenu = { ...dayMenu }
 
     if (isLunchSelected) {

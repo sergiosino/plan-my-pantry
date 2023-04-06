@@ -4,6 +4,7 @@ import uuid from 'react-native-uuid'
 import { STORAGE_KEYS } from '../constants/constants'
 
 import { capitalizeString, isNullOrWhiteSpace, areObjectsEqual } from '../utils'
+import { RECIPES_MOCKUP } from '../constants/mockups'
 
 const { RECIPES_LIST } = STORAGE_KEYS
 
@@ -27,10 +28,10 @@ function cleanRecipeIngredients (recipe) {
 }
 
 export async function getRecipes () {
-  const recipes = await AsyncStorage.getItem(RECIPES_LIST)
-  return recipes
-    ? JSON.parse(recipes)
-    : []
+  const storageRecipes = await AsyncStorage.getItem(RECIPES_LIST)
+  return storageRecipes
+    ? JSON.parse(storageRecipes)
+    : RECIPES_MOCKUP
 }
 
 export async function getRecipesFiltered (filter) {
