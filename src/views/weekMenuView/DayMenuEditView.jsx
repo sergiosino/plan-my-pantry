@@ -40,10 +40,10 @@ export default function DayMenuEditView () {
     const updatedDayMenu = { ...dayMenu }
 
     if (isLunchSelected) {
-      wmService.putDayMenu('lunch', dayId, recipeInfo)
+      wmService.putDayMenu(dayId, 'lunch', recipeInfo)
       updatedDayMenu.lunch = recipeInfo
     } else {
-      wmService.putDayMenu('dinner', dayId, recipeInfo)
+      wmService.putDayMenu(dayId, 'dinner', recipeInfo)
       updatedDayMenu.dinner = recipeInfo
     }
 

@@ -16,7 +16,7 @@ export async function getWeekMenus () {
     : WEEK_MENU_MOCKUP
 }
 
-export async function putDayMenu (mealName, dayId, recipe) {
+export async function putDayMenu (dayId, mealName, recipe) {
   const weekMenus = await getWeekMenus()
   const newWeekMenus = weekMenus.map(dayMenu => {
     const isDayMenuToEdit = dayMenu.dayId === dayId
