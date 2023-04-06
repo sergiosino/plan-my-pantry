@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
 import { useFocusEffect } from '@react-navigation/native'
-import { RectButton } from 'react-native-gesture-handler'
+import { RectButton, ScrollView } from 'react-native-gesture-handler'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
 import { TextInputStyled, Checkbox } from '../components/forms'
@@ -13,10 +13,12 @@ import { useRecipes, useUserConfig } from '../hooks'
 import { USER_CONFIG_PARAMS } from '../constants/constants'
 import {
   APP_VERSION,
+  PRIVACY_POLICY,
   RECIPES_JSON,
   SHOW_HELP_ICON_1,
   SHOW_HELP_ICON_2,
-  SHOW_WELCOME
+  SHOW_WELCOME,
+  TERMS_CONDITIONS
 } from '../constants/texts/texts'
 
 const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
@@ -41,38 +43,54 @@ export default function SettingsView () {
         <Image source={require('../../assets/chick-settings.png')} style={{ height: 80, width: 80 }} />
       </View>
       <Divider />
-      <View style={{ padding: 10, backgroundColor: 'white' }}>
-        <Text style={{ marginBottom: 5 }}>{RECIPES_JSON}</Text>
-        <TextInputStyled
-          value={JSON.stringify(recipes)}
-          multiline
-          numberOfLines={10}
-        />
-      </View>
-      <Divider />
-      <RectButton onPress={handleWelcomPageCheckChange} style={styles.backgroundWhite}>
-        <View style={styles.settingContainer}>
-          <Text>{SHOW_WELCOME}</Text>
-          <Checkbox checked={showWelcomePage} />
+      <ScrollView>
+        <View style={{ padding: 10, backgroundColor: 'white' }}>
+          <Text style={{ marginBottom: 5 }}>{RECIPES_JSON}</Text>
+          <TextInputStyled
+            value={JSON.stringify(recipes)}
+            multiline
+            numberOfLines={10}
+          />
         </View>
-      </RectButton>
-      <Divider />
-      <RectButton onPress={handleHeaderHelpIconCheckChange} style={styles.backgroundWhite}>
-        <View style={styles.settingContainer}>
-          <Text>
-            {SHOW_HELP_ICON_1}
-            <Ionicons name='help-outline' size={20} />
-            {SHOW_HELP_ICON_2}
-          </Text>
-          <Checkbox checked={showHeaderHelpIcon} />
+        <Divider />
+        <RectButton onPress={handleWelcomPageCheckChange} style={styles.backgroundWhite}>
+          <View style={styles.settingContainer}>
+            <Text>{SHOW_WELCOME}</Text>
+            <Checkbox checked={showWelcomePage} />
+          </View>
+        </RectButton>
+        <Divider />
+        <RectButton onPress={handleHeaderHelpIconCheckChange} style={styles.backgroundWhite}>
+          <View style={styles.settingContainer}>
+            <Text>
+              {SHOW_HELP_ICON_1}
+              <Ionicons name='help-outline' size={20} />
+              {SHOW_HELP_ICON_2}
+            </Text>
+            <Checkbox checked={showHeaderHelpIcon} />
+          </View>
+        </RectButton>
+        <Divider />
+        <RectButton style={styles.backgroundWhite}>
+          <View style={styles.settingContainer}>
+            <Text>{TERMS_CONDITIONS}</Text>
+            <Ionicons name='chevron-forward' size={20} />
+          </View>
+        </RectButton>
+        <Divider />
+        <RectButton style={styles.backgroundWhite}>
+          <View style={styles.settingContainer}>
+            <Text>{PRIVACY_POLICY}</Text>
+            <Ionicons name='chevron-forward' size={20} />
+          </View>
+        </RectButton>
+        <Divider />
+        <View style={[styles.settingContainer, styles.backgroundWhite]}>
+          <Text>{APP_VERSION}</Text>
+          <Text>{Constants.manifest.version}</Text>
         </View>
-      </RectButton>
-      <Divider />
-      <View style={[styles.settingContainer, styles.backgroundWhite]}>
-        <Text>{APP_VERSION}</Text>
-        <Text>{Constants.manifest.version}</Text>
-      </View>
-      <Divider />
+        <Divider style={{ marginBottom: 50 }} />
+      </ScrollView>
     </View>
   )
 }

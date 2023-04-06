@@ -21,8 +21,10 @@ export const CONTINUE = 'Continue'
 
 export const RECIPES_JSON = 'Recipes JSON'
 export const SHOW_WELCOME = 'Show welcome page'
-export const SHOW_HELP_ICON_1 = 'Show the '
+export const SHOW_HELP_ICON_1 = 'Show '
 export const SHOW_HELP_ICON_2 = ' in pages header'
+export const TERMS_CONDITIONS = 'Terms and conditions'
+export const PRIVACY_POLICY = 'Privacy policy'
 export const APP_VERSION = 'App version'
 
 export const RECIPE_NAME = 'Recipe name'

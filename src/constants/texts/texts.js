@@ -21,8 +21,10 @@ export const CONTINUE = 'Continuar'
 
 export const RECIPES_JSON = 'JSON de las recetas'
 export const SHOW_WELCOME = 'Mostrar la página de bienvenida'
-export const SHOW_HELP_ICON_1 = 'Mostrar el '
+export const SHOW_HELP_ICON_1 = 'Mostrar '
 export const SHOW_HELP_ICON_2 = ' en el encabezado de las páginas'
+export const TERMS_CONDITIONS = 'Términos y condiciones'
+export const PRIVACY_POLICY = 'Política de privacidad'
 export const APP_VERSION = 'Versión de aplicación'
 
 export const RECIPE_NAME = 'Nombre de la receta'
