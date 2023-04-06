@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { StyleSheet, TextInput } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
-export default function TextInputSyled (props) {
+export default function TextInputStyled (props) {
   const { value, onChangeText, multiline, style, innerRef, onFocus, onEndEditing, ...other } = props
 
   const { colors } = useTheme()

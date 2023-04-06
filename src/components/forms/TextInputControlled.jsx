@@ -1,6 +1,6 @@
 import { Controller } from 'react-hook-form'
 
-import TextInputSyled from './TextInputSyled'
+import TextInputStyled from './TextInputStyled'
 
 export default function TextInputControlled (props) {
   const { name, control, ...other } = props
@@ -10,7 +10,7 @@ export default function TextInputControlled (props) {
       name={name}
       control={control}
       render={({ field: { onChange, onBlur, value } }) => (
-        <TextInputSyled
+        <TextInputStyled
           value={value}
           onChangeText={onChange}
           onBlur={onBlur}

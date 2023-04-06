@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Keyboard, View } from 'react-native'
 
-import TextInputSyled from '../forms/TextInputSyled'
+import TextInputStyled from '../forms/TextInputStyled'
 import IconButton from '../buttons/IconButton'
 
 export default function DayMenuRecipesSearch (props) {
@@ -22,7 +22,7 @@ export default function DayMenuRecipesSearch (props) {
 
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <TextInputSyled
+      <TextInputStyled
         style={{ flex: 1 }}
         value={search}
         onChangeText={handleSearch}

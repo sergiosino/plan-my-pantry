@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
+import { useFocusEffect } from '@react-navigation/native'
 import { RectButton } from 'react-native-gesture-handler'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
@@ -14,18 +15,18 @@ import { USER_CONFIG_PARAMS } from '../constants/constants'
 const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
 
 export default function SettingsView () {
-  const [textJson, setTextJson] = useState('')
-
-  const { recipes } = useRecipes()
+  const { recipes, handleGetRecipes } = useRecipes()
   const { showWelcomePage, showHeaderHelpIcon, updateUserConfig } = useUserConfig()
 
   const handleWelcomPageCheckChange = () => updateUserConfig(SHOW_WELCOME_PAGE, !showWelcomePage)
 
   const handleHeaderHelpIconCheckChange = () => updateUserConfig(SHOW_HEADER_HELP_ICON, !showHeaderHelpIcon)
 
-  useEffect(() => {
-    setTextJson(JSON.stringify(recipes))
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      handleGetRecipes()
+    }, [])
+  )
 
   return (
     <View style={{ flex: 1 }}>
@@ -36,7 +37,7 @@ export default function SettingsView () {
       <View style={{ padding: 10, backgroundColor: 'white' }}>
         <Text style={{ marginBottom: 5 }}>Recipes JSON</Text>
         <TextInputStyled
-          value={textJson}
+          value={JSON.stringify(recipes)}
           multiline
           numberOfLines={10}
         />

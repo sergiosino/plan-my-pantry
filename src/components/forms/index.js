@@ -1,9 +1,9 @@
 import Checkbox from './Checkbox'
 import TextInputControlled from './TextInputControlled'
-import TextInputSyled from './TextInputSyled'
+import TextInputStyled from './TextInputStyled'
 
 export {
   Checkbox,
   TextInputControlled,
-  TextInputSyled
+  TextInputStyled
 }

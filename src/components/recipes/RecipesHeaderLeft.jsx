@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 
-import TextInputSyled from '../forms/TextInputSyled'
+import TextInputStyled from '../forms/TextInputStyled'
 
 const GAP = 25
 const windowDimensions = Dimensions.get('window')
@@ -18,7 +18,7 @@ export default function RecipesHeaderLeft (props) {
 
   return (
     <View style={styles.localHeaderContainer}>
-      <TextInputSyled value={search} onChangeText={handleSearch} autoFocus />
+      <TextInputStyled value={search} onChangeText={handleSearch} autoFocus />
     </View>
   )
 }
