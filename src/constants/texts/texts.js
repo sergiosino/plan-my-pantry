@@ -29,7 +29,6 @@ export const RECIPE_NAME = 'Nombre de la receta'
 export const INGREDIENTS = 'Ingredientes'
 export const PLUS_INGREDIENT = '+ Ingrediente'
 export const NOTES = 'Notas'
-export const SAVE = 'Guardar'
 
 export const RECIPES = 'Recetas'
 export const RECIPE_EDIT = 'Editar la receta'
