@@ -48,3 +48,16 @@ export async function deleteWeekMenuRecipe (recipeId) {
   updateWeekMenus(newWeekMenus)
   return newWeekMenus
 }
+
+export async function clearAllMeals () {
+  const weekMenus = await getWeekMenus()
+  const newWeekMenus = weekMenus.map(dayMenu => {
+    return {
+      ...dayMenu,
+      lunch: null,
+      dinner: null
+    }
+  })
+  updateWeekMenus(newWeekMenus)
+  return newWeekMenus
+}

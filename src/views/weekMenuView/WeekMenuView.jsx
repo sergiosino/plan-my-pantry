@@ -8,15 +8,23 @@ import DayMenu from '../../components/weekMenu/DayMenu'
 import { useWeekMenu } from '../../hooks'
 
 import { ROUTE_NAME_DAY_MENU_EDIT } from '../../constants/routes'
+import { useEffect } from 'react'
+import WeekMenuHeaderRight from '../../components/weekMenu/WeekMenuHeaderRight'
 
 export default function WeekMenuView () {
   const navigation = useNavigation()
-  const { weekMenu } = useWeekMenu()
+  const { weekMenu, clearAllMeals } = useWeekMenu()
 
   const handleDayMenuPress = (dayId) => {
     const dayMenu = weekMenu.find(dayMenu => dayMenu.dayId === dayId)
     navigation.navigate(ROUTE_NAME_DAY_MENU_EDIT, { dayMenu })
   }
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (<WeekMenuHeaderRight clearAllMeals={clearAllMeals} />)
+    })
+  }, [])
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>

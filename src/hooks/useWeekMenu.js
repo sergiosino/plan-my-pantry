@@ -11,6 +11,11 @@ export function useWeekMenu () {
     setWeekMenu(newWeekMenus)
   }
 
+  const clearAllMeals = async () => {
+    const newWeekMenus = await wmService.clearAllMeals()
+    setWeekMenu(newWeekMenus)
+  }
+
   useFocusEffect(
     useCallback(() => {
       getWeekMenus()
@@ -18,6 +23,7 @@ export function useWeekMenu () {
   )
 
   return {
-    weekMenu
+    weekMenu,
+    clearAllMeals
   }
 }
