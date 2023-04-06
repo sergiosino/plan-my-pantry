@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
+import { useCallback, useEffect, useState } from 'react'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 import RecipesHeaderRight from './RecipesHeaderRight'
 import RecipesHeaderLeft from './RecipesHeaderLeft'
@@ -34,6 +34,12 @@ export default function RecipesHeader (props) {
     }
     navigation.setOptions({ ...newOptions })
   }, [isSearchOpen])
+
+  useFocusEffect(
+    useCallback(() => {
+      isSearchOpen && setIsSearchOpen(false)
+    }, [])
+  )
 
   return <></>
 }
