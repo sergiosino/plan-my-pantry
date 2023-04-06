@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-import { RecipesHeaderRight, RecipesHeaderLeft } from './'
+import RecipesHeaderRight from './RecipesHeaderRight'
+import RecipesHeaderLeft from './RecipesHeaderLeft'
 
 import { ROUTE_NAME_RECIPES_VIEW } from '../../constants/routes'
 

@@ -18,7 +18,7 @@ export default function RecipesView () {
     handleSearchRecipes,
     handleDeleteRecipe
   } = useRecipes()
-  console.log('hey')
+
   const navigation = useNavigation()
 
   const handlePressRecipe = (recipe) => {
