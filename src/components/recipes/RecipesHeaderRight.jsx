@@ -7,7 +7,7 @@ import { useUserConfig } from '../../hooks/useUserConfig'
 
 import { ROUTE_RECIPES_HELP_VIEW } from '../../constants/routes'
 
-const GAP = 25
+const GAP = 30
 
 export default function RecipesHeaderRight (props) {
   const { handleSearchRecipes, isSearchOpen, setIsSearchOpen } = props
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: GAP,
-    margin: -(GAP / 2),
+    margin: -(GAP),
     justifyContent: 'flex-end'
   },
   headerItem: {

@@ -6,7 +6,7 @@ import { confirmationAlert } from '../../utils'
 
 import { RESET_MEALS, RESET_MEALS_MESSAGE } from '../../constants/texts/texts'
 
-const GAP = 25
+const GAP = 30
 
 export default function WeekMenuHeaderRight (props) {
   const { clearAllMeals } = props
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: GAP,
-    margin: -(GAP / 2),
+    margin: -(GAP),
     justifyContent: 'flex-end'
   },
   headerItem: {

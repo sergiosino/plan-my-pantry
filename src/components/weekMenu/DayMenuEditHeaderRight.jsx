@@ -7,7 +7,7 @@ import { useUserConfig } from '../../hooks/useUserConfig'
 
 import { ROUTE_DAY_MENU_EDIT_HELP } from '../../constants/routes'
 
-const GAP = 20
+const GAP = 15
 
 export default function DayMenuEditHeaderRight () {
   const navigation = useNavigation()
@@ -19,9 +19,7 @@ export default function DayMenuEditHeaderRight () {
 
   return showHeaderHelpIcon && (
     <View style={styles.localHeaderContainer}>
-      <View style={styles.headerItem}>
-        <IconButton onPress={handlePressHelp} iconName='help-outline' />
-      </View>
+      <IconButton onPress={handlePressHelp} iconName='help-outline' />
     </View>
   )
 }
@@ -33,8 +31,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: GAP,
     margin: -(GAP),
     justifyContent: 'flex-end'
-  },
-  headerItem: {
-    margin: (GAP / 2)
   }
 })
