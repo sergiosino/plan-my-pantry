@@ -2,26 +2,24 @@ import { useCallback, useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
 
-import { useWeekMenu, useRecipes } from '../../hooks'
+import { useRecipes } from '../../hooks'
 import { DayMenu, DayIngredientsForGroceryList } from '../../components/weekMenu'
 import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
 import DayMenuEditHeaderRight from '../../components/weekMenu/DayMenuEditHeaderRight'
 import RecipesSearch from '../../components/weekMenu/RecipesSearch'
+import * as wmService from '../../services/WeekMenusService'
 
 export default function DayMenuEditView () {
   const route = useRoute()
-  const { dayId } = route.params
-  const { getDayMenu, updateRecipeLunch, updateRecipeDinner } = useWeekMenu()
+  const { dayMenu: dayMenuParam } = route.params
   const { recipes, handleGetRecipes, handleSearchRecipes } = useRecipes()
   const navigation = useNavigation()
 
+  const [dayMenu, setDayMenu] = useState(dayMenuParam)
   const [isLunchSelected, setIsLunchSelected] = useState(true)
   const [recipeSelected, setRecipeSelected] = useState(null)
-  const [dayMenu, setDayMenu] = useState({})
   const [dayMenuIngredients, setDayMenuIngredients] = useState([])
-
-  const { dayName, lunch, dinner } = dayMenu
 
   const handlePressLunch = () => {
     if (isLunchSelected) { return }
@@ -35,16 +33,17 @@ export default function DayMenuEditView () {
 
   const handlePressRecipe = (recipe) => {
     const { id, name } = recipe
+    const { dayId } = dayMenu
     const recipeInfo = id === recipeSelected
       ? null
       : { id, name }
     const updatedDayMenu = { ...dayMenu }
 
     if (isLunchSelected) {
-      updateRecipeLunch(dayId, recipeInfo)
+      wmService.putDayMenu('lunch', dayId, recipeInfo)
       updatedDayMenu.lunch = recipeInfo
     } else {
-      updateRecipeDinner(dayId, recipeInfo)
+      wmService.putDayMenu('dinner', dayId, recipeInfo)
       updatedDayMenu.dinner = recipeInfo
     }
 
@@ -73,22 +72,15 @@ export default function DayMenuEditView () {
   }
 
   useEffect(() => {
-    (lunch || dinner) && isLunchSelected
-      ? setRecipeSelected(lunch?.id)
-      : setRecipeSelected(dinner?.id)
+    isLunchSelected
+      ? setRecipeSelected(dayMenu.lunch?.id)
+      : setRecipeSelected(dayMenu.dinner?.id)
   }, [isLunchSelected, dayMenu])
 
   useEffect(() => {
-    if (dayName) {
-      navigation.setOptions({
-        title: dayName
-      })
-    }
-  }, [dayMenu])
-
-  useEffect(() => {
-    setDayMenu(getDayMenu(dayId))
+    const { dayName } = dayMenuParam
     navigation.setOptions({
+      title: dayName,
       headerRight: () => (<DayMenuEditHeaderRight />)
     })
   }, [])
@@ -103,8 +95,8 @@ export default function DayMenuEditView () {
     <View style={styles.container}>
       <View style={styles.dayMenuContainer}>
         <DayMenu
-          lunch={lunch?.name}
-          dinner={dinner?.name}
+          lunch={dayMenu.lunch?.name}
+          dinner={dayMenu.dinner?.name}
           onPressLunch={handlePressLunch}
           onPressDinner={handlePressDinner}
           isLunchSelected={isLunchSelected}

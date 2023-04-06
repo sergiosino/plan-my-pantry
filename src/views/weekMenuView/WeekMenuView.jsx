@@ -1,5 +1,4 @@
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
-import React, { useCallback } from 'react'
+import { useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
 
@@ -10,17 +9,12 @@ import { useWeekMenu } from '../../hooks/useWeekMenu'
 
 export default function WeekMenuView () {
   const navigation = useNavigation()
-  const { weekMenu, getWeekMenus } = useWeekMenu()
+  const { weekMenu } = useWeekMenu()
 
   const handleDayMenuPress = (dayId) => {
-    navigation.navigate(ROUTE_NAME_DAY_MENU_EDIT, { dayId })
+    const dayMenu = weekMenu.find(dayMenu => dayMenu.dayId === dayId)
+    navigation.navigate(ROUTE_NAME_DAY_MENU_EDIT, { dayMenu })
   }
-
-  useFocusEffect(
-    useCallback(() => {
-      getWeekMenus()
-    }, [])
-  )
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
