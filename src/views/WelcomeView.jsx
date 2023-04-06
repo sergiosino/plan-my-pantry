@@ -8,10 +8,18 @@ import Button from '../components/buttons/Button'
 
 import { useUserConfig } from '../hooks'
 
-import { ROUTE_NAME_TABS } from '../constants/routes'
+import { ROUTE_TABS } from '../constants/routes'
 import { USER_CONFIG_PARAMS } from '../constants/constants'
+import {
+  CONTINUE,
+  HAPPY_GROCERY,
+  HELP_ICON_EXPLANATION_1,
+  HELP_ICON_EXPLANATION_2,
+  NOT_SHOW_AGAIN,
+  WELCOME
+} from '../constants/texts/texts'
 
-export default function InitialHelpView () {
+export default function WelcomeView () {
   const [checked, setCheced] = useState(false)
 
   const { navigate } = useNavigation()
@@ -21,11 +29,11 @@ export default function InitialHelpView () {
 
   const handleContinue = () => {
     checked && updateUserConfig(SHOW_WELCOME_PAGE, false)
-    navigate(ROUTE_NAME_TABS)
+    navigate(ROUTE_TABS)
   }
 
   useEffect(() => {
-    if (!showWelcomePage) { navigate(ROUTE_NAME_TABS) }
+    if (!showWelcomePage) { navigate(ROUTE_TABS) }
   }, [showWelcomePage])
 
   return showWelcomePage && (
@@ -33,18 +41,19 @@ export default function InitialHelpView () {
       <View style={styles.imgContainer}>
         <Image source={require('../../assets/logo.png')} style={styles.image} />
       </View>
-      <Text style={styles.title}>Welcome!</Text>
+      <Text style={styles.title}>{WELCOME}</Text>
       <Text style={[styles.text, styles.marginBottom10]}>
-        In some pages you will find a <Ionicons name='help-outline' size={20} /> icon in the right of the page header.
-        There you will find some info about the functionality.
+        {HELP_ICON_EXPLANATION_1}
+        <Ionicons name='help-outline' size={20} />
+        {HELP_ICON_EXPLANATION_2}
       </Text>
-      <Text style={styles.text}>Happy grocery shopping!</Text>
+      <Text style={styles.text}>{HAPPY_GROCERY}</Text>
       <View style={styles.checkboxContainer}>
         <Checkbox style={styles.marginRight5} checked={checked} onChange={setCheced} />
-        <Text>Do not show this page again</Text>
+        <Text>{NOT_SHOW_AGAIN}</Text>
       </View>
       <Button onPress={handleContinue}>
-        <Text>Continue</Text>
+        <Text>{CONTINUE}</Text>
       </Button>
     </View>
   )

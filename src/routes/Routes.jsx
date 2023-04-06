@@ -7,48 +7,53 @@ import RecipeEditView from '../views/recipesView/RecipeEditView'
 import DayMenuEditView from '../views/weekMenuView/DayMenuEditView'
 import RecipesHelpView from '../views/recipesView/RecipesHelpView'
 import DayMenuEditHelpView from '../views/weekMenuView/DayMenuEditHelpView'
-import InitialHelpView from '../views/InitialHelpView'
+import WelcomeView from '../views/WelcomeView'
 
 import { useUserConfig } from '../hooks/useUserConfig'
 
 import {
-  ROUTE_NAME_DAY_MENU_EDIT,
-  ROUTE_NAME_DAY_MENU_EDIT_HELP,
-  ROUTE_NAME_WELCOME_PAGE,
-  ROUTE_NAME_RECIPES_EDIT,
-  ROUTE_NAME_RECIPES_HELP_VIEW,
-  ROUTE_NAME_TABS
+  ROUTE_DAY_MENU_EDIT,
+  ROUTE_DAY_MENU_EDIT_HELP,
+  ROUTE_WELCOME_PAGE,
+  ROUTE_RECIPES_EDIT,
+  ROUTE_RECIPES_HELP_VIEW,
+  ROUTE_TABS
 } from '../constants/routes'
+import { HELP, RECIPE_EDIT } from '../constants/texts/texts'
 
 const Stack = createNativeStackNavigator()
 
 const WELCOME_PAGE_ROUTE = {
-  name: ROUTE_NAME_WELCOME_PAGE,
-  component: InitialHelpView,
+  routeName: ROUTE_WELCOME_PAGE,
+  component: WelcomeView,
   options: { headerShown: false }
 }
 
 const STACK_ROUTES = [
   {
-    name: ROUTE_NAME_TABS,
+    routeName: ROUTE_TABS,
     component: BottomTabsRoutes,
     options: { headerShown: false }
   },
   {
-    name: ROUTE_NAME_RECIPES_EDIT,
-    component: RecipeEditView
+    routeName: ROUTE_RECIPES_EDIT,
+    component: RecipeEditView,
+    options: { title: RECIPE_EDIT }
   },
   {
-    name: ROUTE_NAME_DAY_MENU_EDIT,
-    component: DayMenuEditView
+    routeName: ROUTE_DAY_MENU_EDIT,
+    component: DayMenuEditView,
+    options: { title: '' }
   },
   {
-    name: ROUTE_NAME_RECIPES_HELP_VIEW,
-    component: RecipesHelpView
+    routeName: ROUTE_RECIPES_HELP_VIEW,
+    component: RecipesHelpView,
+    options: { title: HELP }
   },
   {
-    name: ROUTE_NAME_DAY_MENU_EDIT_HELP,
-    component: DayMenuEditHelpView
+    routeName: ROUTE_DAY_MENU_EDIT_HELP,
+    component: DayMenuEditHelpView,
+    options: { title: HELP }
   }
 ]
 
@@ -68,8 +73,8 @@ export default function Routes () {
       }}
     >
       {routes.map(stackRoute => {
-        const { name, component, options } = stackRoute
-        return <Stack.Screen key={name} name={name} component={component} options={options} />
+        const { routeName, component, options } = stackRoute
+        return <Stack.Screen key={routeName} name={routeName} component={component} options={options} />
       })}
     </Stack.Navigator>
   )

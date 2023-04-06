@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import uuid from 'react-native-uuid'
 
-import { ASYNC_STORAGE_KEYS } from '../constants/constants'
+import { STORAGE_KEYS } from '../constants/constants'
 
 import { capitalizeString, isNullOrWhiteSpace, areObjectsEqual } from '../utils'
 
-const { RECIPES_LIST } = ASYNC_STORAGE_KEYS
+const { RECIPES_LIST } = STORAGE_KEYS
 
 function sortRecipes (newRecipes) {
   newRecipes.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))

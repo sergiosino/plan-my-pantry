@@ -5,7 +5,7 @@ import IconButton from '../buttons/IconButton'
 
 import { useUserConfig } from '../../hooks/useUserConfig'
 
-import { ROUTE_NAME_DAY_MENU_EDIT_HELP } from '../../constants/routes'
+import { ROUTE_DAY_MENU_EDIT_HELP } from '../../constants/routes'
 
 const GAP = 20
 
@@ -14,7 +14,7 @@ export default function DayMenuEditHeaderRight () {
   const { showHeaderHelpIcon } = useUserConfig()
 
   const handlePressHelp = () => {
-    navigation.navigate(ROUTE_NAME_DAY_MENU_EDIT_HELP)
+    navigation.navigate(ROUTE_DAY_MENU_EDIT_HELP)
   }
 
   return showHeaderHelpIcon && (

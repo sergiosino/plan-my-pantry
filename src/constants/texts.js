@@ -1,8 +1,0 @@
-export const CONFIRMATION_ALERT_DELETE_TITLE = 'Delete'
-export const CONFIRMATION_ALERT_DELETE_ALL_CHECKED_ITEMS_MESSAGE = 'Do you want to delete all checked items?'
-export const CONFIRMATION_ALERT_CHECK_TITLE = 'Check'
-export const CONFIRMATION_ALERT_CHECK_ALL_ITEMS_MESSAGE = 'Do you want to check all items?'
-export const CONFIRMATION_ALERT_UNCHECK_TITLE = 'Uncheck'
-export const CONFIRMATION_ALERT_UNCHECK_ALL_ITEMS_MESSAGE = 'Do you want to uncheck all items?'
-export const CONFIRMATION_ALERT_CLEAR_MEALS = 'Clear meals'
-export const CONFIRMATION_ALERT_CLEAR_MEALS_MESSAGE = 'Do you want to clear all week menu meals?'

@@ -8,38 +8,43 @@ import RecipesView from '../views/recipesView/RecipesView'
 import SettingsView from '../views/SettingsView'
 
 import {
-  ROUTE_NAME_RECIPES_VIEW,
-  ROUTE_NAME_GROCERY_LIST,
-  ROUTE_NAME_SETTINGS,
-  ROUTE_NAME_WEEK_MENU
+  ROUTE_RECIPES_VIEW,
+  ROUTE_GROCERY_LIST,
+  ROUTE_SETTINGS,
+  ROUTE_WEEK_MENU
 } from '../constants/routes'
+import { GROCERY_LIST, RECIPES, SETTINGS, WEEK_MENU } from '../constants/texts/texts'
 
 const Tab = createBottomTabNavigator()
 
 const TAB_ROUTES = [
   {
-    name: ROUTE_NAME_RECIPES_VIEW,
+    routeName: ROUTE_RECIPES_VIEW,
     component: RecipesView,
     iconName: 'pizza-outline',
-    focusedIconName: 'pizza'
+    focusedIconName: 'pizza',
+    options: { title: RECIPES }
   },
   {
-    name: ROUTE_NAME_WEEK_MENU,
+    routeName: ROUTE_WEEK_MENU,
     component: WeekMenuView,
     iconName: 'restaurant-outline',
-    focusedIconName: 'restaurant'
+    focusedIconName: 'restaurant',
+    options: { title: WEEK_MENU }
   },
   {
-    name: ROUTE_NAME_GROCERY_LIST,
+    routeName: ROUTE_GROCERY_LIST,
     component: GroceryListView,
     iconName: 'cart-outline',
-    focusedIconName: 'cart'
+    focusedIconName: 'cart',
+    options: { title: GROCERY_LIST }
   },
   {
-    name: ROUTE_NAME_SETTINGS,
+    routeName: ROUTE_SETTINGS,
     component: SettingsView,
     iconName: 'settings-outline',
-    focusedIconName: 'settings'
+    focusedIconName: 'settings',
+    options: { title: SETTINGS }
   }
 ]
 
@@ -47,7 +52,7 @@ export default function BottomTabsRoutes () {
   const { colors } = useTheme()
 
   const getTabIcon = ({ focused, color, size, route }) => {
-    const { iconName, focusedIconName } = TAB_ROUTES.find(tabRoute => tabRoute.name === route.name)
+    const { iconName, focusedIconName } = TAB_ROUTES.find(tabRoute => tabRoute.routeName === route.name)
     const icon = focused
       ? focusedIconName
       : iconName
@@ -63,8 +68,8 @@ export default function BottomTabsRoutes () {
       })}
     >
       {TAB_ROUTES.map(tabRoute => {
-        const { name, component } = tabRoute
-        return <Tab.Screen key={name} name={name} component={component} />
+        const { routeName, component, options } = tabRoute
+        return <Tab.Screen key={routeName} name={routeName} options={options} component={component} />
       })}
     </Tab.Navigator>
   )

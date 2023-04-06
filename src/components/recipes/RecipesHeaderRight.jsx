@@ -5,7 +5,7 @@ import IconButton from '../buttons/IconButton'
 
 import { useUserConfig } from '../../hooks/useUserConfig'
 
-import { ROUTE_NAME_RECIPES_HELP_VIEW } from '../../constants/routes'
+import { ROUTE_RECIPES_HELP_VIEW } from '../../constants/routes'
 
 const GAP = 25
 
@@ -25,7 +25,7 @@ export default function RecipesHeaderRight (props) {
   }
 
   const handlePressHelp = () => {
-    navigation.navigate(ROUTE_NAME_RECIPES_HELP_VIEW)
+    navigation.navigate(ROUTE_RECIPES_HELP_VIEW)
   }
 
   return (

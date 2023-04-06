@@ -1,13 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import uuid from 'react-native-uuid'
 
-import { ASYNC_STORAGE_KEYS } from '../constants/constants'
+import { STORAGE_KEYS } from '../constants/constants'
 
-const { GROCERY_LIST } = ASYNC_STORAGE_KEYS
+const { GROCERY_LIST } = STORAGE_KEYS
 
 function updateGroceryList (newGroceryList) {
   const jsonValue = JSON.stringify(newGroceryList)
-  AsyncStorage.setItem(ASYNC_STORAGE_KEYS.GROCERY_LIST, jsonValue)
+  AsyncStorage.setItem(STORAGE_KEYS.GROCERY_LIST, jsonValue)
 }
 
 export async function getGroceryList () {

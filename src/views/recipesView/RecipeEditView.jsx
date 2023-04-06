@@ -10,6 +10,7 @@ import { RecipeInputEdit } from '../../components/recipes'
 import * as rService from '../../services/RecipesService'
 
 import { NEW_ELEMENT_ID } from '../../constants/constants'
+import { INGREDIENTS, NOTES, RECIPE_NAME, SAVE } from '../../constants/texts/texts'
 
 const FIELD_NAME_ID = 'id'
 const FIELD_NAME_INGREDIENTS = 'ingredients'
@@ -86,7 +87,7 @@ export default function RecipeEditView () {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
-        <Text style={styles.modalText}>Recipe name</Text>
+        <Text style={styles.modalText}>{RECIPE_NAME}</Text>
         <TextInputControlled
           name={FIELD_NAME_RECIPE}
           control={control}
@@ -95,7 +96,7 @@ export default function RecipeEditView () {
           onSubmitEditing={() => focusInput()}
           innerRef={_recipeNameInput}
         />
-        <Text style={styles.modalText}>Ingredients</Text>
+        <Text style={styles.modalText}>{INGREDIENTS}</Text>
         {fields.map((field, index) => (
           <RecipeInputEdit
             key={field.id}
@@ -110,7 +111,7 @@ export default function RecipeEditView () {
             _ingredientsInput={_ingredientsInput}
           />
         ))}
-        <Text style={styles.modalText}>Notes</Text>
+        <Text style={styles.modalText}>{NOTES}</Text>
         <TextInputControlled
           name={FIELD_NAME_NOTES}
           control={control}
@@ -121,7 +122,7 @@ export default function RecipeEditView () {
       </ScrollView>
       <View style={styles.buttonsContainer}>
         <Button onPress={handleSubmit(handleSave)}>
-          <Text style={styles.textStyle}>Save</Text>
+          <Text style={styles.textStyle}>{SAVE}</Text>
         </Button>
       </View>
     </View>

@@ -1,15 +1,16 @@
+import { useEffect } from 'react'
 import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
 
 import Divider from '../../components/Divider'
 import DayMenu from '../../components/weekMenu/DayMenu'
+import WeekMenuHeaderRight from '../../components/weekMenu/WeekMenuHeaderRight'
 
 import { useWeekMenu } from '../../hooks'
 
-import { ROUTE_NAME_DAY_MENU_EDIT } from '../../constants/routes'
-import { useEffect } from 'react'
-import WeekMenuHeaderRight from '../../components/weekMenu/WeekMenuHeaderRight'
+import { ROUTE_DAY_MENU_EDIT } from '../../constants/routes'
+import { WEEK_DAYS } from '../../constants/constants'
 
 export default function WeekMenuView () {
   const navigation = useNavigation()
@@ -17,7 +18,7 @@ export default function WeekMenuView () {
 
   const handleDayMenuPress = (dayId) => {
     const dayMenu = weekMenu.find(dayMenu => dayMenu.dayId === dayId)
-    navigation.navigate(ROUTE_NAME_DAY_MENU_EDIT, { dayMenu })
+    navigation.navigate(ROUTE_DAY_MENU_EDIT, { dayMenu })
   }
 
   useEffect(() => {
@@ -29,7 +30,8 @@ export default function WeekMenuView () {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
       {weekMenu.map((dayMenu) => {
-        const { dayId, dayName, lunch, dinner } = dayMenu
+        const { dayId, lunch, dinner } = dayMenu
+        const dayName = WEEK_DAYS[dayId]
         return (
           <View key={dayId}>
             <RectButton onPress={() => handleDayMenuPress(dayId)}>

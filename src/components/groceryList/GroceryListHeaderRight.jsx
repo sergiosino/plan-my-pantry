@@ -7,13 +7,13 @@ import { useGroceryList } from '../../hooks/useGroceryList'
 import { confirmationAlert } from '../../utils/confirmationAlert'
 
 import {
-  CONFIRMATION_ALERT_CHECK_ALL_ITEMS_MESSAGE,
-  CONFIRMATION_ALERT_CHECK_TITLE,
-  CONFIRMATION_ALERT_DELETE_ALL_CHECKED_ITEMS_MESSAGE,
-  CONFIRMATION_ALERT_DELETE_TITLE,
-  CONFIRMATION_ALERT_UNCHECK_ALL_ITEMS_MESSAGE,
-  CONFIRMATION_ALERT_UNCHECK_TITLE
-} from '../../constants/texts'
+  CHECK_MESSAGE,
+  CHECK,
+  DELETE_MESSAGE,
+  DELETE,
+  UNCHECK_MESSAGE,
+  UNCHECK
+} from '../../constants/texts/texts'
 
 const GAP = 25
 
@@ -28,24 +28,24 @@ export default function GroceryListHeaderRight (props) {
 
   const handlePressDeleteChecked = () => {
     confirmationAlert(
-      CONFIRMATION_ALERT_DELETE_TITLE,
-      CONFIRMATION_ALERT_DELETE_ALL_CHECKED_ITEMS_MESSAGE,
+      DELETE,
+      DELETE_MESSAGE,
       handleDeleteChecked
     )
   }
 
   const handlePressCheckAll = () => {
     confirmationAlert(
-      CONFIRMATION_ALERT_CHECK_TITLE,
-      CONFIRMATION_ALERT_CHECK_ALL_ITEMS_MESSAGE,
+      CHECK,
+      CHECK_MESSAGE,
       handleCheckAll
     )
   }
 
   const handlePressUncheckAll = () => {
     confirmationAlert(
-      CONFIRMATION_ALERT_UNCHECK_TITLE,
-      CONFIRMATION_ALERT_UNCHECK_ALL_ITEMS_MESSAGE,
+      UNCHECK,
+      UNCHECK_MESSAGE,
       () => {
         handleUnCheckAll()
         itemIdToFocus.current = null

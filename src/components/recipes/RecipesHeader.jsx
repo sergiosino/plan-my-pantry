@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import RecipesHeaderRight from './RecipesHeaderRight'
 import RecipesHeaderLeft from './RecipesHeaderLeft'
 
-import { ROUTE_NAME_RECIPES_VIEW } from '../../constants/routes'
+import { RECIPES } from '../../constants/texts/texts'
 
 export default function RecipesHeader (props) {
   const { handleSearchRecipes } = props
@@ -30,7 +30,7 @@ export default function RecipesHeader (props) {
     }
     if (!isSearchOpen) {
       newOptions.headerLeft = null
-      newOptions.headerTitle = ROUTE_NAME_RECIPES_VIEW
+      newOptions.headerTitle = RECIPES
     }
     navigation.setOptions({ ...newOptions })
   }, [isSearchOpen])

@@ -11,6 +11,13 @@ import Divider from '../components/Divider'
 import { useRecipes, useUserConfig } from '../hooks'
 
 import { USER_CONFIG_PARAMS } from '../constants/constants'
+import {
+  APP_VERSION,
+  RECIPES_JSON,
+  SHOW_HELP_ICON_1,
+  SHOW_HELP_ICON_2,
+  SHOW_WELCOME
+} from '../constants/texts/texts'
 
 const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
 
@@ -35,7 +42,7 @@ export default function SettingsView () {
       </View>
       <Divider />
       <View style={{ padding: 10, backgroundColor: 'white' }}>
-        <Text style={{ marginBottom: 5 }}>Recipes JSON</Text>
+        <Text style={{ marginBottom: 5 }}>{RECIPES_JSON}</Text>
         <TextInputStyled
           value={JSON.stringify(recipes)}
           multiline
@@ -45,20 +52,24 @@ export default function SettingsView () {
       <Divider />
       <RectButton onPress={handleWelcomPageCheckChange} style={styles.backgroundWhite}>
         <View style={styles.settingContainer}>
-          <Text>Show welcome page</Text>
+          <Text>{SHOW_WELCOME}</Text>
           <Checkbox checked={showWelcomePage} />
         </View>
       </RectButton>
       <Divider />
       <RectButton onPress={handleHeaderHelpIconCheckChange} style={styles.backgroundWhite}>
         <View style={styles.settingContainer}>
-          <Text>Show <Ionicons name='help-outline' size={20} /> icon in header pages</Text>
+          <Text>
+            {SHOW_HELP_ICON_1}
+            <Ionicons name='help-outline' size={20} />
+            {SHOW_HELP_ICON_2}
+          </Text>
           <Checkbox checked={showHeaderHelpIcon} />
         </View>
       </RectButton>
       <Divider />
       <View style={[styles.settingContainer, styles.backgroundWhite]}>
-        <Text>App version</Text>
+        <Text>{APP_VERSION}</Text>
         <Text>{Constants.manifest.version}</Text>
       </View>
       <Divider />

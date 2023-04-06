@@ -4,7 +4,7 @@ import IconButton from '../buttons/IconButton'
 
 import { confirmationAlert } from '../../utils'
 
-import { CONFIRMATION_ALERT_CLEAR_MEALS, CONFIRMATION_ALERT_CLEAR_MEALS_MESSAGE } from '../../constants/texts'
+import { RESET_MEALS, RESET_MEALS_MESSAGE } from '../../constants/texts/texts'
 
 const GAP = 25
 
@@ -13,8 +13,8 @@ export default function WeekMenuHeaderRight (props) {
 
   const handlePressClearAllMeals = () => {
     confirmationAlert(
-      CONFIRMATION_ALERT_CLEAR_MEALS,
-      CONFIRMATION_ALERT_CLEAR_MEALS_MESSAGE,
+      RESET_MEALS,
+      RESET_MEALS_MESSAGE,
       clearAllMeals
     )
   }

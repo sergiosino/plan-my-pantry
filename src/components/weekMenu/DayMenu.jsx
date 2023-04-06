@@ -2,8 +2,10 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import DayMeal from './DayMeal'
 
+import { DINNER, LUNCH } from '../../constants/texts/texts'
+
 export default function DayMenu (props) {
-  const { dayName = null, lunch, dinner, onPressLunch, onPressDinner, isLunchSelected, isDinnerSelected } = props
+  const { dayName, lunch, dinner, onPressLunch, onPressDinner, isLunchSelected, isDinnerSelected } = props
 
   return (
     <View style={styles.dayMenuContainer}>
@@ -13,8 +15,8 @@ export default function DayMenu (props) {
         </View>
       )}
       <View style={styles.dayMealsContainer}>
-        <DayMeal meal='Lunch' recipe={lunch} onPress={onPressLunch} isSelected={isLunchSelected} />
-        <DayMeal meal='Dinner' recipe={dinner} onPress={onPressDinner} isSelected={isDinnerSelected} />
+        <DayMeal meal={LUNCH} recipe={lunch} onPress={onPressLunch} isSelected={isLunchSelected} />
+        <DayMeal meal={DINNER} recipe={dinner} onPress={onPressDinner} isSelected={isDinnerSelected} />
       </View>
     </View>
   )

@@ -9,7 +9,7 @@ import Divider from '../../components/Divider'
 
 import { useRecipes } from '../../hooks'
 
-import { ROUTE_NAME_RECIPES_EDIT } from '../../constants/routes'
+import { ROUTE_RECIPES_EDIT } from '../../constants/routes'
 
 export default function RecipesView () {
   const {
@@ -22,11 +22,11 @@ export default function RecipesView () {
   const navigation = useNavigation()
 
   const handlePressRecipe = (recipe) => {
-    navigation.navigate(ROUTE_NAME_RECIPES_EDIT, { recipe })
+    navigation.navigate(ROUTE_RECIPES_EDIT, { recipe })
   }
 
   const handleAddPress = () => {
-    navigation.navigate(ROUTE_NAME_RECIPES_EDIT)
+    navigation.navigate(ROUTE_RECIPES_EDIT)
   }
 
   const renderItem = (recipe) => {

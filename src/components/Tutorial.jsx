@@ -1,19 +1,9 @@
-import { useEffect } from 'react'
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 
 import Divider from './Divider'
 
 export default function Tutorial (props) {
   const { instructions } = props
-
-  const navigation = useNavigation()
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerTitle: 'Help!'
-    })
-  }, [])
 
   return (
     <View style={styles.container}>
