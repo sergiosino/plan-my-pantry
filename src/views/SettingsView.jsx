@@ -4,8 +4,7 @@ import Constants from 'expo-constants'
 import { RectButton } from 'react-native-gesture-handler'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import TextInputStyled from '../components/forms/TextInputSyled'
-import Checkbox from '../components/forms/Checkbox'
+import { TextInputStyled, Checkbox } from '../components/forms'
 import Divider from '../components/Divider'
 
 import { useRecipes, useUserConfig } from '../hooks'

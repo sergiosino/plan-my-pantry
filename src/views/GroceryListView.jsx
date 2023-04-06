@@ -4,8 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
 
 import AddButton from '../components/buttons/AddButton'
-import GroceryListHeaderRight from '../components/groceryList/GroceryListHeaderRight'
-import GroceryItem from '../components/groceryList/GroceryItem'
+import { GroceryItem, GroceryListHeaderRight } from '../components/groceryList'
 
 import { useGroceryList } from '../hooks'
 
