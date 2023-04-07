@@ -1,7 +1,8 @@
-import { StyleSheet, View } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
 import IconButton from './IconButton'
+import { useHeaderHeight } from '@react-navigation/elements'
 
 const BUTTON_SIZE = 60
 
@@ -9,10 +10,16 @@ export default function AddButton (props) {
   const { onAddItem } = props
 
   const { colors } = useTheme()
+  const headerHeight = useHeaderHeight()
+
   const style = [styles.icon, { backgroundColor: colors.primary }]
 
   return (
-    <View style={styles.iconContainer}>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={headerHeight + 65}
+      style={styles.iconContainer}
+      behavior='padding'
+    >
       <IconButton
         onPress={onAddItem}
         iconName='add'
@@ -20,7 +27,7 @@ export default function AddButton (props) {
         style={style}
         rippleRadius={(BUTTON_SIZE / 2)}
       />
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 
