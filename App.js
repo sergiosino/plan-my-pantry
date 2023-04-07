@@ -11,12 +11,12 @@ import AppContexts from './src/contexts/AppContexts'
 const MyTheme = {
   dark: false,
   colors: {
-    primary: 'rgb(227, 165, 48)',
-    background: 'rgb(242, 242, 242)',
-    card: 'rgb(255, 255, 255)',
-    text: 'rgb(28, 28, 30)',
-    border: 'rgb(216, 216, 216)',
-    notification: 'rgb(255, 59, 48)'
+    primary: '#e3a530',
+    background: '#f2f2f2',
+    card: '#ffffff',
+    text: '#1c1c1e',
+    border: '#d8d8d8',
+    notification: '#ff3b30'
   }
 }
 
