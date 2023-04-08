@@ -1,0 +1,66 @@
+{
+    "COMMON": {
+        "HELP": "Help!",
+        "DELETE": "Delete",
+        "EDIT": "Edit",
+        "OK": "OK",
+        "CANCEL": "CANCEL",
+        "SEARCH_RECIPES": "Search recipes..."
+    },
+    "WELCOME": {
+        "WELCOME": "Welcome!",
+        "HELP_ICON_EXPLANATION_1": "In some pages you will find a ",
+        "HELP_ICON_EXPLANATION_2": " up to the right, where you will find some info about the functionality.",
+        "HAPPY_GROCERY": "Happy grocery shopping!",
+        "NOT_SHOW_AGAIN": "Do not show this page again",
+        "CONTINUE": "Continue"
+    },
+    "RECIPES": {
+        "RECIPES": "Recipes",
+        "RECIPE_EDIT": "Recipe edit",
+        "RECIPE_NAME": "Recipe name",
+        "INGREDIENTS": "Ingredients",
+        "PLUS_INGREDIENT": "+ Ingredient",
+        "NOTES": "Notes",
+        "HOW_TO_ADD_NEW_RECIPE": "\u2023 To ADD a new recipe, press the bottom right button:",
+        "HOW_TO_EDIT_RECIPE": "\u2023 To EDIT a recipe, press on it:",
+        "HOW_TO_DELETE_RECIPE": "\u2023 To DELETE a recipe, press and drag to the right:"
+    },
+    "MENU": {
+        "WEEK_MENU": "Menu",
+        "MONDAY": "Monday",
+        "TUESTDAY": "Tuesday",
+        "WEDNESDAY": "Wednesday",
+        "THURSDAY": "Thursday",
+        "FRIDAY": "Friday",
+        "SATURDAY": "Saturday",
+        "SUNDAY": "Sunday",
+        "LUNCH": "Lunch",
+        "DINNER": "Dinner",
+        "RECIPE_LONG_PRESS": "Long press on recipe to add the ingredients",
+        "ADD_GROCERY_LIST": "Add to grocery list",
+        "RESET_MEALS": "Reset meals",
+        "RESET_MEALS_MESSAGE": "Do you want to reset all weekly menu meals?"
+    },
+    "GROCERY_LIST": {
+        "GROCERY_LIST": "Grocery list",
+        "DELETE_MESSAGE": "Do you want to delete all checked items?",
+        "CHECK": "Check",
+        "CHECK_MESSAGE": "Do you want to check all items?",
+        "UNCHECK": "Uncheck",
+        "UNCHECK_MESSAGE": "Do you want to uncheck all items?",
+        "HOW_TO_CHANGE_LUNCH_DINNER": "\u2023 To CHANGE between lunch and dinner:",
+        "HOW_TO_SELECT_RECIPE": "\u2023 To SELECT a recipe for the lunch/dinner:",
+        "HOW_TO_ADD_INGREDIENTS_GROCERY_LIST": "\u2023 To ADD the ingredients of the recipe to the grocery list:"
+    },
+    "SETTINGS": {
+        "SETTINGS": "Settings",
+        "RECIPES_JSON": "Recipes JSON",
+        "SHOW_WELCOME": "Show welcome page",
+        "SHOW_HELP_ICON_1": "Show ",
+        "SHOW_HELP_ICON_2": " in pages header",
+        "TERMS_CONDITIONS": "Terms and conditions",
+        "PRIVACY_POLICY": "Privacy policy",
+        "APP_VERSION": "App version"
+    }
+}
