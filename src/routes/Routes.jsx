@@ -11,6 +11,8 @@ import WelcomeView from '../views/WelcomeView'
 
 import { useUserConfig } from '../hooks/useUserConfig'
 
+import { i18n } from '../utils'
+
 import {
   ROUTE_DAY_MENU_EDIT,
   ROUTE_DAY_MENU_EDIT_HELP,
@@ -19,7 +21,6 @@ import {
   ROUTE_RECIPES_HELP_VIEW,
   ROUTE_TABS
 } from '../constants/routes'
-import { HELP, RECIPE_EDIT } from '../constants/texts/texts'
 
 const Stack = createNativeStackNavigator()
 
@@ -29,37 +30,37 @@ const WELCOME_PAGE_ROUTE = {
   options: { headerShown: false }
 }
 
-const STACK_ROUTES = [
-  {
-    routeName: ROUTE_TABS,
-    component: BottomTabsRoutes,
-    options: { headerShown: false }
-  },
-  {
-    routeName: ROUTE_RECIPES_EDIT,
-    component: RecipeEditView,
-    options: { title: RECIPE_EDIT }
-  },
-  {
-    routeName: ROUTE_DAY_MENU_EDIT,
-    component: DayMenuEditView,
-    options: { title: '' }
-  },
-  {
-    routeName: ROUTE_RECIPES_HELP_VIEW,
-    component: RecipesHelpView,
-    options: { title: HELP }
-  },
-  {
-    routeName: ROUTE_DAY_MENU_EDIT_HELP,
-    component: DayMenuEditHelpView,
-    options: { title: HELP }
-  }
-]
-
 export default function Routes () {
   const { colors } = useTheme()
   const { isLoading, showWelcomePage } = useUserConfig()
+
+  const STACK_ROUTES = [
+    {
+      routeName: ROUTE_TABS,
+      component: BottomTabsRoutes,
+      options: { headerShown: false }
+    },
+    {
+      routeName: ROUTE_RECIPES_EDIT,
+      component: RecipeEditView,
+      options: { title: i18n.t('RECIPES.RECIPE_EDIT') }
+    },
+    {
+      routeName: ROUTE_DAY_MENU_EDIT,
+      component: DayMenuEditView,
+      options: { title: '' }
+    },
+    {
+      routeName: ROUTE_RECIPES_HELP_VIEW,
+      component: RecipesHelpView,
+      options: { title: i18n.t('COMMON.HELP') }
+    },
+    {
+      routeName: ROUTE_DAY_MENU_EDIT_HELP,
+      component: DayMenuEditHelpView,
+      options: { title: i18n.t('COMMON.HELP') }
+    }
+  ]
 
   const routes = !isLoading && showWelcomePage
     ? [WELCOME_PAGE_ROUTE, ...STACK_ROUTES]

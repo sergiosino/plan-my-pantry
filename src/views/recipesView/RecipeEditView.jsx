@@ -5,10 +5,11 @@ import { useFieldArray, useForm } from 'react-hook-form'
 
 import TextInputControlled from '../../components/forms/TextInputControlled'
 import { RecipeInputEdit } from '../../components/recipes'
+import RecipeEditHeaderRight from '../../components/recipes/RecipeEditHeaderRight'
+
+import { i18n } from '../../utils'
 
 import { NEW_ELEMENT_ID } from '../../constants/constants'
-import { INGREDIENTS, NOTES, RECIPE_NAME } from '../../constants/texts/texts'
-import RecipeEditHeaderRight from '../../components/recipes/RecipeEditHeaderRight'
 
 const FIELD_DEFAULT_INGREDIENT = { ingredient: '' }
 
@@ -71,7 +72,7 @@ export default function RecipeEditView () {
 
   return (
     <ScrollView style={styles.scrollContainer}>
-      <Text style={styles.modalText}>{RECIPE_NAME}</Text>
+      <Text style={styles.modalText}>{i18n.t('RECIPES.RECIPE_NAME')}</Text>
       <TextInputControlled
         name='name'
         control={control}
@@ -80,7 +81,7 @@ export default function RecipeEditView () {
         onSubmitEditing={() => focusInput()}
         innerRef={_recipeNameInput}
       />
-      <Text style={styles.modalText}>{INGREDIENTS}</Text>
+      <Text style={styles.modalText}>{i18n.t('RECIPES.INGREDIENTS')}</Text>
       {fields.map((field, index) => (
         <RecipeInputEdit
           key={field.id}
@@ -95,7 +96,7 @@ export default function RecipeEditView () {
           _ingredientsInput={_ingredientsInput}
         />
       ))}
-      <Text style={styles.modalText}>{NOTES}</Text>
+      <Text style={styles.modalText}>{i18n.t('RECIPES.NOTES')}</Text>
       <TextInputControlled
         name='notes'
         control={control}

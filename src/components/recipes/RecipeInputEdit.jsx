@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import TextInputControlled from '../forms/TextInputControlled'
 import IconButton from '../buttons/IconButton'
 
-import { PLUS_INGREDIENT } from '../../constants/texts/texts'
+import { i18n } from '../../utils'
 
 const ICON_SIZE = 25
 
@@ -30,7 +30,7 @@ export default function RecipeInputEdit (props) {
         control={control}
         onChange={() => handleChange(index + 1)}
         innerRef={(input) => { _ingredientsInput.current[index] = input }}
-        placeholder={PLUS_INGREDIENT}
+        placeholder={i18n.t('RECIPES.PLUS_INGREDIENT')}
         returnKeyType='next'
         onSubmitEditing={() => focusInput(index + 1)}
         blurOnSubmit={false}

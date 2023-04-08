@@ -10,18 +10,11 @@ import Divider from '../components/Divider'
 
 import { useRecipes, useUserConfig } from '../hooks'
 
-import { PRIVACY_POLICY_URL, TERMS_CONDITIONS_URL, USER_CONFIG_PARAMS } from '../constants/constants'
-import {
-  APP_VERSION,
-  PRIVACY_POLICY,
-  RECIPES_JSON,
-  SHOW_HELP_ICON_1,
-  SHOW_HELP_ICON_2,
-  SHOW_WELCOME,
-  TERMS_CONDITIONS
-} from '../constants/texts/texts'
+import { i18n } from '../utils'
 
-const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
+import { PRIVACY_POLICY_URL, TERMS_CONDITIONS_URL, USER_CONFIG_PARAMS } from '../constants/constants'
+
+const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON, DEFAULT_LANGUAGE } = USER_CONFIG_PARAMS
 
 export default function SettingsView () {
   const { recipes, handleGetRecipes } = useRecipes()
@@ -30,6 +23,8 @@ export default function SettingsView () {
   const handleWelcomPageCheckChange = () => updateUserConfig(SHOW_WELCOME_PAGE, !showWelcomePage)
 
   const handleHeaderHelpIconCheckChange = () => updateUserConfig(SHOW_HEADER_HELP_ICON, !showHeaderHelpIcon)
+
+  const handleDefaultLanguageChange = (language) => updateUserConfig(DEFAULT_LANGUAGE, language)
 
   const handleOpenUrl = (url) => Linking.openURL(url)
 
@@ -47,7 +42,7 @@ export default function SettingsView () {
       <Divider />
       <ScrollView>
         <View style={{ padding: 15, backgroundColor: 'white' }}>
-          <Text style={{ marginBottom: 5 }}>{RECIPES_JSON}</Text>
+          <Text style={{ marginBottom: 5 }}>{i18n.t('SETTINGS.RECIPES_JSON')}</Text>
           <TextInputStyled
             value={JSON.stringify(recipes)}
             multiline
@@ -57,7 +52,7 @@ export default function SettingsView () {
         <Divider />
         <RectButton style={styles.backgroundWhite} onPress={handleWelcomPageCheckChange}>
           <View style={styles.settingContainer}>
-            <Text>{SHOW_WELCOME}</Text>
+            <Text>{i18n.t('SETTINGS.SHOW_WELCOME')}</Text>
             <Checkbox checked={showWelcomePage} />
           </View>
         </RectButton>
@@ -65,30 +60,42 @@ export default function SettingsView () {
         <RectButton style={styles.backgroundWhite} onPress={handleHeaderHelpIconCheckChange}>
           <View style={styles.settingContainer}>
             <Text>
-              {SHOW_HELP_ICON_1}
+              {i18n.t('SETTINGS.SHOW_HELP_ICON_1')}
               <Ionicons name='help-outline' size={20} />
-              {SHOW_HELP_ICON_2}
+              {i18n.t('SETTINGS.SHOW_HELP_ICON_2')}
             </Text>
             <Checkbox checked={showHeaderHelpIcon} />
           </View>
         </RectButton>
         <Divider />
+        <RectButton style={styles.backgroundWhite} onPress={() => handleDefaultLanguageChange('en')}>
+          <View style={styles.settingContainer}>
+            <Text>INGLES</Text>
+          </View>
+        </RectButton>
+        <Divider />
+        <RectButton style={styles.backgroundWhite} onPress={() => handleDefaultLanguageChange('es')}>
+          <View style={styles.settingContainer}>
+            <Text>ESPAÑOL</Text>
+          </View>
+        </RectButton>
+        <Divider />
         <RectButton style={styles.backgroundWhite} onPress={() => handleOpenUrl(TERMS_CONDITIONS_URL)}>
           <View style={styles.settingContainer}>
-            <Text>{TERMS_CONDITIONS}</Text>
+            <Text>{i18n.t('SETTINGS.TERMS_CONDITIONS')}</Text>
             <Ionicons name='chevron-forward' size={20} />
           </View>
         </RectButton>
         <Divider />
         <RectButton style={styles.backgroundWhite} onPress={() => handleOpenUrl(PRIVACY_POLICY_URL)}>
           <View style={styles.settingContainer}>
-            <Text>{PRIVACY_POLICY}</Text>
+            <Text>{i18n.t('SETTINGS.PRIVACY_POLICY')}</Text>
             <Ionicons name='chevron-forward' size={20} />
           </View>
         </RectButton>
         <Divider />
         <View style={[styles.settingContainer, styles.backgroundWhite]}>
-          <Text>{APP_VERSION}</Text>
+          <Text>{i18n.t('SETTINGS.APP_VERSION')}</Text>
           <Text>{Constants.manifest.version}</Text>
         </View>
         <Divider style={styles.marginBottom50} />

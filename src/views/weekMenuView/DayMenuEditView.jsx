@@ -10,11 +10,9 @@ import { useRecipes } from '../../hooks'
 
 import * as wmService from '../../services/WeekMenusService'
 
-import { WEEK_DAYS } from '../../constants/constants'
-
 export default function DayMenuEditView () {
   const route = useRoute()
-  const { dayMenu: dayMenuParam } = route.params
+  const { dayMenu: dayMenuParam, dayName: dayNameParam } = route.params
   const { recipes, handleGetRecipes, handleSearchRecipes } = useRecipes()
   const navigation = useNavigation()
 
@@ -80,10 +78,8 @@ export default function DayMenuEditView () {
   }, [isLunchSelected, dayMenu])
 
   useEffect(() => {
-    const { dayId } = dayMenuParam
-    const dayName = WEEK_DAYS[dayId]
     navigation.setOptions({
-      headerTitle: dayName,
+      headerTitle: dayNameParam,
       headerRight: () => (<DayMenuEditHeaderRight />)
     })
   }, [])

@@ -9,16 +9,28 @@ import WeekMenuHeaderRight from '../../components/weekMenu/WeekMenuHeaderRight'
 
 import { useWeekMenu } from '../../hooks'
 
+import { i18n } from '../../utils'
+
 import { ROUTE_DAY_MENU_EDIT } from '../../constants/routes'
-import { WEEK_DAYS } from '../../constants/constants'
 
 export default function WeekMenuView () {
   const navigation = useNavigation()
   const { weekMenu, clearAllMeals } = useWeekMenu()
 
+  const WEEK_DAYS = {
+    1: i18n.t('MENU.MONDAY'),
+    2: i18n.t('MENU.TUESTDAY'),
+    3: i18n.t('MENU.WEDNESDAY'),
+    4: i18n.t('MENU.THURSDAY'),
+    5: i18n.t('MENU.FRIDAY'),
+    6: i18n.t('MENU.SATURDAY'),
+    7: i18n.t('MENU.SUNDAY')
+  }
+
   const handleDayMenuPress = (dayId) => {
+    const dayName = WEEK_DAYS[dayId]
     const dayMenu = weekMenu.find(dayMenu => dayMenu.dayId === dayId)
-    navigation.navigate(ROUTE_DAY_MENU_EDIT, { dayMenu })
+    navigation.navigate(ROUTE_DAY_MENU_EDIT, { dayName, dayMenu })
   }
 
   useEffect(() => {

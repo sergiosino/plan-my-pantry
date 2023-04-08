@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import DayMeal from './DayMeal'
 
-import { DINNER, LUNCH } from '../../constants/texts/texts'
+import { i18n } from '../../utils'
 
 export default function DayMenu (props) {
   const { dayName, lunch, dinner, onPressLunch, onPressDinner, isLunchSelected, isDinnerSelected } = props
@@ -15,8 +15,18 @@ export default function DayMenu (props) {
         </View>
       )}
       <View style={styles.dayMealsContainer}>
-        <DayMeal meal={LUNCH} recipe={lunch} onPress={onPressLunch} isSelected={isLunchSelected} />
-        <DayMeal meal={DINNER} recipe={dinner} onPress={onPressDinner} isSelected={isDinnerSelected} />
+        <DayMeal
+          meal={i18n.t('MENU.LUNCH')}
+          recipe={lunch}
+          onPress={onPressLunch}
+          isSelected={isLunchSelected}
+        />
+        <DayMeal
+          meal={i18n.t('MENU.DINNER')}
+          recipe={dinner}
+          onPress={onPressDinner}
+          isSelected={isDinnerSelected}
+        />
       </View>
     </View>
   )

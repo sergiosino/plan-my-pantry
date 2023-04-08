@@ -1,10 +1,13 @@
 import { createContext, useEffect, useState } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import * as Localization from 'expo-localization'
 
-import { STORAGE_KEYS } from '../constants/constants'
-import { USER_CONFIG_MOCKUP } from '../constants/mockups'
+import * as ucService from '../services/UserConfigService'
 
-const { USER_CONFIG } = STORAGE_KEYS
+import { i18n } from '../utils'
+
+import { USER_CONFIG_PARAMS } from '../constants/constants'
+
+const { DEFAULT_LANGUAGE } = USER_CONFIG_PARAMS
 
 export const UserConfigContext = createContext({})
 
@@ -12,17 +15,20 @@ export function UserConfigContextProvider ({ children }) {
   const [userConfig, setUserConfig] = useState({})
 
   const updateUserInfo = (newUserConfig) => {
-    const jsonValue = JSON.stringify(newUserConfig)
-    AsyncStorage.setItem(USER_CONFIG, jsonValue)
+    ucService.updateUserConfig(newUserConfig)
     setUserConfig(newUserConfig)
+  }
+
+  const initiateLanguage = (storageUserConfig) => {
+    const storageDefaultLanguage = storageUserConfig[DEFAULT_LANGUAGE]
+    const deviceLanguage = Localization.locale
+    i18n.locale = storageDefaultLanguage ?? deviceLanguage
   }
 
   useEffect(() => {
     const getStorageUserConfig = async () => {
-      let storageUserConfig = await AsyncStorage.getItem(USER_CONFIG)
-      storageUserConfig = storageUserConfig
-        ? JSON.parse(storageUserConfig)
-        : USER_CONFIG_MOCKUP
+      const storageUserConfig = await ucService.getUserConfig()
+      initiateLanguage(storageUserConfig)
       setUserConfig(storageUserConfig)
     }
     getStorageUserConfig()

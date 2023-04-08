@@ -7,49 +7,53 @@ import WeekMenuView from '../views/weekMenuView/WeekMenuView'
 import RecipesView from '../views/recipesView/RecipesView'
 import SettingsView from '../views/SettingsView'
 
+import { useUserConfig } from '../hooks'
+
+import { i18n } from '../utils'
+
 import {
   ROUTE_RECIPES_VIEW,
   ROUTE_GROCERY_LIST,
   ROUTE_SETTINGS,
   ROUTE_WEEK_MENU
 } from '../constants/routes'
-import { GROCERY_LIST, RECIPES, SETTINGS, WEEK_MENU } from '../constants/texts/texts'
 
 const Tab = createBottomTabNavigator()
 
-const TAB_ROUTES = [
-  {
-    routeName: ROUTE_RECIPES_VIEW,
-    component: RecipesView,
-    iconName: 'pizza-outline',
-    focusedIconName: 'pizza',
-    options: { title: RECIPES }
-  },
-  {
-    routeName: ROUTE_WEEK_MENU,
-    component: WeekMenuView,
-    iconName: 'restaurant-outline',
-    focusedIconName: 'restaurant',
-    options: { title: WEEK_MENU }
-  },
-  {
-    routeName: ROUTE_GROCERY_LIST,
-    component: GroceryListView,
-    iconName: 'cart-outline',
-    focusedIconName: 'cart',
-    options: { title: GROCERY_LIST }
-  },
-  {
-    routeName: ROUTE_SETTINGS,
-    component: SettingsView,
-    iconName: 'settings-outline',
-    focusedIconName: 'settings',
-    options: { title: SETTINGS }
-  }
-]
-
 export default function BottomTabsRoutes () {
   const { colors } = useTheme()
+  const { isLoading } = useUserConfig()
+
+  const TAB_ROUTES = [
+    {
+      routeName: ROUTE_RECIPES_VIEW,
+      component: RecipesView,
+      iconName: 'pizza-outline',
+      focusedIconName: 'pizza',
+      options: { title: i18n.t('RECIPES.RECIPES') }
+    },
+    {
+      routeName: ROUTE_WEEK_MENU,
+      component: WeekMenuView,
+      iconName: 'restaurant-outline',
+      focusedIconName: 'restaurant',
+      options: { title: i18n.t('MENU.WEEK_MENU') }
+    },
+    {
+      routeName: ROUTE_GROCERY_LIST,
+      component: GroceryListView,
+      iconName: 'cart-outline',
+      focusedIconName: 'cart',
+      options: { title: i18n.t('GROCERY_LIST.GROCERY_LIST') }
+    },
+    {
+      routeName: ROUTE_SETTINGS,
+      component: SettingsView,
+      iconName: 'settings-outline',
+      focusedIconName: 'settings',
+      options: { title: i18n.t('SETTINGS.SETTINGS') }
+    }
+  ]
 
   const getTabIcon = ({ focused, color, size, route }) => {
     const { iconName, focusedIconName } = TAB_ROUTES.find(tabRoute => tabRoute.routeName === route.name)
@@ -59,7 +63,7 @@ export default function BottomTabsRoutes () {
     return <Ionicons name={icon} size={size} color={color} />
   }
 
-  return (
+  return !isLoading && (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: (props) => getTabIcon({ ...props, route }),

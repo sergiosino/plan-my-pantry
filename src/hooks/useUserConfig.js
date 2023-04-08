@@ -2,11 +2,14 @@ import { useContext } from 'react'
 
 import { UserConfigContext } from '../contexts/UserConfigContext'
 
+import { i18n } from '../utils'
+
 import { USER_CONFIG_PARAMS } from '../constants/constants'
 
 const {
   SHOW_HEADER_HELP_ICON,
-  SHOW_WELCOME_PAGE
+  SHOW_WELCOME_PAGE,
+  DEFAULT_LANGUAGE
 } = USER_CONFIG_PARAMS
 
 export function useUserConfig () {
@@ -14,7 +17,8 @@ export function useUserConfig () {
 
   const {
     [SHOW_WELCOME_PAGE]: showWelcomePage,
-    [SHOW_HEADER_HELP_ICON]: showHeaderHelpIcon
+    [SHOW_HEADER_HELP_ICON]: showHeaderHelpIcon,
+    [DEFAULT_LANGUAGE]: defaultLanguage
   } = userConfig
   const isLoading = showWelcomePage === undefined
 
@@ -23,6 +27,8 @@ export function useUserConfig () {
       updateShowWelcomePage(newValue)
     } else if (configPropName === SHOW_HEADER_HELP_ICON) {
       updateShowHeaderHelpIcon(newValue)
+    } else if (configPropName === DEFAULT_LANGUAGE) {
+      updateDefaultLanguage(newValue)
     }
   }
 
@@ -38,10 +44,18 @@ export function useUserConfig () {
     setUserConfig(newUserConfig)
   }
 
+  const updateDefaultLanguage = (language) => {
+    i18n.locale = language
+    const newUserConfig = { ...userConfig }
+    newUserConfig[DEFAULT_LANGUAGE] = language
+    setUserConfig(newUserConfig)
+  }
+
   return {
     isLoading,
     showWelcomePage,
     showHeaderHelpIcon,
+    defaultLanguage,
     updateUserConfig
   }
 }

@@ -4,16 +4,7 @@ import IconButton from '../buttons/IconButton'
 
 import { useGroceryList } from '../../hooks/useGroceryList'
 
-import { confirmationAlert } from '../../utils/confirmationAlert'
-
-import {
-  CHECK_MESSAGE,
-  CHECK,
-  DELETE_MESSAGE,
-  DELETE,
-  UNCHECK_MESSAGE,
-  UNCHECK
-} from '../../constants/texts/texts'
+import { confirmationAlert, i18n } from '../../utils'
 
 export default function GroceryListHeaderRight (props) {
   const { itemIdToFocus } = props
@@ -26,24 +17,24 @@ export default function GroceryListHeaderRight (props) {
 
   const handlePressDeleteChecked = () => {
     confirmationAlert(
-      DELETE,
-      DELETE_MESSAGE,
+      i18n.t('GROCERY_LIST.DELETE'),
+      i18n.t('GROCERY_LIST.DELETE_MESSAGE'),
       handleDeleteChecked
     )
   }
 
   const handlePressCheckAll = () => {
     confirmationAlert(
-      CHECK,
-      CHECK_MESSAGE,
+      i18n.t('GROCERY_LIST.CHECK'),
+      i18n.t('GROCERY_LIST.CHECK_MESSAGE'),
       handleCheckAll
     )
   }
 
   const handlePressUncheckAll = () => {
     confirmationAlert(
-      UNCHECK,
-      UNCHECK_MESSAGE,
+      i18n.t('GROCERY_LIST.UNCHECK'),
+      i18n.t('GROCERY_LIST.UNCHECK_MESSAGE'),
       () => {
         handleUnCheckAll()
         itemIdToFocus.current = null

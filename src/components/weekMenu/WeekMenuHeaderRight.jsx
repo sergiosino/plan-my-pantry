@@ -2,17 +2,15 @@ import { StyleSheet, View } from 'react-native'
 
 import IconButton from '../buttons/IconButton'
 
-import { confirmationAlert } from '../../utils'
-
-import { RESET_MEALS, RESET_MEALS_MESSAGE } from '../../constants/texts/texts'
+import { confirmationAlert, i18n } from '../../utils'
 
 export default function WeekMenuHeaderRight (props) {
   const { clearAllMeals } = props
 
   const handlePressClearAllMeals = () => {
     confirmationAlert(
-      RESET_MEALS,
-      RESET_MEALS_MESSAGE,
+      i18n.t('MENU.RESET_MEALS'),
+      i18n.t('MENU.RESET_MEALS_MESSAGE'),
       clearAllMeals
     )
   }

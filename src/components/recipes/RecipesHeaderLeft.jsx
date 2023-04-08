@@ -3,6 +3,8 @@ import { Dimensions, StyleSheet, View } from 'react-native'
 
 import TextInputStyled from '../forms/TextInputStyled'
 
+import { i18n } from '../../utils'
+
 const windowDimensions = Dimensions.get('window')
 
 export default function RecipesHeaderLeft (props) {
@@ -17,7 +19,12 @@ export default function RecipesHeaderLeft (props) {
 
   return (
     <View style={styles.localHeaderContainer}>
-      <TextInputStyled value={search} onChangeText={handleSearch} autoFocus />
+      <TextInputStyled
+        value={search}
+        onChangeText={handleSearch}
+        placeholder={i18n.t('COMMON.SEARCH_RECIPES')}
+        autoFocus
+      />
     </View>
   )
 }
@@ -27,7 +34,6 @@ const styles = StyleSheet.create({
     height: '100%',
     marginLeft: 15,
     width: (windowDimensions.width - 95),
-    justifyContent: 'center',
-    backgroundColor: 'blue'
+    justifyContent: 'center'
   }
 })

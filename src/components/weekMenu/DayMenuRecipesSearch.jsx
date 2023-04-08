@@ -4,6 +4,8 @@ import { Keyboard, StyleSheet, View } from 'react-native'
 import TextInputStyled from '../forms/TextInputStyled'
 import IconButton from '../buttons/IconButton'
 
+import { i18n } from '../../utils'
+
 export default function DayMenuRecipesSearch (props) {
   const { handleSearchRecipes } = props
 
@@ -26,7 +28,7 @@ export default function DayMenuRecipesSearch (props) {
         style={styles.textInput}
         value={search}
         onChangeText={handleSearch}
-        placeholder='Search recipes...'
+        placeholder={i18n.t('COMMON.SEARCH_RECIPES')}
       />
       {search && <IconButton onPress={handleSearchClose} iconName='close' />}
     </View>

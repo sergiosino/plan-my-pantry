@@ -7,7 +7,7 @@ import DeselectableItem from './DeselectableItem'
 
 import * as glService from '../../services/GroceryListService'
 
-import { ADD_GROCERY_LIST, RECIPE_LONG_PRESS } from '../../constants/texts/texts'
+import { i18n } from '../../utils'
 
 export default function DayIngredientsForGroceryList (props) {
   const { dayMenuIngredients, setDayMenuIngredients } = props
@@ -28,7 +28,7 @@ export default function DayIngredientsForGroceryList (props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>{RECIPE_LONG_PRESS}</Text>
+      <Text style={styles.titleText}>{i18n.t('MENU.RECIPE_LONG_PRESS')}</Text>
       <ScrollView>
         <View style={styles.ingredientsContainer}>
           {dayMenuIngredients.map((dayMenuIngredient, index) => (
@@ -38,7 +38,7 @@ export default function DayIngredientsForGroceryList (props) {
       </ScrollView>
       <View style={styles.buttonContainer}>
         <Button onPress={handleAddGroceryList}>
-          <Text style={styles.buttonText}>{ADD_GROCERY_LIST}</Text>
+          <Text style={styles.buttonText}>{i18n.t('MENU.ADD_GROCERY_LIST')}</Text>
         </Button>
       </View>
     </View>

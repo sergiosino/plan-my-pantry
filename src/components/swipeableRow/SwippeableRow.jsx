@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native'
 import { Swipeable } from 'react-native-gesture-handler'
 
 import SwipeableSmallAction from './SwipeableSmallAction'
-import { DELETE, EDIT } from '../../constants/texts/texts'
+
+import { i18n } from '../../utils'
 
 export default function SwipeableRow (props) {
   const {
@@ -34,8 +35,20 @@ export default function SwipeableRow (props) {
       friction={2}
       leftThreshold={40}
       rightThreshold={40}
-      renderLeftActions={() => onLeftActionPress && <SwipeableSmallAction onPress={handleLefActionClick} text={DELETE} style={styles.leftAction} />}
-      renderRightActions={() => onRightActionPress && <SwipeableSmallAction onPress={handleRightActionClick} text={EDIT} style={styles.rightAction} />}
+      renderLeftActions={() => onLeftActionPress && (
+        <SwipeableSmallAction
+          onPress={handleLefActionClick}
+          text={i18n.t('COMMON.DELETE')}
+          style={styles.leftAction}
+        />
+      )}
+      renderRightActions={() => onRightActionPress && (
+        <SwipeableSmallAction
+          onPress={handleRightActionClick}
+          text={i18n.t('COMMON.EDIT')}
+          style={styles.rightAction}
+        />
+      )}
     >
       {children}
     </Swipeable>

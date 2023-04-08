@@ -9,16 +9,10 @@ import Button from '../components/buttons/Button'
 
 import { useUserConfig } from '../hooks'
 
+import { i18n } from '../utils'
+
 import { ROUTE_TABS } from '../constants/routes'
 import { USER_CONFIG_PARAMS } from '../constants/constants'
-import {
-  CONTINUE,
-  HAPPY_GROCERY,
-  HELP_ICON_EXPLANATION_1,
-  HELP_ICON_EXPLANATION_2,
-  NOT_SHOW_AGAIN,
-  WELCOME
-} from '../constants/texts/texts'
 
 export default function WelcomeView () {
   const [checked, setChecked] = useState(false)
@@ -42,23 +36,23 @@ export default function WelcomeView () {
       <View style={styles.imgContainer}>
         <Image source={require('../../assets/logo.png')} style={styles.image} />
       </View>
-      <Text style={styles.title}>{WELCOME}</Text>
+      <Text style={styles.title}>{i18n.t('WELCOME.WELCOME')}</Text>
       <Text style={[styles.text, styles.marginBottom10]}>
-        {HELP_ICON_EXPLANATION_1}
+        {i18n.t('WELCOME.HELP_ICON_EXPLANATION_1')}
         <Ionicons name='help-outline' size={20} />
-        {HELP_ICON_EXPLANATION_2}
+        {i18n.t('WELCOME.HELP_ICON_EXPLANATION_2')}
       </Text>
-      <Text style={styles.text}>{HAPPY_GROCERY}</Text>
+      <Text style={styles.text}>{i18n.t('WELCOME.HAPPY_GROCERY')}</Text>
       <View style={styles.checkboxButtonContainer}>
         <RectButton onPress={() => setChecked(!checked)} rippleColor='transparent'>
           <View style={styles.checkboxContainer}>
             <Checkbox style={styles.marginRight5} checked={checked} />
-            <Text>{NOT_SHOW_AGAIN}</Text>
+            <Text>{i18n.t('WELCOME.NOT_SHOW_AGAIN')}</Text>
           </View>
         </RectButton>
       </View>
       <Button onPress={handleContinue}>
-        <Text>{CONTINUE}</Text>
+        <Text>{i18n.t('WELCOME.CONTINUE')}</Text>
       </Button>
     </View>
   )

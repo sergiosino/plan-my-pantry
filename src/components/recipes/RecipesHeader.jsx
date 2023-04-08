@@ -4,7 +4,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import RecipesHeaderRight from './RecipesHeaderRight'
 import RecipesHeaderLeft from './RecipesHeaderLeft'
 
-import { RECIPES } from '../../constants/texts/texts'
+import { i18n } from '../../utils'
 
 export default function RecipesHeader (props) {
   const { handleSearchRecipes } = props
@@ -30,14 +30,18 @@ export default function RecipesHeader (props) {
     }
     if (!isSearchOpen) {
       newOptions.headerLeft = null
-      newOptions.headerTitle = RECIPES
+      newOptions.headerTitle = i18n.t('RECIPES.RECIPES')
     }
     navigation.setOptions({ ...newOptions })
   }, [isSearchOpen])
 
   useFocusEffect(
     useCallback(() => {
-      isSearchOpen && setIsSearchOpen(false)
+      if (isSearchOpen) {
+        setIsSearchOpen(false)
+      } else {
+        navigation.setOptions({ headerTitle: i18n.t('RECIPES.RECIPES') })
+      }
     }, [])
   )
 
