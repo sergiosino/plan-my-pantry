@@ -17,7 +17,7 @@ export default function GroceryListHeaderRight (props) {
 
   const handlePressDeleteChecked = () => {
     confirmationAlert(
-      i18n.t('GROCERY_LIST.DELETE'),
+      i18n.t('COMMON.DELETE'),
       i18n.t('GROCERY_LIST.DELETE_MESSAGE'),
       handleDeleteChecked
     )
