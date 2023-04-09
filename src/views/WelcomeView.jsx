@@ -39,7 +39,7 @@ export default function WelcomeView () {
       <Text style={styles.title}>{i18n.t('WELCOME.WELCOME')}</Text>
       <Text style={[styles.text, styles.marginBottom10]}>
         {i18n.t('WELCOME.HELP_ICON_EXPLANATION_1')}
-        <Ionicons name='help-outline' size={20} />
+        <Ionicons name='help' size={20} />
         {i18n.t('WELCOME.HELP_ICON_EXPLANATION_2')}
       </Text>
       <Text style={styles.text}>{i18n.t('WELCOME.HAPPY_GROCERY')}</Text>

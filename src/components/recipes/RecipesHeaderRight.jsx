@@ -32,7 +32,7 @@ export default function RecipesHeaderRight (props) {
         ? <IconButton onPress={handleSearchClose} iconName='close' />
         : <IconButton style={showHeaderHelpIcon && styles.marginRight} onPress={handleSarchOpen} iconName='search' />}
       {!isSearchOpen && showHeaderHelpIcon && (
-        <IconButton onPress={handlePressHelp} iconName='help-outline' />
+        <IconButton onPress={handlePressHelp} iconName='help' />
       )}
     </View>
   )

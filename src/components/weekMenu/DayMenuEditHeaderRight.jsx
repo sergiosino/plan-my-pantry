@@ -17,7 +17,7 @@ export default function DayMenuEditHeaderRight () {
 
   return showHeaderHelpIcon && (
     <View style={styles.localHeaderContainer}>
-      <IconButton onPress={handlePressHelp} iconName='help-outline' />
+      <IconButton onPress={handlePressHelp} iconName='help' />
     </View>
   )
 }

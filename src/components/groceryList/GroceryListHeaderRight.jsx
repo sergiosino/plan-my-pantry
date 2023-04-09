@@ -45,7 +45,7 @@ export default function GroceryListHeaderRight (props) {
     <View style={styles.localHeaderContainer}>
       <IconButton style={styles.marginRight} onPress={handlePressCheckAll} iconName='checkbox' />
       <IconButton style={styles.marginRight} onPress={handlePressUncheckAll} iconName='square-outline' />
-      <IconButton onPress={handlePressDeleteChecked} iconName='md-trash-outline' />
+      <IconButton onPress={handlePressDeleteChecked} iconName='trash' />
     </View>
   )
 }
