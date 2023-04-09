@@ -34,7 +34,7 @@ export const WEEK_MENU_MOCKUP = [
   { dayId: 4, lunch: null, dinner: null },
   { dayId: 5, lunch: null, dinner: null },
   { dayId: 6, lunch: null, dinner: null },
-  { dayId: 7, lunch: null, dinner: null }
+  { dayId: 0, lunch: null, dinner: null }
 ]
 
 const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON, DEFAULT_LANGUAGE } = USER_CONFIG_PARAMS
