@@ -10,6 +10,9 @@ import { useRecipes } from '../../hooks'
 
 import * as wmService from '../../services/WeekMenusService'
 
+/**
+ * View for a specific day where the user can select the recipe for the lunch or dinner
+ */
 export default function DayMenuEditView () {
   const route = useRoute()
   const { dayMenu: dayMenuParam, dayName: dayNameParam } = route.params

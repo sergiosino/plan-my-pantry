@@ -13,9 +13,15 @@ import { NEW_ELEMENT_ID } from '../../constants/constants'
 
 const FIELD_DEFAULT_INGREDIENT = { ingredient: '' }
 
+/**
+ * Recipe edit and add form
+ */
 export default function RecipeEditView () {
   const route = useRoute()
   const navigation = useNavigation()
+  /**
+   * Initialization of recipe form with default values and two blank ingredients
+   */
   const { control, handleSubmit, getValues, reset } = useForm({
     defaultValues: {
       id: NEW_ELEMENT_ID,
@@ -24,6 +30,9 @@ export default function RecipeEditView () {
       notes: ''
     }
   })
+  /**
+   * Ingredients form array
+   */
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'ingredients'
@@ -35,12 +44,22 @@ export default function RecipeEditView () {
 
   const { recipe: recipeParam } = route.params ?? { recipe: null }
 
+  /**
+   * Focus the next input.
+   * If there is not index, focus the first ingredient input.
+   * If the index is the las input field, will focus the notes input.
+   * @param {number} index
+   */
   const focusInput = (index) => {
     if (!index) { return _ingredientsInput.current[0]?.focus() }
     if (index === fields.length) { return _recieNotesInput.current.focus() }
     _ingredientsInput.current[index]?.focus()
   }
 
+  /**
+   * Add new ingredient input if the user writes in the last one
+   * @param {number} inputNumber
+   */
   const handleChange = (inputNumber) => {
     const ingredients = getValues('ingredients')
     const isLatIngredient = inputNumber === ingredients.length
@@ -55,6 +74,10 @@ export default function RecipeEditView () {
         <RecipeEditHeaderRight recipeParam={recipeParam} handleSubmit={handleSubmit} />
       )
     })
+    /**
+     * If there are params, initialize the form inputs with them.
+     * Else focus the first input (recipe name) after some ms
+     */
     if (recipeParam) {
       const { id, name, notes, ingredients } = recipeParam
       const ingredientFields = ingredients.map(ingredient => ({ ingredient }))

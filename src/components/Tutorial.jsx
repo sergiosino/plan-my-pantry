@@ -3,7 +3,10 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import Divider from './Divider'
 
 export default function Tutorial (props) {
-  const { instructions } = props
+  const {
+    // Array of instructions with all the necesary info, such as text, img...
+    instructions
+  } = props
 
   return (
     <View style={styles.container}>

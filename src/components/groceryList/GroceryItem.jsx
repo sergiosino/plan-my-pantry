@@ -3,7 +3,8 @@ import { StyleSheet, Text, TextInput, View } from 'react-native'
 import Checkbox from '../forms/Checkbox'
 import IconButton from '../buttons/IconButton'
 
-import { useGroceryItem } from '../../hooks/useGroceryItem'
+import { useGroceryList } from '../../hooks/useGroceryList'
+import { useState } from 'react'
 
 export default function GroceryItem (props) {
   const {
@@ -14,14 +15,30 @@ export default function GroceryItem (props) {
   } = props
 
   const {
-    text,
-    setText,
-    showDeleteIcon,
-    handleTextFocus,
-    handleTextFocusEnd,
-    handleCheckboxChange,
-    handleDelete
-  } = useGroceryItem({ id, defaultChecked, defaultText })
+    handleItemChange,
+    handleDeleteItem
+  } = useGroceryList()
+  const [text, setText] = useState(defaultText)
+  const [showDeleteIcon, setShowDeleteIcon] = useState(false)
+
+  const handleTextFocus = () => {
+    setShowDeleteIcon(true)
+  }
+
+  const handleTextFocusEnd = () => {
+    setShowDeleteIcon(false)
+    const groceryItem = { id, defaultChecked, text }
+    handleItemChange(groceryItem)
+  }
+
+  const handleCheckboxChange = (checked) => {
+    const groceryItem = { id, checked, text }
+    handleItemChange(groceryItem)
+  }
+
+  const handleDelete = () => {
+    handleDeleteItem(id)
+  }
 
   return (
     <View style={styles.container}>

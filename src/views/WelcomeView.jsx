@@ -14,6 +14,9 @@ import { i18n } from '../utils'
 import { ROUTE_TABS } from '../constants/routes'
 import { USER_CONFIG_PARAMS } from '../constants/constants'
 
+/**
+ * First view that the user sees with some advice
+ */
 export default function WelcomeView () {
   const [checked, setChecked] = useState(false)
 

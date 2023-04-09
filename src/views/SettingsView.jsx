@@ -17,6 +17,9 @@ import { PRIVACY_POLICY_URL, RATE_APP_URL, TERMS_CONDITIONS_URL, USER_CONFIG_PAR
 
 const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
 
+/**
+ * Settings view to modify the user experience using the app
+ */
 export default function SettingsView () {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
 

@@ -12,6 +12,9 @@ const {
   DEFAULT_LANGUAGE
 } = USER_CONFIG_PARAMS
 
+/**
+ * Hook for updating the user config state from the context
+ */
 export function useUserConfig () {
   const { userConfig, setUserConfig } = useContext(UserConfigContext)
 
@@ -20,6 +23,7 @@ export function useUserConfig () {
     [SHOW_HEADER_HELP_ICON]: showHeaderHelpIcon,
     [DEFAULT_LANGUAGE]: defaultLanguage
   } = userConfig
+  // Check if the user config is already loaded (showWelcomePage will ever have a value)
   const isLoading = showWelcomePage === undefined
 
   const updateUserConfig = (configPropName, newValue) => {
@@ -44,6 +48,11 @@ export function useUserConfig () {
     setUserConfig(newUserConfig)
   }
 
+  /**
+   * If the new language is different from the actual, will update the context app to refresh all app components.
+   * The i18n is modified with the new language
+   * @param {string} language
+   */
   const updateDefaultLanguage = (language) => {
     if (userConfig[DEFAULT_LANGUAGE] === language) { return }
     i18n.locale = language

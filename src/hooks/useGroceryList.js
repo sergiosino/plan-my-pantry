@@ -6,6 +6,9 @@ import * as glService from '../services/GroceryListService'
 
 import { NEW_ELEMENT_ID } from '../constants/constants'
 
+/**
+ * Hook for updating the grocery list data in the context
+ */
 export function useGroceryList () {
   const { groceryList, setGroceryList } = useContext(GroceryListContext)
 
@@ -14,6 +17,10 @@ export function useGroceryList () {
     setGroceryList(newGroceryList)
   }
 
+  /**
+   * Add a new empty item without saving in the async store.
+   * It will be saved after the user adds new info.
+   */
   const handleAddEmptyItem = () => {
     const newGroceryItem = { id: NEW_ELEMENT_ID, checked: false, text: '' }
     const newGroceryList = [newGroceryItem, ...groceryList]

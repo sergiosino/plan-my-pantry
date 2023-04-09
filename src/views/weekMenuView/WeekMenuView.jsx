@@ -35,6 +35,11 @@ export default function WeekMenuView () {
     navigation.navigate(ROUTE_DAY_MENU_EDIT, { dayName, dayMenu })
   }
 
+  /**
+   * Check if a specific day number and returns if is lunch or dinner hours
+   * @param {number} dayId
+   * @returns {Object}
+   */
   const isActualMeal = (dayId) => {
     if (ACTUAL_DAY_WEEK === dayId) {
       if (ACTUAL_HOUR >= 12 && ACTUAL_HOUR < 16) { return { isLunchSelected: true, isDinnerSelected: false } }

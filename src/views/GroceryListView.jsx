@@ -8,6 +8,9 @@ import { GroceryItem, GroceryListHeaderRight } from '../components/groceryList'
 
 import { useGroceryList } from '../hooks'
 
+/**
+ * Principal view when user enter can add, check, delete... ingredients for the grocery shopping
+ */
 export default function GroceryListView () {
   const navigation = useNavigation()
   const {

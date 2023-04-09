@@ -11,6 +11,9 @@ import { useRecipes } from '../../hooks'
 
 import { ROUTE_RECIPES_EDIT } from '../../constants/routes'
 
+/**
+ * Principal view of the recipes, where user can see all of them
+ */
 export default function RecipesView () {
   const {
     recipes,

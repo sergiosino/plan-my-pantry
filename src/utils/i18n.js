@@ -14,6 +14,9 @@ import ru from '../locales/ru.json'
 import tr from '../locales/tr.json'
 import zh from '../locales/zh.json'
 
+/**
+ * Initialization of I18n for all languages
+ */
 const i18n = new I18n({
   ar: { ...ar },
   de: { ...de },

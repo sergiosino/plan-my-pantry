@@ -38,8 +38,10 @@ export default function RecipesHeader (props) {
   useFocusEffect(
     useCallback(() => {
       if (isSearchOpen) {
+        // Closes if it was left open the last time
         setIsSearchOpen(false)
       } else {
+        // If the user has changed the language, it will take the new title
         navigation.setOptions({ headerTitle: i18n.t('RECIPES.RECIPES') })
       }
     }, [])

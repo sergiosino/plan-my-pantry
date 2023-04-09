@@ -20,6 +20,9 @@ import {
 
 const Tab = createBottomTabNavigator()
 
+/**
+ * All the bottom tab routes with its views
+ */
 export default function BottomTabsRoutes () {
   const { colors } = useTheme()
   const { isLoading } = useUserConfig()

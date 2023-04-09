@@ -16,7 +16,7 @@ export default function AddButton (props) {
 
   return (
     <KeyboardAvoidingView
-      keyboardVerticalOffset={headerHeight + 65}
+      keyboardVerticalOffset={headerHeight + 60}
       style={styles.iconContainer}
       behavior='padding'
     >

@@ -3,6 +3,9 @@ import { useFocusEffect } from '@react-navigation/native'
 
 import * as wmService from '../services/WeekMenusService'
 
+/**
+ * Hook for updating the week menu state
+ */
 export function useWeekMenu () {
   const [weekMenu, setWeekMenu] = useState([])
 

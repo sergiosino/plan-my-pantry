@@ -14,6 +14,7 @@ export default function Modal (props) {
 
   return (
     <>
+      {/* For the shade of the modal, so it will fade and not slide from the bottom */}
       <ModalRN
         visible={isModalOpen}
         transparent
@@ -21,6 +22,7 @@ export default function Modal (props) {
       >
         <View style={styles.backgroundModal} />
       </ModalRN>
+      {/* Modal */}
       <ModalRN
         visible={isModalOpen}
         onRequestClose={handleClose}

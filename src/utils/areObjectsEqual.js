@@ -1,4 +1,9 @@
-
+/**
+ * Checks if two objects are ecuals
+ * @param {object} obj1
+ * @param {object} obj2
+ * @returns {bool}
+ */
 export function areObjectsEqual (obj1, obj2) {
   if (Object.keys(obj1).length !== Object.keys(obj2).length) { return false }
 

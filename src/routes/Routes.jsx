@@ -30,6 +30,9 @@ const WELCOME_PAGE_ROUTE = {
   options: { headerShown: false }
 }
 
+/**
+ * All the app routes, included the views and the bottom app tab routes
+ */
 export default function Routes () {
   const { colors } = useTheme()
   const { isLoading, showWelcomePage } = useUserConfig()
@@ -62,6 +65,7 @@ export default function Routes () {
     }
   ]
 
+  // If the show welcome page user config is disabled, it will not be added to the app routes
   const routes = !isLoading && showWelcomePage
     ? [WELCOME_PAGE_ROUTE, ...STACK_ROUTES]
     : STACK_ROUTES

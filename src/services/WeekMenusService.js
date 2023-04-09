@@ -7,11 +7,20 @@ import { WEEK_MENU_MOCKUP } from '../constants/mockups'
 
 const { WEEK_MENU } = STORAGE_KEYS
 
+/**
+ * Updates the week menus async storage
+ * @param {object} newWeekMenus
+ */
 function updateWeekMenus (newWeekMenus) {
   const jsonValue = JSON.stringify(newWeekMenus)
   AsyncStorage.setItem(WEEK_MENU, jsonValue)
 }
 
+/**
+ * Returns the week menu with the correct recipes names saved in the async storage.
+ * If the async storage is empty, returns a MOCK with the basic week menu
+ * @returns {object[]}
+ */
 export async function getWeekMenus () {
   const storageWeekMenus = await AsyncStorage.getItem(WEEK_MENU)
   const recipes = await rService.getRecipes()
@@ -30,6 +39,13 @@ export async function getWeekMenus () {
   return weekMenuWithRecipesName
 }
 
+/**
+ * Updates a day menu recipe and saves the changes, will return the week menu array updated
+ * @param {number} dayId
+ * @param {string} mealName
+ * @param {object} recipe
+ * @returns {object[]}
+ */
 export async function putDayMenu (dayId, mealName, recipe) {
   const weekMenus = await getWeekMenus()
   const newWeekMenus = weekMenus.map(dayMenu => {
@@ -42,6 +58,11 @@ export async function putDayMenu (dayId, mealName, recipe) {
   return newWeekMenus
 }
 
+/**
+ * Removes a recipe from all day menus and returns the new week menu array updated
+ * @param {number} recipeId
+ * @returns {object[]}
+ */
 export async function deleteWeekMenuRecipe (recipeId) {
   const weekMenus = await getWeekMenus()
   const weekMenuUsingRecipe = weekMenus.filter(dayMenu => dayMenu.lunch?.id === recipeId || dayMenu.dinner?.id === recipeId)
@@ -63,6 +84,10 @@ export async function deleteWeekMenuRecipe (recipeId) {
   return newWeekMenus
 }
 
+/**
+ * Return the week menu array with all the meal recipes removed
+ * @returns {object[]}
+ */
 export async function clearAllMeals () {
   const weekMenus = await getWeekMenus()
   const newWeekMenus = weekMenus.map(dayMenu => {
