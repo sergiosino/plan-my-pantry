@@ -1,0 +1,69 @@
+{
+    "COMMON": {
+        "HELP": "Yardım!",
+        "DELETE": "Sil",
+        "EDIT": "Düzenle",
+        "OK": "Tamam",
+        "CANCEL": "İptal",
+        "SEARCH_RECIPES": "Tarifleri arayın...",
+        "SAVE_CLOSE": "Kaydet ve kapat"
+    },
+    "WELCOME": {
+        "WELCOME": "Hoş geldiniz!",
+        "HELP_ICON_EXPLANATION_1": "Bazı sayfalarda, işlevsellik hakkında bazı bilgiler bulabileceğiniz ",
+        "HELP_ICON_EXPLANATION_2": " sağ üstte bulacaksınız.",
+        "HAPPY_GROCERY": "Mutlu alışverişler!",
+        "NOT_SHOW_AGAIN": "Bu sayfayı tekrar gösterme",
+        "CONTINUE": "Devam et"
+    },
+    "RECIPES": {
+        "RECIPES": "Tarifler",
+        "RECIPE_EDIT": "Tarifi düzenle",
+        "RECIPE_NAME": "Tarif adı",
+        "INGREDIENTS": "Malzemeler",
+        "PLUS_INGREDIENT": "+ Malzeme",
+        "NOTES": "Notlar",
+        "HOW_TO_ADD_NEW_RECIPE": "\u2023 Yeni bir tarif eklemek için, sağ alttaki düğmeye basın:",
+        "HOW_TO_EDIT_RECIPE": "\u2023 Bir tarifi düzenlemek için, üzerine tıklayın:",
+        "HOW_TO_DELETE_RECIPE": "\u2023 Bir tarifi silmek için, üzerine basılı tutun ve sağa kaydırın:"
+    },
+    "MENU": {
+        "WEEK_MENU": "Menü",
+        "MONDAY": "Pazartesi",
+        "TUESTDAY": "Salı",
+        "WEDNESDAY": "Çarşamba",
+        "THURSDAY": "Perşembe",
+        "FRIDAY": "Cuma",
+        "SATURDAY": "Cumartesi",
+        "SUNDAY": "Pazar",
+        "LUNCH": "Öğle yemeği",
+        "DINNER": "Akşam yemeği",
+        "RECIPE_LONG_PRESS": "Malzemeleri eklemek için tarife uzun basın",
+        "ADD_GROCERY_LIST": "Alışveriş listesine ekle",
+        "RESET_MEALS": "Yemekleri sıfırla",
+        "RESET_MEALS_MESSAGE": "Haftalık menüdeki tüm yemekleri sıfırlamak istiyor musunuz?"
+    },
+    "GROCERY_LIST": {
+        "GROCERY_LIST": "Alışveriş listesi",
+        "DELETE_MESSAGE": "Tüm işaretli öğeleri silmek istiyor musunuz?",
+        "CHECK": "İşaretle",
+        "CHECK_MESSAGE": "Tüm öğeleri işaretlemek istiyor musunuz?",
+        "UNCHECK": "İşaretlemeyi kaldır",
+        "UNCHECK_MESSAGE": "Tüm öğelerin işaretini kaldırmak istiyor musunuz?",
+        "HOW_TO_CHANGE_LUNCH_DINNER": "\u2023 Öğle ve akşam yemeği arasında DEĞİŞTİRMEK için:",
+        "HOW_TO_SELECT_RECIPE": "\u2023 Öğle / akşam yemeği için bir tarif SEÇMEK için:",
+        "HOW_TO_ADD_INGREDIENTS_GROCERY_LIST": "\u2023 Tarifin malzemelerini alışveriş listesine EKLEMEK için:"
+    },
+    "SETTINGS": {
+        "SETTINGS": "Ayarlar",
+        "RECIPES_JSON": "Tarifler JSON",
+        "SHOW_WELCOME": "Karşılama sayfasını göster",
+        "SHOW_HELP_ICON_1": "Sayfalar başlığında",
+        "SHOW_HELP_ICON_2": " göster",
+        "TERMS_CONDITIONS": "Kullanım koşulları",
+        "PRIVACY_POLICY": "Gizlilik politikası",
+        "APP_VERSION": "Uygulama sürümü",
+        "CHANGE_LANGUAGE": "Dili değiştir",
+        "SELECT_LANGUAGE": "Dil seç"
+    }
+}

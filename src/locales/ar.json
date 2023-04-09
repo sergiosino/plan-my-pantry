@@ -1,0 +1,69 @@
+{
+    "COMMON": {
+        "HELP": "مساعدة!",
+        "DELETE": "حذف",
+        "EDIT": "تحرير",
+        "OK": "موافق",
+        "CANCEL": "إلغاء",
+        "SEARCH_RECIPES": "البحث عن وصفات...",
+        "SAVE_CLOSE": "حفظ وإغلاق"
+    },
+    "WELCOME": {
+        "WELCOME": "مرحباً!",
+        "HELP_ICON_EXPLANATION_1": "في بعض الصفحات ستجد ",
+        "HELP_ICON_EXPLANATION_2": " في الأعلى الأيمن، حيث يمكنك العثور على معلومات حول الوظيفة.",
+        "HAPPY_GROCERY": "تسوق سعيد!",
+        "NOT_SHOW_AGAIN": "لا تظهر هذه الصفحة مرة أخرى",
+        "CONTINUE": "متابعة"
+    },
+    "RECIPES": {
+        "RECIPES": "وصفات",
+        "RECIPE_EDIT": "تحرير الوصفة",
+        "RECIPE_NAME": "اسم الوصفة",
+        "INGREDIENTS": "المكونات",
+        "PLUS_INGREDIENT": "+ مكون",
+        "NOTES": "ملاحظات",
+        "HOW_TO_ADD_NEW_RECIPE": "\u2023 لإضافة وصفة جديدة، اضغط على الزر السفلي الأيمن:",
+        "HOW_TO_EDIT_RECIPE": "\u2023 لتحرير وصفة، اضغط عليها:",
+        "HOW_TO_DELETE_RECIPE": "\u2023 لحذف وصفة، اضغط واسحبها إلى اليمين:"
+    },
+    "MENU": {
+        "WEEK_MENU": "القائمة",
+        "MONDAY": "الاثنين",
+        "TUESTDAY": "الثلاثاء",
+        "WEDNESDAY": "الأربعاء",
+        "THURSDAY": "الخميس",
+        "FRIDAY": "الجمعة",
+        "SATURDAY": "السبت",
+        "SUNDAY": "الأحد",
+        "LUNCH": "غداء",
+        "DINNER": "عشاء",
+        "RECIPE_LONG_PRESS": "اضغط بشكل مطول على الوصفة لإضافة المكونات",
+        "ADD_GROCERY_LIST": "إضافة إلى قائمة التسوق",
+        "RESET_MEALS": "إعادة تعيين الوجبات",
+        "RESET_MEALS_MESSAGE": "هل تريد إعادة تعيين جميع وجبات الأسبوع؟"
+    },
+    "GROCERY_LIST": {
+        "GROCERY_LIST": "قائمة التسوق",
+        "DELETE_MESSAGE": "هل تريد حذف جميع العناصر المحددة؟",
+        "CHECK": "تحقق",
+        "CHECK_MESSAGE": "هل تريد التحقق من جميع العناصر؟",
+        "UNCHECK": "الغاء التحقق",
+        "UNCHECK_MESSAGE": "هل تريد إلغاء التحقق من جميع العناصر؟",
+        "HOW_TO_CHANGE_LUNCH_DINNER": "\u2023 لتغيير الوجبة من الغداء/العشاء:",
+        "HOW_TO_SELECT_RECIPE": "\u2023 لاختيار وصفة للغداء/العشاء:",
+        "HOW_TO_ADD_INGREDIENTS_GROCERY_LIST": "\u2023 لإضافة مكونات الوصفة إلى قائمة التسوق:"
+    },
+    "SETTINGS": {
+        "SETTINGS": "الإعدادات",
+        "RECIPES_JSON": "ملف الوصفات JSON",
+        "SHOW_WELCOME": "عرض صفحة الترحيب",
+        "SHOW_HELP_ICON_1": "عرض ",
+        "SHOW_HELP_ICON_2": " في رأس الصفحات",
+        "TERMS_CONDITIONS": "الأحكام والشروط",
+        "PRIVACY_POLICY": "سياسة الخصوصية",
+        "APP_VERSION": "نسخة التطبيق",
+        "CHANGE_LANGUAGE": "تغيير اللغة",
+        "SELECT_LANGUAGE": "حدد اللغة"
+    }
+}

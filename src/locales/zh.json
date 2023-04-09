@@ -1,0 +1,69 @@
+{
+    "COMMON": {
+        "HELP": "帮助！",
+        "DELETE": "删除",
+        "EDIT": "编辑",
+        "OK": "确定",
+        "CANCEL": "取消",
+        "SEARCH_RECIPES": "搜索食谱...",
+        "SAVE_CLOSE": "保存并关闭"
+    },
+    "WELCOME": {
+        "WELCOME": "欢迎！",
+        "HELP_ICON_EXPLANATION_1": "在某些页面上，您会发现右上方有一个",
+        "HELP_ICON_EXPLANATION_2": "，您会在其中找到有关功能的一些信息。",
+        "HAPPY_GROCERY": "愉快的购物体验！",
+        "NOT_SHOW_AGAIN": "不再显示此页面",
+        "CONTINUE": "继续"
+    },
+    "RECIPES": {
+        "RECIPES": "食谱",
+        "RECIPE_EDIT": "编辑食谱",
+        "RECIPE_NAME": "食谱名称",
+        "INGREDIENTS": "配料",
+        "PLUS_INGREDIENT": "+ 配料",
+        "NOTES": "备注",
+        "HOW_TO_ADD_NEW_RECIPE": "\u2023 要添加新食谱，请按右下角按钮：",
+        "HOW_TO_EDIT_RECIPE": "\u2023 要编辑食谱，请单击它：",
+        "HOW_TO_DELETE_RECIPE": "\u2023 要删除食谱，请按并向右拖动："
+    },
+    "MENU": {
+        "WEEK_MENU": "菜单",
+        "MONDAY": "星期一",
+        "TUESTDAY": "星期二",
+        "WEDNESDAY": "星期三",
+        "THURSDAY": "星期四",
+        "FRIDAY": "星期五",
+        "SATURDAY": "星期六",
+        "SUNDAY": "星期日",
+        "LUNCH": "午餐",
+        "DINNER": "晚餐",
+        "RECIPE_LONG_PRESS": "长按食谱添加配料",
+        "ADD_GROCERY_LIST": "添加到购物清单",
+        "RESET_MEALS": "重置餐点",
+        "RESET_MEALS_MESSAGE": "您要重置所有周菜单的餐点吗？"
+    },
+    "GROCERY_LIST": {
+        "GROCERY_LIST": "购物清单",
+        "DELETE_MESSAGE": "你想删除所有已勾选的项目吗？",
+        "CHECK": "勾选",
+        "CHECK_MESSAGE": "你想勾选所有项目吗？",
+        "UNCHECK": "取消勾选",
+        "UNCHECK_MESSAGE": "你想取消勾选所有项目吗？",
+        "HOW_TO_CHANGE_LUNCH_DINNER": "\u2023 切换午餐和晚餐：",
+        "HOW_TO_SELECT_RECIPE": "\u2023 选择午餐/晚餐的食谱：",
+        "HOW_TO_ADD_INGREDIENTS_GROCERY_LIST": "\u2023 将食谱的材料添加到购物清单中："
+    },
+    "SETTINGS": {
+        "SETTINGS": "设置",
+        "RECIPES_JSON": "食谱 JSON",
+        "SHOW_WELCOME": "显示欢迎页面",
+        "SHOW_HELP_ICON_1": "在页面标题中显示",
+        "SHOW_HELP_ICON_2": "在页面标题栏中",
+        "TERMS_CONDITIONS": "条款和条件",
+        "PRIVACY_POLICY": "隐私政策",
+        "APP_VERSION": "应用程序版本",
+        "CHANGE_LANGUAGE": "更改语言",
+        "SELECT_LANGUAGE": "选择语言"
+    }
+}

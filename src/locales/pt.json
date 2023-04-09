@@ -1,0 +1,69 @@
+{
+    "COMMON": {
+        "HELP": "Ajuda!",
+        "DELETE": "Deletar",
+        "EDIT": "Editar",
+        "OK": "OK",
+        "CANCEL": "Cancelar",
+        "SEARCH_RECIPES": "Pesquisar receitas...",
+        "SAVE_CLOSE": "Salvar e fechar"
+    },
+    "WELCOME": {
+        "WELCOME": "Bem-vindo!",
+        "HELP_ICON_EXPLANATION_1": "Em algumas páginas você encontrará um ",
+        "HELP_ICON_EXPLANATION_2": " no canto superior direito, onde encontrará algumas informações sobre a funcionalidade.",
+        "HAPPY_GROCERY": "Feliz compra de supermercado!",
+        "NOT_SHOW_AGAIN": "Não mostrar esta página novamente",
+        "CONTINUE": "Continuar"
+    },
+    "RECIPES": {
+        "RECIPES": "Receitas",
+        "RECIPE_EDIT": "Editar receita",
+        "RECIPE_NAME": "Nome da receita",
+        "INGREDIENTS": "Ingredientes",
+        "PLUS_INGREDIENT": "+ Ingrediente",
+        "NOTES": "Notas",
+        "HOW_TO_ADD_NEW_RECIPE": "\u2023 Para ADICIONAR uma nova receita, pressione o botão no canto inferior direito:",
+        "HOW_TO_EDIT_RECIPE": "\u2023 Para EDITAR uma receita, pressione nela:",
+        "HOW_TO_DELETE_RECIPE": "\u2023 Para DELETAR uma receita, pressione e arraste para a direita:"
+    },
+    "MENU": {
+        "WEEK_MENU": "Menu",
+        "MONDAY": "Segunda-feira",
+        "TUESTDAY": "Terça-feira",
+        "WEDNESDAY": "Quarta-feira",
+        "THURSDAY": "Quinta-feira",
+        "FRIDAY": "Sexta-feira",
+        "SATURDAY": "Sábado",
+        "SUNDAY": "Domingo",
+        "LUNCH": "Almoço",
+        "DINNER": "Jantar",
+        "RECIPE_LONG_PRESS": "Pressione por um tempo a receita para adicionar os ingredientes",
+        "ADD_GROCERY_LIST": "Adicionar à lista de compras",
+        "RESET_MEALS": "Resetar refeições",
+        "RESET_MEALS_MESSAGE": "Você deseja redefinir todas as refeições do menu semanal?"
+    },
+    "GROCERY_LIST": {
+        "GROCERY_LIST": "Lista de compras",
+        "DELETE_MESSAGE": "Deseja excluir todos os itens marcados?",
+        "CHECK": "Marcar",
+        "CHECK_MESSAGE": "Deseja marcar todos os itens?",
+        "UNCHECK": "Desmarcar",
+        "UNCHECK_MESSAGE": "Deseja desmarcar todos os itens?",
+        "HOW_TO_CHANGE_LUNCH_DINNER": "\u2023 Para TROCAR entre almoço e jantar:",
+        "HOW_TO_SELECT_RECIPE": "\u2023 Para SELECIONAR uma receita para o almoço/jantar:",
+        "HOW_TO_ADD_INGREDIENTS_GROCERY_LIST": "\u2023 Para ADICIONAR os ingredientes da receita à lista de compras:"
+    },
+    "SETTINGS": {
+        "SETTINGS": "Configurações",
+        "RECIPES_JSON": "Receitas JSON",
+        "SHOW_WELCOME": "Mostrar página de boas-vindas",
+        "SHOW_HELP_ICON_1": "Mostrar ",
+        "SHOW_HELP_ICON_2": " no cabeçalho das páginas",
+        "TERMS_CONDITIONS": "Termos e condições",
+        "PRIVACY_POLICY": "Política de privacidade",
+        "APP_VERSION": "Versão do aplicativo",
+        "CHANGE_LANGUAGE": "Alterar o idioma",
+        "SELECT_LANGUAGE": "Selecionar idioma"
+    }
+}

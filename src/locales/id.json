@@ -1,0 +1,69 @@
+{
+    "COMMON": {
+        "HELP": "Bantuan!",
+        "DELETE": "Hapus",
+        "EDIT": "Edit",
+        "OK": "OK",
+        "CANCEL": "BATAL",
+        "SEARCH_RECIPES": "Cari resep...",
+        "SAVE_CLOSE": "Simpan dan tutup"
+    },
+    "WELCOME": {
+        "WELCOME": "Selamat datang!",
+        "HELP_ICON_EXPLANATION_1": "Di beberapa halaman, Anda akan menemukan ",
+        "HELP_ICON_EXPLANATION_2": " di kanan atas, di mana Anda akan menemukan informasi tentang fungsinya.",
+        "HAPPY_GROCERY": "Selamat berbelanja kebutuhan dapur!",
+        "NOT_SHOW_AGAIN": "Jangan tampilkan halaman ini lagi",
+        "CONTINUE": "Lanjutkan"
+    },
+    "RECIPES": {
+        "RECIPES": "Resep",
+        "RECIPE_EDIT": "Edit Resep",
+        "RECIPE_NAME": "Nama Resep",
+        "INGREDIENTS": "Bahan-bahan",
+        "PLUS_INGREDIENT": "+ Bahan",
+        "NOTES": "Catatan",
+        "HOW_TO_ADD_NEW_RECIPE": "\u2023 Untuk MENAMBAHKAN resep baru, tekan tombol kanan bawah:",
+        "HOW_TO_EDIT_RECIPE": "\u2023 Untuk MENGEDIT resep, tekan pada resep tersebut:",
+        "HOW_TO_DELETE_RECIPE": "\u2023 Untuk MENGHAPUS resep, tekan dan geser ke kanan:"
+    },
+    "MENU": {
+        "WEEK_MENU": "Menu",
+        "MONDAY": "Senin",
+        "TUESTDAY": "Selasa",
+        "WEDNESDAY": "Rabu",
+        "THURSDAY": "Kamis",
+        "FRIDAY": "Jumat",
+        "SATURDAY": "Sabtu",
+        "SUNDAY": "Minggu",
+        "LUNCH": "Makan Siang",
+        "DINNER": "Makan Malam",
+        "RECIPE_LONG_PRESS": "Tekan lama pada resep untuk menambahkan bahan-bahannya",
+        "ADD_GROCERY_LIST": "Tambahkan ke daftar belanja",
+        "RESET_MEALS": "Reset makanan",
+        "RESET_MEALS_MESSAGE": "Apakah Anda ingin mengatur ulang semua menu makanan mingguan?"
+    },
+    "GROCERY_LIST": {
+        "GROCERY_LIST": "Daftar belanja",
+        "DELETE_MESSAGE": "Apakah Anda ingin menghapus semua item yang dicentang?",
+        "CHECK": "Centang",
+        "CHECK_MESSAGE": "Apakah Anda ingin menandai semua item?",
+        "UNCHECK": "Hilangkan centang",
+        "UNCHECK_MESSAGE": "Apakah Anda ingin menghapus tanda semua item?",
+        "HOW_TO_CHANGE_LUNCH_DINNER": "\u2023 Untuk MENGUBAH antara makan siang dan makan malam:",
+        "HOW_TO_SELECT_RECIPE": "\u2023 Untuk MEMILIH resep untuk makan siang/malam:",
+        "HOW_TO_ADD_INGREDIENTS_GROCERY_LIST": "\u2023 Untuk MENAMBAHKAN bahan-bahan resep ke daftar belanja:"
+    },
+    "SETTINGS": {
+        "SETTINGS": "Pengaturan",
+        "RECIPES_JSON": "Resep JSON",
+        "SHOW_WELCOME": "Tampilkan halaman selamat datang",
+        "SHOW_HELP_ICON_1": "Tampilkan ",
+        "SHOW_HELP_ICON_2": " di header halaman",
+        "TERMS_CONDITIONS": "Syarat dan Ketentuan",
+        "PRIVACY_POLICY": "Kebijakan Privasi",
+        "APP_VERSION": "Versi Aplikasi",
+        "CHANGE_LANGUAGE": "Ubah Bahasa",
+        "SELECT_LANGUAGE": "Pilih Bahasa"
+    }
+}

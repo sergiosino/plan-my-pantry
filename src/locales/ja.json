@@ -1,0 +1,69 @@
+{
+    "COMMON": {
+        "HELP": "ヘルプ！",
+        "DELETE": "削除",
+        "EDIT": "編集",
+        "OK": "OK",
+        "CANCEL": "キャンセル",
+        "SEARCH_RECIPES": "レシピを検索...",
+        "SAVE_CLOSE": "保存して閉じる"
+    },
+    "WELCOME": {
+        "WELCOME": "ようこそ！",
+        "HELP_ICON_EXPLANATION_1": "いくつかのページには、右上に ",
+        "HELP_ICON_EXPLANATION_2": " があり、機能に関する情報が表示されます。",
+        "HAPPY_GROCERY": "楽しい買い物を！",
+        "NOT_SHOW_AGAIN": "このページを再度表示しない",
+        "CONTINUE": "続行"
+    },
+    "RECIPES": {
+        "RECIPES": "レシピ",
+        "RECIPE_EDIT": "レシピ編集",
+        "RECIPE_NAME": "レシピ名",
+        "INGREDIENTS": "材料",
+        "PLUS_INGREDIENT": "+ 材料",
+        "NOTES": "ノート",
+        "HOW_TO_ADD_NEW_RECIPE": "\u2023 新しいレシピを追加するには、右下のボタンを押してください:",
+        "HOW_TO_EDIT_RECIPE": "\u2023 レシピを編集するには、それを押してください:",
+        "HOW_TO_DELETE_RECIPE": "\u2023 レシピを削除するには、右にドラッグしてください:"
+    },
+    "MENU": {
+        "WEEK_MENU": "メニュー",
+        "MONDAY": "月曜日",
+        "TUESTDAY": "火曜日",
+        "WEDNESDAY": "水曜日",
+        "THURSDAY": "木曜日",
+        "FRIDAY": "金曜日",
+        "SATURDAY": "土曜日",
+        "SUNDAY": "日曜日",
+        "LUNCH": "ランチ",
+        "DINNER": "ディナー",
+        "RECIPE_LONG_PRESS": "レシピを長押しして、材料を追加する",
+        "ADD_GROCERY_LIST": "買い物リストに追加",
+        "RESET_MEALS": "食事をリセット",
+        "RESET_MEALS_MESSAGE": "週間メニューのすべての食事をリセットしますか？"
+    },
+    "GROCERY_LIST": {
+        "GROCERY_LIST": "買い物リスト",
+        "DELETE_MESSAGE": "チェックされたアイテムをすべて削除しますか？",
+        "CHECK": "チェックする",
+        "CHECK_MESSAGE": "すべてのアイテムをチェックしますか？",
+        "UNCHECK": "チェックを外す",
+        "UNCHECK_MESSAGE": "すべてのアイテムのチェックを外しますか？",
+        "HOW_TO_CHANGE_LUNCH_DINNER": "昼食と夕食の切り替え方法:",
+        "HOW_TO_SELECT_RECIPE": "昼食/夕食のためのレシピを選択する方法:",
+        "HOW_TO_ADD_INGREDIENTS_GROCERY_LIST": "レシピの材料を買い物リストに追加する方法:"
+    },
+    "SETTINGS": {
+        "SETTINGS": "設定",
+        "RECIPES_JSON": "レシピJSON",
+        "SHOW_WELCOME": "ウェルカムページを表示",
+        "SHOW_HELP_ICON_1": "ページヘッダーに",
+        "SHOW_HELP_ICON_2": "を表示する",
+        "TERMS_CONDITIONS": "利用規約",
+        "PRIVACY_POLICY": "プライバシーポリシー",
+        "APP_VERSION": "アプリバージョン",
+        "CHANGE_LANGUAGE": "言語を変更",
+        "SELECT_LANGUAGE": "言語を選択"
+    }
+}

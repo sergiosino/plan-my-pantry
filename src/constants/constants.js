@@ -22,20 +22,20 @@ export const LANGUAGES = [
     name: 'Arabic 🇸🇦'
   },
   {
-    id: 'de',
-    name: 'German 🇩🇪'
+    id: 'zh',
+    name: 'Chinese 🇨🇳'
   },
   {
     id: 'en',
     name: 'English 🇬🇧'
   },
   {
-    id: 'es',
-    name: 'Spanish 🇪🇸'
-  },
-  {
     id: 'fr',
     name: 'French 🇫🇷'
+  },
+  {
+    id: 'de',
+    name: 'German 🇩🇪'
   },
   {
     id: 'id',
@@ -62,11 +62,11 @@ export const LANGUAGES = [
     name: 'Russian 🇷🇺'
   },
   {
-    id: 'tr',
-    name: 'Turkish 🇹🇷'
+    id: 'es',
+    name: 'Spanish 🇪🇸'
   },
   {
-    id: 'zh',
-    name: 'Chinese 🇨🇳'
+    id: 'tr',
+    name: 'Turkish 🇹🇷'
   }
 ]
