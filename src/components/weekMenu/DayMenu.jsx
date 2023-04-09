@@ -16,12 +16,14 @@ export default function DayMenu (props) {
       )}
       <View style={styles.dayMealsContainer}>
         <DayMeal
+          style={{ marginRight: 5 }}
           meal={i18n.t('MENU.LUNCH')}
           recipe={lunch}
           onPress={onPressLunch}
           isSelected={isLunchSelected}
         />
         <DayMeal
+          style={{ marginLeft: 5 }}
           meal={i18n.t('MENU.DINNER')}
           recipe={dinner}
           onPress={onPressDinner}
