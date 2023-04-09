@@ -37,8 +37,8 @@ export default function WeekMenuView () {
 
   const isActualMeal = (dayId) => {
     if (ACTUAL_DAY_WEEK === dayId) {
-      if (ACTUAL_HOUR >= 12 && ACTUAL_HOUR <= 16) { return { isLunchSelected: true, isDinnerSelected: false } }
-      if (ACTUAL_HOUR >= 19 && ACTUAL_HOUR <= 23) { return { isLunchSelected: false, isDinnerSelected: true } }
+      if (ACTUAL_HOUR >= 12 && ACTUAL_HOUR < 16) { return { isLunchSelected: true, isDinnerSelected: false } }
+      if (ACTUAL_HOUR >= 19 && ACTUAL_HOUR < 23) { return { isLunchSelected: false, isDinnerSelected: true } }
     }
     return { isLunchSelected: false, isDinnerSelected: false }
   }
