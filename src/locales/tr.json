@@ -64,6 +64,9 @@
         "PRIVACY_POLICY": "Gizlilik politikası",
         "APP_VERSION": "Uygulama sürümü",
         "CHANGE_LANGUAGE": "Dili değiştir",
-        "SELECT_LANGUAGE": "Dil seç"
+        "SELECT_LANGUAGE": "Dil seç",
+        "SHARE_PMP": "PlanMyPantry'yi paylaş",
+        "SHARE_MESSAGE": "Daha kolay bir alışveriş deneyimi için hazır mısın? PlanMyPantry'i indir!",
+        "RATE_GOOGLE_PLAY": "PlanMyPantry'i Google Play Store'da değerlendir"
     }
 }

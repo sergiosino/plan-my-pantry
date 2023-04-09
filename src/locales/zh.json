@@ -64,6 +64,9 @@
         "PRIVACY_POLICY": "隐私政策",
         "APP_VERSION": "应用程序版本",
         "CHANGE_LANGUAGE": "更改语言",
-        "SELECT_LANGUAGE": "选择语言"
+        "SELECT_LANGUAGE": "选择语言",
+        "SHARE_PMP": "分享PlanMyPantry",
+        "SHARE_MESSAGE": "准备好用更简单的方式购物了吗？立即下载PlanMyPantry！",
+        "RATE_GOOGLE_PLAY": "在谷歌Play商店中评价PlanMyPantry"
     }
 }

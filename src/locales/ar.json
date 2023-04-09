@@ -64,6 +64,9 @@
         "PRIVACY_POLICY": "سياسة الخصوصية",
         "APP_VERSION": "نسخة التطبيق",
         "CHANGE_LANGUAGE": "تغيير اللغة",
-        "SELECT_LANGUAGE": "حدد اللغة"
+        "SELECT_LANGUAGE": "حدد اللغة",
+        "SHARE_PMP": "شارك PlanMyPantry",
+        "SHARE_MESSAGE": "هل أنت مستعد لتسوق بطريقة أسهل؟ حمّل PlanMyPantry الآن!",
+        "RATE_GOOGLE_PLAY": "قيّم PlanMyPantry على متجر جوجل بلاي"
     }
 }

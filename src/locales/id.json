@@ -64,6 +64,9 @@
         "PRIVACY_POLICY": "Kebijakan Privasi",
         "APP_VERSION": "Versi Aplikasi",
         "CHANGE_LANGUAGE": "Ubah Bahasa",
-        "SELECT_LANGUAGE": "Pilih Bahasa"
+        "SELECT_LANGUAGE": "Pilih Bahasa",
+        "SHARE_PMP": "Bagikan PlanMyPantry",
+        "SHARE_MESSAGE": "Siap untuk berbelanja dengan lebih mudah? Unduh PlanMyPantry sekarang!",
+        "RATE_GOOGLE_PLAY": "Beri nilai PlanMyPantry di Google Play Store"
     }
 }

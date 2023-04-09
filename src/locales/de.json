@@ -64,6 +64,9 @@
         "PRIVACY_POLICY": "Datenschutzrichtlinie",
         "APP_VERSION": "App-Version",
         "CHANGE_LANGUAGE": "Sprache ändern",
-        "SELECT_LANGUAGE": "Sprache auswählen"
+        "SELECT_LANGUAGE": "Sprache auswählen",
+        "SHARE_PMP": "Teile PlanMyPantry",
+        "SHARE_MESSAGE": "Bereit für einfacheres Einkaufen? Lade PlanMyPantry jetzt herunter!",
+        "RATE_GOOGLE_PLAY": "Bewerte PlanMyPantry im Google Play Store"
     }
 }

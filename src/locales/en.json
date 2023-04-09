@@ -64,6 +64,9 @@
         "PRIVACY_POLICY": "Privacy policy",
         "APP_VERSION": "App version",
         "CHANGE_LANGUAGE": "Change the language",
-        "SELECT_LANGUAGE": "Select language"
+        "SELECT_LANGUAGE": "Select language",
+        "SHARE_PMP": "Share PlanMyPantry",
+        "SHARE_MESSAGE": "Ready to make grocery shopping easier? Download PlanMyPantry! TODO URL",
+        "RATE_GOOGLE_PLAY": "Rate PlanMyPantry in Google Play Store"
     }
 }

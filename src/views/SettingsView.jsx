@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { Image, Linking, StyleSheet, Text, View } from 'react-native'
+import { Image, Linking, Share, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
 import { useFocusEffect } from '@react-navigation/native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
@@ -13,7 +13,7 @@ import { useRecipes, useUserConfig } from '../hooks'
 
 import { i18n } from '../utils'
 
-import { PRIVACY_POLICY_URL, TERMS_CONDITIONS_URL, USER_CONFIG_PARAMS } from '../constants/constants'
+import { PRIVACY_POLICY_URL, RATE_APP_URL, TERMS_CONDITIONS_URL, USER_CONFIG_PARAMS } from '../constants/constants'
 
 const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
 
@@ -29,6 +29,13 @@ export default function SettingsView () {
 
   const handleOpenUrl = (url) => Linking.openURL(url)
 
+  const handleShare = () => {
+    Share.share({
+      title: i18n.t('SETTINGS.SHARE_PMP'),
+      message: i18n.t('SETTINGS.SHARE_MESSAGE')
+    })
+  }
+
   useFocusEffect(
     useCallback(() => {
       handleGetRecipes()
@@ -43,15 +50,6 @@ export default function SettingsView () {
       </View>
       <Divider />
       <ScrollView>
-        <View style={{ padding: 15, backgroundColor: 'white' }}>
-          <Text style={{ marginBottom: 5 }}>{i18n.t('SETTINGS.RECIPES_JSON')}</Text>
-          <TextInputStyled
-            value={JSON.stringify(recipes)}
-            multiline
-            numberOfLines={10}
-          />
-        </View>
-        <Divider />
         <View style={[styles.settingContainer, styles.backgroundWhite]}>
           <Text>{i18n.t('SETTINGS.SHOW_WELCOME')}</Text>
           <Switch value={showWelcomePage} onValueChange={handleWelcomPageCheckChange} />
@@ -73,6 +71,19 @@ export default function SettingsView () {
           </View>
         </RectButton>
         <Divider />
+        <RectButton style={styles.backgroundWhite} onPress={handleShare}>
+          <View style={styles.settingContainer}>
+            <Text>{i18n.t('SETTINGS.SHARE_PMP')}</Text>
+            <Ionicons name='heart-outline' size={20} />
+          </View>
+        </RectButton>
+        <Divider />
+        <RectButton style={styles.backgroundWhite} onPress={() => handleOpenUrl(RATE_APP_URL)}>
+          <View style={styles.settingContainer}>
+            <Text>{i18n.t('SETTINGS.RATE_GOOGLE_PLAY')}</Text>
+            <Ionicons name='star-outline' size={20} />
+          </View>
+        </RectButton>
         <RectButton style={styles.backgroundWhite} onPress={() => handleOpenUrl(TERMS_CONDITIONS_URL)}>
           <View style={styles.settingContainer}>
             <Text>{i18n.t('SETTINGS.TERMS_CONDITIONS')}</Text>
@@ -90,6 +101,15 @@ export default function SettingsView () {
         <View style={[styles.settingContainer, styles.backgroundWhite]}>
           <Text>{i18n.t('SETTINGS.APP_VERSION')}</Text>
           <Text>{Constants.manifest.version}</Text>
+        </View>
+        <Divider />
+        <View style={{ padding: 15, backgroundColor: 'white' }}>
+          <Text style={{ marginBottom: 5 }}>{i18n.t('SETTINGS.RECIPES_JSON')}</Text>
+          <TextInputStyled
+            value={JSON.stringify(recipes)}
+            multiline
+            numberOfLines={10}
+          />
         </View>
         <Divider style={styles.marginBottom50} />
       </ScrollView>

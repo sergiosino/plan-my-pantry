@@ -64,6 +64,9 @@
         "PRIVACY_POLICY": "プライバシーポリシー",
         "APP_VERSION": "アプリバージョン",
         "CHANGE_LANGUAGE": "言語を変更",
-        "SELECT_LANGUAGE": "言語を選択"
+        "SELECT_LANGUAGE": "言語を選択",
+        "SHARE_PMP": "PlanMyPantryを共有する",
+        "SHARE_MESSAGE": "もっと簡単に買い物をしたいですか？PlanMyPantryを今すぐダウンロードしましょう！",
+        "RATE_GOOGLE_PLAY": "Google PlayストアでPlanMyPantryを評価する"
     }
 }
