@@ -15,7 +15,7 @@ export default function GroceryItem (props) {
   } = props
 
   const {
-    handleItemChange,
+    handleUpdateGroceryItem,
     handleDeleteItem
   } = useGroceryList()
   const [text, setText] = useState(defaultText)
@@ -28,12 +28,12 @@ export default function GroceryItem (props) {
   const handleTextFocusEnd = () => {
     setShowDeleteIcon(false)
     const groceryItem = { id, defaultChecked, text }
-    handleItemChange(groceryItem)
+    handleUpdateGroceryItem(groceryItem)
   }
 
   const handleCheckboxChange = (checked) => {
     const groceryItem = { id, checked, text }
-    handleItemChange(groceryItem)
+    handleUpdateGroceryItem(groceryItem)
   }
 
   const handleDelete = () => {

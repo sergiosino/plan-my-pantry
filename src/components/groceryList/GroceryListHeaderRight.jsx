@@ -6,9 +6,7 @@ import { useGroceryList } from '../../hooks/useGroceryList'
 
 import { confirmationAlert, i18n } from '../../utils'
 
-export default function GroceryListHeaderRight (props) {
-  const { itemIdToFocus } = props
-
+export default function GroceryListHeaderRight () {
   const {
     handleDeleteChecked,
     handleCheckAll,
@@ -35,10 +33,7 @@ export default function GroceryListHeaderRight (props) {
     confirmationAlert(
       i18n.t('GROCERY_LIST.UNCHECK'),
       i18n.t('GROCERY_LIST.UNCHECK_MESSAGE'),
-      () => {
-        handleUnCheckAll()
-        itemIdToFocus.current = null
-      })
+      handleUnCheckAll)
   }
 
   return (

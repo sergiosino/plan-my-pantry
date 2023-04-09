@@ -17,17 +17,6 @@ export function useGroceryList () {
     setGroceryList(newGroceryList)
   }
 
-  /**
-   * Add a new empty item without saving in the async store.
-   * It will be saved after the user adds new info.
-   */
-  const handleAddEmptyItem = () => {
-    const newGroceryItem = { id: NEW_ELEMENT_ID, checked: false, text: '' }
-    const newGroceryList = [newGroceryItem, ...groceryList]
-    setGroceryList(newGroceryList)
-    return newGroceryItem.id
-  }
-
   const handleDeleteChecked = async () => {
     const newGroceryList = await glService.deleteCheckedGroceryItems()
     setGroceryList(newGroceryList)
@@ -48,30 +37,37 @@ export function useGroceryList () {
     setGroceryList(newGroceryList)
   }
 
-  const handleItemChange = (groceryItem) => {
-    groceryItem.id === NEW_ELEMENT_ID
-      ? handleAddGroceryItem(groceryItem)
-      : handleUpdateGroceryItem(groceryItem)
-  }
-
-  const handleAddGroceryItem = async (groceryItem) => {
-    const newGroceryList = await glService.pushGroceryItem(groceryItem)
+  /**
+   * Add a new empty item.
+   * This new item obj has a focus prop setted to true, so the Recipe component
+   * will know it has to focus the new item input.
+   */
+  const handleAddGroceryItem = async () => {
+    const newGroceryItem = { id: NEW_ELEMENT_ID, checked: false, text: '', focus: true }
+    const newGroceryList = await glService.pushGroceryItem(newGroceryItem)
     setGroceryList(newGroceryList)
   }
 
+  /**
+   * Updates the item.
+   * Rebuild the item object, so if it hast the focus prop it is removed.
+   * @param {object} groceryItem
+   */
   const handleUpdateGroceryItem = async (groceryItem) => {
-    const newGroceryList = await glService.putGroceryItem(groceryItem.id, groceryItem)
+    const { id, checked, text } = groceryItem
+    const itemToUpdate = { id, checked, text }
+    const newGroceryList = await glService.putGroceryItem(itemToUpdate.id, itemToUpdate)
     setGroceryList(newGroceryList)
   }
 
   return {
     groceryList,
     getGroceryList,
-    handleAddEmptyItem,
+    handleAddGroceryItem,
+    handleUpdateGroceryItem,
     handleDeleteItem,
     handleDeleteChecked,
     handleCheckAll,
-    handleUnCheckAll,
-    handleItemChange
+    handleUnCheckAll
   }
 }
