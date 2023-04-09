@@ -76,14 +76,14 @@ export default function SettingsView () {
         <RectButton style={styles.backgroundWhite} onPress={() => handleOpenUrl(TERMS_CONDITIONS_URL)}>
           <View style={styles.settingContainer}>
             <Text>{i18n.t('SETTINGS.TERMS_CONDITIONS')}</Text>
-            <Ionicons name='chevron-forward' size={20} />
+            <Ionicons name='open-outline' size={20} />
           </View>
         </RectButton>
         <Divider />
         <RectButton style={styles.backgroundWhite} onPress={() => handleOpenUrl(PRIVACY_POLICY_URL)}>
           <View style={styles.settingContainer}>
             <Text>{i18n.t('SETTINGS.PRIVACY_POLICY')}</Text>
-            <Ionicons name='chevron-forward' size={20} />
+            <Ionicons name='open-outline' size={20} />
           </View>
         </RectButton>
         <Divider />
