@@ -15,3 +15,58 @@ export const USER_CONFIG_PARAMS = {
 
 export const TERMS_CONDITIONS_URL = 'https://sites.google.com/view/planmypantry-terms-conditions/home'
 export const PRIVACY_POLICY_URL = 'https://sites.google.com/view/planmypantry-privacy-policy/home'
+
+export const LANGUAGES = [
+  {
+    id: 'ar',
+    name: 'Arabic 🇸🇦'
+  },
+  {
+    id: 'de',
+    name: 'German 🇩🇪'
+  },
+  {
+    id: 'en',
+    name: 'English 🇬🇧'
+  },
+  {
+    id: 'es',
+    name: 'Spanish 🇪🇸'
+  },
+  {
+    id: 'fr',
+    name: 'French 🇫🇷'
+  },
+  {
+    id: 'id',
+    name: 'Indonesian 🇮🇩'
+  },
+  {
+    id: 'it',
+    name: 'Italian 🇮🇹'
+  },
+  {
+    id: 'ja',
+    name: 'Japanese 🇯🇵'
+  },
+  {
+    id: 'ko',
+    name: 'Korean 🇰🇷'
+  },
+  {
+    id: 'pt',
+    name: 'Portuguese 🇵🇹'
+  },
+  {
+    id: 'ru',
+    name: 'Russian 🇷🇺'
+  },
+  {
+    id: 'tr',
+    name: 'Turkish 🇹🇷'
+  },
+  {
+    id: 'zh',
+    name: 'Chinese 🇨🇳'
+  }
+]

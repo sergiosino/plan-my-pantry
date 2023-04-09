@@ -1,12 +1,13 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { Image, Linking, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
 import { useFocusEffect } from '@react-navigation/native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import { TextInputStyled, Checkbox } from '../components/forms'
+import { TextInputStyled, Switch } from '../components/forms'
 import Divider from '../components/Divider'
+import LanguageSelectorModal from '../components/settings/LanguageSelectorModal'
 
 import { useRecipes, useUserConfig } from '../hooks'
 
@@ -14,17 +15,17 @@ import { i18n } from '../utils'
 
 import { PRIVACY_POLICY_URL, TERMS_CONDITIONS_URL, USER_CONFIG_PARAMS } from '../constants/constants'
 
-const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON, DEFAULT_LANGUAGE } = USER_CONFIG_PARAMS
+const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
 
 export default function SettingsView () {
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false)
+
   const { recipes, handleGetRecipes } = useRecipes()
   const { showWelcomePage, showHeaderHelpIcon, updateUserConfig } = useUserConfig()
 
   const handleWelcomPageCheckChange = () => updateUserConfig(SHOW_WELCOME_PAGE, !showWelcomePage)
 
   const handleHeaderHelpIconCheckChange = () => updateUserConfig(SHOW_HEADER_HELP_ICON, !showHeaderHelpIcon)
-
-  const handleDefaultLanguageChange = (language) => updateUserConfig(DEFAULT_LANGUAGE, language)
 
   const handleOpenUrl = (url) => Linking.openURL(url)
 
@@ -35,7 +36,8 @@ export default function SettingsView () {
   )
 
   return (
-    <View style={styles.conatiner}>
+    <View style={styles.container}>
+      <LanguageSelectorModal isModalOpen={isLanguageOpen} setIsModalOpen={setIsLanguageOpen} />
       <View style={styles.imageContainer}>
         <Image source={require('../../assets/chick-settings.png')} style={styles.chickImg} />
       </View>
@@ -50,33 +52,24 @@ export default function SettingsView () {
           />
         </View>
         <Divider />
-        <RectButton style={styles.backgroundWhite} onPress={handleWelcomPageCheckChange}>
-          <View style={styles.settingContainer}>
-            <Text>{i18n.t('SETTINGS.SHOW_WELCOME')}</Text>
-            <Checkbox checked={showWelcomePage} />
-          </View>
-        </RectButton>
+        <View style={[styles.settingContainer, styles.backgroundWhite]}>
+          <Text>{i18n.t('SETTINGS.SHOW_WELCOME')}</Text>
+          <Switch value={showWelcomePage} onValueChange={handleWelcomPageCheckChange} />
+        </View>
         <Divider />
-        <RectButton style={styles.backgroundWhite} onPress={handleHeaderHelpIconCheckChange}>
-          <View style={styles.settingContainer}>
-            <Text>
-              {i18n.t('SETTINGS.SHOW_HELP_ICON_1')}
-              <Ionicons name='help-outline' size={20} />
-              {i18n.t('SETTINGS.SHOW_HELP_ICON_2')}
-            </Text>
-            <Checkbox checked={showHeaderHelpIcon} />
-          </View>
-        </RectButton>
+        <View style={[styles.settingContainer, styles.backgroundWhite]}>
+          <Text>
+            {i18n.t('SETTINGS.SHOW_HELP_ICON_1')}
+            <Ionicons name='help' size={20} />
+            {i18n.t('SETTINGS.SHOW_HELP_ICON_2')}
+          </Text>
+          <Switch value={showHeaderHelpIcon} onValueChange={handleHeaderHelpIconCheckChange} />
+        </View>
         <Divider />
-        <RectButton style={styles.backgroundWhite} onPress={() => handleDefaultLanguageChange('en')}>
+        <RectButton style={styles.backgroundWhite} onPress={() => setIsLanguageOpen(true)}>
           <View style={styles.settingContainer}>
-            <Text>INGLES</Text>
-          </View>
-        </RectButton>
-        <Divider />
-        <RectButton style={styles.backgroundWhite} onPress={() => handleDefaultLanguageChange('es')}>
-          <View style={styles.settingContainer}>
-            <Text>ESPAÑOL</Text>
+            <Text>{i18n.t('SETTINGS.CHANGE_LANGUAGE')}</Text>
+            <Ionicons name='chevron-forward' size={20} />
           </View>
         </RectButton>
         <Divider />
@@ -105,7 +98,7 @@ export default function SettingsView () {
 }
 
 const styles = StyleSheet.create({
-  conatiner: {
+  container: {
     flex: 1
   },
   imageContainer: {

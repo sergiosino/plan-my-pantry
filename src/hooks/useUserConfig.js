@@ -45,6 +45,7 @@ export function useUserConfig () {
   }
 
   const updateDefaultLanguage = (language) => {
+    if (userConfig[DEFAULT_LANGUAGE] === language) { return }
     i18n.locale = language
     const newUserConfig = { ...userConfig }
     newUserConfig[DEFAULT_LANGUAGE] = language

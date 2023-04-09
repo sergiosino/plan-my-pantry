@@ -5,7 +5,8 @@
         "EDIT": "Editar",
         "OK": "OK",
         "CANCEL": "CANCELAR",
-        "SEARCH_RECIPES": "Buscar recetas..."
+        "SEARCH_RECIPES": "Buscar recetas...",
+        "SAVE_CLOSE": "Guardar y cerrar"
     },
     "WELCOME": {
         "WELCOME": "Bienvenidx!",
@@ -61,6 +62,8 @@
         "SHOW_HELP_ICON_2": " en el encabezado de las páginas",
         "TERMS_CONDITIONS": "Términos y condiciones",
         "PRIVACY_POLICY": "Política de privacidad",
-        "APP_VERSION": "Versión de la aplicación"
+        "APP_VERSION": "Versión de la aplicación",
+        "CHANGE_LANGUAGE": "Cambia el idioma",
+        "SELECT_LANGUAGE": "Selecciona idioma"
     }
 }

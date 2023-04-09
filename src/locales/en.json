@@ -5,7 +5,8 @@
         "EDIT": "Edit",
         "OK": "OK",
         "CANCEL": "CANCEL",
-        "SEARCH_RECIPES": "Search recipes..."
+        "SEARCH_RECIPES": "Search recipes...",
+        "SAVE_CLOSE": "Save and close"
     },
     "WELCOME": {
         "WELCOME": "Welcome!",
@@ -61,6 +62,8 @@
         "SHOW_HELP_ICON_2": " in pages header",
         "TERMS_CONDITIONS": "Terms and conditions",
         "PRIVACY_POLICY": "Privacy policy",
-        "APP_VERSION": "App version"
+        "APP_VERSION": "App version",
+        "CHANGE_LANGUAGE": "Change the language",
+        "SELECT_LANGUAGE": "Select language"
     }
 }
