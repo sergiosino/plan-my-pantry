@@ -77,7 +77,7 @@ export default function SettingsView () {
         <RectButton style={styles.backgroundWhite} onPress={handleShare}>
           <View style={styles.settingContainer}>
             <Text>{i18n.t('SETTINGS.SHARE_PMP')}</Text>
-            <Ionicons name='heart-outline' size={20} />
+            <Ionicons name='share-social' size={20} />
           </View>
         </RectButton>
         <Divider />
