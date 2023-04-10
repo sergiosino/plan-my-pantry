@@ -87,6 +87,7 @@ export default function SettingsView () {
             <Ionicons name='star-outline' size={20} />
           </View>
         </RectButton>
+        <Divider />
         <RectButton style={styles.backgroundWhite} onPress={() => handleOpenUrl(TERMS_CONDITIONS_URL)}>
           <View style={styles.settingContainer}>
             <Text>{i18n.t('SETTINGS.TERMS_CONDITIONS')}</Text>
