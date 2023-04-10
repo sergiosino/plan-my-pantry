@@ -108,6 +108,7 @@ export default function DayMenuEditView () {
       </View>
       <Divider />
       <FlatList
+        contentContainerStyle={styles.recipesList}
         initialNumToRender={15}
         maxToRenderPerBatch={40}
         ItemSeparatorComponent={<Divider />}
@@ -130,6 +131,9 @@ const styles = StyleSheet.create({
   dayMenuContainer: {
     marginHorizontal: 15,
     height: 130
+  },
+  recipesList: {
+    backgroundColor: 'white'
   },
   ingredientsListContainer: {
     marginHorizontal: 15,

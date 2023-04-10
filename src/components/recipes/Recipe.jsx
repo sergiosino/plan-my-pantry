@@ -6,9 +6,6 @@ export default function Recipe (props) {
   const { recipe = {}, onPress, onLongPress, isSelected } = props
 
   const { name, ingredients = [] } = recipe
-  const containerStyle = isSelected
-    ? styles.containerSelected
-    : styles.container
   const ingredientsString = ingredients.join(', ')
 
   const handleRecipeItemPress = () => {
@@ -20,7 +17,7 @@ export default function Recipe (props) {
   }
 
   return (
-    <View style={containerStyle}>
+    <View style={isSelected && styles.containerSelected}>
       <RectButton onPress={handleRecipeItemPress} onLongPress={handleRecipeItemLongPress}>
         <View style={styles.innerContainer}>
           <View style={styles.recipeInfoContainer}>
@@ -41,9 +38,6 @@ export default function Recipe (props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white'
-  },
   containerSelected: {
     backgroundColor: 'lightgray'
   },

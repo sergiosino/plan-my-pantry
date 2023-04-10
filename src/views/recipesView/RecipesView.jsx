@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation, useTheme } from '@react-navigation/native'
 
 import AddButton from '../../components/buttons/AddButton'
 import { Recipe, RecipesHeader } from '../../components/recipes'
@@ -21,6 +21,7 @@ export default function RecipesView () {
     handleSearchRecipes,
     handleDeleteRecipe
   } = useRecipes()
+  const { colors } = useTheme()
 
   const navigation = useNavigation()
 
@@ -54,13 +55,15 @@ export default function RecipesView () {
     <View style={styles.container}>
       <RecipesHeader handleSearchRecipes={handleSearchRecipes} />
       <FlatList
-        contentContainerStyle={styles.flatListContent}
+        contentContainerStyle={styles.recipesList}
         initialNumToRender={15}
         maxToRenderPerBatch={40}
         ItemSeparatorComponent={<Divider />}
+        ListFooterComponent={<View style={[styles.recipesFooter, { backgroundColor: colors.background }]} />}
         data={recipes}
         renderItem={({ item }) => renderItem(item)}
       />
+
       <AddButton onAddItem={handleAddPress} />
     </View>
   )
@@ -70,7 +73,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  flatListContent: {
-    paddingBottom: 70
+  recipesList: {
+    backgroundColor: 'white'
+  },
+  recipesFooter: {
+    height: 70
   }
 })
