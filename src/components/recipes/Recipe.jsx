@@ -17,7 +17,7 @@ export default function Recipe (props) {
   }
 
   return (
-    <View style={isSelected && styles.containerSelected}>
+    <View style={[isSelected && styles.containerSelected, styles.container]}>
       <RectButton onPress={handleRecipeItemPress} onLongPress={handleRecipeItemLongPress}>
         <View style={styles.innerContainer}>
           <View style={styles.recipeInfoContainer}>
@@ -38,6 +38,9 @@ export default function Recipe (props) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white'
+  },
   containerSelected: {
     backgroundColor: 'lightgray'
   },
@@ -55,6 +58,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   textIngredients: {
-    fontSize: 13
+    fontSize: 13,
+    marginTop: 10
   }
 })
