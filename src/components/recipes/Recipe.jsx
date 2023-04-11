@@ -17,7 +17,7 @@ export default function Recipe (props) {
   }
 
   return (
-    <View style={[isSelected && styles.containerSelected, styles.container]}>
+    <View style={[isSelected ? styles.containerSelected : styles.container]}>
       <RectButton onPress={handleRecipeItemPress} onLongPress={handleRecipeItemLongPress}>
         <View style={styles.innerContainer}>
           <View style={styles.recipeInfoContainer}>
