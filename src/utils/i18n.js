@@ -1,6 +1,5 @@
 import { I18n } from 'i18n-js'
 
-import ar from '../locales/ar.json'
 import de from '../locales/de.json'
 import en from '../locales/en.json'
 import es from '../locales/es.json'
@@ -18,7 +17,6 @@ import zh from '../locales/zh.json'
  * Initialization of I18n for all languages
  */
 const i18n = new I18n({
-  ar: { ...ar },
   de: { ...de },
   en: { ...en },
   es: { ...es },

@@ -19,10 +19,6 @@ export const RATE_APP_URL = 'TODO URL'
 
 export const LANGUAGES = [
   {
-    id: 'ar',
-    name: 'Arabic 🇸🇦'
-  },
-  {
     id: 'zh',
     name: 'Chinese 🇨🇳'
   },
