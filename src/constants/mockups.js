@@ -1,5 +1,6 @@
 import { USER_CONFIG_PARAMS } from './constants'
 
+// To test in local
 export const RECIPES_MOCKUP = [
   // { id: '6a61af05-5ac0-46d9-bc0f-c818e23c8afb', name: 'Arroz a la cubana', ingredients: ['Salsa de tomate', 'Arroz', 'Salchichas'], notes: '' },
   // { id: '0e6292bc-28ed-4461-a171-8760b6142bd4', name: 'Atún con tomate', ingredients: ['Guisantes', 'Salsa de tomate', 'Patatas', 'Filetes de atún'], notes: '' },
