@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    paddingHorizontal: 15
+    marginRight: 10
   },
   marginRight: {
     marginRight: 20

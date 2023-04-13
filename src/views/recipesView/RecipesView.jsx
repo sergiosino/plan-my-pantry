@@ -53,6 +53,7 @@ export default function RecipesView () {
 
   return (
     <View style={styles.container}>
+      <Divider />
       <RecipesHeader handleSearchRecipes={handleSearchRecipes} />
       <FlatList
         contentContainerStyle={styles.recipesList}

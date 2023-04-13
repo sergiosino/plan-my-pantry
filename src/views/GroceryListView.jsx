@@ -7,6 +7,7 @@ import AddButton from '../components/buttons/AddButton'
 import { GroceryItem, GroceryListHeaderRight } from '../components/groceryList'
 
 import { useGroceryList } from '../hooks'
+import Divider from '../components/Divider'
 
 /**
  * Principal view when user enter can add, check, delete... ingredients for the grocery shopping
@@ -49,7 +50,8 @@ export default function GroceryListView () {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
+      <Divider />
+      <ScrollView>
         <View style={styles.view}>
           {groceryList.map(renderItem)}
         </View>
@@ -61,12 +63,13 @@ export default function GroceryListView () {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  },
-  scrollView: {
-    paddingHorizontal: 15
+    flex: 1,
+    backgroundColor: 'white'
   },
   view: {
+    paddingTop: 15,
+    paddingRight: 15,
+    paddingLeft: 10,
     marginBottom: 70
   }
 })

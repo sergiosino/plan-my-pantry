@@ -1,15 +1,14 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { Image, Linking, Share, StyleSheet, Text, View } from 'react-native'
 import Constants from 'expo-constants'
-import { useFocusEffect } from '@react-navigation/native'
 import { RectButton, ScrollView } from 'react-native-gesture-handler'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-import { TextInputStyled, Switch } from '../components/forms'
+import { Switch } from '../components/forms'
 import Divider from '../components/Divider'
 import LanguageSelectorModal from '../components/settings/LanguageSelectorModal'
 
-import { useRecipes, useUserConfig } from '../hooks'
+import { useUserConfig } from '../hooks'
 
 import { i18n } from '../utils'
 
@@ -23,7 +22,6 @@ const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
 export default function SettingsView () {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
 
-  const { recipes, handleGetRecipes } = useRecipes()
   const { showWelcomePage, showHeaderHelpIcon, updateUserConfig } = useUserConfig()
 
   const handleWelcomPageCheckChange = () => updateUserConfig(SHOW_WELCOME_PAGE, !showWelcomePage)
@@ -38,12 +36,6 @@ export default function SettingsView () {
       message: i18n.t('SETTINGS.SHARE_MESSAGE')
     })
   }
-
-  useFocusEffect(
-    useCallback(() => {
-      handleGetRecipes()
-    }, [])
-  )
 
   return (
     <View style={styles.container}>
@@ -105,15 +97,6 @@ export default function SettingsView () {
         <View style={[styles.settingContainer, styles.backgroundWhite]}>
           <Text>{i18n.t('SETTINGS.APP_VERSION')}</Text>
           <Text>{Constants.manifest.version}</Text>
-        </View>
-        <Divider />
-        <View style={{ padding: 15, backgroundColor: 'white' }}>
-          <Text style={{ marginBottom: 5 }}>{i18n.t('SETTINGS.RECIPES_JSON')}</Text>
-          <TextInputStyled
-            value={JSON.stringify(recipes)}
-            multiline
-            numberOfLines={10}
-          />
         </View>
         <Divider style={styles.marginBottom50} />
       </ScrollView>

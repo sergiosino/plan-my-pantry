@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
   innerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 15
+    paddingHorizontal: 15,
+    paddingVertical: 21 // Has to be odd, otherwise the divider disappears
   },
   recipeInfoContainer: {
     flex: 1,
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   textIngredients: {
-    fontSize: 13,
-    marginTop: 10
+    fontSize: 12,
+    marginTop: 5
   }
 })

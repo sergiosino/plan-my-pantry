@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
   textButton: {
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingVertical: 8,
+    alignItems: 'center',
+    height: 38,
     paddingHorizontal: 15,
     borderRadius: 4
   }

@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    paddingRight: 15
+    marginRight: 10
   }
 })

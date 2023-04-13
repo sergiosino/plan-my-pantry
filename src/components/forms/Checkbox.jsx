@@ -1,4 +1,4 @@
-import { Pressable } from 'react-native'
+import { Pressable, StyleSheet } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useTheme } from '@react-navigation/native'
 
@@ -16,10 +16,16 @@ export default function Checkbox (props) {
   return (
     <Pressable
       onPress={handleChange}
-      style={style}
+      style={[styles.checkboxPressable, style]}
     >
       {!checked && <Ionicons name='square-outline' {...CHECKBOX_ICONS_STYLES} color={colors.primary} />}
       {checked && <Ionicons name='checkbox' {...CHECKBOX_ICONS_STYLES} color={colors.primary} />}
     </Pressable>
   )
 }
+
+const styles = StyleSheet.create({
+  checkboxPressable: {
+    padding: 5
+  }
+})

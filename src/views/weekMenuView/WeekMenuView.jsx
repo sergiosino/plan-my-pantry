@@ -55,21 +55,24 @@ export default function WeekMenuView () {
   }, [])
 
   return (
-    <ScrollView style={styles.container}>
-      {weekMenu.map((dayMenu) => {
-        const { dayId, lunch, dinner } = dayMenu
-        const dayName = WEEK_DAYS[dayId]
-        const { isLunchSelected, isDinnerSelected } = isActualMeal(dayId)
-        return (
-          <View key={dayId}>
-            <RectButton style={styles.dayContainer} onPress={() => handleDayMenuPress(dayId)}>
-              <DayMenu dayName={dayName} lunch={lunch?.name} dinner={dinner?.name} isLunchSelected={isLunchSelected} isDinnerSelected={isDinnerSelected} />
-            </RectButton>
-            <Divider />
-          </View>
-        )
-      })}
-    </ScrollView>
+    <View style={styles.container}>
+      <Divider />
+      <ScrollView>
+        {weekMenu.map((dayMenu) => {
+          const { dayId, lunch, dinner } = dayMenu
+          const dayName = WEEK_DAYS[dayId]
+          const { isLunchSelected, isDinnerSelected } = isActualMeal(dayId)
+          return (
+            <View key={dayId}>
+              <RectButton style={styles.dayContainer} onPress={() => handleDayMenuPress(dayId)}>
+                <DayMenu dayName={dayName} lunch={lunch?.name} dinner={dinner?.name} isLunchSelected={isLunchSelected} isDinnerSelected={isDinnerSelected} />
+              </RectButton>
+              <Divider />
+            </View>
+          )
+        })}
+      </ScrollView>
+    </View>
   )
 }
 

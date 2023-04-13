@@ -5,8 +5,6 @@ import IconButton from '../buttons/IconButton'
 
 import { i18n } from '../../utils'
 
-const ICON_SIZE = 25
-
 export default function RecipeInputEdit (props) {
   const {
     index,
@@ -37,7 +35,7 @@ export default function RecipeInputEdit (props) {
       />
       {isLastField
         ? <View style={styles.iconView} />
-        : <IconButton onPress={() => remove(index)} iconName='close' size={ICON_SIZE} />}
+        : <IconButton onPress={() => remove(index)} iconName='close' />}
     </View>
   )
 }
@@ -53,6 +51,6 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   iconView: {
-    width: ICON_SIZE
+    width: 30
   }
 })

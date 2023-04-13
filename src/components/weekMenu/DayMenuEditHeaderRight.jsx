@@ -25,6 +25,7 @@ export default function DayMenuEditHeaderRight () {
 const styles = StyleSheet.create({
   localHeaderContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    marginHorizontal: -5
   }
 })

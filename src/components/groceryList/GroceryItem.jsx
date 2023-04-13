@@ -49,7 +49,7 @@ export default function GroceryItem (props) {
       />
       {defaultChecked
         ? (
-          <Text style={styles.text}>
+          <Text style={styles.text} numberOfLines={1}>
             {text}
           </Text>
           )
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 8
+    height: 45
   },
   checkbox: {
     marginRight: 15
@@ -81,8 +81,7 @@ const styles = StyleSheet.create({
   text: {
     flex: 1,
     textDecorationLine: 'line-through',
-    color: 'gray',
-    marginVertical: 4.1
+    color: 'gray'
   },
   textInput: {
     flex: 1
