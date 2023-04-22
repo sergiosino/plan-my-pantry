@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
 
-import { DayMenu, DayIngredientsForGroceryList, DayMenuEditHeaderRight, DayMenuRecipesSearch } from '../../components/weekMenu'
+import { DayMenu, DayIngredientsForGroceryList, DayMenuRecipesSearch } from '../../components/weekMenu'
 import Recipe from '../../components/recipes/Recipe'
 import Divider from '../../components/Divider'
 
@@ -88,8 +88,7 @@ export default function DayMenuEditView () {
 
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: dayNameParam,
-      headerRight: () => (<DayMenuEditHeaderRight />)
+      headerTitle: dayNameParam
     })
   }, [])
 

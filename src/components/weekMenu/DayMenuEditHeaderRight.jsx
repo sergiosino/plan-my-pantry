@@ -7,6 +7,9 @@ import { useUserConfig } from '../../hooks/useUserConfig'
 
 import { ROUTE_DAY_MENU_EDIT_HELP } from '../../constants/routes'
 
+/**
+ * OUTDATED: Actually it is not being used, due to functionality changes in day menu view
+ */
 export default function DayMenuEditHeaderRight () {
   const navigation = useNavigation()
   const { showHeaderHelpIcon } = useUserConfig()

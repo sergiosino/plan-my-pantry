@@ -28,13 +28,14 @@ export async function getGroceryList () {
 
 /**
  * Add a new grocery item to the grocery list.
- * Returns the grocery list with the new item.
+ * Returns the grocery list updated with the new item.
  * @param {object} newItem
  * @returns {object[]}
  */
 export async function pushGroceryItem (newItem) {
   const groceryList = await getGroceryList()
   newItem.id = uuid.v4()
+  newItem.number = 1
   const newGroceryList = [newItem, ...groceryList]
   updateGroceryList(newGroceryList)
   return newGroceryList
@@ -42,17 +43,31 @@ export async function pushGroceryItem (newItem) {
 
 /**
  * Push an array of items to the grocery list.
- * If any of the ingredients already exists and it is unchecked, it will not be added.
- * Returns the grocery list with the new items added.
+ * If any of the new items do not exists, it will be added to the grocery list.
+ * If any of the new items already exists and it is unchecked, it will increase the number count of the item.
+ * Returns the grocery list updated with the new items added.
  * @param {object[]} newItems
  * @returns {object[]}
  */
 export async function pushGroceryItems (newItems) {
   const groceryList = await getGroceryList()
+
+  // New items that do not exists in the list
   const actualUncheckedItems = groceryList.filter(groceryItem => !groceryItem.checked).map(groceryItem => groceryItem.text)
   const uniqueNewItems = newItems.filter(newItem => !actualUncheckedItems.includes(newItem))
-  const newGroceryItems = uniqueNewItems.map(newItem => ({ id: uuid.v4(), checked: false, text: newItem }))
-  const newGroceryList = [...newGroceryItems, ...groceryList]
+  const newGroceryItems = uniqueNewItems.map(newItem => ({ id: uuid.v4(), checked: false, text: newItem, number: 1 }))
+
+  // New items that do already exists in the list
+  const updatedGroceryListNumbers = groceryList.map(groceryItem => {
+    if (groceryItem.checked || !newItems.includes(groceryItem.text)) return groceryItem
+    const number = groceryItem.number ?? 1
+    return {
+      ...groceryItem,
+      number: number + 1
+    }
+  })
+
+  const newGroceryList = [...newGroceryItems, ...updatedGroceryListNumbers]
   updateGroceryList(newGroceryList)
   return newGroceryList
 }

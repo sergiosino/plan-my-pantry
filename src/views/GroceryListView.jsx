@@ -21,12 +21,13 @@ export default function GroceryListView () {
   } = useGroceryList()
 
   const renderItem = (item) => {
-    const { id, checked, text, focus } = item
+    const { id, checked, text, number, focus } = item
     const isItemToFocus = !!focus
     return (
       <GroceryItem
         key={id}
         id={id}
+        number={number}
         defaultChecked={checked}
         defaultText={text}
         isItemToFocus={isItemToFocus}

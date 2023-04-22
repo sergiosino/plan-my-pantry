@@ -54,8 +54,8 @@ export function useGroceryList () {
    * @param {object} groceryItem
    */
   const handleUpdateGroceryItem = async (groceryItem) => {
-    const { id, checked, text } = groceryItem
-    const itemToUpdate = { id, checked, text }
+    const { id, checked, text, number } = groceryItem
+    const itemToUpdate = { id, checked, text, number }
     const newGroceryList = await glService.putGroceryItem(itemToUpdate.id, itemToUpdate)
     setGroceryList(newGroceryList)
   }

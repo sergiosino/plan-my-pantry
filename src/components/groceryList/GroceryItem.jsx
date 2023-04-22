@@ -9,6 +9,7 @@ import { useState } from 'react'
 export default function GroceryItem (props) {
   const {
     id,
+    number,
     defaultChecked,
     defaultText,
     isItemToFocus
@@ -27,12 +28,12 @@ export default function GroceryItem (props) {
 
   const handleTextFocusEnd = () => {
     setShowDeleteIcon(false)
-    const groceryItem = { id, defaultChecked, text }
+    const groceryItem = { id, defaultChecked, text, number }
     handleUpdateGroceryItem(groceryItem)
   }
 
   const handleCheckboxChange = (checked) => {
-    const groceryItem = { id, checked, text }
+    const groceryItem = { id, checked, text, number }
     handleUpdateGroceryItem(groceryItem)
   }
 
@@ -49,14 +50,14 @@ export default function GroceryItem (props) {
       />
       {defaultChecked
         ? (
-          <Text style={styles.text} numberOfLines={1}>
+          <Text style={[styles.flex1, styles.colorGray, styles.lineThrough]} numberOfLines={1}>
             {text}
           </Text>
           )
         : (
           <TextInput
             autoFocus={isItemToFocus}
-            style={styles.textInput}
+            style={styles.flex1}
             value={text}
             maxLength={40}
             onChangeText={setText}
@@ -64,7 +65,9 @@ export default function GroceryItem (props) {
             onEndEditing={handleTextFocusEnd}
           />
           )}
-      {showDeleteIcon && !defaultChecked && <IconButton onPress={handleDelete} iconName='close' />}
+      {showDeleteIcon
+        ? <IconButton onPress={handleDelete} iconName='close' />
+        : number && number > 1 && <Text style={[styles.colorGray, defaultChecked && styles.lineThrough]}>x{number}</Text>}
     </View>
   )
 }
@@ -78,12 +81,13 @@ const styles = StyleSheet.create({
   checkbox: {
     marginRight: 15
   },
-  text: {
-    flex: 1,
-    textDecorationLine: 'line-through',
+  colorGray: {
     color: 'gray'
   },
-  textInput: {
+  lineThrough: {
+    textDecorationLine: 'line-through'
+  },
+  flex1: {
     flex: 1
   }
 })
