@@ -38,8 +38,8 @@
         "SUNDAY": "Pazar",
         "LUNCH": "Öğle yemeği",
         "DINNER": "Akşam yemeği",
-        "RECIPE_LONG_PRESS": "Malzemeleri eklemek için tarife uzun basın",
         "ADD_GROCERY_LIST": "Alışveriş listesine ekle",
+        "INGREDIENTS_ADDED": "Malzemeler eklendi!",
         "RESET_MEALS": "Yemekleri sıfırla",
         "RESET_MEALS_MESSAGE": "Haftalık menüdeki tüm yemekleri sıfırlamak istiyor musunuz?"
     },

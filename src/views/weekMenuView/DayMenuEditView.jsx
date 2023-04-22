@@ -27,11 +27,13 @@ export default function DayMenuEditView () {
   const handlePressLunch = () => {
     if (isLunchSelected) { return }
     setIsLunchSelected(true)
+    setDayMenuIngredients([])
   }
 
   const handlePressDinner = () => {
     if (!isLunchSelected) { return }
     setIsLunchSelected(false)
+    setDayMenuIngredients([])
   }
 
   const handlePressRecipe = (recipe) => {
@@ -50,15 +52,18 @@ export default function DayMenuEditView () {
       updatedDayMenu.dinner = recipeInfo
     }
 
+    showRecipeIngredients(recipeInfo)
     setDayMenu(updatedDayMenu)
     setRecipeSelected(id)
   }
 
-  const handleLongPressRecipe = (pressedRecipe) => {
-    const { ingredients } = pressedRecipe
-    const allIngredients = [...dayMenuIngredients, ...ingredients]
-    const uniqueIngredients = [...new Set(allIngredients)]
-    setDayMenuIngredients(uniqueIngredients)
+  const showRecipeIngredients = (recipe) => {
+    if (!recipe) {
+      setDayMenuIngredients([])
+    } else {
+      const { ingredients } = recipe
+      setDayMenuIngredients(ingredients)
+    }
   }
 
   const renderItem = (recipe) => {
@@ -68,16 +73,17 @@ export default function DayMenuEditView () {
       <Recipe
         recipe={recipe}
         onPress={handlePressRecipe}
-        onLongPress={isRecipeSelected && handleLongPressRecipe}
         isSelected={isRecipeSelected}
       />
     )
   }
 
   useEffect(() => {
-    isLunchSelected
-      ? setRecipeSelected(dayMenu.lunch?.id)
-      : setRecipeSelected(dayMenu.dinner?.id)
+    const dayMeal = isLunchSelected
+      ? dayMenu.lunch
+      : dayMenu.dinner
+    setRecipeSelected(dayMeal?.id)
+    showRecipeIngredients(dayMeal)
   }, [isLunchSelected, dayMenu])
 
   useEffect(() => {
@@ -117,9 +123,11 @@ export default function DayMenuEditView () {
         renderItem={({ item }) => renderItem(item)}
       />
       <Divider />
-      <View style={styles.ingredientsListContainer}>
-        <DayIngredientsForGroceryList dayMenuIngredients={dayMenuIngredients} setDayMenuIngredients={setDayMenuIngredients} />
-      </View>
+      {dayMenuIngredients.length > 0 && (
+        <View style={styles.ingredientsListContainer}>
+          <DayIngredientsForGroceryList dayMenuIngredients={dayMenuIngredients} setDayMenuIngredients={setDayMenuIngredients} />
+        </View>
+      )}
     </View>
   )
 }

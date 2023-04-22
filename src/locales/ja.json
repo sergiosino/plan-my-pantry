@@ -38,8 +38,8 @@
         "SUNDAY": "日曜日",
         "LUNCH": "ランチ",
         "DINNER": "ディナー",
-        "RECIPE_LONG_PRESS": "レシピを長押しして、材料を追加する",
         "ADD_GROCERY_LIST": "買い物リストに追加",
+        "INGREDIENTS_ADDED": "材料が追加されました！",
         "RESET_MEALS": "食事をリセット",
         "RESET_MEALS_MESSAGE": "週間メニューのすべての食事をリセットしますか？"
     },

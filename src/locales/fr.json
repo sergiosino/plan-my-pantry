@@ -38,8 +38,8 @@
         "SUNDAY": "Dimanche",
         "LUNCH": "Déjeuner",
         "DINNER": "Dîner",
-        "RECIPE_LONG_PRESS": "Appuyez longuement sur une recette pour ajouter les ingrédients",
         "ADD_GROCERY_LIST": "Ajouter à la liste de courses",
+        "INGREDIENTS_ADDED": "Ingrédients ajoutés!",
         "RESET_MEALS": "Réinitialiser les repas",
         "RESET_MEALS_MESSAGE": "Voulez-vous réinitialiser tous les repas du menu hebdomadaire ?"
     },

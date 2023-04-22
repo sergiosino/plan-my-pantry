@@ -38,8 +38,8 @@
         "SUNDAY": "星期日",
         "LUNCH": "午餐",
         "DINNER": "晚餐",
-        "RECIPE_LONG_PRESS": "长按食谱添加配料",
         "ADD_GROCERY_LIST": "添加到购物清单",
+        "INGREDIENTS_ADDED": "添加配料",
         "RESET_MEALS": "重置餐点",
         "RESET_MEALS_MESSAGE": "您要重置所有周菜单的餐点吗？"
     },

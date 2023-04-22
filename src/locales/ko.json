@@ -38,8 +38,8 @@
         "SUNDAY": "일요일",
         "LUNCH": "점심",
         "DINNER": "저녁",
-        "RECIPE_LONG_PRESS": "레시피를 길게 눌러 재료를 추가하세요",
         "ADD_GROCERY_LIST": "장보기 목록에 추가",
+        "INGREDIENTS_ADDED": "재료가 추가되었습니다!",
         "RESET_MEALS": "식사 재설정",
         "RESET_MEALS_MESSAGE": "주간 메뉴의 모든 식사를 재설정하시겠습니까?"
     },

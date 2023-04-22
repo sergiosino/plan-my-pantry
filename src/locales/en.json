@@ -38,8 +38,8 @@
         "SUNDAY": "Sunday",
         "LUNCH": "Lunch",
         "DINNER": "Dinner",
-        "RECIPE_LONG_PRESS": "Long press on recipe to add the ingredients",
         "ADD_GROCERY_LIST": "Add to grocery list",
+        "INGREDIENTS_ADDED": "Ingredients added!",
         "RESET_MEALS": "Reset meals",
         "RESET_MEALS_MESSAGE": "Do you want to reset all weekly menu meals?"
     },

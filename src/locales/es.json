@@ -38,8 +38,8 @@
         "SUNDAY": "Domingo",
         "LUNCH": "Comida",
         "DINNER": "Cena",
-        "RECIPE_LONG_PRESS": "Manten presionada la receta para añadir los ingredientes",
         "ADD_GROCERY_LIST": "Añadir a la lista de compra",
+        "INGREDIENTS_ADDED": "¡Ingredientes añadidos!",
         "RESET_MEALS": "Restablecer las comidas",
         "RESET_MEALS_MESSAGE": "¿Quieres restablecer todas las comidas del menú semanal?"
     },

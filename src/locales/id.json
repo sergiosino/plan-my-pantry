@@ -38,8 +38,8 @@
         "SUNDAY": "Minggu",
         "LUNCH": "Makan Siang",
         "DINNER": "Makan Malam",
-        "RECIPE_LONG_PRESS": "Tekan lama pada resep untuk menambahkan bahan-bahannya",
         "ADD_GROCERY_LIST": "Tambahkan ke daftar belanja",
+        "INGREDIENTS_ADDED": "Bahan ditambahkan!",
         "RESET_MEALS": "Reset makanan",
         "RESET_MEALS_MESSAGE": "Apakah Anda ingin mengatur ulang semua menu makanan mingguan?"
     },

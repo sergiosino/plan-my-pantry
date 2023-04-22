@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ToastAndroid } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { useNavigation } from '@react-navigation/native'
 
 import Button from '../buttons/Button'
 import DeselectableItem from './DeselectableItem'
@@ -12,12 +11,10 @@ import { i18n } from '../../utils'
 export default function DayIngredientsForGroceryList (props) {
   const { dayMenuIngredients, setDayMenuIngredients } = props
 
-  const navigation = useNavigation()
-
   const handleAddGroceryList = () => {
     const ingredientsText = dayMenuIngredients.map(dayMenuIngredient => dayMenuIngredient)
     glService.pushGroceryItems(ingredientsText)
-    navigation.goBack()
+    ToastAndroid.show(i18n.t('MENU.INGREDIENTS_ADDED'), ToastAndroid.SHORT)
   }
 
   const handleRemoveIngredient = (ingredient) => {
@@ -28,7 +25,6 @@ export default function DayIngredientsForGroceryList (props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>{i18n.t('MENU.RECIPE_LONG_PRESS')}</Text>
       <ScrollView>
         <View style={styles.ingredientsContainer}>
           {dayMenuIngredients.map((dayMenuIngredient, index) => (
@@ -49,10 +45,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: 10
-  },
-  titleText: {
-    fontWeight: 'bold',
-    marginBottom: 5
   },
   ingredientsContainer: {
     marginBottom: 5,

@@ -38,8 +38,8 @@
         "SUNDAY": "Sonntag",
         "LUNCH": "Mittagessen",
         "DINNER": "Abendessen",
-        "RECIPE_LONG_PRESS": "Lange auf ein Rezept drücken, um die Zutaten hinzuzufügen",
         "ADD_GROCERY_LIST": "Zur Einkaufsliste hinzufügen",
+        "INGREDIENTS_ADDED": "Zutaten hinzugefügt!",
         "RESET_MEALS": "Mahlzeiten zurücksetzen",
         "RESET_MEALS_MESSAGE": "Möchten Sie alle wöchentlichen Menü-Mahlzeiten zurücksetzen?"
     },
