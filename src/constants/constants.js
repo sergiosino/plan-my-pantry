@@ -15,7 +15,7 @@ export const USER_CONFIG_PARAMS = {
 
 export const TERMS_CONDITIONS_URL = 'https://sites.google.com/view/planmypantry-terms-conditions/home'
 export const PRIVACY_POLICY_URL = 'https://sites.google.com/view/planmypantry-privacy-policy/home'
-export const RATE_APP_URL = 'TODO URL'
+export const RATE_APP_URL = 'https://play.google.com/store/apps/details?id=com.planmypantry'
 
 export const LANGUAGES = [
   {
