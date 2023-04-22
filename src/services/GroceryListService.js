@@ -42,15 +42,15 @@ export async function pushGroceryItem (newItem) {
 
 /**
  * Push an array of items to the grocery list.
- * If any of the ingredients already exists, it will not be added.
+ * If any of the ingredients already exists and it is unchecked, it will not be added.
  * Returns the grocery list with the new items added.
  * @param {object[]} newItems
  * @returns {object[]}
  */
 export async function pushGroceryItems (newItems) {
   const groceryList = await getGroceryList()
-  const actualItems = groceryList.map(groceryItem => groceryItem.text)
-  const uniqueNewItems = newItems.filter(newItem => !actualItems.includes(newItem))
+  const actualUncheckedItems = groceryList.filter(groceryItem => !groceryItem.checked).map(groceryItem => groceryItem.text)
+  const uniqueNewItems = newItems.filter(newItem => !actualUncheckedItems.includes(newItem))
   const newGroceryItems = uniqueNewItems.map(newItem => ({ id: uuid.v4(), checked: false, text: newItem }))
   const newGroceryList = [...newGroceryItems, ...groceryList]
   updateGroceryList(newGroceryList)
