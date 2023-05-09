@@ -26,7 +26,8 @@
         "backgroundColor": "#FFFFFF"
       },
       "softwareKeyboardLayoutMode": "pan",
-      "package": "com.planmypantry"
+      "package": "com.planmypantry",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
