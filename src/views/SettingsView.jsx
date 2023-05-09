@@ -7,6 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { Switch } from '../components/forms'
 import Divider from '../components/Divider'
 import LanguageSelectorModal from '../components/settings/LanguageSelectorModal'
+import ImportExportRecipesModal from '../components/settings/ImportExportRecipesModal'
 
 import { useUserConfig } from '../hooks'
 
@@ -21,6 +22,7 @@ const { SHOW_WELCOME_PAGE, SHOW_HEADER_HELP_ICON } = USER_CONFIG_PARAMS
  */
 export default function SettingsView () {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
+  const [isExportImportRecipesOpen, setIsExportImportRecipesOpen] = useState(false)
 
   const { showWelcomePage, showHeaderHelpIcon, updateUserConfig } = useUserConfig()
 
@@ -40,6 +42,7 @@ export default function SettingsView () {
   return (
     <View style={styles.container}>
       <LanguageSelectorModal isModalOpen={isLanguageOpen} setIsModalOpen={setIsLanguageOpen} />
+      <ImportExportRecipesModal isModalOpen={isExportImportRecipesOpen} setIsModalOpen={setIsExportImportRecipesOpen} />
       <View style={styles.imageContainer}>
         <Image source={require('../../assets/chick-settings.png')} style={styles.chickImg} />
       </View>
@@ -62,6 +65,13 @@ export default function SettingsView () {
         <RectButton style={styles.backgroundWhite} onPress={() => setIsLanguageOpen(true)}>
           <View style={styles.settingContainer}>
             <Text>{i18n.t('SETTINGS.CHANGE_LANGUAGE')}</Text>
+            <Ionicons name='chevron-forward' size={20} />
+          </View>
+        </RectButton>
+        <Divider />
+        <RectButton style={styles.backgroundWhite} onPress={() => setIsExportImportRecipesOpen(true)}>
+          <View style={styles.settingContainer}>
+            <Text>{i18n.t('IMPORT_EXPORT_RECIPES_MODAL.IMPORT_EXPORT_RECIPES')}</Text>
             <Ionicons name='chevron-forward' size={20} />
           </View>
         </RectButton>

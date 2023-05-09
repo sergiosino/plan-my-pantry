@@ -84,6 +84,14 @@ export async function pushRecipe (recipe) {
 }
 
 /**
+ * Load the new recipes by deleting the existing ones
+ * @param {object[]} recipes
+ */
+export async function loadRecipesBackup (recipes) {
+  updateRecipes(recipes)
+}
+
+/**
  * Updates a recipe if the existing one is different.
  * The new recipe ingredients are cleaned and the new recipe list sorted.
  * Returns the new recipes list if there are any change, or the last one if not.
