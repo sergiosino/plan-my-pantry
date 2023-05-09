@@ -15,12 +15,12 @@ export default function ImportExportRecipesModal (props) {
 
   const {
     handleGetRecipes,
-    importBase64,
-    exportBase64
+    importBackup,
+    exportBackup
   } = useRecipes()
 
   const handleExportRecipes = async () => {
-    const recipesBase64 = exportBase64()
+    const recipesBase64 = exportBackup()
     const actualClipboard = await Clipboard.getStringAsync()
 
     if (actualClipboard !== recipesBase64) {
@@ -29,6 +29,7 @@ export default function ImportExportRecipesModal (props) {
     } else {
       toastAndroid(i18n.t('IMPORT_EXPORT_RECIPES_MODAL.RECIPES_BACKUP_BACKUP_CLIPBOARD'))
     }
+    setIsModalOpen(false)
   }
 
   const handleImportRecipes = async () => {
@@ -42,8 +43,9 @@ export default function ImportExportRecipesModal (props) {
       i18n.t('IMPORT_EXPORT_RECIPES_MODAL.WARNING'),
       i18n.t('IMPORT_EXPORT_RECIPES_MODAL.CONFIRMATION_IMPORT_RECIPES_BACKUP'),
       () => {
-        const textResult = importBase64(recipesCode)
+        const textResult = importBackup(recipesCode)
         toastAndroid(textResult)
+        setIsModalOpen(false)
       }
     )
   }

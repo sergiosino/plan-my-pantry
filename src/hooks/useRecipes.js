@@ -29,13 +29,14 @@ export function useRecipes () {
    * @param {string} recipesBase64
    * @returns Text of the result
    */
-  const importBase64 = (recipesBase64) => {
+  const importBackup = (recipesBase64) => {
     if (!recipesBase64) { return }
 
     try {
       const recipesString = decode(recipesBase64)
       const recipesObj = JSON.parse(recipesString)
 
+      // Check if the backup is an array with at least one object that has the id, name and notes props
       if (
         Array.isArray(recipesObj) &&
         recipesObj.length > 0 &&
@@ -55,7 +56,7 @@ export function useRecipes () {
    * Generates the base64 recipes backup
    * @returns Base64 recipes backup
    */
-  const exportBase64 = () => {
+  const exportBackup = () => {
     const recipesString = JSON.stringify(recipes)
     const recipesBase64 = encode(recipesString)
     return recipesBase64
@@ -76,7 +77,7 @@ export function useRecipes () {
     handleGetRecipes,
     handleSearchRecipes,
     handleDeleteRecipe,
-    importBase64,
-    exportBase64
+    importBackup,
+    exportBackup
   }
 }
