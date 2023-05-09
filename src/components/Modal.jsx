@@ -1,12 +1,8 @@
 import { Text, Modal as ModalRN, View, StyleSheet } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
-import Button from './buttons/Button'
-
-import { i18n } from '../utils'
-
 export default function Modal (props) {
-  const { isModalOpen, setIsModalOpen, title, onSave, children } = props
+  const { isModalOpen, setIsModalOpen, title, children } = props
 
   const handleClose = () => {
     setIsModalOpen(false)
@@ -35,12 +31,7 @@ export default function Modal (props) {
               <View style={styles.modalTitle}>
                 <Text style={{ fontSize: 16 }}>{title}</Text>
               </View>
-              <View style={styles.modalContent}>
-                {children}
-              </View>
-              <Button onPress={onSave}>
-                <Text>{i18n.t('COMMON.SAVE_CLOSE')}</Text>
-              </Button>
+              {children}
             </View>
           </View>
         </GestureHandlerRootView>
@@ -71,9 +62,6 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     alignItems: 'center',
-    marginBottom: 20
-  },
-  modalContent: {
     marginBottom: 20
   }
 })

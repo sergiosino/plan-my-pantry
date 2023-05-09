@@ -3,12 +3,14 @@ import { RectButton, ScrollView } from 'react-native-gesture-handler'
 import { StyleSheet, Text, View } from 'react-native'
 
 import Modal from '../Modal'
-import { LANGUAGES, USER_CONFIG_PARAMS } from '../../constants/constants'
 import Divider from '../Divider'
+import Button from '../buttons/Button'
 
 import { useUserConfig } from '../../hooks'
 
 import { i18n } from '../../utils'
+
+import { LANGUAGES, USER_CONFIG_PARAMS } from '../../constants/constants'
 
 const { DEFAULT_LANGUAGE } = USER_CONFIG_PARAMS
 
@@ -33,9 +35,8 @@ export default function LanguageSelectorModal (props) {
       isModalOpen={isModalOpen}
       setIsModalOpen={setIsModalOpen}
       title={i18n.t('SETTINGS.SELECT_LANGUAGE')}
-      onSave={handleSave}
     >
-      <ScrollView style={styles.scrollView} scr>
+      <ScrollView style={styles.scrollView}>
         {LANGUAGES.map((option, index) => {
           const { id, name, flag } = option
           const isSelected = languageSelected === id
@@ -51,13 +52,17 @@ export default function LanguageSelectorModal (props) {
           )
         })}
       </ScrollView>
+      <Button onPress={handleSave}>
+        <Text>{i18n.t('COMMON.SAVE_CLOSE')}</Text>
+      </Button>
     </Modal>
   )
 }
 
 const styles = StyleSheet.create({
   scrollView: {
-    height: 220
+    height: 220,
+    marginBottom: 20
   },
   language: {
     width: '100%',
