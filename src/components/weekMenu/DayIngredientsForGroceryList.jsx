@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ToastAndroid } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
 import Button from '../buttons/Button'
@@ -6,7 +6,7 @@ import DeselectableItem from './DeselectableItem'
 
 import * as glService from '../../services/GroceryListService'
 
-import { i18n } from '../../utils'
+import { i18n, toastAndroid } from '../../utils'
 
 export default function DayIngredientsForGroceryList (props) {
   const { dayMenuIngredients, setDayMenuIngredients } = props
@@ -14,7 +14,7 @@ export default function DayIngredientsForGroceryList (props) {
   const handleAddGroceryList = () => {
     const ingredientsText = dayMenuIngredients.map(dayMenuIngredient => dayMenuIngredient)
     glService.pushGroceryItems(ingredientsText)
-    ToastAndroid.show(i18n.t('MENU.INGREDIENTS_ADDED'), ToastAndroid.SHORT)
+    toastAndroid(i18n.t('MENU.INGREDIENTS_ADDED'))
   }
 
   const handleRemoveIngredient = (ingredient) => {
