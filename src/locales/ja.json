@@ -68,5 +68,20 @@
         "SHARE_PMP": "PlanMyPantryを共有する",
         "SHARE_MESSAGE": "もっと簡単に買い物をしたいですか？PlanMyPantryを今すぐダウンロードしましょう！ https://play.google.com/store/apps/details?id=com.planmypantry",
         "RATE_GOOGLE_PLAY": "Google PlayストアでPlanMyPantryを評価する"
+    },
+    "IMPORT_EXPORT_RECIPES_MODAL": {
+        "IMPORT_EXPORT_RECIPES": "レシピのインポートまたはエクスポート",
+        "RECIPES_BACKUP_CLIPBOARD": "レシピのバックアップがクリップボードにコピーされました！",
+        "RECIPES_BACKUP_BACKUP_CLIPBOARD": "レシピのバックアップはすでにクリップボードにコピーされています！",
+        "EMPTY_CLIPBOARD": "クリップボードは空です",
+        "CONFIRMATION_IMPORT_RECIPES_BACKUP": "バックアップをインポートしますか？\n\nすべての既存のレシピが削除されます",
+        "GET_RECIPES_BACKUP": "レシピのバックアップを取得して、注意深く保存してください",
+        "SAVE_CLIPBOARD": "クリップボードに保存",
+        "IMPORT_RECIPES_BACKUP": "レシピのバックアップをインポートする",
+        "IMPORT_FROM_CLIPBOARD": "クリップボードからインポート",
+        "RECIPES_IMPORTED": "レシピがインポートされました！",
+        "NOT_VALID_RECIPES_BACKUP": "無効なバックアップ",
+        "UNCONTROLLED_ERROR_RECIPES_BACKUP": "何をインポートしようとしていますか？ :(",
+        "WARNING": "警告"
     }
 }

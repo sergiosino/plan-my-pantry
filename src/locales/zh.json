@@ -68,5 +68,20 @@
         "SHARE_PMP": "分享PlanMyPantry",
         "SHARE_MESSAGE": "准备好用更简单的方式购物了吗？立即下载PlanMyPantry！ https://play.google.com/store/apps/details?id=com.planmypantry",
         "RATE_GOOGLE_PLAY": "在谷歌Play商店中评价PlanMyPantry"
+    },
+    "IMPORT_EXPORT_RECIPES_MODAL": {
+        "IMPORT_EXPORT_RECIPES": "导入或导出食谱",
+        "RECIPES_BACKUP_CLIPBOARD": "食谱备份已复制到剪贴板！",
+        "RECIPES_BACKUP_BACKUP_CLIPBOARD": "食谱备份已经复制到剪贴板！",
+        "EMPTY_CLIPBOARD": "剪贴板为空",
+        "CONFIRMATION_IMPORT_RECIPES_BACKUP": "是否要导入备份？\n\n所有现有食谱将被删除",
+        "GET_RECIPES_BACKUP": "获取食谱备份，请小心保存",
+        "SAVE_CLIPBOARD": "保存到剪贴板",
+        "IMPORT_RECIPES_BACKUP": "导入您的食谱备份",
+        "IMPORT_FROM_CLIPBOARD": "从剪贴板导入",
+        "RECIPES_IMPORTED": "食谱已导入！",
+        "NOT_VALID_RECIPES_BACKUP": "无效的备份",
+        "UNCONTROLLED_ERROR_RECIPES_BACKUP": "您试图导入什么？:(",
+        "WARNING": "警告"
     }
 }

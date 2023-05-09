@@ -68,5 +68,20 @@
         "SHARE_PMP": "PlanMyPantry'yi paylaş",
         "SHARE_MESSAGE": "Daha kolay bir alışveriş deneyimi için hazır mısın? PlanMyPantry'i indir! https://play.google.com/store/apps/details?id=com.planmypantry",
         "RATE_GOOGLE_PLAY": "PlanMyPantry'i Google Play Store'da değerlendir"
+    },
+    "IMPORT_EXPORT_RECIPES_MODAL": {
+        "IMPORT_EXPORT_RECIPES": "Tarifleri İçe veya Dışa Aktarın",
+        "RECIPES_BACKUP_CLIPBOARD": "Tarifler yedeklemesi panoya kopyalandı!",
+        "RECIPES_BACKUP_BACKUP_CLIPBOARD": "Tarifler yedeklemesi zaten panoya kopyalanmış!",
+        "EMPTY_CLIPBOARD": "Panoya hiçbir şey kopyalanmamış",
+        "CONFIRMATION_IMPORT_RECIPES_BACKUP": "Yedeklemeyi içe aktarmak istiyor musunuz? \n\nMEVCUT TARİFLERİN TAMAMI SİLİNECEKTİR",
+        "GET_RECIPES_BACKUP": "Tarifler yedeklemesi alın, dikkatlice saklayın",
+        "SAVE_CLIPBOARD": "Panoya kaydet",
+        "IMPORT_RECIPES_BACKUP": "Tarifler yedeklemenizi içe aktarın",
+        "IMPORT_FROM_CLIPBOARD": "Panodan içe aktarın",
+        "RECIPES_IMPORTED": "Tarifler içe aktarıldı!",
+        "NOT_VALID_RECIPES_BACKUP": "Geçersiz bir yedekleme",
+        "UNCONTROLLED_ERROR_RECIPES_BACKUP": "Ne yapmaya çalışıyorsunuz? :(",
+        "WARNING": "UYARI"
     }
 }

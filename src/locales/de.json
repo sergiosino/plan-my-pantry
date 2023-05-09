@@ -68,5 +68,20 @@
         "SHARE_PMP": "Teile PlanMyPantry",
         "SHARE_MESSAGE": "Bereit für einfacheres Einkaufen? Lade PlanMyPantry jetzt herunter! https://play.google.com/store/apps/details?id=com.planmypantry",
         "RATE_GOOGLE_PLAY": "Bewerte PlanMyPantry im Google Play Store"
+    },
+    "IMPORT_EXPORT_RECIPES_MODAL": {
+        "IMPORT_EXPORT_RECIPES": "Rezepte importieren oder exportieren",
+        "RECIPES_BACKUP_CLIPBOARD": "Rezeptsicherung in Zwischenablage kopiert!",
+        "RECIPES_BACKUP_BACKUP_CLIPBOARD": "Rezeptsicherung bereits in Zwischenablage kopiert!",
+        "EMPTY_CLIPBOARD": "Die Zwischenablage ist leer",
+        "CONFIRMATION_IMPORT_RECIPES_BACKUP": "Möchten Sie das Backup importieren? \n\nALLE VORHANDENEN REZEPTE WERDEN ENTFERNT",
+        "GET_RECIPES_BACKUP": "Holen Sie sich eine Rezept-Sicherung, speichern Sie sie sorgfältig",
+        "SAVE_CLIPBOARD": "In Zwischenablage speichern",
+        "IMPORT_RECIPES_BACKUP": "Ihre Rezeptsicherung importieren",
+        "IMPORT_FROM_CLIPBOARD": "Aus der Zwischenablage importieren",
+        "RECIPES_IMPORTED": "Rezepte importiert!",
+        "NOT_VALID_RECIPES_BACKUP": "Kein gültiges Backup",
+        "UNCONTROLLED_ERROR_RECIPES_BACKUP": "Was versuchen Sie zu importieren? :(",
+        "WARNING": "WARNUNG"
     }
 }

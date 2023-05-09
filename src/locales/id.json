@@ -68,5 +68,20 @@
         "SHARE_PMP": "Bagikan PlanMyPantry",
         "SHARE_MESSAGE": "Siap untuk berbelanja dengan lebih mudah? Unduh PlanMyPantry sekarang! https://play.google.com/store/apps/details?id=com.planmypantry",
         "RATE_GOOGLE_PLAY": "Beri nilai PlanMyPantry di Google Play Store"
+    },
+    "IMPORT_EXPORT_RECIPES_MODAL": {
+        "IMPORT_EXPORT_RECIPES": "Impor atau ekspor resep",
+        "RECIPES_BACKUP_CLIPBOARD": "Pencadangan resep disalin ke clipboard!",
+        "RECIPES_BACKUP_BACKUP_CLIPBOARD": "Pencadangan resep telah disalin ke clipboard!",
+        "EMPTY_CLIPBOARD": "Clipboard kosong",
+        "CONFIRMATION_IMPORT_RECIPES_BACKUP": "Apakah Anda ingin mengimpor pencadangan? \n\nSEMUA RESEP YANG ADA AKAN DIHAPUS",
+        "GET_RECIPES_BACKUP": "Dapatkan pencadangan resep, simpan dengan hati-hati",
+        "SAVE_CLIPBOARD": "Simpan ke clipboard",
+        "IMPORT_RECIPES_BACKUP": "Impor pencadangan resep Anda",
+        "IMPORT_FROM_CLIPBOARD": "Impor dari clipboard",
+        "RECIPES_IMPORTED": "Resep diimpor!",
+        "NOT_VALID_RECIPES_BACKUP": "Bukan cadangan yang valid",
+        "UNCONTROLLED_ERROR_RECIPES_BACKUP": "Apa yang ingin Anda impor? :(",
+        "WARNING": "PERINGATAN"
     }
 }

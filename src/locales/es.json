@@ -68,5 +68,20 @@
         "SHARE_PMP": "Comparte PlanMyPantry",
         "SHARE_MESSAGE": "¿Listo para hacer la compra de una forma más sencilla? ¡Descarga PlanMyPantry! https://play.google.com/store/apps/details?id=com.planmypantry",
         "RATE_GOOGLE_PLAY": "Valora PlanMyPantry en la Google Play Store"
+    },
+    "IMPORT_EXPORT_RECIPES_MODAL": {
+        "IMPORT_EXPORT_RECIPES": "Importar o exportar recetas",
+        "RECIPES_BACKUP_CLIPBOARD": "¡Copia de seguridad de recetas copiada al portapapeles!",
+        "RECIPES_BACKUP_BACKUP_CLIPBOARD": "¡La copia de seguridad de recetas ya se copió al portapapeles!",
+        "EMPTY_CLIPBOARD": "El portapapeles está vacío",
+        "CONFIRMATION_IMPORT_RECIPES_BACKUP": "¿Quieres importar la copia de seguridad?\n\nSE ELIMINARÁN TODAS LAS RECETAS EXISTENTES",
+        "GET_RECIPES_BACKUP": "Obtén una copia de seguridad de tus recetas, guárdala cuidadosamente",
+        "SAVE_CLIPBOARD": "Guardar en el portapapeles",
+        "IMPORT_RECIPES_BACKUP": "Importar tu copia de seguridad de recetas",
+        "IMPORT_FROM_CLIPBOARD": "Importar desde el portapapeles",
+        "RECIPES_IMPORTED": "¡Recetas importadas!",
+        "NOT_VALID_RECIPES_BACKUP": "Copia de seguridad no válida",
+        "UNCONTROLLED_ERROR_RECIPES_BACKUP": "¿Qué intentas importar? :(",
+        "WARNING": "ADVERTENCIA"
     }
 }

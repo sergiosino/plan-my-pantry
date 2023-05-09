@@ -68,5 +68,20 @@
         "SHARE_PMP": "Поделиться PlanMyPantry",
         "SHARE_MESSAGE": "Готовы сделать покупки проще? Скачайте PlanMyPantry сейчас! https://play.google.com/store/apps/details?id=com.planmypantry",
         "RATE_GOOGLE_PLAY": "Оцените PlanMyPantry в Google Play Store"
+    },
+    "IMPORT_EXPORT_RECIPES_MODAL": {
+        "IMPORT_EXPORT_RECIPES": "Импорт или экспорт рецептов",
+        "RECIPES_BACKUP_CLIPBOARD": "Резервная копия рецептов скопирована в буфер обмена!",
+        "RECIPES_BACKUP_BACKUP_CLIPBOARD": "Резервная копия рецептов уже скопирована в буфер обмена!",
+        "EMPTY_CLIPBOARD": "Буфер обмена пуст",
+        "CONFIRMATION_IMPORT_RECIPES_BACKUP": "Вы хотите импортировать резервную копию? \n\nВСЕ СУЩЕСТВУЮЩИЕ РЕЦЕПТЫ БУДУТ УДАЛЕНЫ",
+        "GET_RECIPES_BACKUP": "Получите резервную копию рецептов, храните ее осторожно",
+        "SAVE_CLIPBOARD": "Сохранить в буфер обмена",
+        "IMPORT_RECIPES_BACKUP": "Импортировать резервную копию рецептов",
+        "IMPORT_FROM_CLIPBOARD": "Импортировать из буфера обмена",
+        "RECIPES_IMPORTED": "Рецепты импортированы!",
+        "NOT_VALID_RECIPES_BACKUP": "Неверная резервная копия",
+        "UNCONTROLLED_ERROR_RECIPES_BACKUP": "Что вы пытаетесь импортировать? :(",
+        "WARNING": "ПРЕДУПРЕЖДЕНИЕ"
     }
 }

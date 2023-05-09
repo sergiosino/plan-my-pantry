@@ -68,5 +68,20 @@
         "SHARE_PMP": "PlanMyPantry 공유하기",
         "SHARE_MESSAGE": "쉬운 쇼핑을 준비하셨나요? 지금 PlanMyPantry를 다운로드하세요! https://play.google.com/store/apps/details?id=com.planmypantry",
         "RATE_GOOGLE_PLAY": "Google Play 스토어에서 PlanMyPantry 평가하기"
+    },
+    "IMPORT_EXPORT_RECIPES_MODAL": {
+        "IMPORT_EXPORT_RECIPES": "레시피 가져오기 또는 내보내기",
+        "RECIPES_BACKUP_CLIPBOARD": "레시피 백업이 클립보드에 복사되었습니다!",
+        "RECIPES_BACKUP_BACKUP_CLIPBOARD": "레시피 백업이 이미 클립보드에 복사되었습니다!",
+        "EMPTY_CLIPBOARD": "클립보드가 비어 있습니다",
+        "CONFIRMATION_IMPORT_RECIPES_BACKUP": "백업을 가져 오시겠습니까? \n\n기존 모든 레시피가 제거됩니다",
+        "GET_RECIPES_BACKUP": "레시피 백업을 가져와서 주의 깊게 저장하세요",
+        "SAVE_CLIPBOARD": "클립보드에 저장",
+        "IMPORT_RECIPES_BACKUP": "레시피 백업 가져오기",
+        "IMPORT_FROM_CLIPBOARD": "클립보드에서 가져 오기",
+        "RECIPES_IMPORTED": "레시피 가져오기 완료!",
+        "NOT_VALID_RECIPES_BACKUP": "올바른 백업이 아닙니다",
+        "UNCONTROLLED_ERROR_RECIPES_BACKUP": "가져 오려는 항목이 무엇인가요? :(",
+        "WARNING": "경고"
     }
 }
